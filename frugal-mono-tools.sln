@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "frugal-mono-tools", "frugal-mono-tools\frugal-mono-tools.csproj", "{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Debug|x86.ActiveCfg = Debug|x86
+		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Debug|x86.Build.0 = Debug|x86
+		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|x86.ActiveCfg = Release|x86
+		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = frugal-mono-tools\frugal-mono-tools.csproj
+		Policies = $0
+		$0.VersionControlPolicy = $1
+		$1.inheritsSet = Mono
+		$0.ChangeLogPolicy = $2
+		$2.UpdateMode = ProjectRoot
+		$2.MessageStyle = $3
+		$3.LineAlign = 0
+		$2.inheritsSet = Mono
+	EndGlobalSection
+EndGlobal
