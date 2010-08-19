@@ -35,7 +35,49 @@ public partial class MainWindow : Gtk.Window
 		ONG_principal.RemovePage(cen_OngXORG);
 		ONG_principal.RemovePage(cen_OngHW);
 		ONG_principal.RemovePage(cen_OngPKG);
-		
+		//Login Manager init
+		 try
+            {
+                System.IO.StreamReader textFile = new System.IO.StreamReader(cch_FileLoginManager);
+                string fileContents = textFile.ReadToEnd();
+                textFile.Close();
+                string[] lines = fileContents.Split('\n');
+                foreach (string line in lines)
+                {
+                    if (line.Substring(0, 1) != "#")
+                    {
+                        //We can search a login manager
+                        if (line.IndexOf("/usr/bin/xdm") > 0)
+                        {
+                            //use xdm
+							this.INT_XDM.Active=true;
+                        }
+                        if (line.IndexOf("/usr/sbin/lxdm") > 0)
+                        {
+                            //use lxdm
+							this.INT_LXDM.Active=true;
+                        }
+                        if (line.IndexOf("/usr/bin/slim") > 0)
+                        {
+                            //use Slim
+							this.INT_Slim.Active=true;
+                        }
+                        if (line.IndexOf("/usr/sbin/gdm") > 0)
+                        {
+                            //use GDM
+							this.INT_GDM.Active=true;
+                        }
+                        if (line.IndexOf("/usr/bin/kdm") > 0)
+                        {
+                            //use KDM
+							this.INT_KDM.Active=true;
+                        }
+
+                    }
+                }
+            }
+            catch { }
+
 		//RSS
 		try{
 		CBO_TitleNews.Model=modelFlux;
@@ -198,21 +240,66 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNLoginManagerClicked (object sender, System.EventArgs e)
 	{
-		//enregistrement configuration login manager
-		
-		/*
-		# /etc/sysconfig/desktop
-		# Which session manager try to use.
-		
-		#desktop="/usr/bin/xdm -nodaemon"
-		#desktop="/usr/sbin/lxdm"
-		#desktop="/usr/bin/slim"
-		#desktop="/usr/sbin/gdm --nodaemon"
-		#desktop="/usr/bin/kdm -nodaemon"
-		*/
-		
-
-		
+		try
+		{
+			//enregistrement configuration login manager
+			
+			/*
+			# /etc/sysconfig/desktop
+			# Which session manager try to use.
+			
+			#desktop="/usr/bin/xdm -nodaemon"
+			#desktop="/usr/sbin/lxdm"
+			#desktop="/usr/bin/slim"
+			#desktop="/usr/sbin/gdm --nodaemon"
+			#desktop="/usr/bin/kdm -nodaemon"
+			*/
+			StreamWriter FileLogin = new StreamWriter(cch_FileLoginManager);
+			FileLogin.WriteLine("# /etc/sysconfig/desktop");
+			FileLogin.WriteLine("# Which session manager try to use.");
+			FileLogin.WriteLine("");
+			if (this.INT_XDM.Active)
+			{
+				FileLogin.WriteLine("desktop=\"/usr/bin/xdm -nodaemon\"");
+			}
+			else
+			{
+				FileLogin.WriteLine("#desktop=\"/usr/bin/xdm -nodaemon\"");
+			}
+			if (this.INT_LXDM.Active)
+			{
+				FileLogin.WriteLine("desktop=\"/usr/sbin/lxdm\"");
+			}
+			else
+			{
+				FileLogin.WriteLine("#desktop=\"/usr/sbin/lxdm\"");
+			}
+			if (this.INT_Slim.Active)
+			{
+				FileLogin.WriteLine("desktop=\"/usr/bin/slim\"");
+			}
+			else
+			{
+				FileLogin.WriteLine("#desktop=\"/usr/bin/slim\"");
+			}
+			if (this.INT_GDM.Active)
+			{
+				FileLogin.WriteLine("desktop=\"/usr/sbin/gdm -nodaemon\"");
+			}
+			else
+			{
+				FileLogin.WriteLine("#desktop=\"/usr/sbin/gdm -nodaemon\"");
+			}
+			if (this.INT_KDM.Active)
+			{
+				FileLogin.WriteLine("desktop=\"/usr/bin/kdm -nodaemon\"");
+			}
+			else
+			{
+				FileLogin.WriteLine("#desktop=\"/usr/bin/kdm -nodaemon\"");
+			}
+		}
+		catch{}
 	}
 	
 	
