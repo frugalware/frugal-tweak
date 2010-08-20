@@ -16,6 +16,28 @@ namespace frugalmonotools
 			}
 			return false;
 		}
+		/// <summary>
+		///enable disable service,enable = false disable and stop this service 
+		/// </summary>
+		/// <param name="servicename">
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="enable">
+		/// A <see cref="System.Boolean"/>
+		/// </param>
+		public static void Service(string servicename, bool enable)
+		{
+			if (enable)
+			{
+				Outils.Excecute("service "+servicename+" add","");
+				Outils.Excecute("service "+servicename+" start","");
+			}
+			else
+			{
+				Outils.Excecute("service "+servicename+" del","");
+				Outils.Excecute("service "+servicename+" stop","");
+			}
+		}
 		/*
 		public static String ResultExcecute(String Commande,string Arguments)
 		{

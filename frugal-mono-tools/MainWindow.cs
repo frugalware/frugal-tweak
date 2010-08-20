@@ -121,6 +121,10 @@ public partial class MainWindow : Gtk.Window
 	/// </param>
 	protected virtual void ApplyNetwork (object sender, System.EventArgs e)
 	{
+		
+		Outils.Service("networkmanager",this.INT_NM.Active);
+		Outils.Service("wicd",this.INT_WICD.Active);
+		
 	}
 	
 	protected virtual void SelectItem (object sender, System.EventArgs e)
