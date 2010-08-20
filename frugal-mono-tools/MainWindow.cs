@@ -150,7 +150,6 @@ public partial class MainWindow : Gtk.Window
 	/// </param>
 	protected virtual void ApplyNetwork (object sender, System.EventArgs e)
 	{
-		
 		Outils.Service("networkmanager",this.INT_NM.Active);
 		Outils.Service("wicd",this.INT_WICD.Active);
 		
@@ -345,6 +344,7 @@ public partial class MainWindow : Gtk.Window
 			{
 				FileLogin.WriteLine("#desktop=\"/usr/bin/kdm -nodaemon\"");
 			}
+			FileLogin.Close();
 		}
 		catch{}
 	}
@@ -400,6 +400,26 @@ public partial class MainWindow : Gtk.Window
 		}
 	}
 		
+	protected virtual void ApplyXorg (object sender, System.EventArgs e)
+	{
+		try{
+		StreamWriter FileX = new StreamWriter(cch_FileLayoutXorg);
+		FileX.WriteLine("Section \"InputClass\"");
+        FileX.WriteLine("Identifier \"evdev keyboard catchall\"");
+        FileX.WriteLine("MatchIsKeyboard \"on\"");
+        FileX.WriteLine("MatchDevicePath \"/dev/input/event*\"");
+        FileX.WriteLine("Driver \"evdev\"");
+        FileX.WriteLine("Option \"xkb_layout\" \""+this.SAI_Layout.Text.Trim()+"\"");
+		FileX.WriteLine("Option \"XkbOptions\" \"terminate:ctrl_alt_bksp\"");
+		FileX.WriteLine("EndSection");
+
+		FileX.Close();
+		}
+		catch{}
+		
+	}
+	
+	
 	
 }
 

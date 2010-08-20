@@ -716,7 +716,7 @@ public partial class MainWindow
 		this.DefaultHeight = 395;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-		this.BTN_Xorg.Clicked += new global::System.EventHandler (this.ApplyNetwork);
+		this.BTN_Xorg.Clicked += new global::System.EventHandler (this.ApplyXorg);
 		this.INT_FW.Clicked += new global::System.EventHandler (this.usefw);
 		this.INT_NM.Clicked += new global::System.EventHandler (this.usenm);
 		this.INT_WICD.Clicked += new global::System.EventHandler (this.usewicd);
