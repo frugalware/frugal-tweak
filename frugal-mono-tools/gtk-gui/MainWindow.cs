@@ -67,7 +67,7 @@ public partial class MainWindow
 
 	private global::Gtk.HBox hbox4;
 
-	private global::Gtk.Button BTN_networkapply;
+	private global::Gtk.Button BTN_Network;
 
 	private global::Gtk.Label LIB_Network;
 
@@ -151,7 +151,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 4;
+		this.ONG_principal.CurrentPage = 3;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -409,13 +409,13 @@ public partial class MainWindow
 		this.hbox4.Name = "hbox4";
 		this.hbox4.Spacing = 6;
 		// Container child hbox4.Gtk.Box+BoxChild
-		this.BTN_networkapply = new global::Gtk.Button ();
-		this.BTN_networkapply.CanFocus = true;
-		this.BTN_networkapply.Name = "BTN_networkapply";
-		this.BTN_networkapply.UseUnderline = true;
-		this.BTN_networkapply.Label = global::Mono.Unix.Catalog.GetString ("Apply");
-		this.hbox4.Add (this.BTN_networkapply);
-		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.BTN_networkapply]));
+		this.BTN_Network = new global::Gtk.Button ();
+		this.BTN_Network.CanFocus = true;
+		this.BTN_Network.Name = "BTN_Network";
+		this.BTN_Network.UseUnderline = true;
+		this.BTN_Network.Label = global::Mono.Unix.Catalog.GetString ("Apply");
+		this.hbox4.Add (this.BTN_Network);
+		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.BTN_Network]));
 		w27.Position = 2;
 		w27.Expand = false;
 		w27.Fill = false;
@@ -737,7 +737,7 @@ public partial class MainWindow
 		this.INT_FW.Clicked += new global::System.EventHandler (this.usefw);
 		this.INT_NM.Clicked += new global::System.EventHandler (this.usenm);
 		this.INT_WICD.Clicked += new global::System.EventHandler (this.usewicd);
-		this.BTN_networkapply.Clicked += new global::System.EventHandler (this.ApplyNetwork);
+		this.BTN_Network.Clicked += new global::System.EventHandler (this.ApplyNetwork);
 		this.INT_XDM.Clicked += new global::System.EventHandler (this.OnINTXDMClicked);
 		this.INT_LXDM.Clicked += new global::System.EventHandler (this.OnINTLXDMClicked);
 		this.INT_Slim.Clicked += new global::System.EventHandler (this.OnINTSlimClicked);

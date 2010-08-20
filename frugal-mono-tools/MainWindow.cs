@@ -35,6 +35,12 @@ public partial class MainWindow : Gtk.Window
 		ONG_principal.RemovePage(cen_OngXORG);
 		ONG_principal.RemovePage(cen_OngHW);
 		ONG_principal.RemovePage(cen_OngPKG);
+		//root option
+		if (Mono.Unix.Native.Syscall.getuid()!=0)
+		{
+			BTN_Network.Visible=false;
+			BTN_LoginManager.Visible=false;
+		}
 		//Login Manager init
 		EnableDisable(INT_XDM,"/usr/bin/xdm",LIB_XDM);
 		EnableDisable(INT_LXDM,"/usr/sbin/lxdm",LIB_LXDM);

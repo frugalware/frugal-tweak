@@ -18,7 +18,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">4</property>
+        <property name="CurrentPage">3</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -405,7 +405,7 @@
                   <placeholder />
                 </child>
                 <child>
-                  <widget class="Gtk.Button" id="BTN_networkapply">
+                  <widget class="Gtk.Button" id="BTN_Network">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
