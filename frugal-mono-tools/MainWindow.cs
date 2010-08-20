@@ -36,6 +36,11 @@ public partial class MainWindow : Gtk.Window
 		ONG_principal.RemovePage(cen_OngHW);
 		ONG_principal.RemovePage(cen_OngPKG);
 		//Login Manager init
+		EnableDisable(INT_XDM,"/usr/bin/xdm",LIB_XDM);
+		EnableDisable(INT_LXDM,"/usr/sbin/lxdm",LIB_LXDM);
+		EnableDisable(INT_Slim,"/usr/bin/slim",LIB_SLIM);
+		EnableDisable(INT_GDM,"/usr/sbin/gdm",LIB_GDM);
+		EnableDisable(INT_KDM,"/usr/bin/kdm",LIB_KDM);
 		 try
             {
                 System.IO.StreamReader textFile = new System.IO.StreamReader(cch_FileLoginManager);
@@ -300,6 +305,32 @@ public partial class MainWindow : Gtk.Window
 			}
 		}
 		catch{}
+	}
+	/// <summary>
+	///Enable / Disable some options if package is installed 
+	/// </summary>
+	/// <param name="INT_Option">
+	/// A <see cref="CheckButton"/>
+	/// </param>
+	/// <param name="FileToTest">
+	/// A <see cref="System.String"/>
+	/// </param>
+	/// <param name="text">
+	/// A <see cref="Label"/>
+	/// </param>
+	public void EnableDisable(CheckButton INT_Option,string FileToTest, Label text)
+	{
+		//check if file existe for works more quickly
+		if(!File.Exists(FileToTest))
+		{
+			INT_Option.Active=false;
+			INT_Option.Inconsistent=true;
+			text.Visible=true;
+		}
+		else
+		{
+			text.Visible=false;
+		}
 	}
 	
 	

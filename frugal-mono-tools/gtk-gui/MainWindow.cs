@@ -79,7 +79,7 @@ public partial class MainWindow
 
 	private global::Gtk.CheckButton INT_XDM;
 
-	private global::Gtk.Label LIB_NMNotInstalled2;
+	private global::Gtk.Label LIB_XDM;
 
 	private global::Gtk.HBox hbox6;
 
@@ -87,7 +87,7 @@ public partial class MainWindow
 
 	private global::Gtk.CheckButton INT_LXDM;
 
-	private global::Gtk.Label LIB_NMNotInstalled1;
+	private global::Gtk.Label LIB_LXDM;
 
 	private global::Gtk.HBox hbox7;
 
@@ -95,7 +95,7 @@ public partial class MainWindow
 
 	private global::Gtk.CheckButton INT_Slim;
 
-	private global::Gtk.Label LIB_WICDNotInstalled1;
+	private global::Gtk.Label LIB_SLIM;
 
 	private global::Gtk.HBox hbox9;
 
@@ -103,7 +103,7 @@ public partial class MainWindow
 
 	private global::Gtk.CheckButton INT_GDM;
 
-	private global::Gtk.Label LIB_WICDNotInstalled2;
+	private global::Gtk.Label LIB_GDM;
 
 	private global::Gtk.HBox hbox10;
 
@@ -111,7 +111,7 @@ public partial class MainWindow
 
 	private global::Gtk.CheckButton INT_KDM;
 
-	private global::Gtk.Label LIB_WICDNotInstalled3;
+	private global::Gtk.Label LIB_KDM;
 
 	private global::Gtk.HBox hbox8;
 
@@ -151,7 +151,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 6;
+		this.ONG_principal.CurrentPage = 4;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -462,11 +462,11 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.INT_XDM]));
 		w31.Position = 1;
 		// Container child hbox5.Gtk.Box+BoxChild
-		this.LIB_NMNotInstalled2 = new global::Gtk.Label ();
-		this.LIB_NMNotInstalled2.Name = "LIB_NMNotInstalled2";
-		this.LIB_NMNotInstalled2.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
-		this.hbox5.Add (this.LIB_NMNotInstalled2);
-		global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.LIB_NMNotInstalled2]));
+		this.LIB_XDM = new global::Gtk.Label ();
+		this.LIB_XDM.Name = "LIB_XDM";
+		this.LIB_XDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
+		this.hbox5.Add (this.LIB_XDM);
+		global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.LIB_XDM]));
 		w32.Position = 2;
 		w32.Expand = false;
 		w32.Fill = false;
@@ -499,11 +499,11 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.INT_LXDM]));
 		w35.Position = 1;
 		// Container child hbox6.Gtk.Box+BoxChild
-		this.LIB_NMNotInstalled1 = new global::Gtk.Label ();
-		this.LIB_NMNotInstalled1.Name = "LIB_NMNotInstalled1";
-		this.LIB_NMNotInstalled1.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
-		this.hbox6.Add (this.LIB_NMNotInstalled1);
-		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.LIB_NMNotInstalled1]));
+		this.LIB_LXDM = new global::Gtk.Label ();
+		this.LIB_LXDM.Name = "LIB_LXDM";
+		this.LIB_LXDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
+		this.hbox6.Add (this.LIB_LXDM);
+		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.LIB_LXDM]));
 		w36.Position = 2;
 		w36.Expand = false;
 		w36.Fill = false;
@@ -536,11 +536,11 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.INT_Slim]));
 		w39.Position = 1;
 		// Container child hbox7.Gtk.Box+BoxChild
-		this.LIB_WICDNotInstalled1 = new global::Gtk.Label ();
-		this.LIB_WICDNotInstalled1.Name = "LIB_WICDNotInstalled1";
-		this.LIB_WICDNotInstalled1.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
-		this.hbox7.Add (this.LIB_WICDNotInstalled1);
-		global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.LIB_WICDNotInstalled1]));
+		this.LIB_SLIM = new global::Gtk.Label ();
+		this.LIB_SLIM.Name = "LIB_SLIM";
+		this.LIB_SLIM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
+		this.hbox7.Add (this.LIB_SLIM);
+		global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.LIB_SLIM]));
 		w40.Position = 2;
 		w40.Expand = false;
 		w40.Fill = false;
@@ -573,11 +573,11 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.INT_GDM]));
 		w43.Position = 1;
 		// Container child hbox9.Gtk.Box+BoxChild
-		this.LIB_WICDNotInstalled2 = new global::Gtk.Label ();
-		this.LIB_WICDNotInstalled2.Name = "LIB_WICDNotInstalled2";
-		this.LIB_WICDNotInstalled2.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
-		this.hbox9.Add (this.LIB_WICDNotInstalled2);
-		global::Gtk.Box.BoxChild w44 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.LIB_WICDNotInstalled2]));
+		this.LIB_GDM = new global::Gtk.Label ();
+		this.LIB_GDM.Name = "LIB_GDM";
+		this.LIB_GDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
+		this.hbox9.Add (this.LIB_GDM);
+		global::Gtk.Box.BoxChild w44 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.LIB_GDM]));
 		w44.Position = 2;
 		w44.Expand = false;
 		w44.Fill = false;
@@ -610,11 +610,11 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.INT_KDM]));
 		w47.Position = 1;
 		// Container child hbox10.Gtk.Box+BoxChild
-		this.LIB_WICDNotInstalled3 = new global::Gtk.Label ();
-		this.LIB_WICDNotInstalled3.Name = "LIB_WICDNotInstalled3";
-		this.LIB_WICDNotInstalled3.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
-		this.hbox10.Add (this.LIB_WICDNotInstalled3);
-		global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.LIB_WICDNotInstalled3]));
+		this.LIB_KDM = new global::Gtk.Label ();
+		this.LIB_KDM.Name = "LIB_KDM";
+		this.LIB_KDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
+		this.hbox10.Add (this.LIB_KDM);
+		global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.LIB_KDM]));
 		w48.Position = 2;
 		w48.Expand = false;
 		w48.Fill = false;

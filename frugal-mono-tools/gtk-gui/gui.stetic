@@ -18,7 +18,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">6</property>
+        <property name="CurrentPage">4</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -479,7 +479,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="LIB_NMNotInstalled2">
+                  <widget class="Gtk.Label" id="LIB_XDM">
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">Not installed</property>
                   </widget>
@@ -530,7 +530,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="LIB_NMNotInstalled1">
+                  <widget class="Gtk.Label" id="LIB_LXDM">
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">Not installed</property>
                   </widget>
@@ -581,7 +581,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="LIB_WICDNotInstalled1">
+                  <widget class="Gtk.Label" id="LIB_SLIM">
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">Not installed</property>
                   </widget>
@@ -632,7 +632,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="LIB_WICDNotInstalled2">
+                  <widget class="Gtk.Label" id="LIB_GDM">
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">Not installed</property>
                   </widget>
@@ -683,7 +683,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="LIB_WICDNotInstalled3">
+                  <widget class="Gtk.Label" id="LIB_KDM">
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">Not installed</property>
                   </widget>
