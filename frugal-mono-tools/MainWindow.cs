@@ -11,10 +11,11 @@ public partial class MainWindow : Gtk.Window
 	private WebKit.WebView webview=null;
 	Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
 	const int cen_OngPKG=0;
-	const int cen_OngHW=1;
-	const int cen_OngXORG=2;
+	const int cen_OngHW=2;
+	
 	
 	const string cch_FileLoginManager=@"/etc/sysconfig/desktop";
+	const string cch_FileLayoutXorg=@"/etc/X11/xorg.conf.d/10-evdev.conf";
 	//http://www.go-mono.com/docs/index.aspx?link=T:Gtk.HTML
 	//HTML htl;
 
@@ -42,7 +43,6 @@ public partial class MainWindow : Gtk.Window
 		this.scroll.ShowAll();
 		
 		//hide notebook not yet implemented
-		ONG_principal.RemovePage(cen_OngXORG);
 		ONG_principal.RemovePage(cen_OngHW);
 		ONG_principal.RemovePage(cen_OngPKG);
 		
@@ -51,8 +51,11 @@ public partial class MainWindow : Gtk.Window
 		{
 			BTN_Network.Visible=false;
 			BTN_LoginManager.Visible=false;
-			
+			BTN_Xorg.Visible=false;
 		}
+		
+		//xorg configuration
+		SAI_Layout.Text=this.LayoutXorg();
 		
 		//network init
 		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
@@ -372,7 +375,30 @@ public partial class MainWindow : Gtk.Window
 		}
 	}
 	
-	
+	public string LayoutXorg()
+	{
+		try
+		{
+			string layout="";
+			System.IO.StreamReader textFile = new System.IO.StreamReader(cch_FileLayoutXorg);
+	        string fileContents = textFile.ReadToEnd();
+	        textFile.Close();
+	        string[] lines = fileContents.Split('\n');
+	        foreach (string line in lines)
+	        {
+				if (line.IndexOf("xkb_layout") > 0)
+				{
+					string[]ligne= line.Split('"');
+					layout=ligne[3];
+				}
+				
+			}
+			return layout;
+		}
+		catch{
+			return "";
+		}
+	}
 		
 	
 }

@@ -29,11 +29,11 @@ public partial class MainWindow
 
 	private global::Gtk.Label label2;
 
-	private global::Gtk.Entry entry1;
+	private global::Gtk.Entry SAI_Layout;
 
 	private global::Gtk.HBox hbox14;
 
-	private global::Gtk.Button BTN_networkapply2;
+	private global::Gtk.Button BTN_Xorg;
 
 	private global::Gtk.Label label1;
 
@@ -147,7 +147,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 5;
+		this.ONG_principal.CurrentPage = 1;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -239,13 +239,13 @@ public partial class MainWindow
 		w9.Expand = false;
 		w9.Fill = false;
 		// Container child hbox13.Gtk.Box+BoxChild
-		this.entry1 = new global::Gtk.Entry ();
-		this.entry1.CanFocus = true;
-		this.entry1.Name = "entry1";
-		this.entry1.IsEditable = true;
-		this.entry1.InvisibleChar = '●';
-		this.hbox13.Add (this.entry1);
-		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox13[this.entry1]));
+		this.SAI_Layout = new global::Gtk.Entry ();
+		this.SAI_Layout.CanFocus = true;
+		this.SAI_Layout.Name = "SAI_Layout";
+		this.SAI_Layout.IsEditable = true;
+		this.SAI_Layout.InvisibleChar = '●';
+		this.hbox13.Add (this.SAI_Layout);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox13[this.SAI_Layout]));
 		w10.Position = 1;
 		this.vbox6.Add (this.hbox13);
 		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.hbox13]));
@@ -257,13 +257,13 @@ public partial class MainWindow
 		this.hbox14.Name = "hbox14";
 		this.hbox14.Spacing = 6;
 		// Container child hbox14.Gtk.Box+BoxChild
-		this.BTN_networkapply2 = new global::Gtk.Button ();
-		this.BTN_networkapply2.CanFocus = true;
-		this.BTN_networkapply2.Name = "BTN_networkapply2";
-		this.BTN_networkapply2.UseUnderline = true;
-		this.BTN_networkapply2.Label = global::Mono.Unix.Catalog.GetString ("Apply");
-		this.hbox14.Add (this.BTN_networkapply2);
-		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox14[this.BTN_networkapply2]));
+		this.BTN_Xorg = new global::Gtk.Button ();
+		this.BTN_Xorg.CanFocus = true;
+		this.BTN_Xorg.Name = "BTN_Xorg";
+		this.BTN_Xorg.UseUnderline = true;
+		this.BTN_Xorg.Label = global::Mono.Unix.Catalog.GetString ("Apply");
+		this.hbox14.Add (this.BTN_Xorg);
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox14[this.BTN_Xorg]));
 		w12.Position = 2;
 		w12.Expand = false;
 		w12.Fill = false;
@@ -716,7 +716,7 @@ public partial class MainWindow
 		this.DefaultHeight = 395;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-		this.BTN_networkapply2.Clicked += new global::System.EventHandler (this.ApplyNetwork);
+		this.BTN_Xorg.Clicked += new global::System.EventHandler (this.ApplyNetwork);
 		this.INT_FW.Clicked += new global::System.EventHandler (this.usefw);
 		this.INT_NM.Clicked += new global::System.EventHandler (this.usenm);
 		this.INT_WICD.Clicked += new global::System.EventHandler (this.usewicd);
