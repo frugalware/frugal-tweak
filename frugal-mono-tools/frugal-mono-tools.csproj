@@ -83,4 +83,9 @@
     <Folder Include="RSS\" />
     <Folder Include="OUTILS\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="TODO" />
+    <None Include="LICENCE" />
+    <None Include="Changelog" />
+  </ItemGroup>
 </Project>
