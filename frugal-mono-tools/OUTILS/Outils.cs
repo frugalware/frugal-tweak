@@ -9,11 +9,8 @@ namespace frugalmonotools
 			proc.EnableRaisingEvents=false; 
 			proc.StartInfo.FileName = Commande;
 			proc.StartInfo.Arguments = Arguments;
-			if (proc.Start())
-			{
-				proc.WaitForExit();
-				return true;
-			}
+			if (proc.Start())return true;
+			
 			return false;
 		}
 		/// <summary>
