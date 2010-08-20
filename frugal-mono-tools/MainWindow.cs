@@ -35,11 +35,25 @@ public partial class MainWindow : Gtk.Window
 		ONG_principal.RemovePage(cen_OngXORG);
 		ONG_principal.RemovePage(cen_OngHW);
 		ONG_principal.RemovePage(cen_OngPKG);
-		//root option
+		//root options
 		if (Mono.Unix.Native.Syscall.getuid()!=0)
 		{
 			BTN_Network.Visible=false;
 			BTN_LoginManager.Visible=false;
+			
+		}
+		//network init
+		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
+		EnableDisable(INT_NM,"/usr/sbin/NetworkManager",LIB_NMNotInstalled);
+		INT_WICD.Active=Outils.ServiceOnStartUp("S99rc.wicd");
+		EnableDisable(INT_WICD,"/usr/sbin/wicd",LIB_WICDNotInstalled);
+		if((!INT_NM.Active) && (!INT_WICD.Active))
+		{
+			INT_FW.Active=true;
+		}
+		else
+		{
+			INT_FW.Active=false;
 		}
 		//Login Manager init
 		EnableDisable(INT_XDM,"/usr/bin/xdm",LIB_XDM);
@@ -173,6 +187,7 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void usenm (object sender, System.EventArgs e)
 	{
+		if (INT_NM.Inconsistent) return;
 		if (this.INT_NM.Active)
 		{
 			this.INT_FW.Active=false;
@@ -186,6 +201,7 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void usewicd (object sender, System.EventArgs e)
 	{
+		if (INT_NM.Inconsistent) return;
 		if (this.INT_WICD.Active)
 		{
 			this.INT_FW.Active=false;

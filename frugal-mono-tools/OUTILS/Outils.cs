@@ -38,6 +38,28 @@ namespace frugalmonotools
 				Outils.Excecute("service "+servicename+" stop","");
 			}
 		}
+		/// <summary>
+		/// return true if service is enable on startup
+		/// verify on each runlevel 
+		/// </summary>
+		/// <param name="servicename">
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="System.Boolean"/>
+		/// </returns>
+		public static bool ServiceOnStartUp(string servicename)
+		{
+			string ch_DirRC="/etc/rc.d/";
+	
+			if (System.IO.File.Exists(ch_DirRC+"rc0.d/"+servicename)) return true;
+			if (System.IO.File.Exists(ch_DirRC+"rc1.d/"+servicename)) return true;
+			if (System.IO.File.Exists(ch_DirRC+"rc2.d/"+servicename)) return true;
+			if (System.IO.File.Exists(ch_DirRC+"rc3.d/"+servicename)) return true;
+			if (System.IO.File.Exists(ch_DirRC+"rc4.d/"+servicename)) return true;
+			if (System.IO.File.Exists(ch_DirRC+"rc5.d/"+servicename)) return true;
+			return false;
+		}
 		/*
 		public static String ResultExcecute(String Commande,string Arguments)
 		{
