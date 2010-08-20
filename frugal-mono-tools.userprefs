@@ -1,11 +1,10 @@
 ﻿<Properties>
   <AuthorInfo Name="Gaetan GOURDIN" Email="bouleetbil@frogdev.info" Copyright="GNU General Public License, version 2" ctype="AuthorInformation" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="frugal-mono-tools\licence.txt" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="frugal-mono-tools/MainWindow.cs" ctype="Workbench">
     <Files>
-      <File FileName="frugal-mono-tools\RSS\RSS.cs" Line="74" Column="11" />
-      <File FileName="frugal-mono-tools\MainWindow.cs" Line="1" Column="14" />
-      <File FileName="frugal-mono-tools\licence.txt" Line="12" Column="32" />
+      <File FileName="frugal-mono-tools/MainWindow.cs" Line="42" Column="25" />
+      <File FileName="frugal-mono-tools/OUTILS/Outils.cs" Line="14" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,8 +12,9 @@
           <Node name="frugal-mono-tools" expanded="True">
             <Node name="References" expanded="True" />
             <Node name="UserInterface" expanded="True" />
+            <Node name="OUTILS" expanded="True" />
             <Node name="RSS" expanded="True" />
-            <Node name="licence.txt" selected="True" />
+            <Node name="MainWindow.cs" selected="True" />
           </Node>
         </State>
       </Pad>

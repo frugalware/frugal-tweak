@@ -125,10 +125,6 @@ public partial class MainWindow
 
 	private global::Gtk.Label LIB_Titre;
 
-	private global::Gtk.ScrolledWindow GtkScrolledWindow1;
-
-	private global::Gtk.TextView TXT_Description;
-
 	private global::Gtk.Button BTN_Link;
 
 	private global::Gtk.Label LIB_News;
@@ -151,7 +147,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 3;
+		this.ONG_principal.CurrentPage = 5;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -674,32 +670,19 @@ public partial class MainWindow
 		w54.Expand = false;
 		w54.Fill = false;
 		// Container child vbox5.Gtk.Box+BoxChild
-		this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
-		this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
-		this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
-		// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
-		this.TXT_Description = new global::Gtk.TextView ();
-		this.TXT_Description.CanFocus = true;
-		this.TXT_Description.Name = "TXT_Description";
-		this.TXT_Description.Editable = false;
-		this.GtkScrolledWindow1.Add (this.TXT_Description);
-		this.vbox5.Add (this.GtkScrolledWindow1);
-		global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.GtkScrolledWindow1]));
-		w56.Position = 2;
-		// Container child vbox5.Gtk.Box+BoxChild
 		this.BTN_Link = new global::Gtk.Button ();
 		this.BTN_Link.CanFocus = true;
 		this.BTN_Link.Name = "BTN_Link";
 		this.BTN_Link.UseUnderline = true;
 		this.BTN_Link.Label = global::Mono.Unix.Catalog.GetString ("Link");
 		this.vbox5.Add (this.BTN_Link);
-		global::Gtk.Box.BoxChild w57 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.BTN_Link]));
-		w57.Position = 3;
-		w57.Expand = false;
-		w57.Fill = false;
+		global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.BTN_Link]));
+		w55.Position = 3;
+		w55.Expand = false;
+		w55.Fill = false;
 		this.ONG_principal.Add (this.vbox5);
-		global::Gtk.Notebook.NotebookChild w58 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox5]));
-		w58.Position = 5;
+		global::Gtk.Notebook.NotebookChild w56 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox5]));
+		w56.Position = 5;
 		// Notebook tab
 		this.LIB_News = new global::Gtk.Label ();
 		this.LIB_News.Name = "LIB_News";
@@ -717,8 +700,8 @@ public partial class MainWindow
 		this.textview2.Name = "textview2";
 		this.GtkScrolledWindow2.Add (this.textview2);
 		this.ONG_principal.Add (this.GtkScrolledWindow2);
-		global::Gtk.Notebook.NotebookChild w60 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
-		w60.Position = 6;
+		global::Gtk.Notebook.NotebookChild w58 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
+		w58.Position = 6;
 		// Notebook tab
 		this.label3 = new global::Gtk.Label ();
 		this.label3.Name = "label3";

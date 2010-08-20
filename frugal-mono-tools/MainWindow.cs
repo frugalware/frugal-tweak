@@ -2,10 +2,14 @@ using System;
 using System.Net;
 using System.IO;
 using Gtk;
+using WebKit;
 using frugalmonotools;
 
 public partial class MainWindow : Gtk.Window
 {
+	//webkit engine
+	private WebKit.WebView webview=null;
+	Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
 	const int cen_OngPKG=0;
 	const int cen_OngHW=1;
 	const int cen_OngXORG=2;
@@ -31,10 +35,17 @@ public partial class MainWindow : Gtk.Window
 			Debug.winDebug.Show();
 		}
 		
+		//webkit engine
+		webview = new WebView();
+		scroll.Add(webview);
+		this.vbox5.Add (this.scroll);
+		this.scroll.ShowAll();
+		
 		//hide notebook not yet implemented
 		ONG_principal.RemovePage(cen_OngXORG);
 		ONG_principal.RemovePage(cen_OngHW);
 		ONG_principal.RemovePage(cen_OngPKG);
+		
 		//root options
 		if (Mono.Unix.Native.Syscall.getuid()!=0)
 		{
@@ -42,6 +53,7 @@ public partial class MainWindow : Gtk.Window
 			BTN_LoginManager.Visible=false;
 			
 		}
+		
 		//network init
 		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
 		EnableDisable(INT_NM,"/usr/sbin/NetworkManager",LIB_NMNotInstalled);
@@ -149,7 +161,8 @@ public partial class MainWindow : Gtk.Window
 			int id =(int)modelFlux.GetValue (iter,1);
 			nodetype Node = (nodetype)FluxRss.Nodes[id];
 			this.LIB_Titre.LabelProp=Node.rss_pubdate;
-			this.TXT_Description.Buffer.Text=Node.rss_description;
+			//this.TXT_Description.Buffer.Text=Node.rss_description;
+			this.webview.LoadUri(Node.rss_url);
 			this.BTN_Link.Label=Node.rss_url;
 		}
 	}
