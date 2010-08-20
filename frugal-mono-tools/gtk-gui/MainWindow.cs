@@ -147,7 +147,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 1;
+		this.ONG_principal.CurrentPage = 0;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -716,6 +716,7 @@ public partial class MainWindow
 		this.DefaultHeight = 395;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.BTN_Search.Clicked += new global::System.EventHandler (this.OnBTNSearchClicked);
 		this.BTN_Xorg.Clicked += new global::System.EventHandler (this.ApplyXorg);
 		this.INT_FW.Clicked += new global::System.EventHandler (this.usefw);
 		this.INT_NM.Clicked += new global::System.EventHandler (this.usenm);

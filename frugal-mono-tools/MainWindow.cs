@@ -10,7 +10,6 @@ public partial class MainWindow : Gtk.Window
 	//webkit engine
 	private WebKit.WebView webview=null;
 	Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
-	const int cen_OngPKG=0;
 	const int cen_OngHW=2;
 	
 	
@@ -19,6 +18,8 @@ public partial class MainWindow : Gtk.Window
 	//http://www.go-mono.com/docs/index.aspx?link=T:Gtk.HTML
 	//HTML htl;
 
+	//pacman-g2 initialise
+	PacmanG2 Pkg = new PacmanG2();
 	
 	//RSS
 	const string UrlPlanet="http://planet.frugalware.org/feed.php?type=rss";
@@ -44,7 +45,6 @@ public partial class MainWindow : Gtk.Window
 		
 		//hide notebook not yet implemented
 		ONG_principal.RemovePage(cen_OngHW);
-		ONG_principal.RemovePage(cen_OngPKG);
 		
 		//root options
 		if (Mono.Unix.Native.Syscall.getuid()!=0)
@@ -418,6 +418,12 @@ public partial class MainWindow : Gtk.Window
 		catch{}
 		
 	}
+	
+	protected virtual void OnBTNSearchClicked (object sender, System.EventArgs e)
+	{
+		
+	}
+	
 	
 	
 	

@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
   <MonoDevelop.Ide.Workbench ActiveDocument="frugal-mono-tools/MainWindow.cs" ctype="Workbench">
     <Files>
-      <File FileName="frugal-mono-tools/MainWindow.cs" Line="42" Column="25" />
+      <File FileName="frugal-mono-tools/MainWindow.cs" Line="407" Column="39" />
       <File FileName="frugal-mono-tools/OUTILS/Outils.cs" Line="14" Column="17" />
     </Files>
     <Pads>
