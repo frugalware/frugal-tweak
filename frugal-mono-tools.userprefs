@@ -1,10 +1,12 @@
 ﻿<Properties>
   <AuthorInfo Name="Gaetan GOURDIN" Email="bouleetbil@frogdev.info" Copyright="GNU General Public License, version 2" ctype="AuthorInformation" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="frugal-mono-tools/MainWindow.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="frugal-mono-tools/PacmanG2.cs" ctype="Workbench">
     <Files>
-      <File FileName="frugal-mono-tools/MainWindow.cs" Line="407" Column="39" />
+      <File FileName="frugal-mono-tools/MainWindow.cs" Line="54" Column="27" />
       <File FileName="frugal-mono-tools/OUTILS/Outils.cs" Line="14" Column="17" />
+      <File FileName="Navigateur d'assemblage" />
+      <File FileName="frugal-mono-tools/PacmanG2.cs" Line="14" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,7 +16,7 @@
             <Node name="UserInterface" expanded="True" />
             <Node name="OUTILS" expanded="True" />
             <Node name="RSS" expanded="True" />
-            <Node name="MainWindow.cs" selected="True" />
+            <Node name="PacmanG2.cs" selected="True" />
           </Node>
         </State>
       </Pad>
