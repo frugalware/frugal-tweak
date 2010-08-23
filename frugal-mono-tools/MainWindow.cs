@@ -8,8 +8,6 @@ using frugalmonotools;
 public partial class MainWindow : Gtk.Window
 {
 	//pacman-g2
-	Gtk.TreeView treepkg = new Gtk.TreeView ();
-	Gtk.ScrolledWindow scrollpkg = new Gtk.ScrolledWindow();
 	// Create a model for treeview pkg
 	Gtk.ListStore pkgListStore = new Gtk.ListStore (typeof (string));
 	//pacman-g2 initialise
@@ -51,7 +49,7 @@ public partial class MainWindow : Gtk.Window
 		Gtk.CellRendererText pkgNameCell = new Gtk.CellRendererText ();
 		// Add the cell to the column
 		pkgColumn.PackStart (pkgNameCell, true);
-		treepkg.AppendColumn (pkgColumn);
+		treeviewpkg.AppendColumn (pkgColumn);
 		pkgColumn.AddAttribute (pkgNameCell, "text", 0);
 		
 		int i = 0 ;
@@ -64,11 +62,7 @@ public partial class MainWindow : Gtk.Window
 		// Add some data to the store
 		pkgListStore.AppendValues ("Garbage");
 		// Assign the model to the TreeView
-		treepkg.Model = pkgListStore;
-		
-		scrollpkg.Add(treepkg);
-		this.vbox4.Add (this.scrollpkg);
-		this.vbox4.ShowAll();
+		treeviewpkg.Model = pkgListStore;
 		
 		//webkit engine
 		webview = new WebView();
@@ -457,6 +451,17 @@ public partial class MainWindow : Gtk.Window
 	{
 		
 	}
+	
+	protected virtual void selectRepo (object sender, System.EventArgs e)
+	{
+		TreeIter iter;
+		if ((sender as ComboBox).GetActiveIter (out iter))
+		{
+			int id =(int)modelRepoList.GetValue (iter,1);
+			Pkg.SelectRepo(Pkg.fwRepo[id]);
+		}
+	}
+	
 	
 	
 	
