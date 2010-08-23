@@ -1,1 +1,6 @@
 *~
+*.dll
+*.exe
+*.exe.mdb
+*.userprefs
+*.pid

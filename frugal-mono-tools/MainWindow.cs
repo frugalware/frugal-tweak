@@ -105,6 +105,7 @@ public partial class MainWindow : Gtk.Window
                 System.IO.StreamReader textFile = new System.IO.StreamReader(cch_FileLoginManager);
                 string fileContents = textFile.ReadToEnd();
                 textFile.Close();
+				fileContents = fileContents.Replace("\n\n", "\n");
                 string[] lines = fileContents.Split('\n');
                 foreach (string line in lines)
                 {
