@@ -158,8 +158,6 @@ public partial class MainWindow
 		this.hbox11.Spacing = 6;
 		// Container child hbox11.Gtk.Box+BoxChild
 		this.CBO_Repo = global::Gtk.ComboBox.NewText ();
-		this.CBO_Repo.AppendText (global::Mono.Unix.Catalog.GetString ("Stable"));
-		this.CBO_Repo.AppendText (global::Mono.Unix.Catalog.GetString ("Current"));
 		this.CBO_Repo.Name = "CBO_Repo";
 		this.hbox11.Add (this.CBO_Repo);
 		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.CBO_Repo]));
@@ -721,7 +719,7 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 393;
+		this.DefaultWidth = 401;
 		this.DefaultHeight = 395;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);

@@ -14,6 +14,8 @@ public partial class MainWindow : Gtk.Window
 	Gtk.ListStore pkgListStore = new Gtk.ListStore (typeof (string));
 	//pacman-g2 initialise
 	PacmanG2 Pkg = new PacmanG2();
+	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
+	 
 	
 	//webkit engine
 	private WebKit.WebView webview=null;
@@ -52,6 +54,13 @@ public partial class MainWindow : Gtk.Window
 		treepkg.AppendColumn (pkgColumn);
 		pkgColumn.AddAttribute (pkgNameCell, "text", 0);
 		
+		int i = 0 ;
+		foreach (string repo in Pkg.fwRepo)
+		{
+			modelRepoList.AppendValues(repo,i);
+			i++;
+		}
+		CBO_Repo.Model=modelRepoList;
 		// Add some data to the store
 		pkgListStore.AppendValues ("Garbage");
 		// Assign the model to the TreeView
@@ -147,7 +156,7 @@ public partial class MainWindow : Gtk.Window
 		try{
 		CBO_TitleNews.Model=modelFlux;
 		FluxRss = new RSS(UrlPlanet);
-		int i = 0;
+		i = 0;
 		foreach (nodetype n in FluxRss.Nodes)  
        	{  
 			

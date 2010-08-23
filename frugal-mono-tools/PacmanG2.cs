@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
  
 namespace frugalmonotools
 {
@@ -19,11 +20,11 @@ namespace frugalmonotools
 		private const string cch_pacmanconf ="/etc/pacman-g2.conf";
 		
 		//public
-		public string[] fwRepo;
+		public List<string> fwRepo = new List<string>(); 
 		
 		private void EnumRepoProc(string section, string lParam)
 		{
-			Console.WriteLine(section);
+			fwRepo.Add(section);
 		}
 		public PacmanG2 ()
 		{
