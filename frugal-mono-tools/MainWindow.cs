@@ -7,6 +7,14 @@ using frugalmonotools;
 
 public partial class MainWindow : Gtk.Window
 {
+	//pacman-g2
+	Gtk.TreeView treepkg = new Gtk.TreeView ();
+	Gtk.ScrolledWindow scrollpkg = new Gtk.ScrolledWindow();
+	// Create a model for treeview pkg
+	Gtk.ListStore pkgListStore = new Gtk.ListStore (typeof (string));
+	//pacman-g2 initialise
+	PacmanG2 Pkg = new PacmanG2();
+	
 	//webkit engine
 	private WebKit.WebView webview=null;
 	Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
@@ -18,8 +26,6 @@ public partial class MainWindow : Gtk.Window
 	//http://www.go-mono.com/docs/index.aspx?link=T:Gtk.HTML
 	//HTML htl;
 
-	//pacman-g2 initialise
-	PacmanG2 Pkg = new PacmanG2();
 	
 	//RSS
 	const string UrlPlanet="http://planet.frugalware.org/feed.php?type=rss";
@@ -36,6 +42,24 @@ public partial class MainWindow : Gtk.Window
 			Debug.winDebug = new FEN_Debug(); 
 			Debug.winDebug.Show();
 		}
+		//pacman-g2
+		// Create a column for the artist name
+		Gtk.TreeViewColumn pkgColumn = new Gtk.TreeViewColumn ();
+		pkgColumn.Title = "Package name";
+		Gtk.CellRendererText pkgNameCell = new Gtk.CellRendererText ();
+		// Add the cell to the column
+		pkgColumn.PackStart (pkgNameCell, true);
+		treepkg.AppendColumn (pkgColumn);
+		pkgColumn.AddAttribute (pkgNameCell, "text", 0);
+		
+		// Add some data to the store
+		pkgListStore.AppendValues ("Garbage");
+		// Assign the model to the TreeView
+		treepkg.Model = pkgListStore;
+		
+		scrollpkg.Add(treepkg);
+		this.vbox4.Add (this.scrollpkg);
+		this.vbox4.ShowAll();
 		
 		//webkit engine
 		webview = new WebView();

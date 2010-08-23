@@ -9,15 +9,15 @@ public partial class MainWindow
 
 	private global::Gtk.HBox hbox11;
 
+	private global::Gtk.ComboBox CBO_Repo;
+
 	private global::Gtk.Entry SAI_pkg;
 
 	private global::Gtk.Button BTN_Search;
 
-	private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
-	private global::Gtk.TextView textview1;
-
 	private global::Gtk.HBox hbox12;
+
+	private global::Gtk.Button BTN_Uninstall;
 
 	private global::Gtk.Button BTN_Install;
 
@@ -157,6 +157,16 @@ public partial class MainWindow
 		this.hbox11.Name = "hbox11";
 		this.hbox11.Spacing = 6;
 		// Container child hbox11.Gtk.Box+BoxChild
+		this.CBO_Repo = global::Gtk.ComboBox.NewText ();
+		this.CBO_Repo.AppendText (global::Mono.Unix.Catalog.GetString ("Stable"));
+		this.CBO_Repo.AppendText (global::Mono.Unix.Catalog.GetString ("Current"));
+		this.CBO_Repo.Name = "CBO_Repo";
+		this.hbox11.Add (this.CBO_Repo);
+		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.CBO_Repo]));
+		w1.Position = 0;
+		w1.Expand = false;
+		w1.Fill = false;
+		// Container child hbox11.Gtk.Box+BoxChild
 		this.SAI_pkg = new global::Gtk.Entry ();
 		this.SAI_pkg.TooltipMarkup = "Package search";
 		this.SAI_pkg.CanFocus = true;
@@ -164,8 +174,8 @@ public partial class MainWindow
 		this.SAI_pkg.IsEditable = true;
 		this.SAI_pkg.InvisibleChar = '●';
 		this.hbox11.Add (this.SAI_pkg);
-		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.SAI_pkg]));
-		w1.Position = 0;
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.SAI_pkg]));
+		w2.Position = 1;
 		// Container child hbox11.Gtk.Box+BoxChild
 		this.BTN_Search = new global::Gtk.Button ();
 		this.BTN_Search.CanFocus = true;
@@ -173,31 +183,30 @@ public partial class MainWindow
 		this.BTN_Search.UseUnderline = true;
 		this.BTN_Search.Label = global::Mono.Unix.Catalog.GetString ("Search");
 		this.hbox11.Add (this.BTN_Search);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.BTN_Search]));
-		w2.Position = 2;
-		w2.Expand = false;
-		w2.Fill = false;
-		this.vbox4.Add (this.hbox11);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hbox11]));
-		w3.Position = 0;
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox11[this.BTN_Search]));
+		w3.Position = 2;
 		w3.Expand = false;
 		w3.Fill = false;
-		// Container child vbox4.Gtk.Box+BoxChild
-		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
-		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
-		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
-		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-		this.textview1 = new global::Gtk.TextView ();
-		this.textview1.CanFocus = true;
-		this.textview1.Name = "textview1";
-		this.GtkScrolledWindow.Add (this.textview1);
-		this.vbox4.Add (this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.GtkScrolledWindow]));
-		w5.Position = 1;
+		this.vbox4.Add (this.hbox11);
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hbox11]));
+		w4.Position = 0;
+		w4.Expand = false;
+		w4.Fill = false;
 		// Container child vbox4.Gtk.Box+BoxChild
 		this.hbox12 = new global::Gtk.HBox ();
 		this.hbox12.Name = "hbox12";
 		this.hbox12.Spacing = 6;
+		// Container child hbox12.Gtk.Box+BoxChild
+		this.BTN_Uninstall = new global::Gtk.Button ();
+		this.BTN_Uninstall.CanFocus = true;
+		this.BTN_Uninstall.Name = "BTN_Uninstall";
+		this.BTN_Uninstall.UseUnderline = true;
+		this.BTN_Uninstall.Label = global::Mono.Unix.Catalog.GetString ("Uninstall");
+		this.hbox12.Add (this.BTN_Uninstall);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox12[this.BTN_Uninstall]));
+		w5.Position = 0;
+		w5.Expand = false;
+		w5.Fill = false;
 		// Container child hbox12.Gtk.Box+BoxChild
 		this.BTN_Install = new global::Gtk.Button ();
 		this.BTN_Install.CanFocus = true;

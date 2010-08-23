@@ -41,10 +41,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="Mono.Posix" />
     <Reference Include="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
-    <Reference Include="pacman-csharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8665419a5bdc9ea9">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\usr\lib\mono\pacman-csharp\pacman-csharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
