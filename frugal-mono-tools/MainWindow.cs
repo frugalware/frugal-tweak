@@ -96,6 +96,8 @@ public partial class MainWindow : Gtk.Window
 			BTN_Network.Visible=false;
 			BTN_LoginManager.Visible=false;
 			BTN_Xorg.Visible=false;
+			BTN_Uninstall.Visible=false;
+			BTN_Install.Visible=false;
 		}
 		
 		//xorg configuration
