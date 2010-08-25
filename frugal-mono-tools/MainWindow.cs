@@ -20,6 +20,7 @@ using System.Net;
 using System.IO;
 using Gtk;
 using WebKit;
+using System.Collections.Generic;
 using frugalmonotools;
 
 public partial class MainWindow : Gtk.Window
@@ -76,8 +77,7 @@ public partial class MainWindow : Gtk.Window
 			i++;
 		}
 		CBO_Repo.Model=modelRepoList;
-		// Add some data to the store
-		pkgListStore.AppendValues ("Garbage");
+		
 		// Assign the model to the TreeView
 		treeviewpkg.Model = pkgListStore;
 		
@@ -466,7 +466,16 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNSearchClicked (object sender, System.EventArgs e)
 	{
-		
+		try{
+			List<Package> packages=Pkg.Search(SAI_pkg.Text,Pkg.repoSelected);
+			pkgListStore.Clear();
+			foreach (Package package in packages)
+			{
+				// Add some data to the store
+				pkgListStore.AppendValues (package.pkgname);
+			}
+		}
+		catch{}
 	}
 	
 	protected virtual void selectRepo (object sender, System.EventArgs e)
