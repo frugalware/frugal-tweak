@@ -177,7 +177,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 2;
+		this.ONG_principal.CurrentPage = 1;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -426,7 +426,7 @@ public partial class MainWindow
 		w21.Fill = false;
 		this.vbox6.Add (this.hbox14);
 		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.hbox14]));
-		w22.Position = 5;
+		w22.Position = 6;
 		w22.Expand = false;
 		w22.Fill = false;
 		this.ONG_principal.Add (this.vbox6);

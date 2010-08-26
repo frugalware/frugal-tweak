@@ -549,6 +549,15 @@ public partial class MainWindow : Gtk.Window
 		FileX.WriteLine("EndSection");
 
 		FileX.Close();
+		
+		string graphicalDriver=CBO_GraphicalDevice.Entry.Text;
+		FileX = new StreamWriter(@"/etc/X11/xorg.conf.d/20-graphical.conf");
+		FileX.WriteLine("Section \"Device\"");
+        FileX.WriteLine("Identifier \"Card0\"");
+		FileX.WriteLine("Driver \""+graphicalDriver+"\"");
+		FileX.WriteLine("EndSection");
+
+		FileX.Close();
 		}
 		catch{}
 		
@@ -639,18 +648,5 @@ public partial class MainWindow : Gtk.Window
 	{
 		Outils.Excecute("xterm"," -hold -e /sbin/setup",false);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 

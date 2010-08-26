@@ -19,7 +19,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">2</property>
+        <property name="CurrentPage">1</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -332,6 +332,9 @@ ztv</property>
               <placeholder />
             </child>
             <child>
+              <placeholder />
+            </child>
+            <child>
               <widget class="Gtk.HBox" id="hbox14">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
@@ -359,7 +362,7 @@ ztv</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">5</property>
+                <property name="Position">6</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
