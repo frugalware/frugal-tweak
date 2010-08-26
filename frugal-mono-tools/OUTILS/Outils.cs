@@ -20,15 +20,15 @@ namespace frugalmonotools
 {
 	public static class Outils
 	{
-		public static Boolean Excecute(String Commande,string Arguments)
+		public static Boolean Excecute(String Commande,string Arguments,bool wait)
 		{
 			System.Diagnostics.Process proc = new System.Diagnostics.Process();
 			proc.EnableRaisingEvents=false; 
 			proc.StartInfo.FileName = Commande;
 			proc.StartInfo.Arguments = Arguments;
-			if (proc.Start())return true;
-			
-			return false;
+			if (!proc.Start()) return false;
+			if (wait) proc.WaitForExit();
+			return true;
 		}
 		/// <summary>
 		///enable disable service,enable = false disable and stop this service 
@@ -43,13 +43,13 @@ namespace frugalmonotools
 		{
 			if (enable)
 			{
-				Outils.Excecute("service "+servicename+" add","");
-				Outils.Excecute("service "+servicename+" start","");
+				Outils.Excecute("service "+servicename+" add","",true);
+				Outils.Excecute("service "+servicename+" start","",true);
 			}
 			else
 			{
-				Outils.Excecute("service "+servicename+" del","");
-				Outils.Excecute("service "+servicename+" stop","");
+				Outils.Excecute("service "+servicename+" del","",true);
+				Outils.Excecute("service "+servicename+" stop","",true);
 			}
 		}
 		/// <summary>

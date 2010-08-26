@@ -222,12 +222,12 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OpenLink (object sender, System.EventArgs e)
 	{
 		//by default use firefox
-		if (!Outils.Excecute("firefox",BTN_Link.Label))
+		if (!Outils.Excecute("firefox",BTN_Link.Label,false))
 		{
-			if (!Outils.Excecute("midori",BTN_Link.Label))
+			if (!Outils.Excecute("midori",BTN_Link.Label,false))
 			{
 				//last chance :p
-				Outils.Excecute("konqueror",BTN_Link.Label);
+				Outils.Excecute("konqueror",BTN_Link.Label,false);
 			}
 		}
 	}
