@@ -27,6 +27,7 @@ public partial class MainWindow : Gtk.Window
 {
 	protected Gtk.TreeIter iter;
 	
+	private bool boRoot = false;
 	//pacman-g2
 	// Create a model for treeview pkg
 	Gtk.ListStore pkgListStore = new Gtk.ListStore (typeof (string));
@@ -103,6 +104,10 @@ public partial class MainWindow : Gtk.Window
 			BTN_Xorg.Visible=false;
 			BTN_Uninstall.Visible=false;
 			BTN_Install.Visible=false;
+		}
+		else
+		{
+			boRoot=true;
 		}
 		
 		//xorg configuration
@@ -505,7 +510,20 @@ public partial class MainWindow : Gtk.Window
 		        {
 		            string T =(string)model.GetValue (iter, 0);
 					T=Pkg.extractNamePackage(T);
-					Console.WriteLine(T);
+					if(boRoot)
+					{
+						//installed ?
+						if(Pkg.IsInstalled(T))
+						{
+							BTN_Uninstall.Visible=true;
+							BTN_Install.Visible=false;
+						}
+						else
+						{
+							BTN_Uninstall.Visible=false;
+							BTN_Install.Visible=true;
+						}
+					}
 				}
 			}
 			catch{}

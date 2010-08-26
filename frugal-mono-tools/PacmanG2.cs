@@ -182,6 +182,13 @@ namespace frugalmonotools
 
 			return packageName;
 		}
+		public bool IsInstalled(string strSearch)
+		{
+			string dirpkg=ROOT_PATH+PACMANG2_BDD+PACMAN_LOCAL+"/";
+			string[] dirs= Directory.GetDirectories(dirpkg,strSearch+"-*");
+			if (dirs.Length==0) return false;
+			return true;
+		}
 	}
 	
 }
