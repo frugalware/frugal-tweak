@@ -25,13 +25,15 @@ using frugalmonotools;
 
 public partial class MainWindow : Gtk.Window
 {
+	protected Gtk.TreeIter iter;
+	
 	//pacman-g2
 	// Create a model for treeview pkg
 	Gtk.ListStore pkgListStore = new Gtk.ListStore (typeof (string));
 	//pacman-g2 initialise
 	PacmanG2 Pkg = new PacmanG2();
 	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
-	 
+	
 	
 	//webkit engine
 	private WebKit.WebView webview=null;
@@ -80,6 +82,9 @@ public partial class MainWindow : Gtk.Window
 		
 		// Assign the model to the TreeView
 		treeviewpkg.Model = pkgListStore;
+		
+		// Event on treeview
+		treeviewpkg.Selection.Changed += OnSelectionEntryPkg;
 		
 		//webkit engine
 		webview = new WebView();
@@ -489,6 +494,23 @@ public partial class MainWindow : Gtk.Window
 			Pkg.SelectRepo(Pkg.fwRepo[id]);
 		}
 	}
+	
+	
+	protected void OnSelectionEntryPkg(object o, EventArgs args)
+	    {
+	   		try
+			{
+			 	TreeModel model;
+				 if (((TreeSelection)o).GetSelected(out model, out iter))
+		        {
+		            string T =(string)model.GetValue (iter, 0);
+					Console.WriteLine(T);
+				}
+			}
+			catch{}
+		}
+	
+	
 	
 	
 	
