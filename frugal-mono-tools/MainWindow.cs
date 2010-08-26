@@ -504,6 +504,7 @@ public partial class MainWindow : Gtk.Window
 				 if (((TreeSelection)o).GetSelected(out model, out iter))
 		        {
 		            string T =(string)model.GetValue (iter, 0);
+					T=Pkg.extractNamePackage(T);
 					Console.WriteLine(T);
 				}
 			}

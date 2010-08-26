@@ -167,9 +167,20 @@ namespace frugalmonotools
 			return packages;
 		}
 		
-		private string extractNamePackage(string file)
+		public string extractNamePackage(string file)
 		{
-			return "";
+			string[] words = file.Split('-');
+			int nb,i=1;
+			string packageName="";
+			nb=words.Length;
+			packageName=words[0];
+       		while(i<=nb-3)
+       		{
+            	packageName=packageName+"-"+words[i];
+				i++;
+        	}
+
+			return packageName;
 		}
 	}
 	
