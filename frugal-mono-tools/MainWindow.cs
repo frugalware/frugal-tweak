@@ -65,7 +65,7 @@ public partial class MainWindow : Gtk.Window
 			Debug.winDebug.Show();
 		}
 		//pacman-g2
-		// Create a column for the artist name
+		// Create a column for the package name
 		Gtk.TreeViewColumn pkgColumn = new Gtk.TreeViewColumn ();
 		pkgColumn.Title = "Package name";
 		Gtk.CellRendererText pkgNameCell = new Gtk.CellRendererText ();
@@ -87,7 +87,7 @@ public partial class MainWindow : Gtk.Window
 		
 		// Event on treeview
 		treeviewpkg.Selection.Changed += OnSelectionEntryPkg;
-		
+				
 		//webkit engine
 		webview = new WebView();
 		scroll.Add(webview);

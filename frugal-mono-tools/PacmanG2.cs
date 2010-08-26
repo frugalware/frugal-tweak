@@ -132,6 +132,7 @@ namespace frugalmonotools
 				{
 					pacman_parse_config(cch_pacmanconf,_cd_db,"");
 				}
+				fwRepo.Add("local");
 				
 			}
 			catch{}
