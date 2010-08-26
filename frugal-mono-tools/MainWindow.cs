@@ -123,7 +123,26 @@ public partial class MainWindow : Gtk.Window
 		
 		//xorg configuration
 		SAI_Layout.Text=this.LayoutXorg();
-		
+		string lspci ="/usr/sbin/lspci";
+		try
+		{
+			lspci=Outils.getoutput(lspci);
+		}
+		catch
+		{
+			lspci="";
+		}
+		string[] lspcis = lspci.Split('\n');
+		foreach (string line in lspcis)
+        {
+			if (line.IndexOf("VGA compatible controller") > 0)
+			{
+				lspci =line.Split(':')[2];
+				break;
+			}
+		}
+		LIB_Lspci.Text=lspci;
+			
 		//network init
 		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
 		EnableDisable(INT_NM,"/usr/sbin/NetworkManager",LIB_NMNotInstalled);

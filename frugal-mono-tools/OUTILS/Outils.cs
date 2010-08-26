@@ -16,10 +16,48 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 using System;
+using System.Diagnostics;
 namespace frugalmonotools
 {
 	public static class Outils
 	{
+		public static string getoutput( string cmd )
+		{
+			string[] parts = cmd.Split( ' ' );	
+			string cmd_name = parts[ 0 ];	
+			string arguments = "";
+			if( parts.Length > 1 ){
+				for( int i = 1; i < parts.Length; i++ ){
+					arguments += " " + parts[ i ];
+				}
+			}
+			Process proc = new Process( );
+			proc.StartInfo.FileName = cmd_name;
+			proc.StartInfo.Arguments = arguments;
+			proc.StartInfo.UseShellExecute = false;
+			proc.StartInfo.RedirectStandardError = true;
+			proc.StartInfo.RedirectStandardOutput = true;
+			try
+			{
+				if( proc.Start( ) )
+				{
+					proc.WaitForExit( );
+					string output = proc.StandardOutput.ReadToEnd().TrimEnd();
+					string error = proc.StandardError.ReadToEnd().TrimEnd();
+					if( output.Equals( "" ) || output.Equals( " " ) )
+						return error;
+					else
+						return output;
+				}
+			}
+			catch( System.ComponentModel.Win32Exception w32e )
+			{
+				string ret = "Error Thrown: " + w32e.ToString( );
+				return ret;
+			}
+			return "Broke";
+		}
+
 		public static Boolean Excecute(String Commande,string Arguments,bool wait)
 		{
 			System.Diagnostics.Process proc = new System.Diagnostics.Process();

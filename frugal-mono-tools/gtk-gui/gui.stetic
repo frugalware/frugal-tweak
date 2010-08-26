@@ -217,7 +217,7 @@
                 <child>
                   <widget class="Gtk.Label" id="label4">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Graphical device</property>
+                    <property name="LabelProp" translatable="yes">Graphical device : </property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -227,7 +227,16 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder />
+                  <widget class="Gtk.Label" id="LIB_Lspci">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">lspci</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
                 </child>
                 <child>
                   <widget class="Gtk.ComboBoxEntry" id="CBO_GraphicalDevice">
