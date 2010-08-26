@@ -94,8 +94,17 @@ public partial class MainWindow : Gtk.Window
 		this.vbox5.Add (this.scroll);
 		this.scroll.ShowAll();
 		
-		//hide notebook not yet implemented
-		ONG_principal.RemovePage(cen_OngHW);
+		//HW
+		if(!Pkg.IsInstalled("system-config-printer"))
+		{
+			BTN_Printer.Visible=false;
+			LAB_Printer.Visible=true;
+		}
+		else
+		{
+			BTN_Printer.Visible=true;
+			LAB_Printer.Visible=false;
+		}
 		
 		BTN_Uninstall.Visible=false;
 		BTN_Install.Visible=false;
@@ -548,6 +557,12 @@ public partial class MainWindow : Gtk.Window
 	{
 		Outils.Excecute("xterm"," -hold -e pacman-g2 -Syu",true);
 	}
+	
+	protected virtual void OnBTNPrinterClicked (object sender, System.EventArgs e)
+	{
+		Outils.Excecute("system-config-printer","",true);
+	}
+	
 	
 	
 	
