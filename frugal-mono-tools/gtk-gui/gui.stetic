@@ -9,7 +9,7 @@
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
     <widget-library name="../bin/Debug/frugal-mono-tools.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="463 395">
+  <widget class="Gtk.Window" id="MainWindow" design-size="552 395">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Frugalware-tools</property>
     <property name="Icon">resource:frugalmonotools.header.svg</property>
@@ -313,6 +313,22 @@ ztv</property>
               </packing>
             </child>
             <child>
+              <widget class="Gtk.Button" id="BTN_Synaptics">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">You have a touchpad but xf86-input-synaptics is not installed. Click here for install it.</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBTNSynapticsClicked" />
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <placeholder />
             </child>
             <child>
@@ -343,7 +359,7 @@ ztv</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">5</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>

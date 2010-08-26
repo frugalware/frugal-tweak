@@ -143,6 +143,11 @@ public partial class MainWindow : Gtk.Window
 		}
 		LIB_Lspci.Text=lspci;
 		LIB_XorgGraphic.Text+= GraphicalDevice()+" driver";
+		string touchpad=Outils.getoutput("dmesg");
+		if ((touchpad.IndexOf("TouchPad")>0) && (!Pkg.IsInstalled("xf86-input-synaptics")))
+			BTN_Synaptics.Visible=true;
+		else
+			BTN_Synaptics.Visible=false;
 		
 		//network init
 		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
@@ -614,6 +619,12 @@ public partial class MainWindow : Gtk.Window
 	{
 		Outils.Excecute("system-config-printer","",true);
 	}
+	
+	protected virtual void OnBTNSynapticsClicked (object sender, System.EventArgs e)
+	{
+		Outils.Excecute("xterm"," -hold -e pacman-g2 -Sy xf86-input-synaptics",true);
+	}
+	
 	
 	
 	
