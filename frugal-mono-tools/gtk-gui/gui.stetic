@@ -19,7 +19,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">2</property>
+        <property name="CurrentPage">1</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -211,6 +211,87 @@
               </packing>
             </child>
             <child>
+              <widget class="Gtk.HBox" id="hbox16">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Label" id="label4">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Graphical device</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <widget class="Gtk.ComboBoxEntry" id="CBO_GraphicalDevice">
+                    <property name="MemberName" />
+                    <property name="IsTextCombo">True</property>
+                    <property name="Items" translatable="yes">apm
+ark
+ast
+ati
+chips
+cirrus
+dummy
+fbdev
+geode
+glint
+i128
+i740
+intel
+mach64
+mga
+neomagic
+nouveau
+nv
+openchrome
+qxl
+r128
+radeon
+radeonhd
+rendition
+s3
+s3virge
+savage
+siliconmotion
+sis
+sisusb
+tdfx
+tga
+trident
+tseng
+v4l
+vesa
+vmware
+vmwlegacy
+voodoo
+xgi
+ztv</property>
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <placeholder />
             </child>
             <child>
@@ -241,7 +322,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">2</property>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
