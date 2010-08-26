@@ -142,6 +142,7 @@ public partial class MainWindow : Gtk.Window
 			}
 		}
 		LIB_Lspci.Text=lspci;
+		LIB_XorgGraphic.Text+= GraphicalDevice()+" driver";
 		
 		//network init
 		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
