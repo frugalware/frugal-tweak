@@ -76,6 +76,7 @@ namespace frugalmonotools
 		//const
 		private const string ROOT_PATH="/";
 		private const string PACMANG2_BDD="var/lib/pacman-g2/";
+		private const string PACMAN_LOCAL="local/";
 		private const int pm_errno = -1;
 		private const string cch_pacmanconf ="/etc/pacman-g2.conf";
 		
