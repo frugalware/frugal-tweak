@@ -107,6 +107,7 @@
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Uninstall</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNUninstallClicked" />
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -122,6 +123,7 @@
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Install</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNInstallClicked" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>

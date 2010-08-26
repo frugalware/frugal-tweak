@@ -741,6 +741,7 @@ public partial class MainWindow
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.CBO_Repo.Changed += new global::System.EventHandler (this.selectRepo);
 		this.BTN_Search.Clicked += new global::System.EventHandler (this.OnBTNSearchClicked);
+		this.BTN_Uninstall.Clicked += new global::System.EventHandler (this.OnBTNUninstallClicked);
 		this.BTN_Xorg.Clicked += new global::System.EventHandler (this.ApplyXorg);
 		this.INT_FW.Clicked += new global::System.EventHandler (this.usefw);
 		this.INT_NM.Clicked += new global::System.EventHandler (this.usenm);
