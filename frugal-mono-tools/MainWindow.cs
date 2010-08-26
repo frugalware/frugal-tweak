@@ -26,6 +26,7 @@ using frugalmonotools;
 public partial class MainWindow : Gtk.Window
 {
 	protected Gtk.TreeIter iter;
+	private string packageSelected="";
 	
 	private bool boRoot = false;
 	//pacman-g2
@@ -96,14 +97,14 @@ public partial class MainWindow : Gtk.Window
 		//hide notebook not yet implemented
 		ONG_principal.RemovePage(cen_OngHW);
 		
+		BTN_Uninstall.Visible=false;
+		BTN_Install.Visible=false;
 		//root options
 		if (Mono.Unix.Native.Syscall.getuid()!=0)
 		{
 			BTN_Network.Visible=false;
 			BTN_LoginManager.Visible=false;
 			BTN_Xorg.Visible=false;
-			BTN_Uninstall.Visible=false;
-			BTN_Install.Visible=false;
 		}
 		else
 		{
