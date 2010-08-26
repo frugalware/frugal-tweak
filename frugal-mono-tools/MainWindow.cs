@@ -511,6 +511,7 @@ public partial class MainWindow : Gtk.Window
 		        {
 		            string T =(string)model.GetValue (iter, 0);
 					T=Pkg.extractNamePackage(T);
+					packageSelected=T;
 					if(boRoot)
 					{
 						//installed ?
@@ -529,6 +530,20 @@ public partial class MainWindow : Gtk.Window
 			}
 			catch{}
 		}
+	
+	protected virtual void OnBTNUninstallClicked (object sender, System.EventArgs e)
+	{
+		if(packageSelected=="") return;
+		Outils.Excecute("xterm"," -hold -e pacman-g2 -Rc "+packageSelected,true);
+	}
+	
+	protected virtual void OnBTNInstallClicked (object sender, System.EventArgs e)
+	{
+		if(packageSelected=="") return;
+		Outils.Excecute("xterm"," -hold -e pacman-g2 -Sy "+packageSelected,true);
+	}
+	
+	
 	
 	
 	
