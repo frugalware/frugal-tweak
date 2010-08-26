@@ -142,7 +142,7 @@ public partial class MainWindow : Gtk.Window
 			}
 		}
 		LIB_Lspci.Text=lspci;
-			
+		
 		//network init
 		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
 		EnableDisable(INT_NM,"/usr/sbin/NetworkManager",LIB_NMNotInstalled);
@@ -486,7 +486,39 @@ public partial class MainWindow : Gtk.Window
 			return "";
 		}
 	}
-		
+	
+	public string GraphicalDevice()
+	{
+		try
+		{
+			//search display
+			string display = Environment.GetEnvironmentVariable("DISPLAY");
+			string []displays=display.Split(':');
+			display =displays[1];
+			displays=display.Split('.');
+			display =displays[0];
+			string graphicalDevice="";
+			System.IO.StreamReader textFile = new System.IO.StreamReader("/var/log/Xorg."+display+".log");
+	        string fileContents = textFile.ReadToEnd();
+	        textFile.Close();
+	        string[] lines = fileContents.Split('\n');
+	        foreach (string line in lines)
+	        {
+				if (line.IndexOf("/usr/lib/xorg/modules/drivers") > 0)
+				{
+					string[]ligne= line.Split('/');
+					graphicalDevice=ligne[6];
+					graphicalDevice=graphicalDevice.Replace("_drv.so","");
+				}
+				
+			}
+			return graphicalDevice;
+		}
+		catch{
+			return "";
+		}
+	}
+	
 	protected virtual void ApplyXorg (object sender, System.EventArgs e)
 	{
 		try{
