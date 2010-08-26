@@ -63,6 +63,12 @@ public partial class MainWindow
 
 	private global::Gtk.Label LAB_Printer;
 
+	private global::Gtk.HBox hbox17;
+
+	private global::Gtk.Button BTN_Setup;
+
+	private global::Gtk.Label LIB_Setup;
+
 	private global::Gtk.Label LIB_Materiel;
 
 	private global::Gtk.VBox vbox1;
@@ -171,7 +177,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 1;
+		this.ONG_principal.CurrentPage = 2;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -457,6 +463,7 @@ public partial class MainWindow
 		this.LAB_Printer.LabelProp = global::Mono.Unix.Catalog.GetString ("You should install \"system-config-printer\"");
 		this.hbox15.Add (this.LAB_Printer);
 		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox15[this.LAB_Printer]));
+		w25.PackType = ((global::Gtk.PackType)(1));
 		w25.Position = 1;
 		w25.Expand = false;
 		w25.Fill = false;
@@ -465,9 +472,39 @@ public partial class MainWindow
 		w26.Position = 0;
 		w26.Expand = false;
 		w26.Fill = false;
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.hbox17 = new global::Gtk.HBox ();
+		this.hbox17.Name = "hbox17";
+		this.hbox17.Spacing = 6;
+		// Container child hbox17.Gtk.Box+BoxChild
+		this.BTN_Setup = new global::Gtk.Button ();
+		this.BTN_Setup.CanFocus = true;
+		this.BTN_Setup.Name = "BTN_Setup";
+		this.BTN_Setup.UseUnderline = true;
+		this.BTN_Setup.Label = global::Mono.Unix.Catalog.GetString ("Frugalware System configuration");
+		this.hbox17.Add (this.BTN_Setup);
+		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox17[this.BTN_Setup]));
+		w27.Position = 0;
+		w27.Expand = false;
+		w27.Fill = false;
+		// Container child hbox17.Gtk.Box+BoxChild
+		this.LIB_Setup = new global::Gtk.Label ();
+		this.LIB_Setup.Name = "LIB_Setup";
+		this.LIB_Setup.LabelProp = global::Mono.Unix.Catalog.GetString ("You should install frugalwareutils");
+		this.hbox17.Add (this.LIB_Setup);
+		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox17[this.LIB_Setup]));
+		w28.PackType = ((global::Gtk.PackType)(1));
+		w28.Position = 1;
+		w28.Expand = false;
+		w28.Fill = false;
+		this.vbox2.Add (this.hbox17);
+		global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox17]));
+		w29.Position = 1;
+		w29.Expand = false;
+		w29.Fill = false;
 		this.ONG_principal.Add (this.vbox2);
-		global::Gtk.Notebook.NotebookChild w27 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox2]));
-		w27.Position = 2;
+		global::Gtk.Notebook.NotebookChild w30 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox2]));
+		w30.Position = 2;
 		// Notebook tab
 		this.LIB_Materiel = new global::Gtk.Label ();
 		this.LIB_Materiel.Name = "LIB_Materiel";
@@ -487,10 +524,10 @@ public partial class MainWindow
 		this.image6.Name = "image6";
 		this.image6.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.fw.png");
 		this.hbox1.Add (this.image6);
-		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.image6]));
-		w28.Position = 0;
-		w28.Expand = false;
-		w28.Fill = false;
+		global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.image6]));
+		w31.Position = 0;
+		w31.Expand = false;
+		w31.Fill = false;
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.INT_FW = new global::Gtk.CheckButton ();
 		this.INT_FW.CanFocus = true;
@@ -499,13 +536,13 @@ public partial class MainWindow
 		this.INT_FW.DrawIndicator = true;
 		this.INT_FW.UseUnderline = true;
 		this.hbox1.Add (this.INT_FW);
-		global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.INT_FW]));
-		w29.Position = 1;
+		global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.INT_FW]));
+		w32.Position = 1;
 		this.vbox1.Add (this.hbox1);
-		global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
-		w30.Position = 0;
-		w30.Expand = false;
-		w30.Fill = false;
+		global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
+		w33.Position = 0;
+		w33.Expand = false;
+		w33.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.hbox2 = new global::Gtk.HBox ();
 		this.hbox2.Name = "hbox2";
@@ -515,10 +552,10 @@ public partial class MainWindow
 		this.image7.Name = "image7";
 		this.image7.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.nmlogo.png");
 		this.hbox2.Add (this.image7);
-		global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.image7]));
-		w31.Position = 0;
-		w31.Expand = false;
-		w31.Fill = false;
+		global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.image7]));
+		w34.Position = 0;
+		w34.Expand = false;
+		w34.Fill = false;
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.INT_NM = new global::Gtk.CheckButton ();
 		this.INT_NM.CanFocus = true;
@@ -527,22 +564,22 @@ public partial class MainWindow
 		this.INT_NM.DrawIndicator = true;
 		this.INT_NM.UseUnderline = true;
 		this.hbox2.Add (this.INT_NM);
-		global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.INT_NM]));
-		w32.Position = 1;
+		global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.INT_NM]));
+		w35.Position = 1;
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.LIB_NMNotInstalled = new global::Gtk.Label ();
 		this.LIB_NMNotInstalled.Name = "LIB_NMNotInstalled";
 		this.LIB_NMNotInstalled.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 		this.hbox2.Add (this.LIB_NMNotInstalled);
-		global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.LIB_NMNotInstalled]));
-		w33.Position = 2;
-		w33.Expand = false;
-		w33.Fill = false;
+		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.LIB_NMNotInstalled]));
+		w36.Position = 2;
+		w36.Expand = false;
+		w36.Fill = false;
 		this.vbox1.Add (this.hbox2);
-		global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox2]));
-		w34.Position = 1;
-		w34.Expand = false;
-		w34.Fill = false;
+		global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox2]));
+		w37.Position = 1;
+		w37.Expand = false;
+		w37.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.hbox3 = new global::Gtk.HBox ();
 		this.hbox3.Name = "hbox3";
@@ -552,10 +589,10 @@ public partial class MainWindow
 		this.image8.Name = "image8";
 		this.image8.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.wicdlogo.png");
 		this.hbox3.Add (this.image8);
-		global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.image8]));
-		w35.Position = 0;
-		w35.Expand = false;
-		w35.Fill = false;
+		global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.image8]));
+		w38.Position = 0;
+		w38.Expand = false;
+		w38.Fill = false;
 		// Container child hbox3.Gtk.Box+BoxChild
 		this.INT_WICD = new global::Gtk.CheckButton ();
 		this.INT_WICD.CanFocus = true;
@@ -564,22 +601,22 @@ public partial class MainWindow
 		this.INT_WICD.DrawIndicator = true;
 		this.INT_WICD.UseUnderline = true;
 		this.hbox3.Add (this.INT_WICD);
-		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.INT_WICD]));
-		w36.Position = 1;
+		global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.INT_WICD]));
+		w39.Position = 1;
 		// Container child hbox3.Gtk.Box+BoxChild
 		this.LIB_WICDNotInstalled = new global::Gtk.Label ();
 		this.LIB_WICDNotInstalled.Name = "LIB_WICDNotInstalled";
 		this.LIB_WICDNotInstalled.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 		this.hbox3.Add (this.LIB_WICDNotInstalled);
-		global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.LIB_WICDNotInstalled]));
-		w37.Position = 2;
-		w37.Expand = false;
-		w37.Fill = false;
+		global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.LIB_WICDNotInstalled]));
+		w40.Position = 2;
+		w40.Expand = false;
+		w40.Fill = false;
 		this.vbox1.Add (this.hbox3);
-		global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox3]));
-		w38.Position = 2;
-		w38.Expand = false;
-		w38.Fill = false;
+		global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox3]));
+		w41.Position = 2;
+		w41.Expand = false;
+		w41.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.hbox4 = new global::Gtk.HBox ();
 		this.hbox4.Name = "hbox4";
@@ -591,19 +628,19 @@ public partial class MainWindow
 		this.BTN_Network.UseUnderline = true;
 		this.BTN_Network.Label = global::Mono.Unix.Catalog.GetString ("Apply");
 		this.hbox4.Add (this.BTN_Network);
-		global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.BTN_Network]));
-		w39.Position = 2;
-		w39.Expand = false;
-		w39.Fill = false;
+		global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.BTN_Network]));
+		w42.Position = 2;
+		w42.Expand = false;
+		w42.Fill = false;
 		this.vbox1.Add (this.hbox4);
-		global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox4]));
-		w40.PackType = ((global::Gtk.PackType)(1));
-		w40.Position = 3;
-		w40.Expand = false;
-		w40.Fill = false;
+		global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox4]));
+		w43.PackType = ((global::Gtk.PackType)(1));
+		w43.Position = 3;
+		w43.Expand = false;
+		w43.Fill = false;
 		this.ONG_principal.Add (this.vbox1);
-		global::Gtk.Notebook.NotebookChild w41 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox1]));
-		w41.Position = 3;
+		global::Gtk.Notebook.NotebookChild w44 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox1]));
+		w44.Position = 3;
 		// Notebook tab
 		this.LIB_Network = new global::Gtk.Label ();
 		this.LIB_Network.Name = "LIB_Network";
@@ -623,10 +660,10 @@ public partial class MainWindow
 		this.image1.Name = "image1";
 		this.image1.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.xorglogo.png");
 		this.hbox5.Add (this.image1);
-		global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.image1]));
-		w42.Position = 0;
-		w42.Expand = false;
-		w42.Fill = false;
+		global::Gtk.Box.BoxChild w45 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.image1]));
+		w45.Position = 0;
+		w45.Expand = false;
+		w45.Fill = false;
 		// Container child hbox5.Gtk.Box+BoxChild
 		this.INT_XDM = new global::Gtk.CheckButton ();
 		this.INT_XDM.CanFocus = true;
@@ -635,22 +672,22 @@ public partial class MainWindow
 		this.INT_XDM.DrawIndicator = true;
 		this.INT_XDM.UseUnderline = true;
 		this.hbox5.Add (this.INT_XDM);
-		global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.INT_XDM]));
-		w43.Position = 1;
+		global::Gtk.Box.BoxChild w46 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.INT_XDM]));
+		w46.Position = 1;
 		// Container child hbox5.Gtk.Box+BoxChild
 		this.LIB_XDM = new global::Gtk.Label ();
 		this.LIB_XDM.Name = "LIB_XDM";
 		this.LIB_XDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 		this.hbox5.Add (this.LIB_XDM);
-		global::Gtk.Box.BoxChild w44 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.LIB_XDM]));
-		w44.Position = 2;
-		w44.Expand = false;
-		w44.Fill = false;
+		global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.LIB_XDM]));
+		w47.Position = 2;
+		w47.Expand = false;
+		w47.Fill = false;
 		this.vbox3.Add (this.hbox5);
-		global::Gtk.Box.BoxChild w45 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox5]));
-		w45.Position = 0;
-		w45.Expand = false;
-		w45.Fill = false;
+		global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox5]));
+		w48.Position = 0;
+		w48.Expand = false;
+		w48.Fill = false;
 		// Container child vbox3.Gtk.Box+BoxChild
 		this.hbox6 = new global::Gtk.HBox ();
 		this.hbox6.Name = "hbox6";
@@ -660,10 +697,10 @@ public partial class MainWindow
 		this.image2.Name = "image2";
 		this.image2.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.lxdelogo.png");
 		this.hbox6.Add (this.image2);
-		global::Gtk.Box.BoxChild w46 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.image2]));
-		w46.Position = 0;
-		w46.Expand = false;
-		w46.Fill = false;
+		global::Gtk.Box.BoxChild w49 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.image2]));
+		w49.Position = 0;
+		w49.Expand = false;
+		w49.Fill = false;
 		// Container child hbox6.Gtk.Box+BoxChild
 		this.INT_LXDM = new global::Gtk.CheckButton ();
 		this.INT_LXDM.CanFocus = true;
@@ -672,22 +709,22 @@ public partial class MainWindow
 		this.INT_LXDM.DrawIndicator = true;
 		this.INT_LXDM.UseUnderline = true;
 		this.hbox6.Add (this.INT_LXDM);
-		global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.INT_LXDM]));
-		w47.Position = 1;
+		global::Gtk.Box.BoxChild w50 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.INT_LXDM]));
+		w50.Position = 1;
 		// Container child hbox6.Gtk.Box+BoxChild
 		this.LIB_LXDM = new global::Gtk.Label ();
 		this.LIB_LXDM.Name = "LIB_LXDM";
 		this.LIB_LXDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 		this.hbox6.Add (this.LIB_LXDM);
-		global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.LIB_LXDM]));
-		w48.Position = 2;
-		w48.Expand = false;
-		w48.Fill = false;
+		global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.LIB_LXDM]));
+		w51.Position = 2;
+		w51.Expand = false;
+		w51.Fill = false;
 		this.vbox3.Add (this.hbox6);
-		global::Gtk.Box.BoxChild w49 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox6]));
-		w49.Position = 1;
-		w49.Expand = false;
-		w49.Fill = false;
+		global::Gtk.Box.BoxChild w52 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox6]));
+		w52.Position = 1;
+		w52.Expand = false;
+		w52.Fill = false;
 		// Container child vbox3.Gtk.Box+BoxChild
 		this.hbox7 = new global::Gtk.HBox ();
 		this.hbox7.Name = "hbox7";
@@ -697,10 +734,10 @@ public partial class MainWindow
 		this.image3.Name = "image3";
 		this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.xfcelogo.png");
 		this.hbox7.Add (this.image3);
-		global::Gtk.Box.BoxChild w50 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.image3]));
-		w50.Position = 0;
-		w50.Expand = false;
-		w50.Fill = false;
+		global::Gtk.Box.BoxChild w53 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.image3]));
+		w53.Position = 0;
+		w53.Expand = false;
+		w53.Fill = false;
 		// Container child hbox7.Gtk.Box+BoxChild
 		this.INT_Slim = new global::Gtk.CheckButton ();
 		this.INT_Slim.CanFocus = true;
@@ -709,22 +746,22 @@ public partial class MainWindow
 		this.INT_Slim.DrawIndicator = true;
 		this.INT_Slim.UseUnderline = true;
 		this.hbox7.Add (this.INT_Slim);
-		global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.INT_Slim]));
-		w51.Position = 1;
+		global::Gtk.Box.BoxChild w54 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.INT_Slim]));
+		w54.Position = 1;
 		// Container child hbox7.Gtk.Box+BoxChild
 		this.LIB_SLIM = new global::Gtk.Label ();
 		this.LIB_SLIM.Name = "LIB_SLIM";
 		this.LIB_SLIM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 		this.hbox7.Add (this.LIB_SLIM);
-		global::Gtk.Box.BoxChild w52 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.LIB_SLIM]));
-		w52.Position = 2;
-		w52.Expand = false;
-		w52.Fill = false;
+		global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.LIB_SLIM]));
+		w55.Position = 2;
+		w55.Expand = false;
+		w55.Fill = false;
 		this.vbox3.Add (this.hbox7);
-		global::Gtk.Box.BoxChild w53 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox7]));
-		w53.Position = 2;
-		w53.Expand = false;
-		w53.Fill = false;
+		global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox7]));
+		w56.Position = 2;
+		w56.Expand = false;
+		w56.Fill = false;
 		// Container child vbox3.Gtk.Box+BoxChild
 		this.hbox9 = new global::Gtk.HBox ();
 		this.hbox9.Name = "hbox9";
@@ -734,10 +771,10 @@ public partial class MainWindow
 		this.image4.Name = "image4";
 		this.image4.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.gnomelogo.png");
 		this.hbox9.Add (this.image4);
-		global::Gtk.Box.BoxChild w54 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.image4]));
-		w54.Position = 0;
-		w54.Expand = false;
-		w54.Fill = false;
+		global::Gtk.Box.BoxChild w57 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.image4]));
+		w57.Position = 0;
+		w57.Expand = false;
+		w57.Fill = false;
 		// Container child hbox9.Gtk.Box+BoxChild
 		this.INT_GDM = new global::Gtk.CheckButton ();
 		this.INT_GDM.CanFocus = true;
@@ -746,22 +783,22 @@ public partial class MainWindow
 		this.INT_GDM.DrawIndicator = true;
 		this.INT_GDM.UseUnderline = true;
 		this.hbox9.Add (this.INT_GDM);
-		global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.INT_GDM]));
-		w55.Position = 1;
+		global::Gtk.Box.BoxChild w58 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.INT_GDM]));
+		w58.Position = 1;
 		// Container child hbox9.Gtk.Box+BoxChild
 		this.LIB_GDM = new global::Gtk.Label ();
 		this.LIB_GDM.Name = "LIB_GDM";
 		this.LIB_GDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 		this.hbox9.Add (this.LIB_GDM);
-		global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.LIB_GDM]));
-		w56.Position = 2;
-		w56.Expand = false;
-		w56.Fill = false;
+		global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.LIB_GDM]));
+		w59.Position = 2;
+		w59.Expand = false;
+		w59.Fill = false;
 		this.vbox3.Add (this.hbox9);
-		global::Gtk.Box.BoxChild w57 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox9]));
-		w57.Position = 3;
-		w57.Expand = false;
-		w57.Fill = false;
+		global::Gtk.Box.BoxChild w60 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox9]));
+		w60.Position = 3;
+		w60.Expand = false;
+		w60.Fill = false;
 		// Container child vbox3.Gtk.Box+BoxChild
 		this.hbox10 = new global::Gtk.HBox ();
 		this.hbox10.Name = "hbox10";
@@ -771,10 +808,10 @@ public partial class MainWindow
 		this.image5.Name = "image5";
 		this.image5.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.kdelogo.png");
 		this.hbox10.Add (this.image5);
-		global::Gtk.Box.BoxChild w58 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.image5]));
-		w58.Position = 0;
-		w58.Expand = false;
-		w58.Fill = false;
+		global::Gtk.Box.BoxChild w61 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.image5]));
+		w61.Position = 0;
+		w61.Expand = false;
+		w61.Fill = false;
 		// Container child hbox10.Gtk.Box+BoxChild
 		this.INT_KDM = new global::Gtk.CheckButton ();
 		this.INT_KDM.CanFocus = true;
@@ -783,22 +820,22 @@ public partial class MainWindow
 		this.INT_KDM.DrawIndicator = true;
 		this.INT_KDM.UseUnderline = true;
 		this.hbox10.Add (this.INT_KDM);
-		global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.INT_KDM]));
-		w59.Position = 1;
+		global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.INT_KDM]));
+		w62.Position = 1;
 		// Container child hbox10.Gtk.Box+BoxChild
 		this.LIB_KDM = new global::Gtk.Label ();
 		this.LIB_KDM.Name = "LIB_KDM";
 		this.LIB_KDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 		this.hbox10.Add (this.LIB_KDM);
-		global::Gtk.Box.BoxChild w60 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.LIB_KDM]));
-		w60.Position = 2;
-		w60.Expand = false;
-		w60.Fill = false;
+		global::Gtk.Box.BoxChild w63 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.LIB_KDM]));
+		w63.Position = 2;
+		w63.Expand = false;
+		w63.Fill = false;
 		this.vbox3.Add (this.hbox10);
-		global::Gtk.Box.BoxChild w61 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox10]));
-		w61.Position = 4;
-		w61.Expand = false;
-		w61.Fill = false;
+		global::Gtk.Box.BoxChild w64 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox10]));
+		w64.Position = 4;
+		w64.Expand = false;
+		w64.Fill = false;
 		// Container child vbox3.Gtk.Box+BoxChild
 		this.hbox8 = new global::Gtk.HBox ();
 		this.hbox8.Name = "hbox8";
@@ -810,19 +847,19 @@ public partial class MainWindow
 		this.BTN_LoginManager.UseUnderline = true;
 		this.BTN_LoginManager.Label = global::Mono.Unix.Catalog.GetString ("Apply");
 		this.hbox8.Add (this.BTN_LoginManager);
-		global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.BTN_LoginManager]));
-		w62.Position = 2;
-		w62.Expand = false;
-		w62.Fill = false;
+		global::Gtk.Box.BoxChild w65 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.BTN_LoginManager]));
+		w65.Position = 2;
+		w65.Expand = false;
+		w65.Fill = false;
 		this.vbox3.Add (this.hbox8);
-		global::Gtk.Box.BoxChild w63 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox8]));
-		w63.PackType = ((global::Gtk.PackType)(1));
-		w63.Position = 5;
-		w63.Expand = false;
-		w63.Fill = false;
+		global::Gtk.Box.BoxChild w66 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox8]));
+		w66.PackType = ((global::Gtk.PackType)(1));
+		w66.Position = 5;
+		w66.Expand = false;
+		w66.Fill = false;
 		this.ONG_principal.Add (this.vbox3);
-		global::Gtk.Notebook.NotebookChild w64 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox3]));
-		w64.Position = 4;
+		global::Gtk.Notebook.NotebookChild w67 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox3]));
+		w67.Position = 4;
 		// Notebook tab
 		this.LIB_LoginManager = new global::Gtk.Label ();
 		this.LIB_LoginManager.Name = "LIB_LoginManager";
@@ -837,18 +874,18 @@ public partial class MainWindow
 		this.CBO_TitleNews = global::Gtk.ComboBox.NewText ();
 		this.CBO_TitleNews.Name = "CBO_TitleNews";
 		this.vbox5.Add (this.CBO_TitleNews);
-		global::Gtk.Box.BoxChild w65 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.CBO_TitleNews]));
-		w65.Position = 0;
-		w65.Expand = false;
-		w65.Fill = false;
+		global::Gtk.Box.BoxChild w68 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.CBO_TitleNews]));
+		w68.Position = 0;
+		w68.Expand = false;
+		w68.Fill = false;
 		// Container child vbox5.Gtk.Box+BoxChild
 		this.LIB_Titre = new global::Gtk.Label ();
 		this.LIB_Titre.Name = "LIB_Titre";
 		this.vbox5.Add (this.LIB_Titre);
-		global::Gtk.Box.BoxChild w66 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.LIB_Titre]));
-		w66.Position = 1;
-		w66.Expand = false;
-		w66.Fill = false;
+		global::Gtk.Box.BoxChild w69 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.LIB_Titre]));
+		w69.Position = 1;
+		w69.Expand = false;
+		w69.Fill = false;
 		// Container child vbox5.Gtk.Box+BoxChild
 		this.BTN_Link = new global::Gtk.Button ();
 		this.BTN_Link.CanFocus = true;
@@ -856,13 +893,13 @@ public partial class MainWindow
 		this.BTN_Link.UseUnderline = true;
 		this.BTN_Link.Label = global::Mono.Unix.Catalog.GetString ("Link");
 		this.vbox5.Add (this.BTN_Link);
-		global::Gtk.Box.BoxChild w67 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.BTN_Link]));
-		w67.Position = 3;
-		w67.Expand = false;
-		w67.Fill = false;
+		global::Gtk.Box.BoxChild w70 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.BTN_Link]));
+		w70.Position = 3;
+		w70.Expand = false;
+		w70.Fill = false;
 		this.ONG_principal.Add (this.vbox5);
-		global::Gtk.Notebook.NotebookChild w68 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox5]));
-		w68.Position = 5;
+		global::Gtk.Notebook.NotebookChild w71 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox5]));
+		w71.Position = 5;
 		// Notebook tab
 		this.LIB_News = new global::Gtk.Label ();
 		this.LIB_News.Name = "LIB_News";
@@ -880,8 +917,8 @@ public partial class MainWindow
 		this.textview2.Name = "textview2";
 		this.GtkScrolledWindow2.Add (this.textview2);
 		this.ONG_principal.Add (this.GtkScrolledWindow2);
-		global::Gtk.Notebook.NotebookChild w70 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
-		w70.Position = 6;
+		global::Gtk.Notebook.NotebookChild w73 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
+		w73.Position = 6;
 		// Notebook tab
 		this.label3 = new global::Gtk.Label ();
 		this.label3.Name = "label3";
@@ -904,6 +941,7 @@ public partial class MainWindow
 		this.BTN_Synaptics.Clicked += new global::System.EventHandler (this.OnBTNSynapticsClicked);
 		this.BTN_Xorg.Clicked += new global::System.EventHandler (this.ApplyXorg);
 		this.BTN_Printer.Clicked += new global::System.EventHandler (this.OnBTNPrinterClicked);
+		this.BTN_Setup.Clicked += new global::System.EventHandler (this.OnBTNSetupClicked);
 		this.INT_FW.Clicked += new global::System.EventHandler (this.usefw);
 		this.INT_NM.Clicked += new global::System.EventHandler (this.usenm);
 		this.INT_WICD.Clicked += new global::System.EventHandler (this.usewicd);

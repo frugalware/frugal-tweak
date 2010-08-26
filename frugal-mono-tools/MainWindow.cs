@@ -105,6 +105,16 @@ public partial class MainWindow : Gtk.Window
 			BTN_Printer.Visible=true;
 			LAB_Printer.Visible=false;
 		}
+		if(!Pkg.IsInstalled("frugalwareutils"))
+		{
+			BTN_Setup.Visible=false;
+			LIB_Setup.Visible=true;
+		}
+		else
+		{
+			BTN_Setup.Visible=true;
+			LIB_Setup.Visible=false;
+		}
 		
 		BTN_Uninstall.Visible=false;
 		BTN_Install.Visible=false;
@@ -624,6 +634,12 @@ public partial class MainWindow : Gtk.Window
 	{
 		Outils.Excecute("xterm"," -hold -e pacman-g2 -Sy xf86-input-synaptics",true);
 	}
+	
+	protected virtual void OnBTNSetupClicked (object sender, System.EventArgs e)
+	{
+		Outils.Excecute("xterm"," -hold -e /sbin/setup",false);
+	}
+	
 	
 	
 	
