@@ -1,3 +1,1 @@
-1. Added pacman-g2 for some basic operations
-2. Added local configuration
-3. Added xorg graphical configuration (lspci)
+1. Added param for start it as daemon and check update
