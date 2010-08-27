@@ -16,21 +16,51 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 using System;
+using System.Timers;
 using Gtk;
 
 namespace frugalmonotools
 {
 	class MainClass
 	{
+		private static void UpdateBDD(object source, ElapsedEventArgs e)
+		{
+			Console.WriteLine("update pacman-g2 bdd");
+			Outils.Excecute("pacman-g2"," -Syu",false);
+			
+		}
 		
 		public static void Main (string[] args)
 		{
-			Application.Init ();
-			//should be launch as root
-			
-			MainWindow win = new MainWindow ();
-			win.Show ();
-			Application.Run ();
+			switch(args[0])
+			{
+				case "--daemon":
+					Console.WriteLine("Daemon mode");
+					if (Mono.Unix.Native.Syscall.getuid()!=0)
+					{
+						Console.Write("Daemon should be started with root user");
+						System.Environment.Exit(0);
+					}
+					//update packages bdd
+					System.Timers.Timer aTimer = new System.Timers.Timer();
+         			aTimer.Elapsed+=new ElapsedEventHandler(UpdateBDD);
+        			// Set the Interval to 1 hour.
+        			aTimer.Interval=3600000;
+         			aTimer.Enabled=true;
+					while(true){}
+					
+				case "--update":
+					//check if an update is avalaible
+					//started with X session
+					break;
+				default:
+					Console.WriteLine(args[0]);
+					Application.Init ();
+					MainWindow win = new MainWindow ();
+					win.Show ();
+					Application.Run ();
+					break;
+			}
 		}
 	}
 }
