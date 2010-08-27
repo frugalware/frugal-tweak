@@ -26,7 +26,7 @@ namespace frugalmonotools
 		private static void UpdateBDD(object source, ElapsedEventArgs e)
 		{
 			Console.WriteLine("update pacman-g2 bdd");
-			Outils.Excecute("pacman-g2"," -Syu",false);
+			Outils.Excecute("pacman-g2"," -Sy",false);
 			
 		}
 		
