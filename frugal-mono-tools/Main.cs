@@ -60,9 +60,15 @@ namespace frugalmonotools
 					case "--update":
 						//check if an update is avalaible
 						//started with X session
-						if (Update.packageCheck())
+						Console.WriteLine("check update packages.");
+						Update update=new Update();
+						if (update.CheckUpdate())
 						{
 							Console.WriteLine("Some packages can be updated.");
+							foreach (packageCheck pkg in update.UpdatePkg)
+							{
+								Console.WriteLine(pkg.packagename+" can be updated to "+pkg.packageversion);
+							}
 						}
 						break;
 					default:
