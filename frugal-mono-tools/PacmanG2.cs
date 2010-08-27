@@ -21,6 +21,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Mono.Unix.Native;
 using System.IO;
+using System.Text.RegularExpressions;
+
 namespace frugalmonotools
 {
 	
@@ -198,10 +200,25 @@ namespace frugalmonotools
 		{
 			string dirpkg=ROOT_PATH+PACMANG2_BDD+PACMAN_LOCAL+"/";
 			string[] dirs= Directory.GetDirectories(dirpkg,strSearch+"-*");
-			//FIX ME find yes for bluez if bluez-firmeware is installed
-			//* should be numeric
 			if (dirs.Length==0) return false;
-			return true;
+			bool Find = false;
+			foreach (string dir in dirs) 
+            {
+				try
+				{
+					string tmp=dir;
+					tmp=dir.Replace(ROOT_PATH+PACMANG2_BDD+PACMAN_LOCAL+strSearch,"");
+					//tmp contain -1.1.19-1, should find only 2 - for be the same package
+					int count = Regex.Matches(tmp, "-").Count;
+					if (count==2)
+					{
+						Find=true;
+						break;
+					}
+				}
+				catch{}
+			}
+			return Find;
 		}
 	}
 	
