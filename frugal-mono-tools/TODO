@@ -1,3 +1,4 @@
 1. Don't ignore param ignorepkg
 2. Added icon on systray for --update started with x session
 3. Added Notification if update are available
+4. start/stop service bluez/lirc (notebook hardware)
