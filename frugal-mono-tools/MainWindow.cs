@@ -40,7 +40,7 @@ public partial class MainWindow : Gtk.Window
 	//webkit engine
 	private WebKit.WebView webview=null;
 	Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
-	const int cen_OngHW=2;
+	const int cen_OngService=3;
 	
 	
 	const string cch_FileLoginManager=@"/etc/sysconfig/desktop";
@@ -58,6 +58,9 @@ public partial class MainWindow : Gtk.Window
 	{
 		
 		Build ();
+		//hide notebook service for now
+		ONG_principal.RemovePage(cen_OngService);
+		
 		//graphical debug
 		if ( Debug.ModeDebug && Debug.ModeDebugGraphique)
 		{
