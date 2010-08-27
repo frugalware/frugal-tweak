@@ -571,7 +571,7 @@ public partial class MainWindow : Gtk.Window
 			foreach (Package package in packages)
 			{
 				// Add some data to the store
-				pkgListStore.AppendValues (package.pkgname);
+				pkgListStore.AppendValues (package.pkgname+"-"+package.pkgversion);
 			}
 		}
 		catch{}

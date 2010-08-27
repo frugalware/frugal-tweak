@@ -158,10 +158,10 @@ namespace frugalmonotools
 				Package package = new Package();
 				
 				string tmpname=dir.Replace(dirpkg,"");
-				package.pkgname=tmpname;
+				package.pkgname=extractNamePackage(tmpname);
 				package.pkgdescription="";
 				package.pkggroup="";
-				package.pkgversion="";
+				package.pkgversion=extractVersionPackage(tmpname);
                 //TODO extract description/group from file desc and extract version from name
 				packages.Add(package);
             }
@@ -183,6 +183,17 @@ namespace frugalmonotools
 
 			return packageName;
 		}
+		
+		public string extractVersionPackage(string file)
+		{
+			string[] words = file.Split('-');
+			int nb;
+			string packageVersion="";
+			nb=words.Length;
+			packageVersion=words[nb-2]+"-"+words[nb-1];
+			return packageVersion;
+		}
+		
 		public bool IsInstalled(string strSearch)
 		{
 			string dirpkg=ROOT_PATH+PACMANG2_BDD+PACMAN_LOCAL+"/";

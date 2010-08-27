@@ -68,6 +68,7 @@
     <Compile Include="gtk-gui\frugalmonotools.FEN_Debug.cs" />
     <Compile Include="OUTILS\Outils.cs" />
     <Compile Include="PacmanG2.cs" />
+    <Compile Include="Update.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

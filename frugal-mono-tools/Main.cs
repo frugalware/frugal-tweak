@@ -27,39 +27,48 @@ namespace frugalmonotools
 		{
 			Console.WriteLine("update pacman-g2 bdd");
 			Outils.Excecute("pacman-g2"," -Sy",false);
-			
 		}
 		
 		public static void Main (string[] args)
 		{
-			switch(args[0])
+			if(args.Length==0)
 			{
-				case "--daemon":
-					Console.WriteLine("Daemon mode");
-					if (Mono.Unix.Native.Syscall.getuid()!=0)
-					{
-						Console.Write("Daemon should be started with root user");
-						System.Environment.Exit(0);
-					}
-					//update packages bdd
-					System.Timers.Timer aTimer = new System.Timers.Timer();
-         			aTimer.Elapsed+=new ElapsedEventHandler(UpdateBDD);
-        			// Set the Interval to 1 hour.
-        			aTimer.Interval=3600000;
-         			aTimer.Enabled=true;
-					while(true){}
-					
-				case "--update":
-					//check if an update is avalaible
-					//started with X session
-					break;
-				default:
-					Console.WriteLine(args[0]);
-					Application.Init ();
-					MainWindow win = new MainWindow ();
-					win.Show ();
-					Application.Run ();
-					break;
+				Application.Init ();
+				MainWindow win = new MainWindow ();
+				win.Show ();
+				Application.Run ();
+			}
+			else
+			{
+				switch(args[0])
+				{
+					case "--daemon":
+						Console.WriteLine("Daemon mode");
+						if (Mono.Unix.Native.Syscall.getuid()!=0)
+						{
+							Console.Write("Daemon should be started with root user");
+							System.Environment.Exit(0);
+						}
+						//update packages bdd
+						System.Timers.Timer aTimer = new System.Timers.Timer();
+	         			aTimer.Elapsed+=new ElapsedEventHandler(UpdateBDD);
+	        			// Set the Interval to 1 hour.
+	        			aTimer.Interval=3600000;
+	         			aTimer.Enabled=true;
+						while(true){}
+						
+					case "--update":
+						//check if an update is avalaible
+						//started with X session
+						if (Update.packageCheck())
+						{
+							Console.WriteLine("Some packages can be updated.");
+						}
+						break;
+					default:
+						Console.WriteLine("Bad parameters exit...");
+						break;
+				}
 			}
 		}
 	}
