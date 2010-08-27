@@ -198,6 +198,8 @@ namespace frugalmonotools
 		{
 			string dirpkg=ROOT_PATH+PACMANG2_BDD+PACMAN_LOCAL+"/";
 			string[] dirs= Directory.GetDirectories(dirpkg,strSearch+"-*");
+			//FIX ME find yes for bluez if bluez-firmeware is installed
+			//* should be numeric
 			if (dirs.Length==0) return false;
 			return true;
 		}

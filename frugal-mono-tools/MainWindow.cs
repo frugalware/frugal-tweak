@@ -115,6 +115,44 @@ public partial class MainWindow : Gtk.Window
 			BTN_Setup.Visible=true;
 			LIB_Setup.Visible=false;
 		}
+		string dmesgOutput=Outils.getoutput("dmesg");
+		if(dmesgOutput.IndexOf("lirc")>0)
+		{
+			if (!Pkg.IsInstalled("lirc"))
+			{
+				LIB_Lirc.Visible=true;
+			}
+			else
+			{
+				//TODO check if service is started for buton enable lirc
+				LIB_Lirc.Visible=false;
+			}
+		}
+		else
+		{
+			BTN_Lirc.Visible=false;
+			LIB_Lirc.Visible=false;
+		}
+				
+		
+		if(dmesgOutput.IndexOf("Bluetooth")>0)
+		{
+			if (!Pkg.IsInstalled("bluez"))
+			{
+				LIB_Bluez.Visible=true;
+			}
+			else
+			{
+				//TODO check if service is started for buton enable bluez
+				LIB_Bluez.Visible=false;
+			}
+		}
+		else
+		{
+			LIB_Bluez.Visible=false;
+			BTN_Bluez.Visible=false;
+		}
+		
 		
 		BTN_Uninstall.Visible=false;
 		BTN_Install.Visible=false;
