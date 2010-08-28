@@ -95,6 +95,7 @@ namespace frugalmonotools
 	        			// Set the Interval to 1 hour.
 	        			aTimer.Interval=3600000;
 	         			aTimer.Enabled=true;
+						Application.Run ();
 						break;
 					
 					default:
