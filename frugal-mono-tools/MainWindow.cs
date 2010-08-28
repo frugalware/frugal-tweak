@@ -127,13 +127,11 @@ public partial class MainWindow : Gtk.Window
 			}
 			else
 			{
-				//TODO check if service is started for buton enable lirc
 				LIB_Lirc.Visible=false;
 			}
 		}
 		else
 		{
-			BTN_Lirc.Visible=false;
 			LIB_Lirc.Visible=false;
 		}
 				
@@ -146,14 +144,12 @@ public partial class MainWindow : Gtk.Window
 			}
 			else
 			{
-				//TODO check if service is started for buton enable bluez
 				LIB_Bluez.Visible=false;
 			}
 		}
 		else
 		{
 			LIB_Bluez.Visible=false;
-			BTN_Bluez.Visible=false;
 		}
 		
 		
