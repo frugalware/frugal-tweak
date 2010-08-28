@@ -96,5 +96,8 @@
   <ItemGroup>
     <Content Include="frugal-tools-gnome.desktop" />
     <Content Include="frugal-tools-kde.desktop" />
+    <Content Include="..\frugal-mono-tools.desktop">
+      <Link>frugal-mono-tools.desktop</Link>
+    </Content>
   </ItemGroup>
 </Project>
