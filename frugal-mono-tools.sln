@@ -3,14 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "frugal-mono-tools", "frugal-mono-tools\frugal-mono-tools.csproj", "{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}"
 EndProject
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Packages", "Packages.mdproj", "{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Release|x86.ActiveCfg = Release|Any CPU
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Debug|x86.ActiveCfg = Debug|x86
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Debug|x86.Build.0 = Debug|x86
+		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|x86.ActiveCfg = Release|x86
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
