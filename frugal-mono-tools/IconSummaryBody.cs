@@ -1,11 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
-//3456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789
-//      10        20        30        40        50        60        70        80
-//
-// Info: 
-//    Example of how to use libnotify correctly and at the same time comply to
-//    the new jaunty notification spec (read: visual guidelines)
-//
 /*
  *  Copyright (C) 2010 by Gaetan Gourdin <bouleetbil@frogdev.info>
  *

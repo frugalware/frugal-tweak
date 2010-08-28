@@ -124,6 +124,7 @@ namespace frugalmonotools
 		
 		private void EnumRepoProc(string section, string lParam)
 		{
+			if(Debug.ModeDebug) Console.WriteLine(section);
 			fwRepo.Add(section);
 		}
 		

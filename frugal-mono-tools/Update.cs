@@ -11,19 +11,21 @@ namespace frugalmonotools
 		public string packageversion;
 	}
 	
-	public class Update
+	public static class Update
 	{
-		private List<packageCheck> InstallPkg = new List<packageCheck>();
-		private List<packageCheck> Pkg = new List<packageCheck>();
-		public List<packageCheck> UpdatePkg = new List<packageCheck>();
-		private PacmanG2 pacman = new PacmanG2();
+		private static bool _started=false; 
+		private static List<packageCheck> InstallPkg = new List<packageCheck>();
+		private static List<packageCheck> Pkg = new List<packageCheck>();
+		public static List<packageCheck> UpdatePkg = new List<packageCheck>();
 		
-		public Update()
+		private static void _init()
 		{
-			_init();
+			if(Debug.ModeDebug) Console.WriteLine("Init update");
+			_clear();
 			
-			foreach (string repo in pacman.fwRepo)
+			foreach (string repo in MainClass.pacmanG2.fwRepo)
 			{
+				if(Debug.ModeDebug) Console.WriteLine(repo);
 				if(repo=="local")
 				{
 					addList(InstallPkg,repo);
@@ -39,6 +41,7 @@ namespace frugalmonotools
 				//TODO : respect Ignorepkg
 				foreach (packageCheck pkg in Pkg)
 				{
+					
 					if(pkg.packagename==pkginstall.packagename)
 					{
 						//basic test for beginning
@@ -53,22 +56,35 @@ namespace frugalmonotools
 				
 			}
 		}
-		public bool CheckUpdate()
+		public static bool CheckUpdate()
 		{
-			if(UpdatePkg.Count>0) return true;
+			if(_started) 
+			{
+				if(Debug.ModeDebug) Console.WriteLine("already started.");
+				return false;
+			}
+			_started=true;
+			_init();
+			if(Debug.ModeDebug) Console.WriteLine("Check update");
+			if(UpdatePkg.Count>0) 
+			{
+				_started=false;
+				return true;
+			}
+			_started=false;
 			return false;
 		}
 		
-		private void _init()
+		private static void _clear()
 		{
 			InstallPkg.Clear();
 			Pkg.Clear();
 			UpdatePkg.Clear();
 		}
 		
-		private void addList(List<packageCheck> pkgs,string repo)
+		private static void addList(List<packageCheck> pkgs,string repo)
 		{
-			List<Package> packages=pacman.Search("*",repo);
+			List<Package> packages=MainClass.pacmanG2.Search("*",repo);
 			foreach (Package package in packages)
 			{
 				if(repo=="local")

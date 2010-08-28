@@ -32,10 +32,7 @@ public partial class MainWindow : Gtk.Window
 	//pacman-g2
 	// Create a model for treeview pkg
 	Gtk.ListStore pkgListStore = new Gtk.ListStore (typeof (string));
-	//pacman-g2 initialise
-	PacmanG2 Pkg = new PacmanG2();
 	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
-	
 	
 	//webkit engine
 	private WebKit.WebView webview=null;
@@ -78,7 +75,7 @@ public partial class MainWindow : Gtk.Window
 		pkgColumn.AddAttribute (pkgNameCell, "text", 0);
 		
 		int i = 0 ;
-		foreach (string repo in Pkg.fwRepo)
+		foreach (string repo in  MainClass.pacmanG2.fwRepo)
 		{
 			string strRepo=repo;
 			if (strRepo=="local") strRepo ="Installed";
@@ -100,7 +97,7 @@ public partial class MainWindow : Gtk.Window
 		this.scroll.ShowAll();
 		
 		//HW
-		if(!Pkg.IsInstalled("system-config-printer"))
+		if(!MainClass.pacmanG2.IsInstalled("system-config-printer"))
 		{
 			BTN_Printer.Visible=false;
 			LAB_Printer.Visible=true;
@@ -110,7 +107,7 @@ public partial class MainWindow : Gtk.Window
 			BTN_Printer.Visible=true;
 			LAB_Printer.Visible=false;
 		}
-		if(!Pkg.IsInstalled("frugalwareutils"))
+		if(!MainClass.pacmanG2.IsInstalled("frugalwareutils"))
 		{
 			BTN_Setup.Visible=false;
 			LIB_Setup.Visible=true;
@@ -123,7 +120,7 @@ public partial class MainWindow : Gtk.Window
 		string dmesgOutput=Outils.getoutput("dmesg");
 		if(dmesgOutput.IndexOf("lirc")>0)
 		{
-			if (!Pkg.IsInstalled("lirc"))
+			if (!MainClass.pacmanG2.IsInstalled("lirc"))
 			{
 				LIB_Lirc.Visible=true;
 			}
@@ -140,7 +137,7 @@ public partial class MainWindow : Gtk.Window
 		
 		if(dmesgOutput.IndexOf("Bluetooth")>0)
 		{
-			if (!Pkg.IsInstalled("bluez"))
+			if (!MainClass.pacmanG2.IsInstalled("bluez"))
 			{
 				LIB_Bluez.Visible=true;
 			}
@@ -193,7 +190,7 @@ public partial class MainWindow : Gtk.Window
 		LIB_Lspci.Text=lspci;
 		LIB_XorgGraphic.Text+= GraphicalDevice()+" driver";
 		string touchpad=Outils.getoutput("dmesg");
-		if ((touchpad.IndexOf("TouchPad")>0) && (!Pkg.IsInstalled("xf86-input-synaptics")))
+		if ((touchpad.IndexOf("TouchPad")>0) && (!MainClass.pacmanG2.IsInstalled("xf86-input-synaptics")))
 			BTN_Synaptics.Visible=true;
 		else
 			BTN_Synaptics.Visible=false;
@@ -505,7 +502,7 @@ public partial class MainWindow : Gtk.Window
 	public void EnableDisable(CheckButton INT_Option,string packageName, Label text)
 	{
 		//check if file existe for works more quickly
-		if(!Pkg.IsInstalled(packageName))
+		if(!MainClass.pacmanG2.IsInstalled(packageName))
 		{
 			INT_Option.Active=false;
 			INT_Option.Inconsistent=true;
@@ -605,7 +602,7 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnBTNSearchClicked (object sender, System.EventArgs e)
 	{
 		try{
-			List<Package> packages=Pkg.Search(SAI_pkg.Text,Pkg.repoSelected);
+			List<Package> packages=MainClass.pacmanG2.Search(SAI_pkg.Text,MainClass.pacmanG2.repoSelected);
 			pkgListStore.Clear();
 			foreach (Package package in packages)
 			{
@@ -622,7 +619,7 @@ public partial class MainWindow : Gtk.Window
 		if ((sender as ComboBox).GetActiveIter (out iter))
 		{
 			int id =(int)modelRepoList.GetValue (iter,1);
-			Pkg.SelectRepo(Pkg.fwRepo[id]);
+			MainClass.pacmanG2.SelectRepo(MainClass.pacmanG2.fwRepo[id]);
 		}
 	}
 	
@@ -635,12 +632,12 @@ public partial class MainWindow : Gtk.Window
 				 if (((TreeSelection)o).GetSelected(out model, out iter))
 		        {
 		            string T =(string)model.GetValue (iter, 0);
-					T=Pkg.extractNamePackage(T);
+					T=MainClass.pacmanG2.extractNamePackage(T);
 					packageSelected=T;
 					if(boRoot)
 					{
 						//installed ?
-						if(Pkg.IsInstalled(T))
+						if(MainClass.pacmanG2.IsInstalled(T))
 						{
 							BTN_Uninstall.Visible=true;
 							BTN_Install.Visible=false;

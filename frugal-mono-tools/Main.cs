@@ -23,17 +23,44 @@ namespace frugalmonotools
 {
 	class MainClass
 	{
+		//pacman-g2 initialise
+		public static PacmanG2 pacmanG2 = new PacmanG2();
+		
+		public static IconSummaryBody notif= new IconSummaryBody();
+		
 		private static void UpdateBDD(object source, ElapsedEventArgs e)
 		{
 			Console.WriteLine("update pacman-g2 bdd");
 			Outils.Excecute("pacman-g2"," -Sy",false);
 		}
-		
+		private static void checkUpdate(object source, ElapsedEventArgs e)
+		{
+			Console.WriteLine("check update packages.");
+			check();
+		}
+		private static void check()
+		{
+			
+			if (Update.CheckUpdate())
+			{
+				if(Debug.ModeDebug)
+				{
+					foreach (packageCheck pkg in Update.UpdatePkg)
+					{
+						Console.WriteLine(pkg.packagename+" can be updated to "+pkg.packageversion);
+					}
+				}
+				notif.ShowMessage("Frugalware","Some update are available.");
+				Console.WriteLine("Some packages can be updated.");
+			}
+		}
 		public static void Main (string[] args)
 		{
+			System.Timers.Timer aTimer;
+			Application.Init ();
 			if(args.Length==0)
 			{
-				Application.Init ();
+				check();
 				MainWindow win = new MainWindow ();
 				win.Show ();
 				Application.Run ();
@@ -50,27 +77,26 @@ namespace frugalmonotools
 							System.Environment.Exit(0);
 						}
 						//update packages bdd
-						System.Timers.Timer aTimer = new System.Timers.Timer();
+						aTimer = new System.Timers.Timer();
 	         			aTimer.Elapsed+=new ElapsedEventHandler(UpdateBDD);
 	        			// Set the Interval to 1 hour.
 	        			aTimer.Interval=3600000;
 	         			aTimer.Enabled=true;
-						while(true){}
-						
+						Application.Run ();
+						break;
+					
 					case "--update":
 						//check if an update is avalaible
 						//started with X session
 						Console.WriteLine("check update packages.");
-						Update update=new Update();
-						if (update.CheckUpdate())
-						{
-							Console.WriteLine("Some packages can be updated.");
-							foreach (packageCheck pkg in update.UpdatePkg)
-							{
-								Console.WriteLine(pkg.packagename+" can be updated to "+pkg.packageversion);
-							}
-						}
+						check();
+						aTimer = new System.Timers.Timer();
+	         			aTimer.Elapsed+=new ElapsedEventHandler(checkUpdate);
+	        			// Set the Interval to 1 hour.
+	        			aTimer.Interval=3600000;
+	         			aTimer.Enabled=true;
 						break;
+					
 					default:
 						Console.WriteLine("Bad parameters exit...");
 						break;
