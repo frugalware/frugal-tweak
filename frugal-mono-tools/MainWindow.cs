@@ -202,9 +202,9 @@ public partial class MainWindow : Gtk.Window
 		
 		//network init
 		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
-		EnableDisable(INT_NM,"/usr/sbin/NetworkManager",LIB_NMNotInstalled);
+		EnableDisable(INT_NM,"networkmanager",LIB_NMNotInstalled);
 		INT_WICD.Active=Outils.ServiceOnStartUp("S99rc.wicd");
-		EnableDisable(INT_WICD,"/usr/sbin/wicd",LIB_WICDNotInstalled);
+		EnableDisable(INT_WICD,"wicd",LIB_WICDNotInstalled);
 		if((!INT_NM.Active) && (!INT_WICD.Active))
 		{
 			INT_FW.Active=true;
@@ -214,11 +214,11 @@ public partial class MainWindow : Gtk.Window
 			INT_FW.Active=false;
 		}
 		//Login Manager init
-		EnableDisable(INT_XDM,"/usr/bin/xdm",LIB_XDM);
-		EnableDisable(INT_LXDM,"/usr/sbin/lxdm",LIB_LXDM);
-		EnableDisable(INT_Slim,"/usr/bin/slim",LIB_SLIM);
-		EnableDisable(INT_GDM,"/usr/sbin/gdm",LIB_GDM);
-		EnableDisable(INT_KDM,"/usr/bin/kdm",LIB_KDM);
+		EnableDisable(INT_XDM,"xdm",LIB_XDM);
+		EnableDisable(INT_LXDM,"lxdm",LIB_LXDM);
+		EnableDisable(INT_Slim,"slim",LIB_SLIM);
+		EnableDisable(INT_GDM,"gdm",LIB_GDM);
+		EnableDisable(INT_KDM,"kdm",LIB_KDM);
 		 try
             {
                 System.IO.StreamReader textFile = new System.IO.StreamReader(cch_FileLoginManager);
@@ -504,10 +504,10 @@ public partial class MainWindow : Gtk.Window
 	/// <param name="text">
 	/// A <see cref="Label"/>
 	/// </param>
-	public void EnableDisable(CheckButton INT_Option,string FileToTest, Label text)
+	public void EnableDisable(CheckButton INT_Option,string packageName, Label text)
 	{
 		//check if file existe for works more quickly
-		if(!File.Exists(FileToTest))
+		if(!Pkg.IsInstalled(packageName))
 		{
 			INT_Option.Active=false;
 			INT_Option.Inconsistent=true;
