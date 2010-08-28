@@ -120,6 +120,7 @@ namespace frugalmonotools
 		//public
 		public string repoSelected="";
 		public List<string> fwRepo = new List<string>();
+		public const string repoInstalled= "Installed";
 		
 		private void EnumRepoProc(string section, string lParam)
 		{
@@ -142,12 +143,14 @@ namespace frugalmonotools
 	
 		public void SelectRepo(string repo)
 		{
+			if (repo==repoInstalled) repo ="local";
 			pmdb_t=pacman_db_register(repo);
 			repoSelected=repo;
 		}
 		
 		public List<Package> Search(string strSearch,string repo)
 		{
+			if (repo==repoInstalled) repo ="local";
 			//don't use pacman more quickly to use .net directly
 			List<Package> packages = new List<Package>();
 			string dirpkg=ROOT_PATH+PACMANG2_BDD+repo+"/";

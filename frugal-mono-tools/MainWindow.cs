@@ -80,7 +80,9 @@ public partial class MainWindow : Gtk.Window
 		int i = 0 ;
 		foreach (string repo in Pkg.fwRepo)
 		{
-			modelRepoList.AppendValues(repo,i);
+			string strRepo=repo;
+			if (strRepo=="local") strRepo ="Installed";
+			modelRepoList.AppendValues(strRepo,i);
 			i++;
 		}
 		CBO_Repo.Model=modelRepoList;
