@@ -1,0 +1,13 @@
+
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=frugalware configuration
+Exec=kdesu frugal-mono-tools
+Terminal=false
+
+GenericName=frugalware configuration
+Comment=Tools for configure Frugalware
+Icon=FrugalTools.png
+Categories=Application;GTK;System;
+OnlyShowIn=KDE;

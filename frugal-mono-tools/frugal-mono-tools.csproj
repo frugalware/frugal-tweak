@@ -85,4 +85,8 @@
     <None Include="LICENCE" />
     <None Include="Changelog" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="frugal-tools-gnome.desktop" />
+    <Content Include="frugal-tools-kde.desktop" />
+  </ItemGroup>
 </Project>
