@@ -54,13 +54,32 @@ namespace frugalmonotools
 				Console.WriteLine("Some packages can be updated.");
 			}
 		}
+		
+		private static  void SubThread(){
+			
+        	Gtk.Application.Invoke (delegate {
+				splash sf =  new splash();
+				sf.Show();
+				check();
+				sf.Hide();
+				sf.Dispose();
+	        });
+			
+			
+		}
+		
 		public static void Main (string[] args)
 		{
+			
 			System.Timers.Timer aTimer;
 			if(args.Length==0)
 			{
 				Gtk.Application.Init();
-				check();
+				Thread th = new Thread(new ThreadStart(SubThread));
+				th.IsBackground=true;
+				th.SetApartmentState(ApartmentState.STA);
+				th.Start();
+				
 				MainWindow win = new MainWindow ();
 				win.Show ();
 				Gtk.Application.Run ();

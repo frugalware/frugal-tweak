@@ -78,6 +78,8 @@
     <Compile Include="PacmanG2.cs" />
     <Compile Include="Update.cs" />
     <Compile Include="IconSummaryBody.cs" />
+    <Compile Include="splash.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.splash.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -91,8 +93,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="TODO" />
-    <None Include="LICENCE" />
     <None Include="Changelog" />
+    <None Include="LICENSE" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="frugal-tools-gnome.desktop" />
