@@ -7,11 +7,12 @@
     <ProjectGuid>{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}</ProjectGuid>
     <Packages>
       <Packages>
-        <Package name="frugal-mono-tools-0.1">
+        <Package name="frugal-mono-tools-0.1.1">
           <Builder TargetDirectory="releases" DefaultConfiguration="Release" ctype="TarballDeployTarget">
             <ChildEntries>
               <SolutionItemReference path="frugal-mono-tools\frugal-mono-tools.csproj" />
               <SolutionItemReference path="Service\Service.csproj" />
+              <SolutionItemReference path="Traduction\Traduction.mdproj" />
             </ChildEntries>
             <RootEntry path="frugal-mono-tools.sln" id=":root:" />
           </Builder>
