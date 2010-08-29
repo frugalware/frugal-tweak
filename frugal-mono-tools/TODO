@@ -1,7 +1,6 @@
-1. Added a splashcreen
-2. Don't ignore param ignorepkg
-3. Added icon on systray for --update started with x session
-4. start/stop service bluez/lirc (notebook hardware)
-5. use vte-sharp instead xterm
-6. added a sort of etcconfig for find pacnew and purpose to merge/update...
-7. use /var/run instead /tmp for mono service
+1. Don't ignore param ignorepkg
+2. Added icon on systray for --update started with x session
+3. start/stop service bluez/lirc (notebook hardware)
+4. use vte-sharp instead xterm (should split gnome-sharp for extract vte-sharp)
+5. added a sort of etcconfig for find pacnew and purpose to merge/update...
+6. see for add repoman merge update...
