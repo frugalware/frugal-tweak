@@ -18,8 +18,7 @@ namespace frugalmonotools
 			
 			//now notifications
 			if (MainClass.updatePkg)
-			{
-				IconSummaryBody notif= new IconSummaryBody();	
+			{	
 				if(Debug.ModeDebug)
 				{
 					foreach (packageCheck pkg in Update.UpdatePkg)
@@ -27,7 +26,11 @@ namespace frugalmonotools
 						Console.WriteLine(pkg.packagename+" can be updated to "+pkg.packageversion);
 					}
 				}
+				try{
+				IconSummaryBody notif= new IconSummaryBody();
 				notif.ShowMessage("Frugalware","Some update are available.");
+				}
+				catch{}
 				Console.WriteLine("Some packages can be updated.");
 			}
 			
