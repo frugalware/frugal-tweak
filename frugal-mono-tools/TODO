@@ -1,4 +1,5 @@
-1. Don't ignore param ignorepkg
-2. Added icon on systray for --update started with x session
-3. start/stop service bluez/lirc (notebook hardware)
-4. use vte-sharp instead xterm
+1. Added a splashcreen
+2. Don't ignore param ignorepkg
+3. Added icon on systray for --update started with x session
+4. start/stop service bluez/lirc (notebook hardware)
+5. use vte-sharp instead xterm
