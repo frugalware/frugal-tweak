@@ -20,7 +20,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">2</property>
+        <property name="CurrentPage">1</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -304,7 +304,7 @@ ztv</property>
             <child>
               <widget class="Gtk.Label" id="LIB_XorgGraphic">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Xorg use </property>
+                <property name="LabelProp" translatable="yes">Current driver in use </property>
               </widget>
               <packing>
                 <property name="Position">2</property>
