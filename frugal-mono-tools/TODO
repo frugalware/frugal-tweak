@@ -4,3 +4,4 @@
 4. start/stop service bluez/lirc (notebook hardware)
 5. use vte-sharp instead xterm
 6. added a sort of etcconfig for find pacnew and purpose to merge/update...
+7. use /var/run instead /tmp for mono service
