@@ -18,8 +18,6 @@
 using System;
 using System.Collections;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.ServiceProcess;
 using System.IO;
 using System.Threading;
 using System.Timers;
@@ -37,7 +35,14 @@ namespace frugalmonotools
 			Console.WriteLine("check update packages.");
 			check();
 		}
-		private static void check()
+		public static bool updatePkg = false;
+		public static void checktest()
+		{
+			updatePkg=Update.CheckUpdate();
+			win.InitFinish();	
+		}
+		
+		public static void check()
 		{
 			IconSummaryBody notif= new IconSummaryBody();		
 
@@ -54,33 +59,19 @@ namespace frugalmonotools
 				Console.WriteLine("Some packages can be updated.");
 			}
 		}
-		
-		private static  void SubThread(){
-			
-        	Gtk.Application.Invoke (delegate {
-				splash sf =  new splash();
-				sf.Show();
-				check();
-				sf.Hide();
-				sf.Dispose();
-	        });
-			
-			
-		}
-		
+		private static splash win;
 		public static void Main (string[] args)
 		{
 			
 			System.Timers.Timer aTimer;
 			if(args.Length==0)
 			{
-				Gtk.Application.Init();
-				Thread th = new Thread(new ThreadStart(SubThread));
+				Gtk.Application.Init();		
+				Thread th = new Thread(new ThreadStart(checktest));
 				th.IsBackground=true;
 				th.SetApartmentState(ApartmentState.STA);
 				th.Start();
-				
-				MainWindow win = new MainWindow ();
+				win = new splash ();
 				win.Show ();
 				Gtk.Application.Run ();
 			}

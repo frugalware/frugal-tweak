@@ -53,7 +53,7 @@ public partial class MainWindow : Gtk.Window
 	
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
-		
+				
 		Build ();
 		//hide notebook service for now
 		ONG_principal.RemovePage(cen_OngService);
