@@ -145,7 +145,7 @@ namespace frugalmonotools
 		public void SelectRepo(string repo)
 		{
 			if (repo==repoInstalled) repo ="local";
-			pmdb_t=pacman_db_register(repo);
+			//pmdb_t=pacman_db_register(repo);
 			repoSelected=repo;
 		}
 		
