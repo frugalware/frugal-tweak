@@ -16,8 +16,14 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.ServiceProcess;
+using System.IO;
+using System.Threading;
 using System.Timers;
-using Gtk;
+
 
 namespace frugalmonotools
 {
@@ -26,13 +32,6 @@ namespace frugalmonotools
 		//pacman-g2 initialise
 		public static PacmanG2 pacmanG2 = new PacmanG2();
 		
-		public static IconSummaryBody notif= new IconSummaryBody();
-		
-		private static void UpdateBDD(object source, ElapsedEventArgs e)
-		{
-			Console.WriteLine("update pacman-g2 bdd");
-			Outils.Excecute("pacman-g2"," -Sy",false);
-		}
 		private static void checkUpdate(object source, ElapsedEventArgs e)
 		{
 			Console.WriteLine("check update packages.");
@@ -40,7 +39,8 @@ namespace frugalmonotools
 		}
 		private static void check()
 		{
-			
+			IconSummaryBody notif= new IconSummaryBody();		
+
 			if (Update.CheckUpdate())
 			{
 				if(Debug.ModeDebug)
@@ -57,37 +57,23 @@ namespace frugalmonotools
 		public static void Main (string[] args)
 		{
 			System.Timers.Timer aTimer;
-			Application.Init ();
 			if(args.Length==0)
 			{
+				Gtk.Application.Init();
 				check();
 				MainWindow win = new MainWindow ();
 				win.Show ();
-				Application.Run ();
+				Gtk.Application.Run ();
 			}
 			else
 			{
+				Console.WriteLine(args[0]);
 				switch(args[0])
-				{
-					case "--daemon":
-						Console.WriteLine("Daemon mode");
-						if (Mono.Unix.Native.Syscall.getuid()!=0)
-						{
-							Console.Write("Daemon should be started with root user");
-							System.Environment.Exit(0);
-						}
-						//update packages bdd
-						aTimer = new System.Timers.Timer();
-	         			aTimer.Elapsed+=new ElapsedEventHandler(UpdateBDD);
-	        			// Set the Interval to 1 hour.
-	        			aTimer.Interval=3600000;
-	         			aTimer.Enabled=true;
-						Application.Run ();
-						break;
-					
+				{		
 					case "--update":
 						//check if an update is avalaible
 						//started with X session
+						Gtk.Application.Init();
 						Console.WriteLine("check update packages.");
 						check();
 						aTimer = new System.Timers.Timer();
@@ -95,7 +81,7 @@ namespace frugalmonotools
 	        			// Set the Interval to 1 hour.
 	        			aTimer.Interval=3600000;
 	         			aTimer.Enabled=true;
-						Application.Run ();
+						Gtk.Application.Run ();
 						break;
 					
 					default:
