@@ -7,6 +7,8 @@ Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Packages", "Packages.mdproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}"
 EndProject
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Traduction", "Traduction\Traduction.mdproj", "{069FB0B9-80D4-4093-88F3-116B09B0E09F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -14,6 +16,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{069FB0B9-80D4-4093-88F3-116B09B0E09F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{069FB0B9-80D4-4093-88F3-116B09B0E09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{069FB0B9-80D4-4093-88F3-116B09B0E09F}.Release|x86.ActiveCfg = Release|Any CPU
 		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Release|x86.ActiveCfg = Release|Any CPU

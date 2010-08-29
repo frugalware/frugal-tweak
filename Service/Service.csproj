@@ -1,1 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  <PropertyGroup>    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>    <ProductVersion>8.0.50727</ProductVersion>    <SchemaVersion>2.0</SchemaVersion>    <ProjectGuid>{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}</ProjectGuid>    <OutputType>Exe</OutputType>    <RootNamespace>Service</RootNamespace>    <AssemblyName>ServiceMonoFrugal</AssemblyName>  </PropertyGroup>  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">    <DebugSymbols>true</DebugSymbols>    <DebugType>full</DebugType>    <Optimize>false</Optimize>    <OutputPath>bin\Debug</OutputPath>    <DefineConstants>DEBUG</DefineConstants>    <ErrorReport>prompt</ErrorReport>    <WarningLevel>4</WarningLevel>    <Externalconsole>true</Externalconsole>  </PropertyGroup>  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">    <DebugType>none</DebugType>    <Optimize>false</Optimize>    <OutputPath>bin\Release</OutputPath>    <ErrorReport>prompt</ErrorReport>    <WarningLevel>4</WarningLevel>    <Externalconsole>true</Externalconsole>  </PropertyGroup>  <ItemGroup>    <Reference Include="System" />    <Reference Include="System.ServiceProcess" />    <Reference Include="Mono.Posix" />  </ItemGroup>  <ItemGroup>    <Compile Include="Main.cs" />    <Compile Include="AssemblyInfo.cs" />  </ItemGroup>  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />  <ProjectExtensions>    <MonoDevelop>      <Properties InternalTargetFrameworkVersion="3.5" xmlns="">        <Deployment.LinuxDeployData scriptName="ServiceMonoFrugal" />      </Properties>    </MonoDevelop>  </ProjectExtensions></Project>
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Service</RootNamespace>
+    <AssemblyName>ServiceMonoFrugal</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="Mono.Posix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties InternalTargetFrameworkVersion="3.5">
+        <Deployment.LinuxDeployData scriptName="ServiceMonoFrugal" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>

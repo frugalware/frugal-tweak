@@ -1,0 +1,339 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2010-08-29 23:03:30+0200\n"
+"PO-Revision-Date: 2010-08-29 23:03:30+0200\n"
+"Last-Translator: gaetan gourdin <bouleetbil@frogdev.info>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: MonoDevelop Gettext addin\n"
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:188
+msgid "Frugalware-tools"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:227
+msgid "Search"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:259
+msgid "Update system"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:270
+msgid "Uninstall"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:281
+msgid "Install"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:296
+msgid "Packages"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:310
+msgid "Layout"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:340
+msgid "Graphical device : "
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:349
+msgid "lspci"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:357
+msgid "apm"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:358
+msgid "ark"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:359
+msgid "ast"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:360
+msgid "ati"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:361
+msgid "chips"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:362
+msgid "cirrus"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:363
+msgid "dummy"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:364
+msgid "fbdev"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:365
+msgid "geode"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:366
+msgid "glint"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:367
+msgid "i128"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:368
+msgid "i740"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:369
+msgid "intel"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:370
+msgid "mach64"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:371
+msgid "mga"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:372
+msgid "neomagic"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:373
+msgid "nouveau"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:374
+msgid "nv"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:375
+msgid "openchrome"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:376
+msgid "qxl"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:377
+msgid "r128"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:378
+msgid "radeon"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:379
+msgid "radeonhd"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:380
+msgid "rendition"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:381
+msgid "s3"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:382
+msgid "s3virge"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:383
+msgid "savage"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:384
+msgid "siliconmotion"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:385
+msgid "sis"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:386
+msgid "sisusb"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:387
+msgid "tdfx"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:388
+msgid "tga"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:389
+msgid "trident"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:390
+msgid "tseng"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:391
+msgid "v4l"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:392
+msgid "vesa"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:393
+msgid "vmware"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:394
+msgid "vmwlegacy"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:395
+msgid "voodoo"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:396
+msgid "xgi"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:397
+msgid "ztv"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:413
+msgid "Xorg use "
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:424
+msgid ""
+"You have a touchpad but xf86-input-synaptics is not installed. Click here for "
+"install it."
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:439
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:583
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:718
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:937
+msgid "Apply"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:456
+msgid "Xorg"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:472
+msgid "System Configuration Printer"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:481
+msgid "You should install \"system-config-printer\""
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:502
+msgid "Frugalware System configuration"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:511
+msgid "You should install frugalwareutils"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:530
+msgid "You should install lirc"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:549
+msgid "You should install bluez"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:567
+msgid "Hardware"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:600
+msgid "Services"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:624
+msgid "Use Frugalware tools"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:652
+msgid "Use NetworkManager"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:661
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:698
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:769
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:806
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:843
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:880
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:917
+msgid "Not installed"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:689
+msgid "Use Wicd"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:736
+msgid "Network"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:760
+msgid "Use XDM"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:797
+msgid "Use LXDM"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:834
+msgid "Use Slim"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:871
+msgid "Use GDM"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:908
+msgid "Use KDM"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:955
+msgid "Login Manager"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:983
+msgid "Link"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:995
+msgid "News"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/MainWindow.cs:1014
+msgid "About"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/frugalmonotools.FEN_Debug.cs:15
+msgid "DEBUG"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/frugalmonotools.splash.cs:19
+msgid "Frugalware mono tools !"
+msgstr ""
+
+#: ../frugal-mono-tools/gtk-gui/frugalmonotools.splash.cs:46
+msgid "Tools written in C# for configure Frugalware !"
+msgstr ""
+
