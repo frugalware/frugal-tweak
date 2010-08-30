@@ -131,7 +131,7 @@ namespace frugalmonotools
 				package.pkgversion=extractVersionPackage(tmpname);
 				package.pkgdescription=_getDescription(package.pkgname+"-"+package.pkgversion,repo);
 				package.pkggroup="";
-				package.force=_PackageForce(package.pkgname+"-"+package.pkgversion,repo);
+				package.force=ShouldPackageForce(package.pkgname+"-"+package.pkgversion,repo);
                 //TODO extract group from file desc and extract version from name
 				packages.Add(package);
             }
@@ -142,7 +142,19 @@ namespace frugalmonotools
 			return _getDescription(Package, repo);
 			
 		}
-		private bool _PackageForce(string Package,string repo)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="Package">
+		/// A <see cref="PAckage contain version !"/>
+		/// </param>
+		/// <param name="repo">
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="System.Boolean"/>
+		/// </returns>
+		public static bool ShouldPackageForce(string Package,string repo)
 		{
 			string filedesc = ROOT_PATH+PACMANG2_BDD+"/"+repo+"/"+Package+"/desc";
 			string content = Outils.ReadFile(filedesc);

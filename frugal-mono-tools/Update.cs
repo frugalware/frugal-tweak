@@ -9,6 +9,7 @@ namespace frugalmonotools
 	{
 		public string packagename;
 		public string packageversion;
+		public string repo;
 	}
 	
 	public static class Update
@@ -44,8 +45,13 @@ namespace frugalmonotools
 					
 					if(pkg.packagename==pkginstall.packagename)
 					{
-						//TODO don't forgot options=("force")
-						if(string.Compare(pkginstall.packageversion,pkg.packageversion)<0)
+						bool AddIt = false;
+						if(string.Compare(pkginstall.packageversion,pkg.packageversion)<0) 
+							AddIt =true;
+						//check force read info only here for startup more quickly
+						if (PacmanG2.ShouldPackageForce(pkg.packagename+"-"+pkg.packageversion,pkg.repo))	
+							AddIt=true;
+						if(AddIt)
 						{
 							UpdatePkg.Add(pkg);
 						}
@@ -100,7 +106,6 @@ namespace frugalmonotools
 					bool AddIt = true;
 					foreach (string pkgignore in MainClass.pacmanG2.ignorePkg)
 					{
-	
 						if(pkgignore==MainClass.pacmanG2.extractNamePackage(package.pkgname)) AddIt =false;
 						if(MainClass.pacmanG2.extractNamePackage(pkgignore)==MainClass.pacmanG2.extractNamePackage(package.pkgname)) AddIt =false;
 						
@@ -122,6 +127,7 @@ namespace frugalmonotools
 						packageCheck pkgrepo = new packageCheck();
 						pkgrepo.packagename=package.pkgname;
 						pkgrepo.packageversion=package.pkgversion;
+						pkgrepo.repo=repo;
 						pkgs.Add(pkgrepo);
 					}
 				}
