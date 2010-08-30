@@ -32,6 +32,7 @@ namespace frugalmonotools
 			public string pkgversion;
 			public string pkggroup;
 			public string pkgdescription;
+			public bool force;
 			
 	}
 	public class PacmanG2
@@ -100,13 +101,35 @@ namespace frugalmonotools
 				
 				string tmpname=dir.Replace(dirpkg,"");
 				package.pkgname=extractNamePackage(tmpname);
-				package.pkgdescription="";
-				package.pkggroup="";
 				package.pkgversion=extractVersionPackage(tmpname);
-                //TODO extract description/group from file desc and extract version from name
+				package.pkgdescription=_getDescription(package.pkgname+"-"+package.pkgversion,repo);
+				package.pkggroup="";
+				package.force=false;
+                //TODO extract group from file desc and extract version from name
 				packages.Add(package);
             }
 			return packages;
+		}
+		
+		private string _getDescription(string Package,string repo)
+		{
+			string filedesc = ROOT_PATH+PACMANG2_BDD+"/"+repo+"/"+Package+"/desc";
+			string content = Outils.ReadFile(filedesc);
+			string[] lines = content.Split('\n');
+			bool FindDescr = false;
+            foreach (string line in lines)
+            {
+				if(FindDescr)
+				{
+					content=line;
+					break;
+				}
+				if (line=="%DESC%") 
+					FindDescr=true;
+				
+			}
+			return content;
+			
 		}
 		
 		public string extractNamePackage(string file)
