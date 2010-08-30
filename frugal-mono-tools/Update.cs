@@ -49,7 +49,8 @@ namespace frugalmonotools
 						if(string.Compare(pkginstall.packageversion,pkg.packageversion)<0) 
 							AddIt =true;
 						//check force read info only here for startup more quickly
-						if (PacmanG2.ShouldPackageForce(pkg.packagename+"-"+pkg.packageversion,pkg.repo))	
+						if ((PacmanG2.ShouldPackageForce(pkg.packagename+"-"+pkg.packageversion,pkg.repo)) && 
+						    (pkginstall.packageversion!=pkg.packageversion))
 							AddIt=true;
 						if(AddIt)
 						{
