@@ -1,3 +1,15 @@
+2010-08-30  gaetan gourdin  <bouleetbil@frogdev.info>
+
+	* Changelog: 
+	Fixed crash on x86_64
+	Added Translation
+	Fix crash on startup for wm don't support notification
+	Added package description
+	Don't ignore option force
+	Use ignorepkg
+	Added splashscreen
+	Added configuration for don't check update on startup
+
 2010-08-29  gaetan gourdin  <bouleetbil@frogdev.info>
 	*1e release
 
