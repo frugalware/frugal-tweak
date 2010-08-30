@@ -14,5 +14,6 @@
       </translations>
     </translations>
     <packageName>i8n1</packageName>
+    <ReleaseVersion>0.1.1</ReleaseVersion>
   </PropertyGroup>
 </Project>

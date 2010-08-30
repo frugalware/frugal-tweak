@@ -17,7 +17,18 @@
             <RootEntry path="frugal-mono-tools.sln" id=":root:" />
           </Builder>
         </Package>
+        <Package name="frugal-mono-tools-0.1.1">
+          <Builder TargetDirectory="releases" DefaultConfiguration="Release" ctype="TarballDeployTarget">
+            <ChildEntries>
+              <SolutionItemReference path="frugal-mono-tools\frugal-mono-tools.csproj" />
+              <SolutionItemReference path="Service\Service.csproj" />
+              <SolutionItemReference path="Traduction\Traduction.mdproj" />
+            </ChildEntries>
+            <RootEntry path="frugal-mono-tools.sln" id=":root:" />
+          </Builder>
+        </Package>
       </Packages>
     </Packages>
+    <ReleaseVersion>0.1.1</ReleaseVersion>
   </PropertyGroup>
 </Project>
