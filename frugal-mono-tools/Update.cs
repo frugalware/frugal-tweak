@@ -97,6 +97,15 @@ namespace frugalmonotools
 				}
 				else
 				{
+					bool AddIt = true;
+					foreach (string pkgignore in MainClass.pacmanG2.ignorePkg)
+					{
+	
+						if(pkgignore==MainClass.pacmanG2.extractNamePackage(package.pkgname)) AddIt =false;
+						if(MainClass.pacmanG2.extractNamePackage(pkgignore)==MainClass.pacmanG2.extractNamePackage(package.pkgname)) AddIt =false;
+						
+					}
+					
 					//don't add the package if already in the list
 					//in case of user use some wip
 					bool findIt = false;
@@ -108,7 +117,7 @@ namespace frugalmonotools
 							break;
 						}
 					}
-					if(!findIt)
+					if((!findIt)&&(AddIt)) 
 					{
 						packageCheck pkgrepo = new packageCheck();
 						pkgrepo.packagename=package.pkgname;
