@@ -20,7 +20,7 @@ namespace frugalmonotools
 {
 	public static class Debug
 	{
-		public static Boolean ModeDebug = true;
+		public static Boolean ModeDebug = false;
 		public static Boolean ModeDebugGraphique = false;
 		public static FEN_Debug winDebug;
 				
