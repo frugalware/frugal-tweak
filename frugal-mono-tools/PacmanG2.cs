@@ -57,6 +57,7 @@ namespace frugalmonotools
 		//public
 		public string repoSelected="";
 		public List<string> fwRepo = new List<string>();
+		public List<string> ignorePkg = new List<string>();
 		public const string repoInstalled= "Installed";
 		
 		private void EnumRepoProc(string section, string lParam)
@@ -68,6 +69,8 @@ namespace frugalmonotools
 		public PacmanG2 ()
 		{
 			try{
+				//load ignore pkg
+				_ReadIgnorePkg();
 				EnumRepoProcDelegate _cd_db = new EnumRepoProcDelegate(EnumRepoProc);
 				if (pacman_initialize(ROOT_PATH)!=pm_errno)
 				{
@@ -78,14 +81,38 @@ namespace frugalmonotools
 			}
 			catch{}
 		}
-	
+		private void _ReadIgnorePkg(){
+			try{
+				string filedesc = cch_pacmanconf;
+				string content = Outils.ReadFile(filedesc);
+				string[] lines = content.Split('\n');	
+				foreach (string line in lines) 
+	            {
+					if (Regex.Matches(line, "IgnorePkg").Count>0)
+					{
+						string []contentspkg =line.Split('=');
+						if (contentspkg.Length==0 )return;
+						string pkgs= contentspkg[1];
+						string []pkgsIgnore =pkgs.Split(' ');
+						foreach (string pkgIgnore in pkgsIgnore) 
+	            		{
+							ignorePkg.Add(pkgIgnore.Trim());
+						}
+						break;
+					}
+					
+				}
+			}
+			catch{}
+		}
+		
 		public void SelectRepo(string repo)
 		{
 			if (repo==repoInstalled) repo ="local";
 			repoSelected=repo;
 		}
 		
-		public List<Package> Search(string strSearch,string repo)
+		public List<Package> Search(string strSearch,string repo,bool readInfo)
 		{
 			if (repo==repoInstalled) repo ="local";
 			//don't use pacman more quickly to use .net directly

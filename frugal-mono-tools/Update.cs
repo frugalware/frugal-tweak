@@ -84,7 +84,7 @@ namespace frugalmonotools
 		
 		private static void addList(List<packageCheck> pkgs,string repo)
 		{
-			List<Package> packages=MainClass.pacmanG2.Search("*",repo);
+			List<Package> packages=MainClass.pacmanG2.Search("*",repo,false);
 			foreach (Package package in packages)
 			{
 				if(repo=="local")

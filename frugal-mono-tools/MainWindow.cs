@@ -602,7 +602,7 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnBTNSearchClicked (object sender, System.EventArgs e)
 	{
 		try{
-			List<Package> packages=MainClass.pacmanG2.Search(SAI_pkg.Text,MainClass.pacmanG2.repoSelected);
+			List<Package> packages=MainClass.pacmanG2.Search(SAI_pkg.Text,MainClass.pacmanG2.repoSelected,true);
 			pkgListStore.Clear();
 			foreach (Package package in packages)
 			{
