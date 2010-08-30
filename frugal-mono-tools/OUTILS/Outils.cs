@@ -112,6 +112,21 @@ namespace frugalmonotools
 			if (System.IO.File.Exists(ch_DirRC+"rc5.d/"+servicename)) return true;
 			return false;
 		}
+		public static string ReadFile(string fileToRead)
+		{
+			try
+			{
+				System.IO.StreamReader textFile = new System.IO.StreamReader(fileToRead);
+                string fileContents = textFile.ReadToEnd();
+                textFile.Close();
+				fileContents = fileContents.Replace("\n\n", "\n");
+				return fileContents;
+			}
+			catch
+			{
+				return "";
+			}
+		}
 		/*
 		public static String ResultExcecute(String Commande,string Arguments)
 		{
