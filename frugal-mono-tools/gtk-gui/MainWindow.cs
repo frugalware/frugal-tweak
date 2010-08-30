@@ -177,11 +177,13 @@ public partial class MainWindow
 
 	private global::Gtk.Label LIB_News;
 
+	private global::Gtk.Label Configuration;
+
 	private global::Gtk.ScrolledWindow GtkScrolledWindow2;
 
 	private global::Gtk.TextView textview2;
 
-	private global::Gtk.Label label5;
+	private global::Gtk.Label label6;
 
 	protected virtual void Build ()
 	{
@@ -195,7 +197,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 0;
+		this.ONG_principal.CurrentPage = 8;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -1007,6 +1009,15 @@ public partial class MainWindow
 		this.LIB_News.LabelProp = global::Mono.Unix.Catalog.GetString ("News");
 		this.ONG_principal.SetTabLabel (this.vbox5, this.LIB_News);
 		this.LIB_News.ShowAll ();
+		// Notebook tab
+		global::Gtk.Label w80 = new global::Gtk.Label ();
+		w80.Visible = true;
+		this.ONG_principal.Add (w80);
+		this.Configuration = new global::Gtk.Label ();
+		this.Configuration.Name = "Configuration";
+		this.Configuration.LabelProp = global::Mono.Unix.Catalog.GetString ("Configuration");
+		this.ONG_principal.SetTabLabel (w80, this.Configuration);
+		this.Configuration.ShowAll ();
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.GtkScrolledWindow2 = new global::Gtk.ScrolledWindow ();
 		this.GtkScrolledWindow2.Name = "GtkScrolledWindow2";
@@ -1018,14 +1029,14 @@ public partial class MainWindow
 		this.textview2.Name = "textview2";
 		this.GtkScrolledWindow2.Add (this.textview2);
 		this.ONG_principal.Add (this.GtkScrolledWindow2);
-		global::Gtk.Notebook.NotebookChild w81 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
-		w81.Position = 7;
+		global::Gtk.Notebook.NotebookChild w82 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
+		w82.Position = 8;
 		// Notebook tab
-		this.label5 = new global::Gtk.Label ();
-		this.label5.Name = "label5";
-		this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("About");
-		this.ONG_principal.SetTabLabel (this.GtkScrolledWindow2, this.label5);
-		this.label5.ShowAll ();
+		this.label6 = new global::Gtk.Label ();
+		this.label6.Name = "label6";
+		this.label6.LabelProp = global::Mono.Unix.Catalog.GetString ("About");
+		this.ONG_principal.SetTabLabel (this.GtkScrolledWindow2, this.label6);
+		this.label6.ShowAll ();
 		this.Add (this.ONG_principal);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();

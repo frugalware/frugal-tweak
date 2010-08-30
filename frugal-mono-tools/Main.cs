@@ -29,6 +29,7 @@ namespace frugalmonotools
 	{
 		//pacman-g2 initialise
 		public static PacmanG2 pacmanG2 = new PacmanG2();
+		public static Configuration configuration = new Configuration();
 		
 		private static void checkUpdate(object source, ElapsedEventArgs e)
 		{
@@ -38,7 +39,8 @@ namespace frugalmonotools
 		public static bool updatePkg = false;
 		public static void checktest()
 		{
-			updatePkg=Update.CheckUpdate();
+			if (configuration.Get_CheckUpdate())
+				updatePkg=Update.CheckUpdate();
 			win.InitFinish();	
 		}
 		
@@ -67,12 +69,12 @@ namespace frugalmonotools
 			if(args.Length==0)
 			{
 				Gtk.Application.Init();		
+				win = new splash ();
+				win.Show ();
 				Thread th = new Thread(new ThreadStart(checktest));
 				th.IsBackground=true;
 				th.SetApartmentState(ApartmentState.STA);
 				th.Start();
-				win = new splash ();
-				win.Show ();
 				Gtk.Application.Run ();
 			}
 			else

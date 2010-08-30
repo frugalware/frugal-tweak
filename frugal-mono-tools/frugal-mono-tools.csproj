@@ -80,6 +80,7 @@
     <Compile Include="IconSummaryBody.cs" />
     <Compile Include="splash.cs" />
     <Compile Include="gtk-gui\frugalmonotools.splash.cs" />
+    <Compile Include="Configuration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -20,7 +20,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">0</property>
+        <property name="CurrentPage">8</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -1179,6 +1179,18 @@ ztv</property>
           </packing>
         </child>
         <child>
+          <placeholder />
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="Configuration">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Configuration</property>
+          </widget>
+          <packing>
+            <property name="type">tab</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow2">
             <property name="MemberName" />
             <property name="ShadowType">In</property>
@@ -1537,11 +1549,11 @@ Public License instead of this License.
             </child>
           </widget>
           <packing>
-            <property name="Position">7</property>
+            <property name="Position">8</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="label5">
+          <widget class="Gtk.Label" id="label6">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">About</property>
           </widget>
