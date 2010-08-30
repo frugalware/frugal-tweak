@@ -177,6 +177,14 @@ public partial class MainWindow
 
 	private global::Gtk.Label LIB_News;
 
+	private global::Gtk.VBox vbox8;
+
+	private global::Gtk.CheckButton INT_CheckStartup;
+
+	private global::Gtk.HBox hbox21;
+
+	private global::Gtk.Button BTN_SaveConf;
+
 	private global::Gtk.Label Configuration;
 
 	private global::Gtk.ScrolledWindow GtkScrolledWindow2;
@@ -197,7 +205,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 8;
+		this.ONG_principal.CurrentPage = 7;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -1009,14 +1017,50 @@ public partial class MainWindow
 		this.LIB_News.LabelProp = global::Mono.Unix.Catalog.GetString ("News");
 		this.ONG_principal.SetTabLabel (this.vbox5, this.LIB_News);
 		this.LIB_News.ShowAll ();
+		// Container child ONG_principal.Gtk.Notebook+NotebookChild
+		this.vbox8 = new global::Gtk.VBox ();
+		this.vbox8.Name = "vbox8";
+		this.vbox8.Spacing = 6;
+		// Container child vbox8.Gtk.Box+BoxChild
+		this.INT_CheckStartup = new global::Gtk.CheckButton ();
+		this.INT_CheckStartup.CanFocus = true;
+		this.INT_CheckStartup.Name = "INT_CheckStartup";
+		this.INT_CheckStartup.Label = global::Mono.Unix.Catalog.GetString ("Check update on startup");
+		this.INT_CheckStartup.DrawIndicator = true;
+		this.INT_CheckStartup.UseUnderline = true;
+		this.vbox8.Add (this.INT_CheckStartup);
+		global::Gtk.Box.BoxChild w80 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_CheckStartup]));
+		w80.Position = 0;
+		w80.Expand = false;
+		w80.Fill = false;
+		// Container child vbox8.Gtk.Box+BoxChild
+		this.hbox21 = new global::Gtk.HBox ();
+		this.hbox21.Name = "hbox21";
+		this.hbox21.Spacing = 6;
+		// Container child hbox21.Gtk.Box+BoxChild
+		this.BTN_SaveConf = new global::Gtk.Button ();
+		this.BTN_SaveConf.CanFocus = true;
+		this.BTN_SaveConf.Name = "BTN_SaveConf";
+		this.BTN_SaveConf.UseUnderline = true;
+		this.BTN_SaveConf.Label = global::Mono.Unix.Catalog.GetString ("Apply");
+		this.hbox21.Add (this.BTN_SaveConf);
+		global::Gtk.Box.BoxChild w81 = ((global::Gtk.Box.BoxChild)(this.hbox21[this.BTN_SaveConf]));
+		w81.Position = 2;
+		w81.Expand = false;
+		w81.Fill = false;
+		this.vbox8.Add (this.hbox21);
+		global::Gtk.Box.BoxChild w82 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox21]));
+		w82.Position = 2;
+		w82.Expand = false;
+		w82.Fill = false;
+		this.ONG_principal.Add (this.vbox8);
+		global::Gtk.Notebook.NotebookChild w83 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox8]));
+		w83.Position = 7;
 		// Notebook tab
-		global::Gtk.Label w80 = new global::Gtk.Label ();
-		w80.Visible = true;
-		this.ONG_principal.Add (w80);
 		this.Configuration = new global::Gtk.Label ();
 		this.Configuration.Name = "Configuration";
 		this.Configuration.LabelProp = global::Mono.Unix.Catalog.GetString ("Configuration");
-		this.ONG_principal.SetTabLabel (w80, this.Configuration);
+		this.ONG_principal.SetTabLabel (this.vbox8, this.Configuration);
 		this.Configuration.ShowAll ();
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.GtkScrolledWindow2 = new global::Gtk.ScrolledWindow ();
@@ -1029,8 +1073,8 @@ public partial class MainWindow
 		this.textview2.Name = "textview2";
 		this.GtkScrolledWindow2.Add (this.textview2);
 		this.ONG_principal.Add (this.GtkScrolledWindow2);
-		global::Gtk.Notebook.NotebookChild w82 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
-		w82.Position = 8;
+		global::Gtk.Notebook.NotebookChild w85 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
+		w85.Position = 8;
 		// Notebook tab
 		this.label6 = new global::Gtk.Label ();
 		this.label6.Name = "label6";
@@ -1041,7 +1085,7 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 552;
+		this.DefaultWidth = 597;
 		this.DefaultHeight = 395;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
@@ -1066,5 +1110,6 @@ public partial class MainWindow
 		this.BTN_LoginManager.Clicked += new global::System.EventHandler (this.OnBTNLoginManagerClicked);
 		this.CBO_TitleNews.Changed += new global::System.EventHandler (this.SelectItem);
 		this.BTN_Link.Clicked += new global::System.EventHandler (this.OpenLink);
+		this.BTN_SaveConf.Clicked += new global::System.EventHandler (this.OnBTNSaveConfClicked);
 	}
 }

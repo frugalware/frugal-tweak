@@ -271,6 +271,9 @@ public partial class MainWindow : Gtk.Window
 			
 		}
 		catch{}
+		
+		//configuration
+		INT_CheckStartup.Active=MainClass.configuration.Get_CheckUpdate();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -685,5 +688,12 @@ public partial class MainWindow : Gtk.Window
 	{
 		Outils.Excecute("xterm"," -hold -e /sbin/setup",false);
 	}
+	protected virtual void OnBTNSaveConfClicked (object sender, System.EventArgs e)
+	{
+		MainClass.configuration.Set_CheckUpdate(INT_CheckStartup.Active);
+		MainClass.configuration.ConfSave();
+	}
+	
+	
 }
 

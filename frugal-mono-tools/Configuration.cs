@@ -23,10 +23,11 @@ namespace frugalmonotools
 	public class Configuration
 	{
 	
-		private const string confFile=".config/FrugalTools.conf";
+		private const string confFile=@"/.config/FrugalTools.conf";
 		private bool _checkUpdate = false;
 		public string GetConfFile(){
-			return "~/"+confFile;
+			return Environment.GetFolderPath(System.Environment.SpecialFolder
+.Personal)+confFile;
 		}
 		public bool Get_CheckUpdate()
 		{
@@ -48,7 +49,7 @@ namespace frugalmonotools
 			{
 				 if (Regex.Matches(line, "checkupdate").Count>0)
 					{
-						Set_CheckUpdate(false);
+						Set_CheckUpdate(true);
 					}
 			}
 			}
@@ -67,7 +68,10 @@ namespace frugalmonotools
 				if (Get_CheckUpdate()) FileConf.WriteLine("checkupdate");
 				FileConf.Close();
 			}
-			catch{}
+			catch(Exception exe)
+			{
+				Console.WriteLine(exe.Message);
+			}
 		}
 	}
 }
