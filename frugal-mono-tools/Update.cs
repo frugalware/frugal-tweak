@@ -44,8 +44,8 @@ namespace frugalmonotools
 					
 					if(pkg.packagename==pkginstall.packagename)
 					{
-						//basic test for beginning
-						if(pkg.packageversion!=pkginstall.packageversion)
+						//TODO don't forgot options=("force")
+						if(string.Compare(pkginstall.packageversion,pkg.packageversion)<0)
 						{
 							UpdatePkg.Add(pkg);
 						}
