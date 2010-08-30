@@ -1,12 +1,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-08-29 23:03:30+0200\n"
+"POT-Creation-Date: 2010-08-30 09:05:04+0000\n"
 "PO-Revision-Date: 2010-08-29 23:08:09+0200\n"
 "Last-Translator: gaetan gourdin <bouleetbil@frogdev.info>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: MonoDevelop Gettext addin\n"
 
@@ -212,13 +213,13 @@ msgid "ztv"
 msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:413
-msgid "Xorg use "
+msgid "Current driver in use "
 msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:424
 msgid ""
-"You have a touchpad but xf86-input-synaptics is not installed. Click here for "
-"install it."
+"You have a touchpad but xf86-input-synaptics is not installed. Click here "
+"for install it."
 msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:439
@@ -337,4 +338,3 @@ msgstr ""
 #: ../frugal-mono-tools/gtk-gui/frugalmonotools.splash.cs:46
 msgid "Tools written in C# for configure Frugalware !"
 msgstr ""
-

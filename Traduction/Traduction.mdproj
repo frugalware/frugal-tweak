@@ -1,1 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  <PropertyGroup>    <ItemType>TranslationProject</ItemType>    <ProductVersion>8.0.50727</ProductVersion>    <SchemaVersion>2.0</SchemaVersion>    <ProjectGuid>{069FB0B9-80D4-4093-88F3-116B09B0E09F}</ProjectGuid>    <outputType>RelativeToOutput</outputType>    <relPath>locale</relPath>    <translations>      <translations xmlns="">        <Translation isoCode="fr" />      </translations>    </translations>    <packageName>i8n1</packageName>  </PropertyGroup></Project>
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ItemType>TranslationProject</ItemType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{069FB0B9-80D4-4093-88F3-116B09B0E09F}</ProjectGuid>
+    <outputType>RelativeToOutput</outputType>
+    <relPath>locale</relPath>
+    <translations>
+      <translations>
+        <Translation isoCode="fr" />
+        <Translation isoCode="hu" />
+      </translations>
+    </translations>
+    <packageName>i8n1</packageName>
+  </PropertyGroup>
+</Project>

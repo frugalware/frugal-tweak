@@ -193,7 +193,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 2;
+		this.ONG_principal.CurrentPage = 1;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -411,7 +411,7 @@ public partial class MainWindow
 		// Container child vbox6.Gtk.Box+BoxChild
 		this.LIB_XorgGraphic = new global::Gtk.Label ();
 		this.LIB_XorgGraphic.Name = "LIB_XorgGraphic";
-		this.LIB_XorgGraphic.LabelProp = global::Mono.Unix.Catalog.GetString ("Xorg use ");
+		this.LIB_XorgGraphic.LabelProp = global::Mono.Unix.Catalog.GetString ("Current driver in use ");
 		this.vbox6.Add (this.LIB_XorgGraphic);
 		global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.LIB_XorgGraphic]));
 		w19.Position = 2;
