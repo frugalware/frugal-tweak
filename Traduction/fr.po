@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2010-08-30 09:05:04+0000\n"
-"PO-Revision-Date: 2010-08-29 23:08:09+0200\n"
+"PO-Revision-Date: 2010-08-30 21:19:45+0200\n"
 "Last-Translator: gaetan gourdin <bouleetbil@frogdev.info>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -20,17 +20,16 @@ msgid "Search"
 msgstr "Chercher"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:259
-#, fuzzy
 msgid "Update system"
 msgstr "Mise à jour de Frugalware"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:270
 msgid "Uninstall"
-msgstr ""
+msgstr "Désinstaller"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:281
 msgid "Install"
-msgstr ""
+msgstr "Installer"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:296
 msgid "Packages"
@@ -38,11 +37,11 @@ msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:310
 msgid "Layout"
-msgstr ""
+msgstr "Clavier"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:340
 msgid "Graphical device : "
-msgstr ""
+msgstr "Carte graphique"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:349
 msgid "lspci"
@@ -214,20 +213,22 @@ msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:413
 msgid "Current driver in use "
-msgstr ""
+msgstr "Pilote utilisé par Xorg"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:424
 msgid ""
-"You have a touchpad but xf86-input-synaptics is not installed. Click here "
-"for install it."
+"You have a touchpad but xf86-input-synaptics is not installed. Click here for "
+"install it."
 msgstr ""
+"Vous avez un touchpad mais xf86-input-synaptics n'est pas installé. Cliquer "
+"ici pour l'installer."
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:439
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:583
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:718
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:937
 msgid "Apply"
-msgstr ""
+msgstr "Appliquer"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:456
 msgid "Xorg"
@@ -239,7 +240,7 @@ msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:481
 msgid "You should install \"system-config-printer\""
-msgstr ""
+msgstr "Vous devez installer \"system-config-printer\""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:502
 msgid "Frugalware System configuration"
@@ -247,19 +248,19 @@ msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:511
 msgid "You should install frugalwareutils"
-msgstr ""
+msgstr "Vous devez installer frugalwareutils"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:530
 msgid "You should install lirc"
-msgstr ""
+msgstr "Vous devez installer lirc"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:549
 msgid "You should install bluez"
-msgstr ""
+msgstr "Vous devez installer bluez"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:567
 msgid "Hardware"
-msgstr ""
+msgstr "Matériel"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:600
 msgid "Services"
@@ -267,11 +268,11 @@ msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:624
 msgid "Use Frugalware tools"
-msgstr ""
+msgstr "Utiliser les outils frugalware"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:652
 msgid "Use NetworkManager"
-msgstr ""
+msgstr "Utiliser NetworkManager"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:661
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:698
@@ -281,51 +282,51 @@ msgstr ""
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:880
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:917
 msgid "Not installed"
-msgstr ""
+msgstr "Pas installer"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:689
 msgid "Use Wicd"
-msgstr ""
+msgstr "Utiliser Wicd"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:736
 msgid "Network"
-msgstr ""
+msgstr "Réseaux"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:760
 msgid "Use XDM"
-msgstr ""
+msgstr "Utiliser XDM"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:797
 msgid "Use LXDM"
-msgstr ""
+msgstr "Utiliser LXDM"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:834
 msgid "Use Slim"
-msgstr ""
+msgstr "Utiliser Slim"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:871
 msgid "Use GDM"
-msgstr ""
+msgstr "Utiliser GDM"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:908
 msgid "Use KDM"
-msgstr ""
+msgstr "Utiliser KDM"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:955
 msgid "Login Manager"
-msgstr ""
+msgstr "Gestionnaire de connexion"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:983
 msgid "Link"
-msgstr ""
+msgstr "Lien"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:995
 msgid "News"
-msgstr ""
+msgstr "Nouveautés"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:1014
 msgid "About"
-msgstr ""
+msgstr "A propos"
 
 #: ../frugal-mono-tools/gtk-gui/frugalmonotools.FEN_Debug.cs:15
 msgid "DEBUG"
@@ -338,3 +339,4 @@ msgstr ""
 #: ../frugal-mono-tools/gtk-gui/frugalmonotools.splash.cs:46
 msgid "Tools written in C# for configure Frugalware !"
 msgstr ""
+
