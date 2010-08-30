@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2010-08-30 09:05:04+0000\n"
-"PO-Revision-Date: 2010-08-30 21:19:45+0200\n"
+"PO-Revision-Date: 2010-08-31 00:13:04+0200\n"
 "Last-Translator: gaetan gourdin <bouleetbil@frogdev.info>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -41,7 +41,7 @@ msgstr "Clavier"
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:340
 msgid "Graphical device : "
-msgstr "Carte graphique"
+msgstr "Carte graphique "
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:349
 msgid "lspci"
@@ -213,7 +213,7 @@ msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:413
 msgid "Current driver in use "
-msgstr "Pilote utilisé par Xorg"
+msgstr "Pilote utilisé par Xorg "
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:424
 msgid ""
