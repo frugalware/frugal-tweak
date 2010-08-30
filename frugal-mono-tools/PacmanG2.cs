@@ -110,8 +110,12 @@ namespace frugalmonotools
             }
 			return packages;
 		}
-		
-		private string _getDescription(string Package,string repo)
+		public static string SearchDescription(string Package,string repo)
+		{
+			return _getDescription(Package, repo);
+			
+		}
+		private static string _getDescription(string Package,string repo)
 		{
 			string filedesc = ROOT_PATH+PACMANG2_BDD+"/"+repo+"/"+Package+"/desc";
 			string content = Outils.ReadFile(filedesc);

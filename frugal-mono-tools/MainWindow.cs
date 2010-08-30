@@ -632,6 +632,7 @@ public partial class MainWindow : Gtk.Window
 				 if (((TreeSelection)o).GetSelected(out model, out iter))
 		        {
 		            string T =(string)model.GetValue (iter, 0);
+					LIB_Descr.Text=PacmanG2.SearchDescription(T,MainClass.pacmanG2.repoSelected);
 					T=MainClass.pacmanG2.extractNamePackage(T);
 					packageSelected=T;
 					if(boRoot)
