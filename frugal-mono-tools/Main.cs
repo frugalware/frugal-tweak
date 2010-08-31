@@ -71,10 +71,16 @@ namespace frugalmonotools
 		// Create the popup menu, on right click.
 			static void OnTrayIconPopup (object o, EventArgs args) {
 				Menu popupMenu = new Menu();
+				ImageMenuItem menuItemcc = new ImageMenuItem ("Start Control Center");
+				Gtk.Image ccimg = new Gtk.Image(Stock.Execute, IconSize.Menu);
+				menuItemcc.Image = ccimg;
+				popupMenu.Add(menuItemcc);
+			
 				ImageMenuItem menuItemQuit = new ImageMenuItem ("Quit");
 				Gtk.Image appimg = new Gtk.Image(Stock.Quit, IconSize.Menu);
 				menuItemQuit.Image = appimg;
 				popupMenu.Add(menuItemQuit);
+				menuItemcc.Activated += delegate { Outils.Excecute("frugal-mono-tools","",false); };
 				// Quit the application when quit has been clicked.
 				menuItemQuit.Activated += delegate { Application.Quit(); };
 				popupMenu.ShowAll();
