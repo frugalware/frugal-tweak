@@ -3,7 +3,7 @@
 Encoding=UTF-8
 Type=Application
 Name=frugalware configuration
-Exec=kdesu frugal-mono-tools
+Exec=frugal-mono-tools-kde
 Terminal=false
 
 GenericName=frugalware configuration

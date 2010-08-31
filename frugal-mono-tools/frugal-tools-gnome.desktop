@@ -3,7 +3,7 @@
 Encoding=UTF-8
 Type=Application
 Name=frugalware configuration
-Exec=gksu frugal-mono-tools
+Exec=frugal-mono-tools-gnome
 Terminal=false
 
 GenericName=frugalware configuration
