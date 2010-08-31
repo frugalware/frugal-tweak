@@ -20,6 +20,7 @@ using System;
 using System.Text;
 using System.Collections;
 using Vte;
+using Gtk;
 namespace frugalmonotools
 {
 	public partial class VteConsole : Gtk.Window
@@ -36,7 +37,9 @@ namespace frugalmonotools
             term.BackspaceBinding = TerminalEraseBinding.Auto;
             term.Encoding = "UTF-8";
             term.FontFromString = "Monospace 12";
-			this.vbox1.Add (term);
+			VScrollbar vscroll = new VScrollbar (term.Adjustment);
+			this.vbox1.PackStart (term);
+			this.vbox1.PackStart(vscroll);
 			this.vbox1.ShowAll();
 		}
 		public void Execute(string commande,string [] args)
@@ -58,7 +61,7 @@ namespace frugalmonotools
 					i++;
 				}
 			}
-             string[] envv = new string [Environment.GetEnvironmentVariables ().Count];
+			 string[] envv = new string [Environment.GetEnvironmentVariables ().Count];
              i = 0;
              foreach (DictionaryEntry e in Environment.GetEnvironmentVariables ())
                 {
@@ -68,6 +71,7 @@ namespace frugalmonotools
                         envv[i] = tmp;
                         i ++;
                 }
+				
  			try
 			{
 			term.ForkCommand (
