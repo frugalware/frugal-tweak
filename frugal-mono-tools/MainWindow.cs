@@ -274,6 +274,7 @@ public partial class MainWindow : Gtk.Window
 		
 		//configuration
 		INT_CheckStartup.Active=MainClass.configuration.Get_CheckUpdate();
+		INT_StartWithXSession.Active=MainClass.configuration.Get_StartWithX();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -720,6 +721,7 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnBTNSaveConfClicked (object sender, System.EventArgs e)
 	{
 		MainClass.configuration.Set_CheckUpdate(INT_CheckStartup.Active);
+		MainClass.configuration.Set_StartWithX(INT_StartWithXSession.Active);
 		MainClass.configuration.ConfSave();
 	}
 	

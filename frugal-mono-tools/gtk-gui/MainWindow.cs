@@ -181,6 +181,8 @@ public partial class MainWindow
 
 	private global::Gtk.CheckButton INT_CheckStartup;
 
+	private global::Gtk.CheckButton INT_StartWithXSession;
+
 	private global::Gtk.HBox hbox21;
 
 	private global::Gtk.Button BTN_SaveConf;
@@ -205,7 +207,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 2;
+		this.ONG_principal.CurrentPage = 7;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -1025,7 +1027,7 @@ public partial class MainWindow
 		this.INT_CheckStartup = new global::Gtk.CheckButton ();
 		this.INT_CheckStartup.CanFocus = true;
 		this.INT_CheckStartup.Name = "INT_CheckStartup";
-		this.INT_CheckStartup.Label = global::Mono.Unix.Catalog.GetString ("Check update on startup");
+		this.INT_CheckStartup.Label = global::Mono.Unix.Catalog.GetString ("Check update on frugal-mono-tools startup");
 		this.INT_CheckStartup.DrawIndicator = true;
 		this.INT_CheckStartup.UseUnderline = true;
 		this.vbox8.Add (this.INT_CheckStartup);
@@ -1033,6 +1035,19 @@ public partial class MainWindow
 		w80.Position = 0;
 		w80.Expand = false;
 		w80.Fill = false;
+		// Container child vbox8.Gtk.Box+BoxChild
+		this.INT_StartWithXSession = new global::Gtk.CheckButton ();
+		this.INT_StartWithXSession.CanFocus = true;
+		this.INT_StartWithXSession.Name = "INT_StartWithXSession";
+		this.INT_StartWithXSession.Label = global::Mono.Unix.Catalog.GetString ("Start with X session");
+		this.INT_StartWithXSession.Active = true;
+		this.INT_StartWithXSession.DrawIndicator = true;
+		this.INT_StartWithXSession.UseUnderline = true;
+		this.vbox8.Add (this.INT_StartWithXSession);
+		global::Gtk.Box.BoxChild w81 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_StartWithXSession]));
+		w81.Position = 1;
+		w81.Expand = false;
+		w81.Fill = false;
 		// Container child vbox8.Gtk.Box+BoxChild
 		this.hbox21 = new global::Gtk.HBox ();
 		this.hbox21.Name = "hbox21";
@@ -1044,18 +1059,18 @@ public partial class MainWindow
 		this.BTN_SaveConf.UseUnderline = true;
 		this.BTN_SaveConf.Label = global::Mono.Unix.Catalog.GetString ("Apply");
 		this.hbox21.Add (this.BTN_SaveConf);
-		global::Gtk.Box.BoxChild w81 = ((global::Gtk.Box.BoxChild)(this.hbox21[this.BTN_SaveConf]));
-		w81.Position = 2;
-		w81.Expand = false;
-		w81.Fill = false;
-		this.vbox8.Add (this.hbox21);
-		global::Gtk.Box.BoxChild w82 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox21]));
+		global::Gtk.Box.BoxChild w82 = ((global::Gtk.Box.BoxChild)(this.hbox21[this.BTN_SaveConf]));
 		w82.Position = 2;
 		w82.Expand = false;
 		w82.Fill = false;
+		this.vbox8.Add (this.hbox21);
+		global::Gtk.Box.BoxChild w83 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox21]));
+		w83.Position = 3;
+		w83.Expand = false;
+		w83.Fill = false;
 		this.ONG_principal.Add (this.vbox8);
-		global::Gtk.Notebook.NotebookChild w83 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox8]));
-		w83.Position = 7;
+		global::Gtk.Notebook.NotebookChild w84 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox8]));
+		w84.Position = 7;
 		// Notebook tab
 		this.Configuration = new global::Gtk.Label ();
 		this.Configuration.Name = "Configuration";
@@ -1073,8 +1088,8 @@ public partial class MainWindow
 		this.textview2.Name = "textview2";
 		this.GtkScrolledWindow2.Add (this.textview2);
 		this.ONG_principal.Add (this.GtkScrolledWindow2);
-		global::Gtk.Notebook.NotebookChild w85 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
-		w85.Position = 8;
+		global::Gtk.Notebook.NotebookChild w86 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
+		w86.Position = 8;
 		// Notebook tab
 		this.label6 = new global::Gtk.Label ();
 		this.label6.Name = "label6";

@@ -117,26 +117,29 @@ namespace frugalmonotools
 				switch(args[0])
 				{		
 					case "--update":
-						//check if an update is avalaible
-						//started with X session
-						Gtk.Application.Init();
-						Console.WriteLine("check update packages.");
-						check();
-						aTimer = new System.Timers.Timer();
-	         			aTimer.Elapsed+=new ElapsedEventHandler(checkUpdate);
-	        			// Set the Interval to 1 hour.
-	        			aTimer.Interval=3600000;
-	         			aTimer.Enabled=true;
-						// Creation of the Icon
-						trayIcon = new StatusIcon(new Pixbuf ("/usr/share/pixmaps/FrugalTools.png"));
-						trayIcon.Visible = true;
-				 
-						// Show a pop up menu when the icon has been right clicked.
-						trayIcon.PopupMenu += OnTrayIconPopup;
-				 
-						// A Tooltip for the Icon
-						trayIcon.Tooltip = "Frugalware Control Center";
-						Gtk.Application.Run ();
+						if(configuration.Get_StartWithX())
+						{
+							//check if an update is avalaible
+							//started with X session
+							Gtk.Application.Init();
+							Console.WriteLine("check update packages.");
+							check();
+							aTimer = new System.Timers.Timer();
+		         			aTimer.Elapsed+=new ElapsedEventHandler(checkUpdate);
+		        			// Set the Interval to 1 hour.
+		        			aTimer.Interval=3600000;
+		         			aTimer.Enabled=true;
+							// Creation of the Icon
+							trayIcon = new StatusIcon(new Pixbuf ("/usr/share/pixmaps/FrugalTools.png"));
+							trayIcon.Visible = true;
+					 
+							// Show a pop up menu when the icon has been right clicked.
+							trayIcon.PopupMenu += OnTrayIconPopup;
+					 
+							// A Tooltip for the Icon
+							trayIcon.Tooltip = "Frugalware Control Center";
+							Gtk.Application.Run ();
+						}
 						break;
 					
 					default:

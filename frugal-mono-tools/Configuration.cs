@@ -25,6 +25,7 @@ namespace frugalmonotools
 	
 		private const string confFile=@"/.config/FrugalTools.conf";
 		private bool _checkUpdate = false;
+		private bool _startWithX = true;
 		public string GetConfFile(){
 			return Environment.GetFolderPath(System.Environment.SpecialFolder
 .Personal)+confFile;
@@ -37,21 +38,32 @@ namespace frugalmonotools
 		{
 			_checkUpdate=valeur;
 		}
-		
+		public bool Get_StartWithX()
+		{
+			return _startWithX;
+		}
+		public void Set_StartWithX(bool valeur)
+		{
+			_startWithX=valeur;
+		}
 		public Configuration ()
 		{
 			//read value
 			try{
-			string filedesc = GetConfFile();
-			string content = Outils.ReadFile(filedesc);
-			string[] lines = content.Split('\n');	
-			foreach (string line in lines) 
-			{
-				 if (Regex.Matches(line, "checkupdate").Count>0)
-					{
-						Set_CheckUpdate(true);
-					}
-			}
+				string filedesc = GetConfFile();
+				string content = Outils.ReadFile(filedesc);
+				string[] lines = content.Split('\n');	
+				foreach (string line in lines) 
+				{
+					 if (Regex.Matches(line, "checkupdate").Count>0)
+						{
+							Set_CheckUpdate(true);
+						}
+					if (Regex.Matches(line, "dontstartwithx").Count>0)
+						{
+							Set_StartWithX(false);
+						}
+				}
 			}
 			catch
 			{
@@ -66,6 +78,7 @@ namespace frugalmonotools
 			{
 				StreamWriter FileConf = new StreamWriter(GetConfFile());
 				if (Get_CheckUpdate()) FileConf.WriteLine("checkupdate");
+				if (!Get_StartWithX()) FileConf.WriteLine("dontstartwithx");
 				FileConf.Close();
 			}
 			catch(Exception exe)
