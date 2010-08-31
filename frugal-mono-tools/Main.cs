@@ -43,7 +43,7 @@ namespace frugalmonotools
 			{
 				updatePkg=Update.CheckUpdate();
 			}
-			//win.InitFinish();	
+			win.InitFinish();	
 		}
 		
 		public static void check()
