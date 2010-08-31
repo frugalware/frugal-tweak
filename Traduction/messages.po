@@ -216,7 +216,7 @@ msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/MainWindow.cs:424
 msgid ""
-"You have a touchpad but xf86-input-synaptics is not installed. Click here for "
+"You have a touchpad but xf86-input-synaptics is not installed. Click here to "
 "install it."
 msgstr ""
 
@@ -334,6 +334,6 @@ msgid "Frugalware mono tools !"
 msgstr ""
 
 #: ../frugal-mono-tools/gtk-gui/frugalmonotools.splash.cs:46
-msgid "Tools written in C# for configure Frugalware !"
+msgid "Tools written in C# to configure Frugalware !"
 msgstr ""
 
