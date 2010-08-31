@@ -1704,7 +1704,7 @@ Public License instead of this License.
             <child>
               <widget class="Gtk.Label" id="label1">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Tools written in C# for configure Frugalware !</property>
+                <property name="LabelProp" translatable="yes">Tools written in C# to configure Frugalware !</property>
               </widget>
               <packing>
                 <property name="Position">1</property>
