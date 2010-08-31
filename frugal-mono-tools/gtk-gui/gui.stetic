@@ -11,6 +11,13 @@
     <widget-library name="../bin/Debug/frugal-mono-tools.exe" internal="true" />
     <widget-library name="vte-sharp, Version=0.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </import>
+  <icon-factory>
+    <icon-set id="iconeFwCC">
+      <source>
+        <property name="Image">resource:frugalmonotools.header.svg</property>
+      </source>
+    </icon-set>
+  </icon-factory>
   <widget class="Gtk.Window" id="MainWindow" design-size="597 395">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Frugalware-tools</property>

@@ -21,6 +21,9 @@ using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using System.Timers;
+using Gdk;
+using Gtk;
+
 
 
 namespace frugalmonotools
@@ -64,6 +67,20 @@ namespace frugalmonotools
 			}
 		}
 		private static splash win;
+		private static StatusIcon trayIcon;
+		// Create the popup menu, on right click.
+			static void OnTrayIconPopup (object o, EventArgs args) {
+				Menu popupMenu = new Menu();
+				ImageMenuItem menuItemQuit = new ImageMenuItem ("Quit");
+				Gtk.Image appimg = new Gtk.Image(Stock.Quit, IconSize.Menu);
+				menuItemQuit.Image = appimg;
+				popupMenu.Add(menuItemQuit);
+				// Quit the application when quit has been clicked.
+				menuItemQuit.Activated += delegate { Application.Quit(); };
+				popupMenu.ShowAll();
+				popupMenu.Popup();
+			}
+
 		public static void Main (string[] args)
 		{
 			
@@ -104,6 +121,15 @@ namespace frugalmonotools
 	        			// Set the Interval to 1 hour.
 	        			aTimer.Interval=3600000;
 	         			aTimer.Enabled=true;
+						// Creation of the Icon
+						trayIcon = new StatusIcon(new Pixbuf ("/usr/share/pixmaps/FrugalTools.png"));
+						trayIcon.Visible = true;
+				 
+						// Show a pop up menu when the icon has been right clicked.
+						trayIcon.PopupMenu += OnTrayIconPopup;
+				 
+						// A Tooltip for the Icon
+						trayIcon.Tooltip = "Frugalware Control Center";
 						Gtk.Application.Run ();
 						break;
 					
