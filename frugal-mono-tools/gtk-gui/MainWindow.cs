@@ -1087,6 +1087,7 @@ public partial class MainWindow
 		}
 		this.DefaultWidth = 597;
 		this.DefaultHeight = 395;
+		this.BTN_Setup.Hide ();
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.CBO_Repo.Changed += new global::System.EventHandler (this.selectRepo);

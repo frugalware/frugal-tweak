@@ -114,7 +114,7 @@ public partial class MainWindow : Gtk.Window
 		}
 		else
 		{
-			BTN_Setup.Visible=true;
+			//BTN_Setup.Visible=true;
 			LIB_Setup.Visible=false;
 		}
 		string dmesgOutput=Outils.getoutput("dmesg");
@@ -711,9 +711,11 @@ public partial class MainWindow : Gtk.Window
 	{
 		VteConsole vte = new VteConsole();
 		vte.Show();
-		string[] args=new string[1];
-		args[0]="/sbin/setup";
-		vte.Execute("/sbin/setup",args,false);
+		string[] args=new string[2];
+		args[1]=@"/sbin/setup";
+		args[0]="";
+		vte.Execute("exec",args,false);
+		
 	}
 	protected virtual void OnBTNSaveConfClicked (object sender, System.EventArgs e)
 	{
