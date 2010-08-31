@@ -17,6 +17,7 @@
  */
 
 using System;
+using System.Text;
 using System.Collections;
 using Vte;
 namespace frugalmonotools
@@ -35,34 +36,44 @@ namespace frugalmonotools
             term.BackspaceBinding = TerminalEraseBinding.Auto;
             term.Encoding = "UTF-8";
             term.FontFromString = "Monospace 12";
-
 			this.vbox1.Add (term);
 			this.vbox1.ShowAll();
-				
- 
-             string[] argv = Environment.GetCommandLineArgs ();
-             // wants an array of "variable=value"
+		}
+		public void Execute(string commande,string [] args)
+		{
+			//encode to UTF8
+			string[] argv = new string[args.Length];
+			byte[] commutf8 = System.Text.Encoding.UTF8.GetBytes(commande);
+			string commandev = System.Text.Encoding.UTF8.GetString(commutf8);
+		
+			int i =0;
+			foreach (string arg in args)
+			{
+				byte[] utf8 = System.Text.Encoding.UTF8.GetBytes(arg);
+				argv[i]=System.Text.Encoding.UTF8.GetString(utf8);
+				i++;
+			}
+			
              string[] envv = new string [Environment.GetEnvironmentVariables ().Count];
-             int i = 0;
+             i = 0;
              foreach (DictionaryEntry e in Environment.GetEnvironmentVariables ())
                 {
-                        if (e.Key == "" || e.Value == "")
+                        if (e.Key.ToString()== "" || e.Value.ToString() == "")
                                 continue;
                         string tmp = String.Format ("{0}={1}", e.Key, e.Value);
                         envv[i] = tmp;
                         i ++;
                 }
  
-			int pid = term.ForkCommand (
-				Environment.GetEnvironmentVariable ("SHELL"),
+			term.ForkCommand (
+				commandev,
 				argv,
 				envv,
 				Environment.CurrentDirectory,
-				false,
+				true,
 				true,
 				true);
-                Console.WriteLine ("Child pid: {0}", pid);
-	
+                
 		}
 	}
 }
