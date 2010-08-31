@@ -660,18 +660,35 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnBTNUninstallClicked (object sender, System.EventArgs e)
 	{
 		if(packageSelected=="") return;
-		Outils.Excecute("xterm"," -hold -e pacman-g2 -Rc "+packageSelected,true);
+		VteConsole vte = new VteConsole();
+		vte.Show();
+		string[] args=new string[3];
+		args[0]=" ";
+		args[1]="-Rc";
+		args[2]=packageSelected;
+		vte.Execute("pacman-g2",args);
 	}
 	
 	protected virtual void OnBTNInstallClicked (object sender, System.EventArgs e)
 	{
 		if(packageSelected=="") return;
-		Outils.Excecute("xterm"," -hold -e pacman-g2 -Sy "+packageSelected,true);
+		VteConsole vte = new VteConsole();
+		vte.Show();
+		string[] args=new string[3];
+		args[0]=" ";
+		args[1]="-Sy";
+		args[2]=packageSelected;
+		vte.Execute("pacman-g2",args);
 	}
 	
 	protected virtual void OnBTNUpdateClicked (object sender, System.EventArgs e)
 	{
-		Outils.Excecute("xterm"," -hold -e pacman-g2 -Syu",true);
+		VteConsole vte = new VteConsole();
+		vte.Show();
+		string[] args=new string[2];
+		args[0]=" ";
+		args[1]="-Syu";
+		vte.Execute("pacman-g2",args);
 	}
 	
 	protected virtual void OnBTNPrinterClicked (object sender, System.EventArgs e)
@@ -681,12 +698,18 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNSynapticsClicked (object sender, System.EventArgs e)
 	{
-		Outils.Excecute("xterm"," -hold -e pacman-g2 -Sy xf86-input-synaptics",true);
+		VteConsole vte = new VteConsole();
+		vte.Show();
+		string[] args=new string[3];
+		args[0]=" ";
+		args[1]="-Sy";
+		args[2]="xf86-input-synaptics";
+		vte.Execute("pacman-g2",args);
 	}
 	
 	protected virtual void OnBTNSetupClicked (object sender, System.EventArgs e)
 	{
-		Outils.Excecute("xterm"," -hold -e /sbin/setup",false);
+		Outils.Excecute("xterm"," -hold -e /sbin/setup",true);
 	}
 	protected virtual void OnBTNSaveConfClicked (object sender, System.EventArgs e)
 	{

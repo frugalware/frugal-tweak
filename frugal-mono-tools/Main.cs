@@ -40,8 +40,10 @@ namespace frugalmonotools
 		public static void checktest()
 		{
 			if (configuration.Get_CheckUpdate())
+			{
 				updatePkg=Update.CheckUpdate();
-			win.InitFinish();	
+			}
+			//win.InitFinish();	
 		}
 		
 		public static void check()
@@ -69,12 +71,21 @@ namespace frugalmonotools
 			if(args.Length==0)
 			{
 				Gtk.Application.Init();		
-				win = new splash ();
-				win.Show ();
-				Thread th = new Thread(new ThreadStart(checktest));
-				th.IsBackground=true;
-				th.SetApartmentState(ApartmentState.STA);
-				th.Start();
+				
+				if (configuration.Get_CheckUpdate()) 
+				{
+					win = new splash ();
+					win.Show ();
+					Thread th = new Thread(new ThreadStart(checktest));
+					th.IsBackground=true;
+					th.SetApartmentState(ApartmentState.STA);
+					th.Start();
+				}
+				else
+				{
+					MainWindow Fen = new MainWindow();
+					Fen.Show();
+				}
 				Gtk.Application.Run ();
 			}
 			else

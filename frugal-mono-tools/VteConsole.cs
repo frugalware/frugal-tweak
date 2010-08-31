@@ -47,7 +47,7 @@ namespace frugalmonotools
 			byte[] commutf8 = System.Text.Encoding.UTF8.GetBytes(commande);
 			string commandev = System.Text.Encoding.UTF8.GetString(commutf8);
 			if (args==null)
-				argv=new string[0];
+				argv=null;
 			else
 			{
 				argv = new string[args.Length];
