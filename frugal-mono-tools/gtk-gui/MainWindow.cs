@@ -207,7 +207,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 7;
+		this.ONG_principal.CurrentPage = 1;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -445,7 +445,7 @@ public partial class MainWindow
 		this.BTN_Synaptics.CanFocus = true;
 		this.BTN_Synaptics.Name = "BTN_Synaptics";
 		this.BTN_Synaptics.UseUnderline = true;
-		this.BTN_Synaptics.Label = global::Mono.Unix.Catalog.GetString ("You have a touchpad but xf86-input-synaptics is not installed. Click here for install it.");
+		this.BTN_Synaptics.Label = global::Mono.Unix.Catalog.GetString ("You have a touchpad but xf86-input-synaptics is not installed. Click here to install it.");
 		this.vbox6.Add (this.BTN_Synaptics);
 		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.BTN_Synaptics]));
 		w21.Position = 3;

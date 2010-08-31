@@ -44,7 +44,7 @@ namespace frugalmonotools
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.label1 = new global::Gtk.Label ();
 			this.label1.Name = "label1";
-			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Tools written in C# for configure Frugalware !");
+			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Tools written in C# to configure Frugalware !");
 			this.vbox1.Add (this.label1);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.label1]));
 			w2.Position = 1;

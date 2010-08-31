@@ -37,9 +37,7 @@ namespace frugalmonotools
             term.BackspaceBinding = TerminalEraseBinding.Auto;
             term.Encoding = "UTF-8";
             term.FontFromString = "Monospace 12";
-			VScrollbar vscroll = new VScrollbar (term.Adjustment);
 			this.vbox1.PackStart (term);
-			this.vbox1.PackStart(vscroll);
 			this.vbox1.ShowAll();
 		}
 		public void Execute(string commande,string [] args,bool EncodeUtf8)
