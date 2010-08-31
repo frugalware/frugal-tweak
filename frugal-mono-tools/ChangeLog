@@ -1,6 +1,8 @@
+2010-08-31  gaetan gourdin  <bouleetbil@frogdev.info>
+	Added Systray icon
+	Use vte-sharp instead xterm
+	
 2010-08-30  gaetan gourdin  <bouleetbil@frogdev.info>
-
-	* Changelog: 
 	Fixed crash on x86_64
 	Added Translation
 	Fix crash on startup for wm don't support notification
