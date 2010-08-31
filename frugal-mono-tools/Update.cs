@@ -39,7 +39,7 @@ namespace frugalmonotools
 			}
 			foreach (packageCheck pkginstall in InstallPkg)
 			{
-				//TODO : respect Ignorepkg
+				
 				foreach (packageCheck pkg in Pkg)
 				{
 					
