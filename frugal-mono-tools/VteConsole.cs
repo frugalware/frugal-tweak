@@ -42,7 +42,7 @@ namespace frugalmonotools
 			this.vbox1.PackStart(vscroll);
 			this.vbox1.ShowAll();
 		}
-		public void Execute(string commande,string [] args)
+		public void Execute(string commande,string [] args,bool EncodeUtf8)
 		{
 			int i =0;
 			string[] argv;
@@ -71,20 +71,23 @@ namespace frugalmonotools
                         envv[i] = tmp;
                         i ++;
                 }
-				
+			if (EncodeUtf8)
+			{
+				commande=commandev;
+				args=argv;
+			}
  			try
 			{
 			term.ForkCommand (
-				commandev,
-				argv,
+				commande,
+				args,
 				envv,
 				Environment.CurrentDirectory,
 				true,
 				true,
 				true);
 			}
-			catch{}
-                
+			catch{}  
 		}
 	}
 }

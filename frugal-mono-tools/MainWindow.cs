@@ -666,7 +666,7 @@ public partial class MainWindow : Gtk.Window
 		args[0]=" ";
 		args[1]="-Rc";
 		args[2]=packageSelected;
-		vte.Execute("pacman-g2",args);
+		vte.Execute("pacman-g2",args,false);
 	}
 	
 	protected virtual void OnBTNInstallClicked (object sender, System.EventArgs e)
@@ -678,7 +678,7 @@ public partial class MainWindow : Gtk.Window
 		args[0]=" ";
 		args[1]="-Sy";
 		args[2]=packageSelected;
-		vte.Execute("pacman-g2",args);
+		vte.Execute("pacman-g2",args,false);
 	}
 	
 	protected virtual void OnBTNUpdateClicked (object sender, System.EventArgs e)
@@ -688,7 +688,7 @@ public partial class MainWindow : Gtk.Window
 		string[] args=new string[2];
 		args[0]=" ";
 		args[1]="-Syu";
-		vte.Execute("pacman-g2",args);
+		vte.Execute("pacman-g2",args,false);
 	}
 	
 	protected virtual void OnBTNPrinterClicked (object sender, System.EventArgs e)
@@ -704,12 +704,16 @@ public partial class MainWindow : Gtk.Window
 		args[0]=" ";
 		args[1]="-Sy";
 		args[2]="xf86-input-synaptics";
-		vte.Execute("pacman-g2",args);
+		vte.Execute("pacman-g2",args,false);
 	}
 	
 	protected virtual void OnBTNSetupClicked (object sender, System.EventArgs e)
 	{
-		Outils.Excecute("xterm"," -hold -e /sbin/setup",true);
+		VteConsole vte = new VteConsole();
+		vte.Show();
+		string[] args=new string[1];
+		args[0]="/sbin/setup";
+		vte.Execute("/sbin/setup",args,false);
 	}
 	protected virtual void OnBTNSaveConfClicked (object sender, System.EventArgs e)
 	{
