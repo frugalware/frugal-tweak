@@ -31,13 +31,13 @@ public partial class MainWindow : Gtk.Window
 	private bool boRoot = false;
 	//pacman-g2
 	// Create a model for treeview pkg
-	Gtk.ListStore pkgListStore = new Gtk.ListStore (typeof (string));
+	ListStore pkgListStore = new Gtk.ListStore (typeof (string));
 	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
-	
+	ListStore serviceListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof (string));
 	//webkit engine
 	private WebKit.WebView webview=null;
 	Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
-	const int cen_OngService=3;
+	
 	
 	
 	const string cch_FileLoginManager=@"/etc/sysconfig/desktop";
@@ -77,15 +77,25 @@ public partial class MainWindow : Gtk.Window
 		// Add the cell to the column
 		ColumnServiceStarted.PackStart (ServiceStartedCell, true);
 		TREE_Services.AppendColumn (ColumnServiceStarted);
-		ColumnServiceStarted.AddAttribute (ServiceStartedCell, "text", 0);
+		ColumnServiceStarted.AddAttribute (ServiceStartedCell, "text", 1);
 		
 		Gtk.TreeViewColumn ColumnServiceOnBoot = new Gtk.TreeViewColumn ();
-		ColumnServiceOnBoot.Title = "Boot started";
+		ColumnServiceOnBoot.Title = "Start on boot";
 		Gtk.CellRendererText ServiceOnBootCell = new Gtk.CellRendererText ();
 		// Add the cell to the column
-		ColumnServiceStarted.PackStart (ServiceOnBootCell, true);
+		ColumnServiceOnBoot.PackStart (ServiceOnBootCell, true);
 		TREE_Services.AppendColumn (ColumnServiceOnBoot);
-		ColumnServiceOnBoot.AddAttribute (ServiceOnBootCell, "text", 0);
+		ColumnServiceOnBoot.AddAttribute (ServiceOnBootCell, "text", 2);
+		ServicesRc.CheckList();
+		foreach(Service service in ServicesRc.Services)
+		{
+			string Etat = "yes";
+			if (!service.IsStarted()) Etat="No";
+			string OnBoot = "yes";
+			if (!service.IsStartedOnBoot()) OnBoot = "No";
+			serviceListStore.AppendValues(service.Get_Name(),Etat,OnBoot);             
+		}
+		TREE_Services.Model=serviceListStore;
 		
 		//pacman-g2
 		// Create a column for the package name

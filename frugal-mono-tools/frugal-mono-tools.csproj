@@ -87,6 +87,7 @@
     <Compile Include="VteConsole.cs" />
     <Compile Include="gtk-gui\frugalmonotools.VteConsole.cs" />
     <Compile Include="Service.cs" />
+    <Compile Include="Services.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
