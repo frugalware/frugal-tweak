@@ -1,3 +1,10 @@
+2010-09-01  gaetan gourdin  <bouleetbil@frogdev.info>
+	Simple click on icon systray open control center
+	Added service gestion
+	New splash from devil505
+	load frugalware.org on startup
+	lspci output on hardware notebook
+
 2010-08-31  gaetan gourdin  <bouleetbil@frogdev.info>
 	Added Systray icon
 	Use vte-sharp instead xterm
