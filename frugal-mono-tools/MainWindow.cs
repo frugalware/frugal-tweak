@@ -315,6 +315,7 @@ public partial class MainWindow : Gtk.Window
 		INT_CheckStartup.Active=MainClass.configuration.Get_CheckUpdate();
 		INT_StartWithXSession.Active=MainClass.configuration.Get_StartWithX();
 		INT_ShowNotif.Active=MainClass.configuration.Get_ShowNotif();
+		INT_ShowSplash.Active=MainClass.configuration.Get_ShowSplash();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
