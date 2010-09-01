@@ -35,7 +35,7 @@ namespace frugalmonotools
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.LOGO = new global::Gtk.Image ();
 			this.LOGO.Name = "LOGO";
-			this.LOGO.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.header.svg");
+			this.LOGO.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.splash.png");
 			this.vbox1.Add (this.LOGO);
 			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.LOGO]));
 			w1.Position = 0;

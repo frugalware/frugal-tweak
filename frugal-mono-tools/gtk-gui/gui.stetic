@@ -1692,7 +1692,7 @@ Public License instead of this License.
             <child>
               <widget class="Gtk.Image" id="LOGO">
                 <property name="MemberName" />
-                <property name="Pixbuf">resource:frugalmonotools.header.svg</property>
+                <property name="Pixbuf">resource:frugalmonotools.splash.png</property>
               </widget>
               <packing>
                 <property name="Position">0</property>

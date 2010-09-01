@@ -65,6 +65,7 @@
     <EmbeddedResource Include="fw.png" />
     <EmbeddedResource Include="nmlogo.png" />
     <EmbeddedResource Include="wicdlogo.png" />
+    <EmbeddedResource Include="splash.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -99,6 +100,8 @@
   <ItemGroup>
     <None Include="TODO" />
     <None Include="LICENSE" />
+    <None Include="frugal-mono-tools-gnome" />
+    <None Include="frugal-mono-tools-kde" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="frugal-tools-gnome.desktop" />
