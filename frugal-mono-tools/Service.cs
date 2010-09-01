@@ -39,13 +39,18 @@ namespace frugalmonotools
 		}
 		public void Start()
 		{
+			Outils.Excecute("service",this.Get_Name()+" start",false);
 		}
 		public void Stop()
 		{
-			
+			Outils.Excecute("service",this.Get_Name()+" stop",false);
 		}
 		public void EnableDisableOnBoot(bool enableit)
 		{
+			if(enableit)
+				Outils.Excecute("service",this.Get_Name()+" del",false);
+			else
+				Outils.Excecute("service",this.Get_Name()+" add",false);
 		}
 	}
 }
