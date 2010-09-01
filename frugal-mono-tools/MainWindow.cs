@@ -27,6 +27,7 @@ public partial class MainWindow : Gtk.Window
 {
 	protected Gtk.TreeIter iter;
 	private string packageSelected="";
+	private string ServiceSelected="";
 	
 	private bool boRoot = false;
 	//pacman-g2
@@ -96,6 +97,8 @@ public partial class MainWindow : Gtk.Window
 			serviceListStore.AppendValues(service.Get_Name(),Etat,OnBoot);             
 		}
 		TREE_Services.Model=serviceListStore;
+		// Event on treeview
+		TREE_Services.Selection.Changed += OnSelectionEntryService;
 		
 		//pacman-g2
 		// Create a column for the package name
@@ -695,6 +698,37 @@ public partial class MainWindow : Gtk.Window
 			}
 			catch{}
 		}
+	protected void OnSelectionEntryService(object o, EventArgs args)
+	    {
+	   		try
+			{
+				
+			 	TreeModel model;
+				 if (((TreeSelection)o).GetSelected(out model, out iter))
+		        {
+		            string T =(string)model.GetValue (iter, 0);
+					ServiceSelected=T;
+					if(boRoot)
+					{
+						BTN_ServiceStop.Visible=false;
+						BTN_ServiceStart.Visible=false;
+						BTN_ServiceDelBoot.Visible=false;
+						BTN_ServiceAddBoot.Visible=false;
+						Service service = new Service(T);
+						if (service.IsStarted())
+							BTN_ServiceStop.Visible=true;
+						else
+							BTN_ServiceStart.Visible=true;
+						if(service.IsStartedOnBoot())
+							BTN_ServiceDelBoot.Visible=true;
+						else
+							BTN_ServiceAddBoot.Visible=true;
+						
+					}
+				}
+			}
+			catch{}
+		}
 	
 	protected virtual void OnBTNUninstallClicked (object sender, System.EventArgs e)
 	{
@@ -763,6 +797,46 @@ public partial class MainWindow : Gtk.Window
 		MainClass.configuration.Set_ShowNotif(INT_ShowNotif.Active);
 		MainClass.configuration.ConfSave();
 	}
+	
+	protected virtual void OnBTNServiceStartClicked (object sender, System.EventArgs e)
+	{
+		if(ServiceSelected!="")
+		{
+			Service service = new Service(ServiceSelected);
+			service.Start();
+		}
+	}
+	
+	protected virtual void OnBTNServiceStopClicked (object sender, System.EventArgs e)
+	{
+		if(ServiceSelected!="")
+		{
+			Service service = new Service(ServiceSelected);
+			service.Stop();
+		}
+	}
+	
+	protected virtual void OnBTNServiceDelBootClicked (object sender, System.EventArgs e)
+	{
+		if(ServiceSelected!="")
+		{
+			Service service = new Service(ServiceSelected);
+			service.EnableDisableOnBoot(false);
+		}
+	}
+	
+	protected virtual void OnBTNServiceAddBootClicked (object sender, System.EventArgs e)
+	{
+		if(ServiceSelected!="")
+		{
+			Service service = new Service(ServiceSelected);
+			service.EnableDisableOnBoot(true);
+		}
+	}
+	
+	
+	
+	
 	
 	
 }
