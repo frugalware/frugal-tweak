@@ -86,9 +86,9 @@ namespace frugalmonotools
 		public void EnableDisableOnBoot(bool enableit)
 		{
 			if(enableit)
-				Outils.Excecute("service",this.Get_Name()+" del",false);
-			else
 				Outils.Excecute("service",this.Get_Name()+" add",false);
+			else
+				Outils.Excecute("service",this.Get_Name()+" del",false);
 		}
 	}
 }
