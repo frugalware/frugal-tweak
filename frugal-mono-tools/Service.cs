@@ -16,6 +16,8 @@
 //  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //  */
 using System;
+using System.IO;
+using System.Text.RegularExpressions;
 namespace frugalmonotools
 {
 	public class Service
@@ -31,11 +33,47 @@ namespace frugalmonotools
 		}
 		public bool IsStarted()
 		{
-			return true;
+			string strSatus=Outils.getoutput("/sbin/service "+this.Get_Name()+" status");
+			if(Regex.Matches(strSatus,"  ON ").Count>0)
+			{
+				return true;
+			}
+			if(Regex.Matches(strSatus,"  OFF").Count>0)
+			{
+				return false;
+			}
+			Console.WriteLine(this.Get_Name()+" don't use status this service should be fixed");
+			return false;
+			
+			
+		}
+		private bool _findRunlevel(int runlevel)
+		{
+			try
+			{
+			string rcFile="/etc/rc.d/rc"+runlevel.ToString()+".d/";
+			string[] files= Directory.GetFiles(rcFile,"*rc."+this.Get_Name());
+			if (files.Length==1)
+				return true;
+			else
+				return false;
+			}
+			catch(Exception exe)
+			{
+				Console.WriteLine(exe.Message);
+				return false;
+			}
 		}
 		public bool IsStartedOnBoot()
 		{
-			return true;
+			//check on all runlevel
+			int i =0;
+			while(i<=6)
+			{
+				if (_findRunlevel(i)) return true;
+				i++;
+			}
+			return false;
 		}
 		public void Start()
 		{

@@ -43,11 +43,31 @@ namespace frugalmonotools
 					(rcName!="6")&&
 					(rcName!="K")&&
 					(rcName!="M")&&
-					(rcName!="S"))
+					(rcName!="S")&&
+				    (rcName!="zz-splash")&&
+				    (rcName!="rmount")&&
+				    (rcName!="fsck")&&
+				    (rcName!="splash")&&
+					(rcName!="swap")&&
+					(rcName!="sysctl")&&
+					(rcName!="sysvinit")&&
+					(rcName!="time")&&
+					(rcName!="udev")&&
+				    (rcName!="functions")&&
+				    (rcName!="bootclean")&&
+					(rcName!="console")&&
+					(rcName!="font")&&
+					(rcName!="frugalware")&&
+					(rcName!="hostname")&&
+					(rcName!="local")&&
+					(rcName!="modules")&&
+					(rcName!="mount")&&
+					(rcName!="serial")&&
+					(rcName!="single")&&
+				    (rcName!="reboot"))
 				{
-					Service service = new Service(rcName);
-					Services.Add(service);
-					
+						Service service = new Service(rcName);
+					  	Services.Add(service);
 				}
 			}
 		}
