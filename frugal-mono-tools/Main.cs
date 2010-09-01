@@ -132,7 +132,9 @@ namespace frugalmonotools
 							// Creation of the Icon
 							trayIcon = new StatusIcon(new Pixbuf ("/usr/share/pixmaps/FrugalTools.png"));
 							trayIcon.Visible = true;
-					 
+					 		
+							trayIcon.Activate += delegate { Outils.Excecute("frugal-mono-tools","",false); };
+
 							// Show a pop up menu when the icon has been right clicked.
 							trayIcon.PopupMenu += OnTrayIconPopup;
 					 
