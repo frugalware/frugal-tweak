@@ -795,6 +795,7 @@ public partial class MainWindow : Gtk.Window
 		MainClass.configuration.Set_CheckUpdate(INT_CheckStartup.Active);
 		MainClass.configuration.Set_StartWithX(INT_StartWithXSession.Active);
 		MainClass.configuration.Set_ShowNotif(INT_ShowNotif.Active);
+		MainClass.configuration.Set_ShowSplash(INT_ShowSplash.Active);
 		MainClass.configuration.ConfSave();
 	}
 	

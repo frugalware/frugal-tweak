@@ -27,6 +27,8 @@ namespace frugalmonotools
 		private bool _checkUpdate = false;
 		private bool _startWithX = true;
 		private bool _showNotif = true;
+		private bool _showSplash = true;
+		
 		public string GetConfFile(){
 			return Environment.GetFolderPath(System.Environment.SpecialFolder
 .Personal)+confFile;
@@ -55,6 +57,14 @@ namespace frugalmonotools
 		{
 			return _showNotif;
 		}
+		public void Set_ShowSplash(bool valeur)
+		{
+			 _showSplash=valeur;
+		}
+		public bool Get_ShowSplash()
+		{
+			return _showSplash;
+		}
 		
 		public Configuration ()
 		{
@@ -77,6 +87,10 @@ namespace frugalmonotools
 						{
 							Set_ShowNotif(false);
 						}
+					if (Regex.Matches(line, "dontshowsplash").Count>0)
+						{
+							Set_ShowSplash(false);
+						}
 				}
 			}
 			catch
@@ -94,6 +108,7 @@ namespace frugalmonotools
 				if (Get_CheckUpdate()) FileConf.WriteLine("checkupdate");
 				if (!Get_StartWithX()) FileConf.WriteLine("dontstartwithx");
 				if (!Get_ShowNotif()) FileConf.WriteLine("dontshownotif");
+				if (!Get_ShowSplash()) FileConf.WriteLine("dontshowsplash");
 				FileConf.Close();
 			}
 			catch(Exception exe)

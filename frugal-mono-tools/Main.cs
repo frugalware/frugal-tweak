@@ -95,7 +95,7 @@ namespace frugalmonotools
 			{
 				Gtk.Application.Init();		
 				
-				if (configuration.Get_CheckUpdate()) 
+				if (configuration.Get_ShowSplash()) 
 				{
 					win = new splash ();
 					win.Show ();
