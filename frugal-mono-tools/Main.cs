@@ -46,6 +46,7 @@ namespace frugalmonotools
 			{
 				updatePkg=Update.CheckUpdate();
 			}
+			ServicesRc.CheckList();
 			win.InitFinish();	
 		}
 		
@@ -106,6 +107,7 @@ namespace frugalmonotools
 				}
 				else
 				{
+					ServicesRc.CheckList();
 					MainWindow Fen = new MainWindow();
 					Fen.Show();
 				}

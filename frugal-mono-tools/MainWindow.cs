@@ -87,7 +87,6 @@ public partial class MainWindow : Gtk.Window
 		ColumnServiceOnBoot.PackStart (ServiceOnBootCell, true);
 		TREE_Services.AppendColumn (ColumnServiceOnBoot);
 		ColumnServiceOnBoot.AddAttribute (ServiceOnBootCell, "text", 2);
-		ServicesRc.CheckList();
 		foreach(Service service in ServicesRc.Services)
 		{
 			string Etat = "yes";
