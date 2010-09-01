@@ -26,6 +26,7 @@ namespace frugalmonotools
 		private const string confFile=@"/.config/FrugalTools.conf";
 		private bool _checkUpdate = false;
 		private bool _startWithX = true;
+		private bool _showNotif = true;
 		public string GetConfFile(){
 			return Environment.GetFolderPath(System.Environment.SpecialFolder
 .Personal)+confFile;
@@ -46,6 +47,15 @@ namespace frugalmonotools
 		{
 			_startWithX=valeur;
 		}
+		public void Set_ShowNotif(bool valeur)
+		{
+			_showNotif=valeur;
+		}
+		public bool Get_ShowNotif()
+		{
+			return _showNotif;
+		}
+		
 		public Configuration ()
 		{
 			//read value
@@ -63,6 +73,10 @@ namespace frugalmonotools
 						{
 							Set_StartWithX(false);
 						}
+					if (Regex.Matches(line, "dontshownotif").Count>0)
+						{
+							Set_ShowNotif(false);
+						}
 				}
 			}
 			catch
@@ -79,6 +93,7 @@ namespace frugalmonotools
 				StreamWriter FileConf = new StreamWriter(GetConfFile());
 				if (Get_CheckUpdate()) FileConf.WriteLine("checkupdate");
 				if (!Get_StartWithX()) FileConf.WriteLine("dontstartwithx");
+				if (!Get_ShowNotif()) FileConf.WriteLine("dontshownotif");
 				FileConf.Close();
 			}
 			catch(Exception exe)

@@ -28,7 +28,7 @@ namespace frugalmonotools
 				}
 				try{
 				IconSummaryBody notif= new IconSummaryBody();
-				notif.ShowMessage("Frugalware","Some update are available.");
+				if(MainClass.configuration.Get_ShowNotif()) notif.ShowMessage("Frugalware","Some update are available.");
 				}
 				catch{}
 				Console.WriteLine("Some packages can be updated.");

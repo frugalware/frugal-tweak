@@ -183,6 +183,8 @@ public partial class MainWindow
 
 	private global::Gtk.CheckButton INT_StartWithXSession;
 
+	private global::Gtk.CheckButton INT_ShowNotif;
+
 	private global::Gtk.HBox hbox21;
 
 	private global::Gtk.Button BTN_SaveConf;
@@ -207,7 +209,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 1;
+		this.ONG_principal.CurrentPage = 7;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -1049,6 +1051,19 @@ public partial class MainWindow
 		w81.Expand = false;
 		w81.Fill = false;
 		// Container child vbox8.Gtk.Box+BoxChild
+		this.INT_ShowNotif = new global::Gtk.CheckButton ();
+		this.INT_ShowNotif.CanFocus = true;
+		this.INT_ShowNotif.Name = "INT_ShowNotif";
+		this.INT_ShowNotif.Label = global::Mono.Unix.Catalog.GetString ("Show notification");
+		this.INT_ShowNotif.Active = true;
+		this.INT_ShowNotif.DrawIndicator = true;
+		this.INT_ShowNotif.UseUnderline = true;
+		this.vbox8.Add (this.INT_ShowNotif);
+		global::Gtk.Box.BoxChild w82 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_ShowNotif]));
+		w82.Position = 2;
+		w82.Expand = false;
+		w82.Fill = false;
+		// Container child vbox8.Gtk.Box+BoxChild
 		this.hbox21 = new global::Gtk.HBox ();
 		this.hbox21.Name = "hbox21";
 		this.hbox21.Spacing = 6;
@@ -1059,18 +1074,18 @@ public partial class MainWindow
 		this.BTN_SaveConf.UseUnderline = true;
 		this.BTN_SaveConf.Label = global::Mono.Unix.Catalog.GetString ("Apply");
 		this.hbox21.Add (this.BTN_SaveConf);
-		global::Gtk.Box.BoxChild w82 = ((global::Gtk.Box.BoxChild)(this.hbox21[this.BTN_SaveConf]));
-		w82.Position = 2;
-		w82.Expand = false;
-		w82.Fill = false;
-		this.vbox8.Add (this.hbox21);
-		global::Gtk.Box.BoxChild w83 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox21]));
-		w83.Position = 3;
+		global::Gtk.Box.BoxChild w83 = ((global::Gtk.Box.BoxChild)(this.hbox21[this.BTN_SaveConf]));
+		w83.Position = 2;
 		w83.Expand = false;
 		w83.Fill = false;
+		this.vbox8.Add (this.hbox21);
+		global::Gtk.Box.BoxChild w84 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox21]));
+		w84.Position = 4;
+		w84.Expand = false;
+		w84.Fill = false;
 		this.ONG_principal.Add (this.vbox8);
-		global::Gtk.Notebook.NotebookChild w84 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox8]));
-		w84.Position = 7;
+		global::Gtk.Notebook.NotebookChild w85 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox8]));
+		w85.Position = 7;
 		// Notebook tab
 		this.Configuration = new global::Gtk.Label ();
 		this.Configuration.Name = "Configuration";
@@ -1088,8 +1103,8 @@ public partial class MainWindow
 		this.textview2.Name = "textview2";
 		this.GtkScrolledWindow2.Add (this.textview2);
 		this.ONG_principal.Add (this.GtkScrolledWindow2);
-		global::Gtk.Notebook.NotebookChild w86 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
-		w86.Position = 8;
+		global::Gtk.Notebook.NotebookChild w87 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
+		w87.Position = 8;
 		// Notebook tab
 		this.label6 = new global::Gtk.Label ();
 		this.label6.Name = "label6";
