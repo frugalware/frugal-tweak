@@ -124,7 +124,8 @@ public partial class MainWindow : Gtk.Window
 		treeviewpkg.Selection.Changed += OnSelectionEntryPkg;
 				
 		//webkit engine
-		webview = new WebView();
+		this.webview = new WebView();
+		this.webview.LoadUri("http://www.frugalware.org");
 		scroll.Add(webview);
 		this.vbox5.Add (this.scroll);
 		this.scroll.ShowAll();
@@ -296,11 +297,13 @@ public partial class MainWindow : Gtk.Window
 		FluxRss = new RSS(UrlPlanet);
 		i = 0;
 		foreach (nodetype n in FluxRss.Nodes)  
-       	{  
+       		{  
 			
 			string titre=n.rss_title;
 			modelFlux.AppendValues(titre,i);
-			i++;}
+			i++;
+			}
+			
 			
 		}
 		catch{}
