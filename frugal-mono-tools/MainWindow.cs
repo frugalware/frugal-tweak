@@ -55,8 +55,6 @@ public partial class MainWindow : Gtk.Window
 	{
 				
 		Build ();
-		//hide notebook service for now
-		ONG_principal.RemovePage(cen_OngService);
 		
 		//graphical debug
 		if ( Debug.ModeDebug && Debug.ModeDebugGraphique)
@@ -64,6 +62,31 @@ public partial class MainWindow : Gtk.Window
 			Debug.winDebug = new FEN_Debug(); 
 			Debug.winDebug.Show();
 		}
+		// services
+		Gtk.TreeViewColumn ColumnServiceName = new Gtk.TreeViewColumn ();
+		ColumnServiceName.Title = "Services";
+		Gtk.CellRendererText ServiceNameCell = new Gtk.CellRendererText ();
+		// Add the cell to the column
+		ColumnServiceName.PackStart (ServiceNameCell, true);
+		TREE_Services.AppendColumn (ColumnServiceName);
+		ColumnServiceName.AddAttribute (ServiceNameCell, "text", 0);
+		
+		Gtk.TreeViewColumn ColumnServiceStarted = new Gtk.TreeViewColumn ();
+		ColumnServiceStarted.Title = "Started";
+		Gtk.CellRendererText ServiceStartedCell = new Gtk.CellRendererText ();
+		// Add the cell to the column
+		ColumnServiceStarted.PackStart (ServiceStartedCell, true);
+		TREE_Services.AppendColumn (ColumnServiceStarted);
+		ColumnServiceStarted.AddAttribute (ServiceStartedCell, "text", 0);
+		
+		Gtk.TreeViewColumn ColumnServiceOnBoot = new Gtk.TreeViewColumn ();
+		ColumnServiceOnBoot.Title = "Boot started";
+		Gtk.CellRendererText ServiceOnBootCell = new Gtk.CellRendererText ();
+		// Add the cell to the column
+		ColumnServiceStarted.PackStart (ServiceOnBootCell, true);
+		TREE_Services.AppendColumn (ColumnServiceOnBoot);
+		ColumnServiceOnBoot.AddAttribute (ServiceOnBootCell, "text", 0);
+		
 		//pacman-g2
 		// Create a column for the package name
 		Gtk.TreeViewColumn pkgColumn = new Gtk.TreeViewColumn ();

@@ -44,7 +44,7 @@ namespace frugalmonotools
 		{
 			
 		}
-		public EnableDisableOnBoot(bool enableit)
+		public void EnableDisableOnBoot(bool enableit)
 		{
 		}
 	}
