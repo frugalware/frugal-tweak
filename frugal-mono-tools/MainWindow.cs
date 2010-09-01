@@ -207,6 +207,7 @@ public partial class MainWindow : Gtk.Window
 		try
 		{
 			lspci=Outils.getoutput(lspci);
+			TXT_Lspci.Buffer.Text=lspci;
 		}
 		catch
 		{
