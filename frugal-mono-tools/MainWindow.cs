@@ -90,7 +90,6 @@ public partial class MainWindow : Gtk.Window
 	
 		foreach(Service service in ServicesRc.Services)
 		{
-			Console.WriteLine(service.Get_Name());
 			string Etat = "yes";
 			if (!service.IsStarted()) Etat="No";
 			string OnBoot = "yes";
