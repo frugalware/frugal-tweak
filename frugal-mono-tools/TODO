@@ -2,3 +2,4 @@
 2. see for add repoman merge update...
 3. check for integrate polkit authentification
 4. parse rss for notify users to latest packages
+5. switch service in mono to python
