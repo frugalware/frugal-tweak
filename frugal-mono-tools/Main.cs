@@ -107,6 +107,7 @@ namespace frugalmonotools
 				}
 				else
 				{
+					System.Threading.Thread.Sleep(1000);
 					ServicesRc.CheckList();
 					MainWindow Fen = new MainWindow();
 					Fen.Show();
