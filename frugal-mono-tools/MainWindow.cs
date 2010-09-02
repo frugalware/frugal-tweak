@@ -808,6 +808,12 @@ public partial class MainWindow : Gtk.Window
 		}
 	}
 	
+	protected virtual void OnBTNIrcClicked (object sender, System.EventArgs e)
+	{
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE python /usr/bin/PyFrugalIRC",false);		
+	}
+	
+	
 	
 	
 	
