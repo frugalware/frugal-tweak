@@ -99,12 +99,8 @@
   <ItemGroup>
     <None Include="TODO" />
     <None Include="LICENSE" />
-    <None Include="frugal-mono-tools-gnome" />
-    <None Include="frugal-mono-tools-kde" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="frugal-tools-gnome.desktop" />
-    <Content Include="frugal-tools-kde.desktop" />
     <Content Include="..\frugal-mono-tools.desktop">
       <Link>frugal-mono-tools.desktop</Link>
     </Content>
