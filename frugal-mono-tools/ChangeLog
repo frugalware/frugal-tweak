@@ -1,3 +1,7 @@
+2010-09-02  gaetan gourdin  <bouleetbil@frogdev.info>
+	Use vte-python instead vte-sharp (will use some langages)
+	re enable setup from frugalwareutils 
+
 2010-09-01  gaetan gourdin  <bouleetbil@frogdev.info>
 	Simple click on icon systray open control center
 	Added service gestion
