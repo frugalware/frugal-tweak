@@ -198,6 +198,7 @@ public partial class MainWindow : Gtk.Window
 			BTN_LoginManager.Visible=false;
 			BTN_Xorg.Visible=false;
 			BTN_Update.Visible=false;
+			BTN_Setup.Visible = false;
 		}
 		else
 		{
