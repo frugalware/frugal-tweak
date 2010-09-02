@@ -1,2 +1,0 @@
-#!/bin/sh
-exec gksu mono "/usr/lib/frugal-mono-tools/frugal-mono-tools.exe" "$@"
