@@ -40,50 +40,30 @@ namespace frugalmonotools
 			this.vbox1.PackStart (term);
 			this.vbox1.ShowAll();
 		}
-		public void Execute(string commande,string [] args,bool EncodeUtf8)
+		public void Execute(string commande,string args)
 		{
-			int i =0;
-			string[] argv;
-			//encode to UTF8
-			byte[] commutf8 = System.Text.Encoding.UTF8.GetBytes(commande);
-			string commandev = System.Text.Encoding.UTF8.GetString(commutf8);
-			if (args==null)
-				argv=null;
-			else
-			{
-				argv = new string[args.Length];
-				foreach (string arg in args)
-				{
-					byte[] utf8 = System.Text.Encoding.UTF8.GetBytes(arg);
-					argv[i]=System.Text.Encoding.UTF8.GetString(utf8);
-					i++;
-				}
-			}
-			 string[] envv = new string [Environment.GetEnvironmentVariables ().Count];
-             i = 0;
-             foreach (DictionaryEntry e in Environment.GetEnvironmentVariables ())
+			try{
+                string[] envv = new string [Environment.GetEnvironmentVariables ().Count];
+                int i = 0;
+                foreach (DictionaryEntry e in Environment.GetEnvironmentVariables ())
                 {
-                        if (e.Key.ToString()== "" || e.Value.ToString() == "")
+                        if (e.Key.ToString() == "" || e.Value.ToString() == "")
                                 continue;
                         string tmp = String.Format ("{0}={1}", e.Key, e.Value);
                         envv[i] = tmp;
                         i ++;
                 }
-			if (EncodeUtf8)
-			{
-				commande=commandev;
-				args=argv;
-			}
- 			try
-			{
-			term.ForkCommand (
-				commande,
-				args,
+ 				
+			 term.ForkCommand (
+				Environment.GetEnvironmentVariable ("SHELL"),
+				null,
 				envv,
 				Environment.CurrentDirectory,
-				true,
+				false,
 				true,
 				true);
+				System.Threading.Thread.Sleep(1000);
+				term.FeedChild(commande+args+"\n");
 			}
 			catch{}  
 		}
