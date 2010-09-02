@@ -734,26 +734,18 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnBTNUninstallClicked (object sender, System.EventArgs e)
 	{
 		if(packageSelected=="") return;
-		VteConsole vte = new VteConsole();
-		vte.Show();
-	
-		vte.Execute("pacman-g2"," -Rc "+packageSelected);
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Rc "+packageSelected,false);	
 	}
 	
 	protected virtual void OnBTNInstallClicked (object sender, System.EventArgs e)
 	{
 		if(packageSelected=="") return;
-		VteConsole vte = new VteConsole();
-		vte.Show();
-		vte.Execute("pacman-g2"," -Sy "+packageSelected);
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,false);	
 	}
 	
 	protected virtual void OnBTNUpdateClicked (object sender, System.EventArgs e)
 	{
-		VteConsole vte = new VteConsole();
-		vte.Show();
-
-		vte.Execute("pacman-g2"," -Syu");
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Syu",false);		
 	}
 	
 	protected virtual void OnBTNPrinterClicked (object sender, System.EventArgs e)
@@ -763,20 +755,12 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNSynapticsClicked (object sender, System.EventArgs e)
 	{
-		VteConsole vte = new VteConsole();
-		vte.Show();
-
-		vte.Execute("pacman-g2","- Sy xf86-input-synaptics");
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy xf86-input-synaptics",false);	
 	}
 	
 	protected virtual void OnBTNSetupClicked (object sender, System.EventArgs e)
-	{
-		
-		VteConsole vte = new VteConsole();
-		vte.Show();
-
-		vte.Execute("/sbin/setup","");
-		
+	{		
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE /sbin/setup",false);		
 	}
 	protected virtual void OnBTNSaveConfClicked (object sender, System.EventArgs e)
 	{

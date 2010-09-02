@@ -50,7 +50,6 @@
     <Reference Include="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
     <Reference Include="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" />
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="vte-sharp, Version=0.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -84,8 +83,6 @@
     <Compile Include="splash.cs" />
     <Compile Include="gtk-gui\frugalmonotools.splash.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="VteConsole.cs" />
-    <Compile Include="gtk-gui\frugalmonotools.VteConsole.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Services.cs" />
   </ItemGroup>
