@@ -33,19 +33,22 @@ namespace frugalmonotools
 		}
 		public bool IsStarted()
 		{
-			string strSatus=Outils.getoutput("/sbin/service "+this.Get_Name()+" status");
-			if(Regex.Matches(strSatus,"  ON ").Count>0)
+			try
 			{
-				return true;
-			}
-			if(Regex.Matches(strSatus,"  OFF").Count>0)
-			{
+				string strSatus=Outils.getoutput("/sbin/service "+this.Get_Name()+" status");
+				if(Regex.Matches(strSatus,"  ON ").Count>0)
+				{
+					return true;
+				}
+				if(Regex.Matches(strSatus,"  OFF").Count>0)
+				{
+					return false;
+				}
+				Console.WriteLine(this.Get_Name()+" don't use status this service should be fixed");
 				return false;
 			}
-			Console.WriteLine(this.Get_Name()+" don't use status this service should be fixed");
-			return false;
-			
-			
+			catch{return false;}
+					
 		}
 		private bool _findRunlevel(int runlevel)
 		{

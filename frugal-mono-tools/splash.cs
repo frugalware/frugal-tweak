@@ -15,7 +15,7 @@ namespace frugalmonotools
 			MainWindow win = new MainWindow();
 			win.Show();
 			this.Hide();
-			
+			Console.WriteLine("Start control center");
 			//now notifications
 			if (MainClass.updatePkg)
 			{	

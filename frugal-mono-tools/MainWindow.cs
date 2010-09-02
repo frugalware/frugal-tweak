@@ -87,8 +87,10 @@ public partial class MainWindow : Gtk.Window
 		ColumnServiceOnBoot.PackStart (ServiceOnBootCell, true);
 		TREE_Services.AppendColumn (ColumnServiceOnBoot);
 		ColumnServiceOnBoot.AddAttribute (ServiceOnBootCell, "text", 2);
+	
 		foreach(Service service in ServicesRc.Services)
 		{
+			Console.WriteLine(service.Get_Name());
 			string Etat = "yes";
 			if (!service.IsStarted()) Etat="No";
 			string OnBoot = "yes";
@@ -150,7 +152,7 @@ public partial class MainWindow : Gtk.Window
 		}
 		else
 		{
-			//BTN_Setup.Visible=true;
+			BTN_Setup.Visible=true;
 			LIB_Setup.Visible=false;
 		}
 		string dmesgOutput=Outils.getoutput("dmesg");
@@ -735,11 +737,8 @@ public partial class MainWindow : Gtk.Window
 		if(packageSelected=="") return;
 		VteConsole vte = new VteConsole();
 		vte.Show();
-		string[] args=new string[3];
-		args[0]=" ";
-		args[1]="-Rc";
-		args[2]=packageSelected;
-		vte.Execute("pacman-g2",args,false);
+	
+		vte.Execute("pacman-g2"," -Rc "+packageSelected);
 	}
 	
 	protected virtual void OnBTNInstallClicked (object sender, System.EventArgs e)
@@ -747,21 +746,15 @@ public partial class MainWindow : Gtk.Window
 		if(packageSelected=="") return;
 		VteConsole vte = new VteConsole();
 		vte.Show();
-		string[] args=new string[3];
-		args[0]=" ";
-		args[1]="-Sy";
-		args[2]=packageSelected;
-		vte.Execute("pacman-g2",args,false);
+		vte.Execute("pacman-g2"," -Sy "+packageSelected);
 	}
 	
 	protected virtual void OnBTNUpdateClicked (object sender, System.EventArgs e)
 	{
 		VteConsole vte = new VteConsole();
 		vte.Show();
-		string[] args=new string[2];
-		args[0]=" ";
-		args[1]="-Syu";
-		vte.Execute("pacman-g2",args,false);
+
+		vte.Execute("pacman-g2"," -Syu");
 	}
 	
 	protected virtual void OnBTNPrinterClicked (object sender, System.EventArgs e)
@@ -773,21 +766,17 @@ public partial class MainWindow : Gtk.Window
 	{
 		VteConsole vte = new VteConsole();
 		vte.Show();
-		string[] args=new string[3];
-		args[0]=" ";
-		args[1]="-Sy";
-		args[2]="xf86-input-synaptics";
-		vte.Execute("pacman-g2",args,false);
+
+		vte.Execute("pacman-g2","- Sy xf86-input-synaptics");
 	}
 	
 	protected virtual void OnBTNSetupClicked (object sender, System.EventArgs e)
 	{
+		
 		VteConsole vte = new VteConsole();
 		vte.Show();
-		string[] args=new string[2];
-		args[1]=@"/sbin/setup";
-		args[0]="";
-		vte.Execute("exec",args,false);
+
+		vte.Execute("/sbin/setup","");
 		
 	}
 	protected virtual void OnBTNSaveConfClicked (object sender, System.EventArgs e)

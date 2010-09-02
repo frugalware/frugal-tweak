@@ -24,12 +24,15 @@ namespace frugalmonotools
 	public static class ServicesRc
 	{
 		public static List<Service> Services = new List<Service>();
+		private static bool _started=false;
 		
 		public static void CheckList(){
-			
-			string rcFile="/etc/rc.d/";
-			string[] files= Directory.GetFiles(rcFile,"rc.*");
+			if (_started) return;
+			_started=false;
 			Services.Clear();
+			string rcFile="/etc/rc.d/";
+			string[] files= Directory.GetFiles(rcFile,"rc.*",SearchOption.TopDirectoryOnly);
+			
 			foreach(string file in files)
 			{
 				string rcName=file.Replace(rcFile+"rc.","");
@@ -64,12 +67,25 @@ namespace frugalmonotools
 					(rcName!="mount")&&
 					(rcName!="serial")&&
 					(rcName!="single")&&
+				    (rcName!="postgresql")&& //rc status crash should check it!!
 				    (rcName!="reboot"))
 				{
+					try{
+						if(Debug.ModeDebug) 
+							Console.WriteLine(rcName);
 						Service service = new Service(rcName);
 					  	Services.Add(service);
+					}
+					catch(Exception exe)
+					{
+						Console.WriteLine(rcName+" is ignored");
+						Console.WriteLine(exe.Message);
+					}
 				}
+				
 			}
+			Console.WriteLine("Service initialisation finish");
+			_started=false;
 		}
 	}
 }

@@ -42,6 +42,7 @@ namespace frugalmonotools
 		public static bool updatePkg = false;
 		public static void checktest()
 		{
+			Console.WriteLine("Thread started");
 			if (configuration.Get_CheckUpdate())
 			{
 				updatePkg=Update.CheckUpdate();
