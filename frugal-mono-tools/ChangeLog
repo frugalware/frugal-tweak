@@ -1,4 +1,8 @@
 2010-09-03  gaetan gourdin  <bouleetbil@frogdev.info>
+	Can manage update packages
+	Can start it as root with a new entry in the systray menu
+
+2010-09-03  gaetan gourdin  <bouleetbil@frogdev.info>
 	rename the project frugal-mono-tools to frugal-tweak 
 
 2010-09-03  gaetan gourdin  <bouleetbil@frogdev.info>
