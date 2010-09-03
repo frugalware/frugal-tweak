@@ -1,0 +1,11 @@
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=fw-login-manager
+Comment=Select your login manager
+Exec=kdesu /usr/bin/fw-login-manager
+Icon=/usr/share/fw-login-manager/fw-login-manager.png
+Terminal=false
+Type=Application
+Categories=KDE;Application;System;
+OnlyShowIn=KDE

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /usr/share/fw-login-manager/
+python ./fw-login-manager.py
