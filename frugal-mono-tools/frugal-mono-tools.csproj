@@ -101,9 +101,4 @@
     <None Include="TODO" />
     <None Include="LICENSE" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\frugal-mono-tools.desktop">
-      <Link>frugal-mono-tools.desktop</Link>
-    </Content>
-  </ItemGroup>
 </Project>
