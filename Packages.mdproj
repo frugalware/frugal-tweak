@@ -18,7 +18,7 @@
           </Builder>
         </Package>
         <Package name="Sources">
-          <Builder targetFile="frugal-mono-tools.tar.gz" format="MonoDevelop.Projects.FileFormat" ctype="SourcesZipPackageBuilder">
+          <Builder targetFile="releases\frugal-mono-tools.tar.gz" format="MonoDevelop.Projects.FileFormat" ctype="SourcesZipPackageBuilder">
             <ChildEntries>
               <SolutionItemReference path="Traduction\Traduction.mdproj" />
               <SolutionItemReference path="PyUtils\PyUtils.mdproj" />
