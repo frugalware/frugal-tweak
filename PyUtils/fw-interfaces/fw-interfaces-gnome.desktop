@@ -1,0 +1,11 @@
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=fw-interfaces
+Comment=Network interfaces daemon selection
+Exec=gksu /usr/bin/fw-interfaces
+Icon=/usr/share/fw-interfaces/fw-interfaces.png
+Terminal=false
+Type=Application
+Categories=GNOME;Application;System;
+OnlyShowIn=GNOME

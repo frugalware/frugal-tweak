@@ -1,0 +1,11 @@
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=fw-interfaces
+Comment=Network interfaces daemon selection
+Exec=kdesu /usr/bin/fw-interfaces
+Icon=/usr/share/fw-interfaces/fw-interfaces.png
+Terminal=false
+Type=Application
+Categories=KDE;Application;System;
+OnlyShowIn=KDE

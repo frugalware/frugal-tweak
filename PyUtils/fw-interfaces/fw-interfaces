@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /usr/share/fw-interfaces/
+python ./fw-interfaces.py
