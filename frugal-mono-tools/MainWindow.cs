@@ -214,7 +214,6 @@ public partial class MainWindow : Gtk.Window
 			BTN_Xorg.Visible=false;
 			BTN_Update.Visible=false;
 			BTN_Setup.Visible = false;
-			BTN_Hide.Visible = false;
 			BTN_UpdateDatabase.Visible = false;
 		}
 		else
@@ -688,7 +687,7 @@ public partial class MainWindow : Gtk.Window
 	}
 	
 	
-	protected void OnSelectionEntryPkg(object o, EventArgs args)
+	protected void OnSelectionEntryUpdate(object o, EventArgs args)
 	    {
 	   		try
 			{
@@ -697,6 +696,7 @@ public partial class MainWindow : Gtk.Window
 		        {
 		            string T =(string)model.GetValue (iter, 0);
 					UpdateSelected=T;
+					UpdateSelected=MainClass.pacmanG2.extractNamePackage(UpdateSelected);
 					if(boRoot)
 					{
 						BTN_Hide.Visible=true;
@@ -705,7 +705,7 @@ public partial class MainWindow : Gtk.Window
 			}
 			catch{}
 		}
-	protected void OnSelectionEntryUpdate(object o, EventArgs args)
+	protected void OnSelectionEntryPkg (object o, EventArgs args)
 	    {
 	   		try
 			{
@@ -897,19 +897,43 @@ public partial class MainWindow : Gtk.Window
 		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,false);	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	protected virtual void OnBTNHideClicked (object sender, System.EventArgs e)
+	{
+		try
+		{
+			if(UpdateSelected=="") return;
+			string pacmanConf = @"/etc/pacman-g2.conf";
+			string strPacmanConf =Outils.ReadFile(pacmanConf);
+			string[] lines = strPacmanConf.Split('\n');	
+			string[] result= new string[lines.Length];
+			string lineResult;
+			int i = 0;
+				foreach (string line in lines) 
+	            {
+					lineResult=line;
+					if (System.Text.RegularExpressions.Regex.Matches(line, "IgnorePkg").Count>0)
+					{
+						//find it :p
+						lineResult=lineResult.Replace("=","= "+UpdateSelected+" ");
+						lineResult=lineResult.Replace("#","");
+						MainClass.pacmanG2.ignorePkg.Add(UpdateSelected);
+					}
+					result[i]=lineResult;
+					i++;
+				}
+			StreamWriter File = new StreamWriter(pacmanConf);
+			foreach (string line in result) 
+	        {
+				File.WriteLine(line);
+			}
+			File.Close();
+		}
+		catch(Exception exe)
+		{
+			Console.WriteLine("Can't update pacman-g2.conf");
+			Console.WriteLine(exe.Message);
+		}
+	}
 	
 }
 
