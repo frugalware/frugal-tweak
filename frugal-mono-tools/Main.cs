@@ -78,7 +78,6 @@ namespace frugalmonotools
 				menuItemcc.Image = ccimg;
 				popupMenu.Add(menuItemcc);
 				
-				Menu popupMenuRoot = new Menu();
 				ImageMenuItem menuItemccRoot = new ImageMenuItem ("Start Control Center as root");
 				Gtk.Image ccimgRoot = new Gtk.Image(Stock.Execute, IconSize.Menu);
 				menuItemccRoot.Image = ccimgRoot;

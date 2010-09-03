@@ -27,12 +27,14 @@ public partial class MainWindow : Gtk.Window
 {
 	protected Gtk.TreeIter iter;
 	private string packageSelected="";
+	private string UpdateSelected="";
 	private string ServiceSelected="";
 	
 	private bool boRoot = false;
 	//pacman-g2
 	// Create a model for treeview pkg
 	ListStore pkgListStore = new Gtk.ListStore (typeof (string));
+	ListStore UpdateListStore = new Gtk.ListStore (typeof (string));
 	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
 	ListStore serviceListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof (string));
 	//webkit engine
@@ -101,6 +103,18 @@ public partial class MainWindow : Gtk.Window
 		// Event on treeview
 		TREE_Services.Selection.Changed += OnSelectionEntryService;
 		
+		//update package list
+		// Create a column for the package name
+		Gtk.TreeViewColumn pkgupdateColumn = new Gtk.TreeViewColumn ();
+		pkgupdateColumn.Title = "Package name";
+		Gtk.CellRendererText pkgupdateNameCell = new Gtk.CellRendererText ();
+		// Add the cell to the column
+		pkgupdateColumn.PackStart (pkgupdateNameCell, true);
+		TREE_UpdatePkg.AppendColumn (pkgupdateColumn);
+		pkgupdateColumn.AddAttribute (pkgupdateNameCell, "text", 0);
+		// Event on treeview
+		TREE_UpdatePkg.Selection.Changed += OnSelectionEntryUpdate;
+		TREE_UpdatePkg.Model=UpdateListStore;
 		//pacman-g2
 		// Create a column for the package name
 		Gtk.TreeViewColumn pkgColumn = new Gtk.TreeViewColumn ();
@@ -200,6 +214,8 @@ public partial class MainWindow : Gtk.Window
 			BTN_Xorg.Visible=false;
 			BTN_Update.Visible=false;
 			BTN_Setup.Visible = false;
+			BTN_Hide.Visible = false;
+			BTN_UpdateDatabase.Visible = false;
 		}
 		else
 		{
@@ -680,6 +696,23 @@ public partial class MainWindow : Gtk.Window
 				 if (((TreeSelection)o).GetSelected(out model, out iter))
 		        {
 		            string T =(string)model.GetValue (iter, 0);
+					UpdateSelected=T;
+					if(boRoot)
+					{
+						BTN_Hide.Visible=true;
+					}
+				}
+			}
+			catch{}
+		}
+	protected void OnSelectionEntryUpdate(object o, EventArgs args)
+	    {
+	   		try
+			{
+			 	TreeModel model;
+				 if (((TreeSelection)o).GetSelected(out model, out iter))
+		        {
+		            string T =(string)model.GetValue (iter, 0);
 					LIB_Descr.Text=PacmanG2.SearchDescription(T,MainClass.pacmanG2.repoSelected);
 					T=MainClass.pacmanG2.extractNamePackage(T);
 					packageSelected=T;
@@ -845,6 +878,26 @@ public partial class MainWindow : Gtk.Window
 		WebkitBrowser browser = new WebkitBrowser("http://bugs.frugalware.org");
 		browser.Show();
 	}
+	
+	protected virtual void OnBTNRefreshClicked (object sender, System.EventArgs e)
+	{
+		UpdateListStore.Clear();
+		Update.CheckUpdate();
+	
+		foreach (packageCheck package in Update.UpdatePkg)
+		{
+			// Add some data to the store
+			UpdateListStore.AppendValues (package.packagename+"-"+package.packageversion);
+		}
+	
+	}
+	
+	protected virtual void OnBTNUpdateDatabaseClicked (object sender, System.EventArgs e)
+	{
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,false);	
+	}
+	
+	
 	
 	
 	

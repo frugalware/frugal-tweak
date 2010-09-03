@@ -17,7 +17,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="MainWindow" design-size="657 395">
+  <widget class="Gtk.Window" id="MainWindow" design-size="735 403">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Frugalware-tools</property>
     <property name="Icon">resource:frugalmonotools.header.svg</property>
@@ -27,7 +27,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">6</property>
+        <property name="CurrentPage">1</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -121,20 +121,7 @@
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Button" id="BTN_Update">
-                    <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="Type">TextOnly</property>
-                    <property name="Label" translatable="yes">Update system</property>
-                    <property name="UseUnderline">True</property>
-                    <signal name="Clicked" handler="OnBTNUpdateClicked" />
-                  </widget>
-                  <packing>
-                    <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
+                  <placeholder />
                 </child>
                 <child>
                   <widget class="Gtk.Button" id="BTN_Uninstall">
@@ -182,6 +169,119 @@
           <widget class="Gtk.Label" id="LIB_pkg">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">Packages</property>
+          </widget>
+          <packing>
+            <property name="type">tab</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.VBox" id="vbox10">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow4">
+                <property name="MemberName" />
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.TreeView" id="TREE_UpdatePkg">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="ShowScrollbars">True</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder />
+            </child>
+            <child>
+              <widget class="Gtk.HBox" id="hbox22">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Hide">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Hide this update package</property>
+                    <property name="UseUnderline">True</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_UpdateDatabase">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Update pacman-g2 database</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNUpdateDatabaseClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Refresh">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Refresh list</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNRefreshClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Update">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Update system</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNUpdateClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">3</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label1">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Update list</property>
           </widget>
           <packing>
             <property name="type">tab</property>
@@ -390,11 +490,11 @@ ztv</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">1</property>
+            <property name="Position">2</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="label1">
+          <widget class="Gtk.Label" id="label3">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">Xorg</property>
           </widget>
@@ -565,7 +665,7 @@ ztv</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">2</property>
+            <property name="Position">3</property>
           </packing>
         </child>
         <child>
@@ -683,11 +783,11 @@ ztv</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">3</property>
+            <property name="Position">4</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="label3">
+          <widget class="Gtk.Label" id="label5">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">Services</property>
           </widget>
@@ -880,7 +980,7 @@ ztv</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">4</property>
+            <property name="Position">5</property>
           </packing>
         </child>
         <child>
@@ -1188,7 +1288,7 @@ ztv</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">5</property>
+            <property name="Position">6</property>
           </packing>
         </child>
         <child>
@@ -1335,11 +1435,11 @@ irc : irc.freenode.net channel #frugalware</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">6</property>
+            <property name="Position">7</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="label5">
+          <widget class="Gtk.Label" id="label6">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">Support</property>
           </widget>
@@ -1397,7 +1497,7 @@ irc : irc.freenode.net channel #frugalware</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">7</property>
+            <property name="Position">8</property>
           </packing>
         </child>
         <child>
@@ -1519,7 +1619,7 @@ irc : irc.freenode.net channel #frugalware</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">8</property>
+            <property name="Position">9</property>
           </packing>
         </child>
         <child>
@@ -1890,11 +1990,11 @@ Public License instead of this License.
             </child>
           </widget>
           <packing>
-            <property name="Position">9</property>
+            <property name="Position">10</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="label6">
+          <widget class="Gtk.Label" id="label9">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">About</property>
           </widget>
