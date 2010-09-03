@@ -1,3 +1,10 @@
+2010-09-03  gaetan gourdin  <bouleetbil@frogdev.info>
+	Don't show setup for no root user
+	Added a webkit browser
+	Added some links to systray icon
+	Added irc client for join #frugalware
+	delete wrapper for start it as root will use gtk-user 
+
 2010-09-02  gaetan gourdin  <bouleetbil@frogdev.info>
 	Use vte-python instead vte-sharp (will use some langages)
 	re enable setup from frugalwareutils 
