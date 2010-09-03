@@ -78,6 +78,12 @@ namespace frugalmonotools
 				menuItemcc.Image = ccimg;
 				popupMenu.Add(menuItemcc);
 				
+				Menu popupMenuRoot = new Menu();
+				ImageMenuItem menuItemccRoot = new ImageMenuItem ("Start Control Center as root");
+				Gtk.Image ccimgRoot = new Gtk.Image(Stock.Execute, IconSize.Menu);
+				menuItemccRoot.Image = ccimgRoot;
+				popupMenu.Add(menuItemccRoot);
+				
 				ImageMenuItem menuItemForum = new ImageMenuItem ("Forums Frugalware");
 				Gtk.Image Forumimg = new Gtk.Image(Stock.Help, IconSize.Menu);
 				menuItemForum.Image = Forumimg;
@@ -102,6 +108,8 @@ namespace frugalmonotools
 													browser.Show(); 
 													};
 				menuItemcc.Activated += delegate { Outils.Excecute("frugal-mono-tools","",false); };
+				menuItemccRoot.Activated += delegate { Outils.Excecute("sucontrolcenter","",false); };
+				
 				// Quit the application when quit has been clicked.
 				menuItemQuit.Activated += delegate { Application.Quit(); };
 				popupMenu.ShowAll();
