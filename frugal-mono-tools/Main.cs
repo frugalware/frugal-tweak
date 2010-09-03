@@ -77,11 +77,30 @@ namespace frugalmonotools
 				Gtk.Image ccimg = new Gtk.Image(Stock.Execute, IconSize.Menu);
 				menuItemcc.Image = ccimg;
 				popupMenu.Add(menuItemcc);
+				
+				ImageMenuItem menuItemForum = new ImageMenuItem ("Forums Frugalware");
+				Gtk.Image Forumimg = new Gtk.Image(Stock.Help, IconSize.Menu);
+				menuItemForum.Image = Forumimg;
+				popupMenu.Add(menuItemForum);
+			
+				ImageMenuItem menuItemWiki = new ImageMenuItem ("Wiki Frugalware");
+				Gtk.Image Wikiimg = new Gtk.Image(Stock.Help, IconSize.Menu);
+				menuItemWiki.Image = Wikiimg;
+				popupMenu.Add(menuItemWiki);
 			
 				ImageMenuItem menuItemQuit = new ImageMenuItem ("Quit");
 				Gtk.Image appimg = new Gtk.Image(Stock.Quit, IconSize.Menu);
 				menuItemQuit.Image = appimg;
 				popupMenu.Add(menuItemQuit);
+			
+				menuItemForum.Activated += delegate { 
+													WebkitBrowser browser = new WebkitBrowser("http://forums.frugalware.org");
+													browser.Show(); 
+													};
+				menuItemWiki.Activated += delegate { 
+													WebkitBrowser browser = new WebkitBrowser("http://wiki.frugalware.org");
+													browser.Show(); 
+													};
 				menuItemcc.Activated += delegate { Outils.Excecute("frugal-mono-tools","",false); };
 				// Quit the application when quit has been clicked.
 				menuItemQuit.Activated += delegate { Application.Quit(); };

@@ -52,9 +52,10 @@ public partial class MainWindow : Gtk.Window
 	ListStore modelFlux = new ListStore (typeof (string),typeof (int)); 
 	RSS FluxRss;
 	
+	
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
-				
+		this.SetDefaultSize (700, 500);
 		Build ();
 		
 		//graphical debug
@@ -812,6 +813,44 @@ public partial class MainWindow : Gtk.Window
 	{
 		Outils.Excecute("python","/usr/bin/PyFrugalVTE python /usr/bin/PyFrugalIRC",false);		
 	}
+	
+	protected virtual void OnBTNForumsClicked (object sender, System.EventArgs e)
+	{
+		WebkitBrowser browser = new WebkitBrowser("http://forums.frugalware.org");
+		browser.Show();
+	}
+	
+	protected virtual void OnBTNWikiClicked (object sender, System.EventArgs e)
+	{
+		WebkitBrowser browser = new WebkitBrowser("http://wiki.frugalware.org");
+		browser.Show();
+	}
+	
+	
+	
+	protected virtual void OnBTNDanishClicked (object sender, System.EventArgs e)
+	{
+		WebkitBrowser browser = new WebkitBrowser("http://frugalware.dk/");
+		browser.Show();
+	}
+	
+	protected virtual void OnBTNFrenchClicked (object sender, System.EventArgs e)
+	{
+		WebkitBrowser browser = new WebkitBrowser("http://www.frugalware.fr");
+		browser.Show();
+	}
+	
+	protected virtual void OnBTNBugsClicked (object sender, System.EventArgs e)
+	{
+		WebkitBrowser browser = new WebkitBrowser("http://bugs.frugalware.org");
+		browser.Show();
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -1209,7 +1209,7 @@ ztv</property>
                 <property name="MemberName" />
                 <property name="LabelProp" translatable="yes">Frugalware provide some helps supports :
 
-forums : http://forums.frugalware.org
+Forums : http://forums.frugalware.org
 
 Wiki : http://wiki.frugalware.org
 
@@ -1239,7 +1239,96 @@ irc : irc.freenode.net channel #frugalware</property>
               </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.Button" id="BTN_Forums">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Forums Frugalware</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBTNForumsClicked" />
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="BTN_Wiki">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Wiki Frugalware</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBTNWikiClicked" />
+              </widget>
+              <packing>
+                <property name="Position">3</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="BTN_Bugs">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Bugs tracker</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBTNBugsClicked" />
+              </widget>
+              <packing>
+                <property name="Position">4</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label8">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Internationalized Frugalware sites</property>
+              </widget>
+              <packing>
+                <property name="Position">5</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="BTN_French">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">French</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBTNFrenchClicked" />
+              </widget>
+              <packing>
+                <property name="Position">6</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="BTN_Danish">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Danish</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBTNDanishClicked" />
+              </widget>
+              <packing>
+                <property name="Position">7</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
             <child>
               <placeholder />
