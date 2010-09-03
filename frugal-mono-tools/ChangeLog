@@ -1,4 +1,7 @@
 2010-09-03  gaetan gourdin  <bouleetbil@frogdev.info>
+	rename the project frugal-mono-tools to frugal-tweak 
+
+2010-09-03  gaetan gourdin  <bouleetbil@frogdev.info>
 	Don't show setup for no root user
 	Added a webkit browser
 	Added some links to systray icon
