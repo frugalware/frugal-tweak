@@ -1,6 +1,4 @@
 1. added a sort of etcconfig for find pacnew and purpose to merge/update...
 2. see for add repoman merge update...
-3. check for integrate polkit authentification
-4. parse rss for notify users to latest packages
-5. switch service in mono to python
-6. use smartirc for add a notebook #frugalware support
+3. parse rss for notify users to latest packages
+4. switch service in mono to python
