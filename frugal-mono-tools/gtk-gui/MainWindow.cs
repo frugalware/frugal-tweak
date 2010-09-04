@@ -201,7 +201,13 @@ public partial class MainWindow
 
 	private global::Gtk.Label label7;
 
+	private global::Gtk.HBox hbox23;
+
 	private global::Gtk.Button BTN_Irc;
+
+	private global::Gtk.Button BTN_Irc1;
+
+	private global::Gtk.Button BTN_Irc2;
 
 	private global::Gtk.Button BTN_Forums;
 
@@ -261,7 +267,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 0;
+		this.ONG_principal.CurrentPage = 7;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -1171,16 +1177,47 @@ public partial class MainWindow
 		w90.Expand = false;
 		w90.Fill = false;
 		// Container child vbox9.Gtk.Box+BoxChild
+		this.hbox23 = new global::Gtk.HBox ();
+		this.hbox23.Name = "hbox23";
+		this.hbox23.Spacing = 6;
+		// Container child hbox23.Gtk.Box+BoxChild
 		this.BTN_Irc = new global::Gtk.Button ();
 		this.BTN_Irc.CanFocus = true;
 		this.BTN_Irc.Name = "BTN_Irc";
 		this.BTN_Irc.UseUnderline = true;
-		this.BTN_Irc.Label = global::Mono.Unix.Catalog.GetString ("Start IRC client");
-		this.vbox9.Add (this.BTN_Irc);
-		global::Gtk.Box.BoxChild w91 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Irc]));
-		w91.Position = 1;
+		this.BTN_Irc.Label = global::Mono.Unix.Catalog.GetString ("Join #frugalware");
+		this.hbox23.Add (this.BTN_Irc);
+		global::Gtk.Box.BoxChild w91 = ((global::Gtk.Box.BoxChild)(this.hbox23[this.BTN_Irc]));
+		w91.Position = 0;
 		w91.Expand = false;
 		w91.Fill = false;
+		// Container child hbox23.Gtk.Box+BoxChild
+		this.BTN_Irc1 = new global::Gtk.Button ();
+		this.BTN_Irc1.CanFocus = true;
+		this.BTN_Irc1.Name = "BTN_Irc1";
+		this.BTN_Irc1.UseUnderline = true;
+		this.BTN_Irc1.Label = global::Mono.Unix.Catalog.GetString ("Join #frugalware.fr");
+		this.hbox23.Add (this.BTN_Irc1);
+		global::Gtk.Box.BoxChild w92 = ((global::Gtk.Box.BoxChild)(this.hbox23[this.BTN_Irc1]));
+		w92.Position = 1;
+		w92.Expand = false;
+		w92.Fill = false;
+		// Container child hbox23.Gtk.Box+BoxChild
+		this.BTN_Irc2 = new global::Gtk.Button ();
+		this.BTN_Irc2.CanFocus = true;
+		this.BTN_Irc2.Name = "BTN_Irc2";
+		this.BTN_Irc2.UseUnderline = true;
+		this.BTN_Irc2.Label = global::Mono.Unix.Catalog.GetString ("Join #frugalware.hu");
+		this.hbox23.Add (this.BTN_Irc2);
+		global::Gtk.Box.BoxChild w93 = ((global::Gtk.Box.BoxChild)(this.hbox23[this.BTN_Irc2]));
+		w93.Position = 2;
+		w93.Expand = false;
+		w93.Fill = false;
+		this.vbox9.Add (this.hbox23);
+		global::Gtk.Box.BoxChild w94 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.hbox23]));
+		w94.Position = 1;
+		w94.Expand = false;
+		w94.Fill = false;
 		// Container child vbox9.Gtk.Box+BoxChild
 		this.BTN_Forums = new global::Gtk.Button ();
 		this.BTN_Forums.CanFocus = true;
@@ -1188,10 +1225,10 @@ public partial class MainWindow
 		this.BTN_Forums.UseUnderline = true;
 		this.BTN_Forums.Label = global::Mono.Unix.Catalog.GetString ("Forums Frugalware");
 		this.vbox9.Add (this.BTN_Forums);
-		global::Gtk.Box.BoxChild w92 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Forums]));
-		w92.Position = 2;
-		w92.Expand = false;
-		w92.Fill = false;
+		global::Gtk.Box.BoxChild w95 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Forums]));
+		w95.Position = 2;
+		w95.Expand = false;
+		w95.Fill = false;
 		// Container child vbox9.Gtk.Box+BoxChild
 		this.BTN_Wiki = new global::Gtk.Button ();
 		this.BTN_Wiki.CanFocus = true;
@@ -1199,10 +1236,10 @@ public partial class MainWindow
 		this.BTN_Wiki.UseUnderline = true;
 		this.BTN_Wiki.Label = global::Mono.Unix.Catalog.GetString ("Wiki Frugalware");
 		this.vbox9.Add (this.BTN_Wiki);
-		global::Gtk.Box.BoxChild w93 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Wiki]));
-		w93.Position = 3;
-		w93.Expand = false;
-		w93.Fill = false;
+		global::Gtk.Box.BoxChild w96 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Wiki]));
+		w96.Position = 3;
+		w96.Expand = false;
+		w96.Fill = false;
 		// Container child vbox9.Gtk.Box+BoxChild
 		this.BTN_Bugs = new global::Gtk.Button ();
 		this.BTN_Bugs.CanFocus = true;
@@ -1210,19 +1247,19 @@ public partial class MainWindow
 		this.BTN_Bugs.UseUnderline = true;
 		this.BTN_Bugs.Label = global::Mono.Unix.Catalog.GetString ("Bugs tracker");
 		this.vbox9.Add (this.BTN_Bugs);
-		global::Gtk.Box.BoxChild w94 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Bugs]));
-		w94.Position = 4;
-		w94.Expand = false;
-		w94.Fill = false;
+		global::Gtk.Box.BoxChild w97 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Bugs]));
+		w97.Position = 4;
+		w97.Expand = false;
+		w97.Fill = false;
 		// Container child vbox9.Gtk.Box+BoxChild
 		this.label8 = new global::Gtk.Label ();
 		this.label8.Name = "label8";
 		this.label8.LabelProp = global::Mono.Unix.Catalog.GetString ("Internationalized Frugalware sites");
 		this.vbox9.Add (this.label8);
-		global::Gtk.Box.BoxChild w95 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.label8]));
-		w95.Position = 5;
-		w95.Expand = false;
-		w95.Fill = false;
+		global::Gtk.Box.BoxChild w98 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.label8]));
+		w98.Position = 5;
+		w98.Expand = false;
+		w98.Fill = false;
 		// Container child vbox9.Gtk.Box+BoxChild
 		this.BTN_French = new global::Gtk.Button ();
 		this.BTN_French.CanFocus = true;
@@ -1230,10 +1267,10 @@ public partial class MainWindow
 		this.BTN_French.UseUnderline = true;
 		this.BTN_French.Label = global::Mono.Unix.Catalog.GetString ("French");
 		this.vbox9.Add (this.BTN_French);
-		global::Gtk.Box.BoxChild w96 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_French]));
-		w96.Position = 6;
-		w96.Expand = false;
-		w96.Fill = false;
+		global::Gtk.Box.BoxChild w99 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_French]));
+		w99.Position = 6;
+		w99.Expand = false;
+		w99.Fill = false;
 		// Container child vbox9.Gtk.Box+BoxChild
 		this.BTN_Danish = new global::Gtk.Button ();
 		this.BTN_Danish.CanFocus = true;
@@ -1241,13 +1278,13 @@ public partial class MainWindow
 		this.BTN_Danish.UseUnderline = true;
 		this.BTN_Danish.Label = global::Mono.Unix.Catalog.GetString ("Danish");
 		this.vbox9.Add (this.BTN_Danish);
-		global::Gtk.Box.BoxChild w97 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Danish]));
-		w97.Position = 7;
-		w97.Expand = false;
-		w97.Fill = false;
+		global::Gtk.Box.BoxChild w100 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Danish]));
+		w100.Position = 7;
+		w100.Expand = false;
+		w100.Fill = false;
 		this.ONG_principal.Add (this.vbox9);
-		global::Gtk.Notebook.NotebookChild w98 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox9]));
-		w98.Position = 7;
+		global::Gtk.Notebook.NotebookChild w101 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox9]));
+		w101.Position = 7;
 		// Notebook tab
 		this.label6 = new global::Gtk.Label ();
 		this.label6.Name = "label6";
@@ -1262,18 +1299,18 @@ public partial class MainWindow
 		this.CBO_TitleNews = global::Gtk.ComboBox.NewText ();
 		this.CBO_TitleNews.Name = "CBO_TitleNews";
 		this.vbox5.Add (this.CBO_TitleNews);
-		global::Gtk.Box.BoxChild w99 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.CBO_TitleNews]));
-		w99.Position = 0;
-		w99.Expand = false;
-		w99.Fill = false;
+		global::Gtk.Box.BoxChild w102 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.CBO_TitleNews]));
+		w102.Position = 0;
+		w102.Expand = false;
+		w102.Fill = false;
 		// Container child vbox5.Gtk.Box+BoxChild
 		this.LIB_Titre = new global::Gtk.Label ();
 		this.LIB_Titre.Name = "LIB_Titre";
 		this.vbox5.Add (this.LIB_Titre);
-		global::Gtk.Box.BoxChild w100 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.LIB_Titre]));
-		w100.Position = 1;
-		w100.Expand = false;
-		w100.Fill = false;
+		global::Gtk.Box.BoxChild w103 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.LIB_Titre]));
+		w103.Position = 1;
+		w103.Expand = false;
+		w103.Fill = false;
 		// Container child vbox5.Gtk.Box+BoxChild
 		this.BTN_Link = new global::Gtk.Button ();
 		this.BTN_Link.CanFocus = true;
@@ -1281,13 +1318,13 @@ public partial class MainWindow
 		this.BTN_Link.UseUnderline = true;
 		this.BTN_Link.Label = global::Mono.Unix.Catalog.GetString ("Link");
 		this.vbox5.Add (this.BTN_Link);
-		global::Gtk.Box.BoxChild w101 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.BTN_Link]));
-		w101.Position = 3;
-		w101.Expand = false;
-		w101.Fill = false;
+		global::Gtk.Box.BoxChild w104 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.BTN_Link]));
+		w104.Position = 3;
+		w104.Expand = false;
+		w104.Fill = false;
 		this.ONG_principal.Add (this.vbox5);
-		global::Gtk.Notebook.NotebookChild w102 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox5]));
-		w102.Position = 8;
+		global::Gtk.Notebook.NotebookChild w105 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox5]));
+		w105.Position = 8;
 		// Notebook tab
 		this.LIB_News = new global::Gtk.Label ();
 		this.LIB_News.Name = "LIB_News";
@@ -1306,10 +1343,10 @@ public partial class MainWindow
 		this.INT_CheckStartup.DrawIndicator = true;
 		this.INT_CheckStartup.UseUnderline = true;
 		this.vbox8.Add (this.INT_CheckStartup);
-		global::Gtk.Box.BoxChild w103 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_CheckStartup]));
-		w103.Position = 0;
-		w103.Expand = false;
-		w103.Fill = false;
+		global::Gtk.Box.BoxChild w106 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_CheckStartup]));
+		w106.Position = 0;
+		w106.Expand = false;
+		w106.Fill = false;
 		// Container child vbox8.Gtk.Box+BoxChild
 		this.INT_StartWithXSession = new global::Gtk.CheckButton ();
 		this.INT_StartWithXSession.CanFocus = true;
@@ -1319,10 +1356,10 @@ public partial class MainWindow
 		this.INT_StartWithXSession.DrawIndicator = true;
 		this.INT_StartWithXSession.UseUnderline = true;
 		this.vbox8.Add (this.INT_StartWithXSession);
-		global::Gtk.Box.BoxChild w104 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_StartWithXSession]));
-		w104.Position = 1;
-		w104.Expand = false;
-		w104.Fill = false;
+		global::Gtk.Box.BoxChild w107 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_StartWithXSession]));
+		w107.Position = 1;
+		w107.Expand = false;
+		w107.Fill = false;
 		// Container child vbox8.Gtk.Box+BoxChild
 		this.INT_ShowNotif = new global::Gtk.CheckButton ();
 		this.INT_ShowNotif.CanFocus = true;
@@ -1332,10 +1369,10 @@ public partial class MainWindow
 		this.INT_ShowNotif.DrawIndicator = true;
 		this.INT_ShowNotif.UseUnderline = true;
 		this.vbox8.Add (this.INT_ShowNotif);
-		global::Gtk.Box.BoxChild w105 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_ShowNotif]));
-		w105.Position = 2;
-		w105.Expand = false;
-		w105.Fill = false;
+		global::Gtk.Box.BoxChild w108 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_ShowNotif]));
+		w108.Position = 2;
+		w108.Expand = false;
+		w108.Fill = false;
 		// Container child vbox8.Gtk.Box+BoxChild
 		this.INT_ShowSplash = new global::Gtk.CheckButton ();
 		this.INT_ShowSplash.CanFocus = true;
@@ -1345,10 +1382,10 @@ public partial class MainWindow
 		this.INT_ShowSplash.DrawIndicator = true;
 		this.INT_ShowSplash.UseUnderline = true;
 		this.vbox8.Add (this.INT_ShowSplash);
-		global::Gtk.Box.BoxChild w106 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_ShowSplash]));
-		w106.Position = 3;
-		w106.Expand = false;
-		w106.Fill = false;
+		global::Gtk.Box.BoxChild w109 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_ShowSplash]));
+		w109.Position = 3;
+		w109.Expand = false;
+		w109.Fill = false;
 		// Container child vbox8.Gtk.Box+BoxChild
 		this.hbox21 = new global::Gtk.HBox ();
 		this.hbox21.Name = "hbox21";
@@ -1360,18 +1397,18 @@ public partial class MainWindow
 		this.BTN_SaveConf.UseUnderline = true;
 		this.BTN_SaveConf.Label = global::Mono.Unix.Catalog.GetString ("Apply");
 		this.hbox21.Add (this.BTN_SaveConf);
-		global::Gtk.Box.BoxChild w107 = ((global::Gtk.Box.BoxChild)(this.hbox21[this.BTN_SaveConf]));
-		w107.Position = 2;
-		w107.Expand = false;
-		w107.Fill = false;
+		global::Gtk.Box.BoxChild w110 = ((global::Gtk.Box.BoxChild)(this.hbox21[this.BTN_SaveConf]));
+		w110.Position = 2;
+		w110.Expand = false;
+		w110.Fill = false;
 		this.vbox8.Add (this.hbox21);
-		global::Gtk.Box.BoxChild w108 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox21]));
-		w108.Position = 5;
-		w108.Expand = false;
-		w108.Fill = false;
+		global::Gtk.Box.BoxChild w111 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox21]));
+		w111.Position = 5;
+		w111.Expand = false;
+		w111.Fill = false;
 		this.ONG_principal.Add (this.vbox8);
-		global::Gtk.Notebook.NotebookChild w109 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox8]));
-		w109.Position = 9;
+		global::Gtk.Notebook.NotebookChild w112 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.vbox8]));
+		w112.Position = 9;
 		// Notebook tab
 		this.Configuration = new global::Gtk.Label ();
 		this.Configuration.Name = "Configuration";
@@ -1389,8 +1426,8 @@ public partial class MainWindow
 		this.textview2.Name = "textview2";
 		this.GtkScrolledWindow2.Add (this.textview2);
 		this.ONG_principal.Add (this.GtkScrolledWindow2);
-		global::Gtk.Notebook.NotebookChild w111 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
-		w111.Position = 10;
+		global::Gtk.Notebook.NotebookChild w114 = ((global::Gtk.Notebook.NotebookChild)(this.ONG_principal[this.GtkScrolledWindow2]));
+		w114.Position = 10;
 		// Notebook tab
 		this.label9 = new global::Gtk.Label ();
 		this.label9.Name = "label9";
@@ -1438,6 +1475,8 @@ public partial class MainWindow
 		this.INT_KDM.Clicked += new global::System.EventHandler (this.OnINTKDMClicked);
 		this.BTN_LoginManager.Clicked += new global::System.EventHandler (this.OnBTNLoginManagerClicked);
 		this.BTN_Irc.Clicked += new global::System.EventHandler (this.OnBTNIrcClicked);
+		this.BTN_Irc1.Clicked += new global::System.EventHandler (this.OnBTNIrc1Clicked);
+		this.BTN_Irc2.Clicked += new global::System.EventHandler (this.OnBTNIrc2Clicked);
 		this.BTN_Forums.Clicked += new global::System.EventHandler (this.OnBTNForumsClicked);
 		this.BTN_Wiki.Clicked += new global::System.EventHandler (this.OnBTNWikiClicked);
 		this.BTN_Bugs.Clicked += new global::System.EventHandler (this.OnBTNBugsClicked);

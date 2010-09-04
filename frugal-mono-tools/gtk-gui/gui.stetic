@@ -27,7 +27,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">0</property>
+        <property name="CurrentPage">7</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -1325,13 +1325,57 @@ irc : irc.freenode.net channel #frugalware</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="BTN_Irc">
+              <widget class="Gtk.HBox" id="hbox23">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Start IRC client</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBTNIrcClicked" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Irc">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Join #frugalware</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNIrcClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Irc1">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Join #frugalware.fr</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNIrc1Clicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Irc2">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Join #frugalware.hu</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNIrc2Clicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">1</property>

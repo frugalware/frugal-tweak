@@ -850,9 +850,11 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNIrcClicked (object sender, System.EventArgs e)
 	{
-		Outils.Excecute("python","/usr/bin/PyFrugalVTE python /usr/bin/PyFrugalIRC",false);		
+			_joinIrc("frugalware");
 	}
-	
+	private void _joinIrc(string channel){
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE python /usr/bin/PyFrugalIRC " +channel,false);		
+	}
 	protected virtual void OnBTNForumsClicked (object sender, System.EventArgs e)
 	{
 		WebkitBrowser browser = new WebkitBrowser("http://forums.frugalware.org");
@@ -940,6 +942,18 @@ public partial class MainWindow : Gtk.Window
 			Console.WriteLine(exe.Message);
 		}
 	}
+	
+	protected virtual void OnBTNIrc1Clicked (object sender, System.EventArgs e)
+	{
+		_joinIrc("frugalware.fr");
+	}
+	
+	protected virtual void OnBTNIrc2Clicked (object sender, System.EventArgs e)
+	{
+		_joinIrc("frugalware.hu");
+	}
+	
+	
 	
 }
 
