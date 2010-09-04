@@ -99,12 +99,12 @@ class CursesUI:
 
 
 class PythonIRC:
-  def __init__(self):
+  def __init__(self,channel="frugalware"):
     self.server = "irc.freenode.net"
     self.port = 6667
     self.nick = "FrugalUser"
     self.realname = "FrugalControlCenter"
-    self.channel = "#frugalware"
+    self.channel = "#"+channel
     self.usercmd = re.compile('^/(\w+)( (.*))?$')
     self.usermsg = re.compile('^(#?\w+)( (.*))?$')
     self.svrmsg = re.compile('^:([a-zA-Z0-9\.]+) [0-9]+ ' + self.nick + '(.*)')
@@ -221,7 +221,7 @@ def usage():
   print("USAGE: " + sys.argv[0] + " server port nick realname")
 
 if (__name__ == "__main__"):
-  client = PythonIRC()
+  client = PythonIRC(channel=sys.argv[1])
   cursesui = CursesUI(client)
   # Event loop happens ... need more graceful way
   cursesui.close()
