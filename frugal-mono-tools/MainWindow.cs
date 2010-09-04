@@ -33,7 +33,7 @@ public partial class MainWindow : Gtk.Window
 	private bool boRoot = false;
 	//pacman-g2
 	// Create a model for treeview pkg
-	ListStore pkgListStore = new Gtk.ListStore (typeof (string));
+	ListStore pkgListStore = new Gtk.ListStore (typeof (string),typeof (string));
 	ListStore UpdateListStore = new Gtk.ListStore (typeof (string));
 	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
 	ListStore serviceListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof (string));
@@ -41,20 +41,16 @@ public partial class MainWindow : Gtk.Window
 	private WebKit.WebView webview=null;
 	Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
 	
-	
-	
 	const string cch_FileLoginManager=@"/etc/sysconfig/desktop";
 	const string cch_FileLayoutXorg=@"/etc/X11/xorg.conf.d/10-evdev.conf";
 	//http://www.go-mono.com/docs/index.aspx?link=T:Gtk.HTML
 	//HTML htl;
 
-	
 	//RSS
 	const string UrlPlanet="http://planet.frugalware.org/feed.php?type=rss";
 	ListStore modelFlux = new ListStore (typeof (string),typeof (int)); 
 	RSS FluxRss;
-	
-	
+		
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
 		this.SetDefaultSize (700, 500);
@@ -124,6 +120,16 @@ public partial class MainWindow : Gtk.Window
 		pkgColumn.PackStart (pkgNameCell, true);
 		treeviewpkg.AppendColumn (pkgColumn);
 		pkgColumn.AddAttribute (pkgNameCell, "text", 0);
+
+		// Create a column for the package group
+		Gtk.TreeViewColumn pkgGroupColumn = new Gtk.TreeViewColumn ();
+		pkgGroupColumn.Title = "Group";
+		Gtk.CellRendererText pkgGroupCell = new Gtk.CellRendererText ();
+		// Add the cell to the column
+		pkgGroupColumn.PackStart (pkgGroupCell, true);
+		treeviewpkg.AppendColumn (pkgGroupColumn);
+		pkgGroupColumn.AddAttribute (pkgGroupCell, "text", 1);
+		
 		
 		int i = 0 ;
 		foreach (string repo in  MainClass.pacmanG2.fwRepo)
@@ -670,7 +676,7 @@ public partial class MainWindow : Gtk.Window
 			foreach (Package package in packages)
 			{
 				// Add some data to the store
-				pkgListStore.AppendValues (package.pkgname+"-"+package.pkgversion);
+				pkgListStore.AppendValues (package.pkgname+"-"+package.pkgversion,package.pkggroup);
 			}
 		}
 		catch{}

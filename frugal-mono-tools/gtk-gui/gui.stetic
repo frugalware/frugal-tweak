@@ -17,7 +17,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="MainWindow" design-size="735 403">
+  <widget class="Gtk.Window" id="MainWindow" design-size="735 414">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Frugalware-tools</property>
     <property name="Icon">resource:frugalmonotools.header.svg</property>
@@ -27,7 +27,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">1</property>
+        <property name="CurrentPage">0</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />

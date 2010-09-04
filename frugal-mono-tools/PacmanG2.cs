@@ -130,9 +130,8 @@ namespace frugalmonotools
 				package.pkgname=extractNamePackage(tmpname);
 				package.pkgversion=extractVersionPackage(tmpname);
 				package.pkgdescription=_getDescription(package.pkgname+"-"+package.pkgversion,repo);
-				package.pkggroup="";
+				package.pkggroup=_getGroup(package.pkgname+"-"+package.pkgversion,repo);
 				package.force=ShouldPackageForce(package.pkgname+"-"+package.pkgversion,repo);
-                //TODO extract group from file desc and extract version from name
 				packages.Add(package);
             }
 			return packages;
@@ -186,7 +185,26 @@ namespace frugalmonotools
 			return content;
 			
 		}
-		
+		private static string _getGroup(string Package,string repo)
+		{
+			string filedesc = ROOT_PATH+PACMANG2_BDD+"/"+repo+"/"+Package+"/desc";
+			string content = Outils.ReadFile(filedesc);
+			string[] lines = content.Split('\n');
+			bool FindDescr = false;
+            foreach (string line in lines)
+            {
+				if(FindDescr)
+				{
+					content=line;
+					break;
+				}
+				if (line=="%GROUPS%") 
+					FindDescr=true;
+				
+			}
+			return content;
+			
+		}
 		public string extractNamePackage(string file)
 		{
 			string[] words = file.Split('-');
