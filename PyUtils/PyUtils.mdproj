@@ -16,7 +16,9 @@
     </Build>
     <Runtime>
       <Runtime Module="main" PythonOptions="">
-        <Interpreter path="/usr/bin/python2.6" ctype="Python26Runtime" />
+        <Interpreter path="/usr/bin/python2.6" ctype="Python26Runtime">
+          <compiler ctype="Python25Compiler" />
+        </Interpreter>
       </Runtime>
     </Runtime>
   </PropertyGroup>
@@ -34,5 +36,29 @@
   <ItemGroup>
     <Compile Include="PyVTE.py" />
     <Compile Include="irc.py" />
+    <Compile Include="fw-interfaces\fw-interfaces.py" />
+    <Compile Include="fw-login-manager\fw-login-manager.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fw-interfaces\Create_archive.sh" />
+    <None Include="fw-interfaces\fw-interfaces" />
+    <None Include="fw-interfaces\fw-interfaces.config" />
+    <None Include="fw-interfaces\fw-interfaces.png" />
+    <None Include="fw-interfaces\Makefile" />
+    <None Include="fw-login-manager\Create_archive.sh" />
+    <None Include="fw-login-manager\fw-login-manager" />
+    <None Include="fw-login-manager\fw-login-manager.png" />
+    <None Include="fw-login-manager\gnomelogo.png" />
+    <None Include="fw-login-manager\kdelogo.png" />
+    <None Include="fw-login-manager\lxdelogo.png" />
+    <None Include="fw-login-manager\Makefile" />
+    <None Include="fw-login-manager\xfcelogo.png" />
+    <None Include="fw-login-manager\xorglogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fw-interfaces\fw-interfaces-gnome.desktop" />
+    <Content Include="fw-interfaces\fw-interfaces-kde.desktop" />
+    <Content Include="fw-login-manager\fw-login-manager-gnome.desktop" />
+    <Content Include="fw-login-manager\fw-login-manager-kde.desktop" />
   </ItemGroup>
 </Project>
