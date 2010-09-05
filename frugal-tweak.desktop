@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=frugal-tweak Applet
-Exec=frugal-tweak --update
+Name=frugalware-tweak Applet
+Exec=frugalware-tweak --update
 Terminal=false
 Type=Application
 Categories=

@@ -91,7 +91,7 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties InternalTargetFrameworkVersion="3.5">
-        <Deployment.LinuxDeployData scriptName="frugal-tweak" />
+        <Deployment.LinuxDeployData scriptName="frugalware-tweak" />
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
