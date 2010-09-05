@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=frugal-mono-tools Applet
-Exec=frugal-mono-tools --update
+Name=frugal-tweak Applet
+Exec=frugal-tweak --update
 Terminal=false
 Type=Application
 Categories=
