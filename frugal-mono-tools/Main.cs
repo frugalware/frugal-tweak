@@ -106,7 +106,7 @@ namespace frugalmonotools
 													WebkitBrowser browser = new WebkitBrowser("http://wiki.frugalware.org");
 													browser.Show(); 
 													};
-				menuItemcc.Activated += delegate { Outils.Excecute("frugal-mono-tools","",false); };
+				menuItemcc.Activated += delegate {  Fen.Visible = !Fen.Visible; };
 				menuItemccRoot.Activated += delegate { Outils.Excecute("sucontrolcenter","",false); };
 				
 				// Quit the application when quit has been clicked.
@@ -114,7 +114,9 @@ namespace frugalmonotools
 				popupMenu.ShowAll();
 				popupMenu.Popup();
 			}
-
+		
+		private static MainWindow Fen ;
+		public static bool StartedAutomatic=false;
 		public static void Main (string[] args)
 		{
 			
@@ -136,7 +138,7 @@ namespace frugalmonotools
 				{
 					System.Threading.Thread.Sleep(1000);
 					ServicesRc.CheckList();
-					MainWindow Fen = new MainWindow();
+					Fen = new MainWindow();
 					Fen.Show();
 				}
 				Gtk.Application.Run ();
@@ -154,6 +156,10 @@ namespace frugalmonotools
 							Gtk.Application.Init();
 							Console.WriteLine("check update packages.");
 							check();
+							ServicesRc.CheckList();
+							Fen = new MainWindow();
+							Fen.Hide();
+							StartedAutomatic=true;
 							aTimer = new System.Timers.Timer();
 		         			aTimer.Elapsed+=new ElapsedEventHandler(checkUpdate);
 		        			// Set the Interval to 1 hour.
@@ -163,7 +169,7 @@ namespace frugalmonotools
 							trayIcon = new StatusIcon(new Pixbuf ("/usr/share/pixmaps/FrugalTools.png"));
 							trayIcon.Visible = true;
 					 		
-							trayIcon.Activate += delegate { Outils.Excecute("frugal-mono-tools","",false); };
+							trayIcon.Activate +=  delegate {  Fen.Visible = !Fen.Visible; };
 
 							// Show a pop up menu when the icon has been right clicked.
 							trayIcon.PopupMenu += OnTrayIconPopup;

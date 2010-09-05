@@ -344,7 +344,11 @@ public partial class MainWindow : Gtk.Window
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
-		Application.Quit ();
+		if(MainClass.StartedAutomatic)
+			this.Hide();
+		else
+			Application.Quit ();
+		
 		a.RetVal = true;
 	}
 	/// <summary>
