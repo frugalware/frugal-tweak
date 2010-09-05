@@ -1,3 +1,9 @@
+2010-09-05  gaetan gourdin  <bouleetbil@frogdev.info>
+	Can configure numlock on startup
+	Added service description
+	Added package group
+	Can join #frugalware.fr #frugalware.hu
+
 2010-09-03  gaetan gourdin  <bouleetbil@frogdev.info>
 	Can manage update packages
 	Can start it as root with a new entry in the systray menu
