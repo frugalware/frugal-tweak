@@ -17,7 +17,7 @@
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="MainWindow" design-size="735 414">
+  <widget class="Gtk.Window" id="MainWindow" design-size="749 414">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Frugalware-tools</property>
     <property name="Icon">resource:frugalmonotools.header.svg</property>
@@ -27,7 +27,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">0</property>
+        <property name="CurrentPage">3</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -509,6 +509,33 @@ ztv</property>
           </packing>
         </child>
         <child>
+          <widget class="Gtk.VBox" id="vbox11">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <placeholder />
+            </child>
+            <child>
+              <placeholder />
+            </child>
+            <child>
+              <placeholder />
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">3</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label5">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">System</property>
+          </widget>
+          <packing>
+            <property name="type">tab</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.VBox" id="vbox2">
             <property name="MemberName" />
             <property name="Spacing">6</property>
@@ -671,7 +698,7 @@ ztv</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">3</property>
+            <property name="Position">4</property>
           </packing>
         </child>
         <child>
@@ -789,11 +816,11 @@ ztv</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">4</property>
+            <property name="Position">5</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="label5">
+          <widget class="Gtk.Label" id="label6">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">Services</property>
           </widget>
@@ -986,7 +1013,7 @@ ztv</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">5</property>
+            <property name="Position">6</property>
           </packing>
         </child>
         <child>
@@ -1294,7 +1321,7 @@ ztv</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">6</property>
+            <property name="Position">7</property>
           </packing>
         </child>
         <child>
@@ -1485,11 +1512,11 @@ irc : irc.freenode.net channel #frugalware</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">7</property>
+            <property name="Position">8</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="label6">
+          <widget class="Gtk.Label" id="label9">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">Support</property>
           </widget>
@@ -1547,7 +1574,7 @@ irc : irc.freenode.net channel #frugalware</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">8</property>
+            <property name="Position">9</property>
           </packing>
         </child>
         <child>
@@ -1669,7 +1696,7 @@ irc : irc.freenode.net channel #frugalware</property>
             </child>
           </widget>
           <packing>
-            <property name="Position">9</property>
+            <property name="Position">10</property>
           </packing>
         </child>
         <child>
@@ -2040,11 +2067,11 @@ Public License instead of this License.
             </child>
           </widget>
           <packing>
-            <property name="Position">10</property>
+            <property name="Position">11</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="label9">
+          <widget class="Gtk.Label" id="label10">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">About</property>
           </widget>
