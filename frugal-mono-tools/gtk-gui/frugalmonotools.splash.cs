@@ -60,7 +60,7 @@ namespace frugalmonotools
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 400;
-			this.DefaultHeight = 347;
+			this.DefaultHeight = 348;
 			this.Show ();
 		}
 	}

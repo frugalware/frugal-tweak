@@ -19,7 +19,7 @@
   </icon-factory>
   <widget class="Gtk.Window" id="MainWindow" design-size="749 414">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">Frugalware-tools</property>
+    <property name="Title" translatable="yes">Frugalware tweak</property>
     <property name="Icon">resource:frugalmonotools.header.svg</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
@@ -2325,7 +2325,7 @@ Public License instead of this License.
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="frugalmonotools.splash" design-size="400 347">
+  <widget class="Gtk.Window" id="frugalmonotools.splash" design-size="400 348">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Frugalware mono tools !</property>
     <property name="Icon">resource:frugalmonotools.header.svg</property>

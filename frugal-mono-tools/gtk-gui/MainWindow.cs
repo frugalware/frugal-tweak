@@ -298,7 +298,7 @@ public partial class MainWindow
 		global::Stetic.Gui.Initialize (this);
 		// Widget MainWindow
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("Frugalware-tools");
+		this.Title = global::Mono.Unix.Catalog.GetString ("Frugalware tweak");
 		this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.header.svg");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
