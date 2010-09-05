@@ -16,13 +16,16 @@
 //  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //  */
 using System;
+using System.IO;
 namespace frugalmonotools
 {
 	public class ConfSystem
 	{
 		const  string cch_hostname =@"/etc/HOSTNAME";
 		const string cch_release=@"/etc/frugalware-release";
+		const string cch_locale=@"/etc/profile.d/lang.sh";
 		private string _hostname;
+		private string _locale;
 		private string _distribution; //can't change it
 		public string GetHostname()
 		{
@@ -45,10 +48,53 @@ namespace frugalmonotools
 		public string GetLocale() {
 			return Mono.Unix.Native.Syscall.getenv("LANG");
 		}
+		public void SetLocale(string locale) {
+			_locale=locale;
+		}
 		public ConfSystem ()
 		{
 			this.SetHostname(Outils.ReadFile(cch_hostname).ToString().Replace("\n",""));
 			this._distribution=Outils.ReadFile(cch_release).ToString().Replace("\n","");
+		}
+		public void Save()
+		{
+			try
+			{
+				//save hostname
+				StreamWriter FileConf = new StreamWriter(cch_hostname);
+				FileConf.WriteLine(this.GetHostname());
+				FileConf.Close();
+				//locale
+				//search export LANG=
+				string content = Outils.ReadFile(cch_locale);
+				string[] lines = content.Split('\n');
+				string[] linesResult = new string[lines.Length];
+				string lineResult;
+				int i =0;
+	            foreach (string line in lines)
+	            {
+					lineResult=line;
+					if (lineResult.IndexOf("export LANG")>=0)
+					{
+						lineResult="export LANG="+_locale;
+					}
+					linesResult[i]=lineResult;
+					i++;
+				}
+				//now save locale
+				FileConf = new StreamWriter(cch_locale);
+				foreach (string line in linesResult)
+	            {
+					FileConf.WriteLine(line);
+				}
+				FileConf.Close();
+				
+			}
+			catch(Exception exe)
+			{
+				Console.WriteLine("Can't save configuration");
+				Console.WriteLine(exe.Message);
+			}
 		}
 	}
 }
