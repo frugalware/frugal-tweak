@@ -42,6 +42,7 @@ public partial class MainWindow : Gtk.Window
 	Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
 	
 	const string cch_FileLoginManager=@"/etc/sysconfig/desktop";
+	const string cch_FileNumLock=@"/etc/sysconfig/numlock";
 	const string cch_FileLayoutXorg=@"/etc/X11/xorg.conf.d/10-evdev.conf";
 	//http://www.go-mono.com/docs/index.aspx?link=T:Gtk.HTML
 	//HTML htl;
@@ -238,6 +239,7 @@ public partial class MainWindow : Gtk.Window
 		
 		//xorg configuration
 		SAI_Layout.Text=this.LayoutXorg();
+		
 		string lspci ="/usr/sbin/lspci";
 		try
 		{
@@ -259,7 +261,7 @@ public partial class MainWindow : Gtk.Window
 		}
 		LIB_Lspci.Text=lspci;
 		LIB_XorgGraphic.Text+= GraphicalDevice()+" driver";
-
+		INT_Numlock.Active=IsNumlockOnStartX();
 		if ((dmesgOutput.IndexOf("TouchPad")>0) && (!MainClass.pacmanG2.IsInstalled("xf86-input-synaptics")))
 			BTN_Synaptics.Visible=true;
 		else
@@ -595,7 +597,28 @@ public partial class MainWindow : Gtk.Window
 			text.Visible=false;
 		}
 	}
-	
+	public bool IsNumlockOnStartX()
+	{
+		try
+		{
+			string str_content=Outils.ReadFile(cch_FileNumLock);
+			string[] lines = str_content.Split('\n');
+			foreach (string line in lines)
+	            {
+					if (line.IndexOf("NUMLOCK_ON")>=0)
+					{
+						if (line.IndexOf("#")!=0)
+						{
+								string[] str_val=line.Split('=');
+								if (int.Parse( str_val[1])==1)
+										return true;
+						}
+					}
+			}
+			return false;
+		}
+		catch{return false;}
+	}
 	public string LayoutXorg()
 	{
 		try
@@ -676,7 +699,19 @@ public partial class MainWindow : Gtk.Window
 		FileX.WriteLine("EndSection");
 
 		FileX.Close();
+		
+		FileX = new StreamWriter(cch_FileNumLock);
+		FileX.WriteLine("# /etc/sysconfig/numlock");
+		FileX.WriteLine("");
+		FileX.WriteLine("# Whether Num Lock is turned on or not in console.");
+		FileX.WriteLine("# Set 1 if you want to turn Num Lock on, or set 0 if you don't want it.");
+		FileX.WriteLine("");
+		string str_EnableNum="0";
+		if(INT_Numlock.Active) str_EnableNum="1";
+		FileX.WriteLine("#NUMLOCK_ON="+str_EnableNum);
+		FileX.Close();
 		}
+		
 		catch{}
 		
 	}
