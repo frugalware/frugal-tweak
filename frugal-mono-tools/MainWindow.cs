@@ -358,6 +358,7 @@ public partial class MainWindow : Gtk.Window
 		SAI_Host.Text=confSystem.GetHostname();
 		SAI_Distribution.Text=confSystem.GetDistribution();
 		SAI_Kernel.Text=confSystem.GetKernel();
+		SAI_Shell.Text=confSystem.GetUserShell();
 			
 		//configuration
 		INT_CheckStartup.Active=MainClass.configuration.Get_CheckUpdate();

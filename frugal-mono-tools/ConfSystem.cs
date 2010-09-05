@@ -39,6 +39,9 @@ namespace frugalmonotools
 		public string GetKernel() {
 			return Outils.getoutput("uname -a");
 		}
+		public string GetUserShell() {
+			return Mono.Unix.Native.Syscall.getusershell();
+		}
 		
 		public ConfSystem ()
 		{
