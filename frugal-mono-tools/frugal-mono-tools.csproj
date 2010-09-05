@@ -103,4 +103,7 @@
     <None Include="TODO" />
     <None Include="LICENSE" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="frugal-tweak.desktop" />
+  </ItemGroup>
 </Project>

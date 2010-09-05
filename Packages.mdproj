@@ -18,7 +18,7 @@
           </Builder>
         </Package>
         <Package name="MSBuild (Visual Studio 2005) Sources">
-          <Builder targetFile="releases\frugal-tweak.tar.gz" format="MonoDevelop.Projects.FileFormat" ctype="SourcesZipPackageBuilder">
+          <Builder targetFile="releases\frugal-py-tweak.tar.gz" format="MonoDevelop.Projects.FileFormat" ctype="SourcesZipPackageBuilder">
             <ChildEntries>
               <SolutionItemReference path="Traduction\Traduction.mdproj" />
               <SolutionItemReference path="PyUtils\PyUtils.mdproj" />
