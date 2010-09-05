@@ -239,6 +239,7 @@ public partial class MainWindow : Gtk.Window
 			BTN_Update.Visible=false;
 			BTN_Setup.Visible = false;
 			BTN_UpdateDatabase.Visible = false;
+			BTN_System.Visible=false;
 		}
 		else
 		{
@@ -1015,6 +1016,14 @@ public partial class MainWindow : Gtk.Window
 	{
 		_joinIrc("frugalware.hu");
 	}
+	
+	protected virtual void OnBTNSystemClicked (object sender, System.EventArgs e)
+	{
+		confSystem.SetHostname(SAI_Host.Text);
+		confSystem.SetLocale(SAI_Locale.Text);
+		confSystem.Save();
+	}
+	
 	
 	
 	
