@@ -29,6 +29,7 @@ public partial class MainWindow : Gtk.Window
 	private string packageSelected="";
 	private string UpdateSelected="";
 	private string ServiceSelected="";
+	private ConfSystem  confSystem = new ConfSystem();
 	
 	private bool boRoot = false;
 	//pacman-g2
@@ -353,6 +354,9 @@ public partial class MainWindow : Gtk.Window
 		}
 		catch{}
 		
+		//system configuration
+		SAI_Host.Text=confSystem.GetHostname();
+			
 		//configuration
 		INT_CheckStartup.Active=MainClass.configuration.Get_CheckUpdate();
 		INT_StartWithXSession.Active=MainClass.configuration.Get_StartWithX();
@@ -576,6 +580,7 @@ public partial class MainWindow : Gtk.Window
 			}
 			FileLogin.Close();
 		}
+		
 		catch{}
 	}
 	/// <summary>

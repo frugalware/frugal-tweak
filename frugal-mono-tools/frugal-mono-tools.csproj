@@ -86,6 +86,7 @@
     <Compile Include="Service.cs" />
     <Compile Include="Services.cs" />
     <Compile Include="WebkitBrowser.cs" />
+    <Compile Include="ConfSystem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
