@@ -36,6 +36,9 @@ namespace frugalmonotools
 		{
 			return _distribution;
 		}
+		public string GetKernel() {
+			return Outils.getoutput("uname -a");
+		}
 		
 		public ConfSystem ()
 		{
