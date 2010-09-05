@@ -27,7 +27,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">2</property>
+        <property name="CurrentPage">8</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -1543,7 +1543,7 @@ irc : irc.freenode.net channel #frugalware</property>
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Link</property>
+                <property name="Label" translatable="yes">http://www.frugalware.org</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OpenLink" />
               </widget>
