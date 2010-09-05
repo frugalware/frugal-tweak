@@ -41,7 +41,6 @@ namespace frugalmonotools
 				if (line.IndexOf("description:")>0)
 				{
 					if (Debug.ModeDebug) Console.WriteLine(line);
-					//FIX ME don't ignore \ for a line
 					return line.Replace("# description: ","");
 				}
 			}

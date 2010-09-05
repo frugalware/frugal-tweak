@@ -126,6 +126,7 @@ namespace frugalmonotools
                 string fileContents = textFile.ReadToEnd();
                 textFile.Close();
 				fileContents = fileContents.Replace("\n\n", "\n");
+				fileContents = fileContents.Replace("\\\n", "");
 				return fileContents;
 			}
 			catch
