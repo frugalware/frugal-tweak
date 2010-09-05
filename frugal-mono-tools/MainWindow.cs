@@ -33,7 +33,7 @@ public partial class MainWindow : Gtk.Window
 	private bool boRoot = false;
 	//pacman-g2
 	// Create a model for treeview pkg
-	ListStore pkgListStore = new Gtk.ListStore (typeof (string),typeof (string));
+	ListStore pkgListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof(string));
 	ListStore UpdateListStore = new Gtk.ListStore (typeof (string));
 	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
 	ListStore serviceListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof (string),typeof (string));
@@ -139,6 +139,13 @@ public partial class MainWindow : Gtk.Window
 		treeviewpkg.AppendColumn (pkgGroupColumn);
 		pkgGroupColumn.AddAttribute (pkgGroupCell, "text", 1);
 		
+		Gtk.TreeViewColumn ColumnPkgDesc = new Gtk.TreeViewColumn ();
+		ColumnPkgDesc.Title = "Description";
+		Gtk.CellRendererText PkgDescCell = new Gtk.CellRendererText ();
+		// Add the cell to the column
+		ColumnPkgDesc.PackStart (PkgDescCell, true);
+		treeviewpkg.AppendColumn (ColumnPkgDesc);
+		ColumnPkgDesc.AddAttribute (PkgDescCell, "text", 2);
 		
 		int i = 0 ;
 		foreach (string repo in  MainClass.pacmanG2.fwRepo)
@@ -724,7 +731,7 @@ public partial class MainWindow : Gtk.Window
 			foreach (Package package in packages)
 			{
 				// Add some data to the store
-				pkgListStore.AppendValues (package.pkgname+"-"+package.pkgversion,package.pkggroup);
+				pkgListStore.AppendValues (package.pkgname+"-"+package.pkgversion,package.pkggroup,package.pkgdescription);
 			}
 		}
 		catch{}
@@ -767,7 +774,6 @@ public partial class MainWindow : Gtk.Window
 				 if (((TreeSelection)o).GetSelected(out model, out iter))
 		        {
 		            string T =(string)model.GetValue (iter, 0);
-					LIB_Descr.Text=PacmanG2.SearchDescription(T,MainClass.pacmanG2.repoSelected);
 					T=MainClass.pacmanG2.extractNamePackage(T);
 					packageSelected=T;
 					if(boRoot)
