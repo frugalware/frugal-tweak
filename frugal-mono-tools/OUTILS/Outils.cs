@@ -45,9 +45,15 @@ namespace frugalmonotools
 					string output = proc.StandardOutput.ReadToEnd().TrimEnd();
 					string error = proc.StandardError.ReadToEnd().TrimEnd();
 					if( output.Equals( "" ) || output.Equals( " " ) )
+					{
+						if (Debug.ModeDebug) Console.WriteLine(error);
 						return error;
-					else
+					}
+						else
+					{
+						if(Debug.ModeDebug) Console.WriteLine(output);
 						return output;
+					}
 				}
 			}
 			catch( System.ComponentModel.Win32Exception w32e )

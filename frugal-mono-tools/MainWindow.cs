@@ -36,7 +36,7 @@ public partial class MainWindow : Gtk.Window
 	ListStore pkgListStore = new Gtk.ListStore (typeof (string),typeof (string));
 	ListStore UpdateListStore = new Gtk.ListStore (typeof (string));
 	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
-	ListStore serviceListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof (string));
+	ListStore serviceListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof (string),typeof (string));
 	//webkit engine
 	private WebKit.WebView webview=null;
 	Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
@@ -86,6 +86,14 @@ public partial class MainWindow : Gtk.Window
 		ColumnServiceOnBoot.PackStart (ServiceOnBootCell, true);
 		TREE_Services.AppendColumn (ColumnServiceOnBoot);
 		ColumnServiceOnBoot.AddAttribute (ServiceOnBootCell, "text", 2);
+		
+		Gtk.TreeViewColumn ColumnServiceDesc = new Gtk.TreeViewColumn ();
+		ColumnServiceDesc.Title = "Description";
+		Gtk.CellRendererText ServiceDescCell = new Gtk.CellRendererText ();
+		// Add the cell to the column
+		ColumnServiceDesc.PackStart (ServiceDescCell, true);
+		TREE_Services.AppendColumn (ColumnServiceDesc);
+		ColumnServiceDesc.AddAttribute (ServiceDescCell, "text", 3);
 	
 		foreach(Service service in ServicesRc.Services)
 		{
@@ -93,7 +101,7 @@ public partial class MainWindow : Gtk.Window
 			if (!service.IsStarted()) Etat="No";
 			string OnBoot = "yes";
 			if (!service.IsStartedOnBoot()) OnBoot = "No";
-			serviceListStore.AppendValues(service.Get_Name(),Etat,OnBoot);             
+			serviceListStore.AppendValues(service.Get_Name(),Etat,OnBoot,service.GetDescription());             
 		}
 		TREE_Services.Model=serviceListStore;
 		// Event on treeview
@@ -175,7 +183,8 @@ public partial class MainWindow : Gtk.Window
 			BTN_Setup.Visible=true;
 			LIB_Setup.Visible=false;
 		}
-		string dmesgOutput=Outils.getoutput("dmesg");
+	
+		string dmesgOutput=Outils.ReadFile( "/var/log/syslog");//Outils.getoutput("/bin/dmesg");
 		if(dmesgOutput.IndexOf("lirc")>0)
 		{
 			if (!MainClass.pacmanG2.IsInstalled("lirc"))
@@ -250,8 +259,8 @@ public partial class MainWindow : Gtk.Window
 		}
 		LIB_Lspci.Text=lspci;
 		LIB_XorgGraphic.Text+= GraphicalDevice()+" driver";
-		string touchpad=Outils.getoutput("dmesg");
-		if ((touchpad.IndexOf("TouchPad")>0) && (!MainClass.pacmanG2.IsInstalled("xf86-input-synaptics")))
+
+		if ((dmesgOutput.IndexOf("TouchPad")>0) && (!MainClass.pacmanG2.IsInstalled("xf86-input-synaptics")))
 			BTN_Synaptics.Visible=true;
 		else
 			BTN_Synaptics.Visible=false;

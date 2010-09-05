@@ -31,8 +31,25 @@ namespace frugalmonotools
 		{
 			_name=name;
 		}
+		public string GetDescription()
+		{
+			string filedesc = @"/etc/rc.d/rc."+this.Get_Name();
+			string content = Outils.ReadFile(filedesc);
+			string[] lines = content.Split('\n');
+			foreach (string line in lines)
+            {
+				if (line.IndexOf("description:")>0)
+				{
+					if (Debug.ModeDebug) Console.WriteLine(line);
+					//FIX ME don't ignore \ for a line
+					return line.Replace("# description: ","");
+				}
+			}
+			return "";
+		}
 		public bool IsStarted()
 		{
+			if(Debug.ModeDebug) Console.WriteLine(this.Get_Name());
 			try
 			{
 				string strSatus=Outils.getoutput("/sbin/service "+this.Get_Name()+" status");
