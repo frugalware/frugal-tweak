@@ -21,7 +21,9 @@ namespace frugalmonotools
 	public class ConfSystem
 	{
 		const  string cch_hostname =@"/etc/HOSTNAME";
+		const string cch_release=@"/etc/frugalware-release";
 		private string _hostname;
+		private string _distribution; //can't change it
 		public string GetHostname()
 		{
 			return _hostname;
@@ -30,9 +32,15 @@ namespace frugalmonotools
 		{
 			this._hostname=hostname;
 		}
+		public string GetDistribution()
+		{
+			return _distribution;
+		}
+		
 		public ConfSystem ()
 		{
 			this.SetHostname(Outils.ReadFile(cch_hostname).ToString().Replace("\n",""));
+			this._distribution=Outils.ReadFile(cch_release).ToString().Replace("\n","");
 		}
 	}
 }
