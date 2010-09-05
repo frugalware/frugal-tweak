@@ -41,8 +41,10 @@ namespace frugalmonotools
 		}
 		public string GetUserShell() {
 			return Mono.Unix.Native.Syscall.getusershell();
+		}	
+		public string GetLocale() {
+			return Mono.Unix.Native.Syscall.getenv("LANG");
 		}
-		
 		public ConfSystem ()
 		{
 			this.SetHostname(Outils.ReadFile(cch_hostname).ToString().Replace("\n",""));
