@@ -28,6 +28,6 @@
         </Package>
       </Packages>
     </Packages>
-    <ReleaseVersion>0.1.4.1</ReleaseVersion>
+    <ReleaseVersion>0.1.5</ReleaseVersion>
   </PropertyGroup>
 </Project>
