@@ -149,15 +149,16 @@ public partial class MainWindow : Gtk.Window
 		ColumnPkgDesc.AddAttribute (PkgDescCell, "text", 2);
 		
 		int i = 0 ;
+		TreeIter iter =new TreeIter();
 		foreach (string repo in  MainClass.pacmanG2.fwRepo)
 		{
 			string strRepo=repo;
 			if (strRepo=="local") strRepo ="Installed";
-			modelRepoList.AppendValues(strRepo,i);
+			iter = modelRepoList.AppendValues(strRepo,i);
 			i++;
 		}
 		CBO_Repo.Model=modelRepoList;
-		
+		CBO_Repo.SetActiveIter(iter); 
 		// Assign the model to the TreeView
 		treeviewpkg.Model = pkgListStore;
 		
