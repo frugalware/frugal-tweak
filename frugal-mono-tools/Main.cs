@@ -57,11 +57,6 @@ namespace frugalmonotools
 
 			if (Update.CheckUpdate())
 			{
-				if(Fen!=null)
-				{
-					//update list to treeview
-					Fen.UpdateToTreeview();
-				}
 				if(Debug.ModeDebug)
 				{
 					foreach (packageCheck pkg in Update.UpdatePkg)
@@ -73,6 +68,11 @@ namespace frugalmonotools
 				if(configuration.Get_ShowNotif()) notif.ShowMessage("Frugalware","Some update are available.");
 				Console.WriteLine("Some packages can be updated.");
 			}
+			if(Fen!=null)
+				{
+					//update list to treeview
+					Fen.UpdateToTreeview();
+				}
 		}
 		private static splash win;
 		private static StatusIcon trayIcon;
