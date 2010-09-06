@@ -1,3 +1,8 @@
+2010-09-06  gaetan gourdin  <bouleetbil@frogdev.info>
+	Added system page
+	Some clean up
+	Update treeview when package update are available
+
 2010-09-05  gaetan gourdin  <bouleetbil@frogdev.info>
 	Can configure numlock on startup
 	Added service description
