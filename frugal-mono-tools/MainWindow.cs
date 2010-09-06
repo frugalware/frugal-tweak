@@ -739,7 +739,10 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNSearchClicked (object sender, System.EventArgs e)
 	{
-		try{
+		_searchPackage;
+	}
+	private void _searchPackage(){
+	try{
 			List<Package> packages=MainClass.pacmanG2.Search(SAI_pkg.Text,MainClass.pacmanG2.repoSelected,true);
 			pkgListStore.Clear();
 			foreach (Package package in packages)
@@ -751,7 +754,6 @@ public partial class MainWindow : Gtk.Window
 		}
 		catch{}
 	}
-	
 	protected virtual void selectRepo (object sender, System.EventArgs e)
 	{
 		TreeIter iter;
@@ -844,13 +846,17 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnBTNUninstallClicked (object sender, System.EventArgs e)
 	{
 		if(packageSelected=="") return;
-		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Rc "+packageSelected,false);	
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Rc "+packageSelected,true);	
+		//refresh list
+		_searchPackage();
 	}
 	
 	protected virtual void OnBTNInstallClicked (object sender, System.EventArgs e)
 	{
 		if(packageSelected=="") return;
-		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,false);	
+		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,true);
+		//refresh list
+		_searchPackage();
 	}
 	
 	protected virtual void OnBTNUpdateClicked (object sender, System.EventArgs e)
