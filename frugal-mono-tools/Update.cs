@@ -49,6 +49,7 @@ namespace frugalmonotools
 						if(string.Compare(pkginstall.packageversion,pkg.packageversion)<0) 
 							AddIt =true;
 						//check force read info only here for startup more quickly
+						
 						if ((PacmanG2.ShouldPackageForce(pkg.packagename+"-"+pkg.packageversion,pkg.repo)) && 
 						    (pkginstall.packageversion!=pkg.packageversion))
 							AddIt=true;
@@ -98,8 +99,8 @@ namespace frugalmonotools
 				{
 					//for repo local we can added all packages
 					packageCheck pkgrepo = new packageCheck();
-					pkgrepo.packagename=package.pkgname;
-					pkgrepo.packageversion=package.pkgversion;
+					pkgrepo.packagename=package.GetPkgname();
+					pkgrepo.packageversion=package.GetPkgversion();
 					pkgs.Add(pkgrepo);
 				}
 				else
@@ -107,8 +108,8 @@ namespace frugalmonotools
 					bool AddIt = true;
 					foreach (string pkgignore in MainClass.pacmanG2.ignorePkg)
 					{
-						if(pkgignore==MainClass.pacmanG2.extractNamePackage(package.pkgname)) AddIt =false;
-						if(MainClass.pacmanG2.extractNamePackage(pkgignore)==MainClass.pacmanG2.extractNamePackage(package.pkgname)) AddIt =false;
+						if(pkgignore==MainClass.pacmanG2.extractNamePackage(package.GetPkgname())) AddIt =false;
+						if(MainClass.pacmanG2.extractNamePackage(pkgignore)==MainClass.pacmanG2.extractNamePackage(package.GetPkgname())) AddIt =false;
 						
 					}
 					
@@ -117,7 +118,7 @@ namespace frugalmonotools
 					bool findIt = false;
 					foreach (packageCheck pkg in pkgs)
 					{
-						if(package.pkgname==pkg.packagename)
+						if(package.GetPkgname()==pkg.packagename)
 						{
 							findIt=true;
 							break;
@@ -126,8 +127,8 @@ namespace frugalmonotools
 					if((!findIt)&&(AddIt)) 
 					{
 						packageCheck pkgrepo = new packageCheck();
-						pkgrepo.packagename=package.pkgname;
-						pkgrepo.packageversion=package.pkgversion;
+						pkgrepo.packagename=package.GetPkgname();
+						pkgrepo.packageversion=package.GetPkgversion();
 						pkgrepo.repo=repo;
 						pkgs.Add(pkgrepo);
 					}

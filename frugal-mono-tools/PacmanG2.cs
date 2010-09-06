@@ -28,18 +28,114 @@ namespace frugalmonotools
 	
 	public class Package
 	{
-			public string pkgname;
-			public string pkgversion;
-			public string pkggroup;
-			public string pkgdescription;
-			public bool force;
+			private string _contentDesc="";
+			private string _repo;
+			public string GetRepo()
+			{
+				return _repo;
+			}
+			public void SetRepo(string repo)
+			{
+				_repo=repo;
+			}
+			private string _pkgname;
+			public string GetPkgname()
+			{
+				return _pkgname;
+			}
+			public void SetPkgname(string pkgname)
+			{
+				_pkgname=pkgname;
+			}
+			private string _pkgversion;
+			public string GetPkgversion(){
+				return _pkgversion;
+			}
+			public void SetPkgverion(string version)
+			{
+				_pkgversion=version;
+			}
 			
+		
+			public Package(){
+			}
+		
+			private void _setContent()
+			{
+				if(_contentDesc!="") return;
+				string filedesc = PacmanG2.ROOT_PATH+PacmanG2.PACMANG2_BDD+"/"+this.GetRepo()+"/"+this.GetPkgname()+
+										"-"+this.GetPkgversion()+"/desc";
+				if (File.Exists(filedesc))
+				{
+					_contentDesc=Outils.ReadFile(filedesc);
+				}
+				else
+				{
+					filedesc = PacmanG2.ROOT_PATH+PacmanG2.PACMANG2_BDD+"/"+this.GetRepo()+"/"+this.GetPkgname()+"/desc";
+					_contentDesc=Outils.ReadFile(filedesc);
+				}
+			}
+			public string GetDescription()
+			{
+				_setContent();
+				if(_contentDesc=="") return "";
+				string content="";
+				string[] lines = _contentDesc.Split('\n');
+				bool FindDescr = false;
+	            foreach (string line in lines)
+	            {
+					if(FindDescr)
+					{
+						content=line;
+						break;
+					}
+					if (line=="%DESC%") 
+						FindDescr=true;
+					
+				}
+				return content;	
+			}
+		
+		public bool ShouldForce()
+		{
+			_setContent();
+			if(_contentDesc=="") return false;
+			string[] lines = _contentDesc.Split('\n');
+			foreach (string line in lines)
+            {
+				if (line=="%FORCE%") 
+					return true;
+			}
+			return false;
+		}
+		
+		public string GetGroup()
+		{
+			_setContent();
+			string content="";
+			if(_contentDesc=="") return "";
+			string[] lines = _contentDesc.Split('\n');
+			bool FindDescr = false;
+            foreach (string line in lines)
+            {
+				if(FindDescr)
+				{
+					content=line;
+					break;
+				}
+				if (line=="%GROUPS%") 
+					FindDescr=true;
+				
+			}
+			return content;
+			
+		}
 	}
 	public class PacmanG2
 	{
 		//const
-		private const string ROOT_PATH="/";
-		private const string PACMANG2_BDD="var/lib/pacman-g2/";
+		public static  string ROOT_PATH="/";
+		public static string PACMANG2_BDD="var/lib/pacman-g2/";
 		private const string PACMANG2_LOCAL="local/";
 		private const int pm_errno = -1;
 		private const string cch_pacmanconf ="/etc/pacman-g2.conf";
@@ -120,39 +216,22 @@ namespace frugalmonotools
 			string dirpkg=ROOT_PATH+PACMANG2_BDD+repo+"/";
 			string[] dirs= Directory.GetDirectories(dirpkg, "*"+strSearch+"*");
 			if (repo=="") return null;
-			
-		 	//Console.WriteLine("The number of packages is {0}.", dirs.Length);
+		
             foreach (string dir in dirs) 
             {
 				Package package = new Package();
 				
 				string tmpname=dir.Replace(dirpkg,"");
-				package.pkgname=extractNamePackage(tmpname);
-				package.pkgversion=extractVersionPackage(tmpname);
-				package.pkgdescription=_getDescription(package.pkgname+"-"+package.pkgversion,repo);
+				package.SetPkgname(extractNamePackage(tmpname));
+				package.SetPkgverion(extractVersionPackage(tmpname));
+				package.SetRepo(repo);
+				/*package.pkgdescription=_getDescription(package.pkgname+"-"+package.pkgversion,repo);
 				package.pkggroup=_getGroup(package.pkgname+"-"+package.pkgversion,repo);
-				package.force=ShouldPackageForce(package.pkgname+"-"+package.pkgversion,repo);
+				package.force=ShouldPackageForce(package.pkgname+"-"+package.pkgversion,repo);*/
 				packages.Add(package);
             }
 			return packages;
 		}
-		public static string SearchDescription(string Package,string repo)
-		{
-			return _getDescription(Package, repo);
-			
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="Package">
-		/// A <see cref="PAckage contain version !"/>
-		/// </param>
-		/// <param name="repo">
-		/// A <see cref="System.String"/>
-		/// </param>
-		/// <returns>
-		/// A <see cref="System.Boolean"/>
-		/// </returns>
 		public static bool ShouldPackageForce(string Package,string repo)
 		{
 			string filedesc = ROOT_PATH+PACMANG2_BDD+"/"+repo+"/"+Package+"/desc";
@@ -165,46 +244,13 @@ namespace frugalmonotools
 			}
 			return false;
 		}
-		private static string _getDescription(string Package,string repo)
+	/*	public static string SearchDescription(string Package,string repo)
 		{
-			string filedesc = ROOT_PATH+PACMANG2_BDD+"/"+repo+"/"+Package+"/desc";
-			string content = Outils.ReadFile(filedesc);
-			string[] lines = content.Split('\n');
-			bool FindDescr = false;
-            foreach (string line in lines)
-            {
-				if(FindDescr)
-				{
-					content=line;
-					break;
-				}
-				if (line=="%DESC%") 
-					FindDescr=true;
-				
-			}
-			return content;
+			return _getDescription(Package, repo);
 			
-		}
-		private static string _getGroup(string Package,string repo)
-		{
-			string filedesc = ROOT_PATH+PACMANG2_BDD+"/"+repo+"/"+Package+"/desc";
-			string content = Outils.ReadFile(filedesc);
-			string[] lines = content.Split('\n');
-			bool FindDescr = false;
-            foreach (string line in lines)
-            {
-				if(FindDescr)
-				{
-					content=line;
-					break;
-				}
-				if (line=="%GROUPS%") 
-					FindDescr=true;
-				
-			}
-			return content;
-			
-		}
+		}*/
+		
+		
 		public string extractNamePackage(string file)
 		{
 			string[] words = file.Split('-');

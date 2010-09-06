@@ -367,6 +367,9 @@ public partial class MainWindow : Gtk.Window
 		INT_StartWithXSession.Active=MainClass.configuration.Get_StartWithX();
 		INT_ShowNotif.Active=MainClass.configuration.Get_ShowNotif();
 		INT_ShowSplash.Active=MainClass.configuration.Get_ShowSplash();
+		
+		//update
+		UpdateToTreeview();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -741,7 +744,8 @@ public partial class MainWindow : Gtk.Window
 			foreach (Package package in packages)
 			{
 				// Add some data to the store
-				pkgListStore.AppendValues (package.pkgname+"-"+package.pkgversion,package.pkggroup,package.pkgdescription);
+				pkgListStore.AppendValues (package.GetPkgname()+"-"+package.GetPkgversion(),package.GetGroup()
+				                           	,package.GetDescription());
 			}
 		}
 		catch{}
@@ -953,17 +957,18 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNRefreshClicked (object sender, System.EventArgs e)
 	{
-		UpdateListStore.Clear();
 		Update.CheckUpdate();
-	
+		UpdateToTreeview();
+	}
+	public void UpdateToTreeview()
+	{
+		UpdateListStore.Clear();
 		foreach (packageCheck package in Update.UpdatePkg)
 		{
 			// Add some data to the store
 			UpdateListStore.AppendValues (package.packagename+"-"+package.packageversion);
 		}
-	
 	}
-	
 	protected virtual void OnBTNUpdateDatabaseClicked (object sender, System.EventArgs e)
 	{
 		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,false);	

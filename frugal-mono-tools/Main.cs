@@ -57,6 +57,11 @@ namespace frugalmonotools
 
 			if (Update.CheckUpdate())
 			{
+				if(Fen!=null)
+				{
+					//update list to treeview
+					Fen.UpdateToTreeview();
+				}
 				if(Debug.ModeDebug)
 				{
 					foreach (packageCheck pkg in Update.UpdatePkg)
@@ -64,6 +69,7 @@ namespace frugalmonotools
 						Console.WriteLine(pkg.packagename+" can be updated to "+pkg.packageversion);
 					}
 				}
+
 				if(configuration.Get_ShowNotif()) notif.ShowMessage("Frugalware","Some update are available.");
 				Console.WriteLine("Some packages can be updated.");
 			}
@@ -163,7 +169,7 @@ namespace frugalmonotools
 							aTimer = new System.Timers.Timer();
 		         			aTimer.Elapsed+=new ElapsedEventHandler(checkUpdate);
 		        			// Set the Interval to 1 hour.
-		        			aTimer.Interval=3600000;
+		        			aTimer.Interval=6000;//3600000;
 		         			aTimer.Enabled=true;
 							// Creation of the Icon
 							trayIcon = new StatusIcon(new Pixbuf ("/usr/share/pixmaps/FrugalTools.png"));
