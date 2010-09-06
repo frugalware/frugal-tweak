@@ -407,6 +407,7 @@ public partial class MainWindow : Gtk.Window
 	{
 		//RSS
 		try{
+			int count = modelFlux.Data.Count;
 			modelFlux.Clear();
 			FluxRss = new RSS(UrlPlanet);
 			int i = 0;
@@ -416,6 +417,14 @@ public partial class MainWindow : Gtk.Window
 				string titre=n.rss_title;
 				modelFlux.AppendValues(titre,i);
 				i++;
+			}
+			if(modelFlux.Data.Count!=count)
+			{
+				if(MainClass.configuration.Get_ShowNotif()) 
+				{
+					IconSummaryBody notif= new IconSummaryBody();		
+					notif.ShowMessage("Frugalware","New RSS entry");
+				}
 			}
 		}
 		catch{}		
