@@ -169,7 +169,7 @@ namespace frugalmonotools
 							aTimer = new System.Timers.Timer();
 		         			aTimer.Elapsed+=new ElapsedEventHandler(checkUpdate);
 		        			// Set the Interval to 1 hour.
-		        			aTimer.Interval=6000;//3600000;
+		        			aTimer.Interval=3600000;
 		         			aTimer.Enabled=true;
 							// Creation of the Icon
 							trayIcon = new StatusIcon(new Pixbuf ("/usr/share/pixmaps/FrugalTools.png"));
