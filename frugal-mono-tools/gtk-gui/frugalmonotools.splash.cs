@@ -10,15 +10,13 @@ namespace frugalmonotools
 
 		private global::Gtk.Image LOGO;
 
-		private global::Gtk.Label label1;
-
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
 			// Widget frugalmonotools.splash
 			this.Name = "frugalmonotools.splash";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Frugalware mono tools !");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.header.svg");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.header.svg");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(4));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.BorderWidth = ((uint)(2));
@@ -35,26 +33,17 @@ namespace frugalmonotools
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.LOGO = new global::Gtk.Image ();
 			this.LOGO.Name = "LOGO";
-			this.LOGO.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.splash.png");
+			this.LOGO.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.splash.png");
 			this.vbox1.Add (this.LOGO);
 			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.LOGO]));
 			w1.Position = 0;
 			w1.Expand = false;
 			w1.Fill = false;
-			// Container child vbox1.Gtk.Box+BoxChild
-			this.label1 = new global::Gtk.Label ();
-			this.label1.Name = "label1";
-			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Tools written in C# to configure Frugalware !");
-			this.vbox1.Add (this.label1);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.label1]));
+			this.hbox1.Add (this.vbox1);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox1]));
 			w2.Position = 1;
 			w2.Expand = false;
 			w2.Fill = false;
-			this.hbox1.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox1]));
-			w3.Position = 1;
-			w3.Expand = false;
-			w3.Fill = false;
 			this.Add (this.hbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

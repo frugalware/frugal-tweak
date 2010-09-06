@@ -13,21 +13,21 @@
   <icon-factory>
     <icon-set id="iconeFwCC">
       <source>
-        <property name="Image">resource:frugalmonotools.header.svg</property>
+        <property name="Image">resource:frugalmonotools.Pictures.header.svg</property>
       </source>
     </icon-set>
   </icon-factory>
-  <widget class="Gtk.Window" id="MainWindow" design-size="749 414">
+  <widget class="Gtk.Window" id="MainWindow" design-size="1064 495">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Frugalware tweak</property>
-    <property name="Icon">resource:frugalmonotools.header.svg</property>
+    <property name="Icon">resource:frugalmonotools.Pictures.header.svg</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">3</property>
+        <property name="CurrentPage">7</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -1062,7 +1062,7 @@ ztv</property>
                 <child>
                   <widget class="Gtk.Image" id="image6">
                     <property name="MemberName" />
-                    <property name="Pixbuf">resource:frugalmonotools.fw.png</property>
+                    <property name="Pixbuf">resource:frugalmonotools.Pictures.fw.png</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -1104,7 +1104,7 @@ ztv</property>
                 <child>
                   <widget class="Gtk.Image" id="image7">
                     <property name="MemberName" />
-                    <property name="Pixbuf">resource:frugalmonotools.nmlogo.png</property>
+                    <property name="Pixbuf">resource:frugalmonotools.Pictures.nmlogo.png</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -1155,7 +1155,7 @@ ztv</property>
                 <child>
                   <widget class="Gtk.Image" id="image8">
                     <property name="MemberName" />
-                    <property name="Pixbuf">resource:frugalmonotools.wicdlogo.png</property>
+                    <property name="Pixbuf">resource:frugalmonotools.Pictures.wicdlogo.png</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -1259,7 +1259,7 @@ ztv</property>
                 <child>
                   <widget class="Gtk.Image" id="image1">
                     <property name="MemberName" />
-                    <property name="Pixbuf">resource:frugalmonotools.xorglogo.png</property>
+                    <property name="Pixbuf">resource:frugalmonotools.Pictures.xorglogo.png</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -1310,7 +1310,7 @@ ztv</property>
                 <child>
                   <widget class="Gtk.Image" id="image2">
                     <property name="MemberName" />
-                    <property name="Pixbuf">resource:frugalmonotools.lxdelogo.png</property>
+                    <property name="Pixbuf">resource:frugalmonotools.Pictures.lxdelogo.png</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -1361,7 +1361,7 @@ ztv</property>
                 <child>
                   <widget class="Gtk.Image" id="image3">
                     <property name="MemberName" />
-                    <property name="Pixbuf">resource:frugalmonotools.xfcelogo.png</property>
+                    <property name="Pixbuf">resource:frugalmonotools.Pictures.xfcelogo.png</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -1412,7 +1412,7 @@ ztv</property>
                 <child>
                   <widget class="Gtk.Image" id="image4">
                     <property name="MemberName" />
-                    <property name="Pixbuf">resource:frugalmonotools.gnomelogo.png</property>
+                    <property name="Pixbuf">resource:frugalmonotools.Pictures.gnomelogo.png</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -1463,7 +1463,7 @@ ztv</property>
                 <child>
                   <widget class="Gtk.Image" id="image5">
                     <property name="MemberName" />
-                    <property name="Pixbuf">resource:frugalmonotools.kdelogo.png</property>
+                    <property name="Pixbuf">resource:frugalmonotools.Pictures.kdelogo.png</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -2328,7 +2328,7 @@ Public License instead of this License.
   <widget class="Gtk.Window" id="frugalmonotools.splash" design-size="400 348">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Frugalware mono tools !</property>
-    <property name="Icon">resource:frugalmonotools.header.svg</property>
+    <property name="Icon">resource:frugalmonotools.Pictures.header.svg</property>
     <property name="TypeHint">Splashscreen</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="BorderWidth">2</property>
@@ -2348,7 +2348,7 @@ Public License instead of this License.
             <child>
               <widget class="Gtk.Image" id="LOGO">
                 <property name="MemberName" />
-                <property name="Pixbuf">resource:frugalmonotools.splash.png</property>
+                <property name="Pixbuf">resource:frugalmonotools.Pictures.splash.png</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -2358,16 +2358,7 @@ Public License instead of this License.
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Label" id="label1">
-                <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Tools written in C# to configure Frugalware !</property>
-              </widget>
-              <packing>
-                <property name="Position">1</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
+              <placeholder />
             </child>
             <child>
               <placeholder />

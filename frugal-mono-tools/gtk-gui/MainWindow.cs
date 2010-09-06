@@ -299,13 +299,13 @@ public partial class MainWindow
 		// Widget MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("Frugalware tweak");
-		this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.header.svg");
+		this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.header.svg");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 3;
+		this.ONG_principal.CurrentPage = 7;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -1031,7 +1031,7 @@ public partial class MainWindow
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.image6 = new global::Gtk.Image ();
 		this.image6.Name = "image6";
-		this.image6.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.fw.png");
+		this.image6.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.fw.png");
 		this.hbox1.Add (this.image6);
 		global::Gtk.Box.BoxChild w71 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.image6]));
 		w71.Position = 0;
@@ -1059,7 +1059,7 @@ public partial class MainWindow
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.image7 = new global::Gtk.Image ();
 		this.image7.Name = "image7";
-		this.image7.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.nmlogo.png");
+		this.image7.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.nmlogo.png");
 		this.hbox2.Add (this.image7);
 		global::Gtk.Box.BoxChild w74 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.image7]));
 		w74.Position = 0;
@@ -1096,7 +1096,7 @@ public partial class MainWindow
 		// Container child hbox3.Gtk.Box+BoxChild
 		this.image8 = new global::Gtk.Image ();
 		this.image8.Name = "image8";
-		this.image8.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.wicdlogo.png");
+		this.image8.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.wicdlogo.png");
 		this.hbox3.Add (this.image8);
 		global::Gtk.Box.BoxChild w78 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.image8]));
 		w78.Position = 0;
@@ -1167,7 +1167,7 @@ public partial class MainWindow
 		// Container child hbox5.Gtk.Box+BoxChild
 		this.image1 = new global::Gtk.Image ();
 		this.image1.Name = "image1";
-		this.image1.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.xorglogo.png");
+		this.image1.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.xorglogo.png");
 		this.hbox5.Add (this.image1);
 		global::Gtk.Box.BoxChild w85 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.image1]));
 		w85.Position = 0;
@@ -1204,7 +1204,7 @@ public partial class MainWindow
 		// Container child hbox6.Gtk.Box+BoxChild
 		this.image2 = new global::Gtk.Image ();
 		this.image2.Name = "image2";
-		this.image2.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.lxdelogo.png");
+		this.image2.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.lxdelogo.png");
 		this.hbox6.Add (this.image2);
 		global::Gtk.Box.BoxChild w89 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.image2]));
 		w89.Position = 0;
@@ -1241,7 +1241,7 @@ public partial class MainWindow
 		// Container child hbox7.Gtk.Box+BoxChild
 		this.image3 = new global::Gtk.Image ();
 		this.image3.Name = "image3";
-		this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.xfcelogo.png");
+		this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.xfcelogo.png");
 		this.hbox7.Add (this.image3);
 		global::Gtk.Box.BoxChild w93 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.image3]));
 		w93.Position = 0;
@@ -1278,7 +1278,7 @@ public partial class MainWindow
 		// Container child hbox9.Gtk.Box+BoxChild
 		this.image4 = new global::Gtk.Image ();
 		this.image4.Name = "image4";
-		this.image4.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.gnomelogo.png");
+		this.image4.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.gnomelogo.png");
 		this.hbox9.Add (this.image4);
 		global::Gtk.Box.BoxChild w97 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.image4]));
 		w97.Position = 0;
@@ -1315,7 +1315,7 @@ public partial class MainWindow
 		// Container child hbox10.Gtk.Box+BoxChild
 		this.image5 = new global::Gtk.Image ();
 		this.image5.Name = "image5";
-		this.image5.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.kdelogo.png");
+		this.image5.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.kdelogo.png");
 		this.hbox10.Add (this.image5);
 		global::Gtk.Box.BoxChild w101 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.image5]));
 		w101.Position = 0;
@@ -1650,8 +1650,8 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 749;
-		this.DefaultHeight = 414;
+		this.DefaultWidth = 1064;
+		this.DefaultHeight = 495;
 		this.BTN_Hide.Hide ();
 		this.BTN_Setup.Hide ();
 		this.BTN_ServiceStart.Hide ();

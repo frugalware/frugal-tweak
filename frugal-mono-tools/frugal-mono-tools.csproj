@@ -55,16 +55,16 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="header.svg" />
-    <EmbeddedResource Include="gnomelogo.png" />
-    <EmbeddedResource Include="kdelogo.png" />
-    <EmbeddedResource Include="lxdelogo.png" />
-    <EmbeddedResource Include="xfcelogo.png" />
-    <EmbeddedResource Include="xorglogo.png" />
-    <EmbeddedResource Include="fw.png" />
-    <EmbeddedResource Include="nmlogo.png" />
-    <EmbeddedResource Include="wicdlogo.png" />
-    <EmbeddedResource Include="splash.png" />
+    <EmbeddedResource Include="Pictures\fw.png" />
+    <EmbeddedResource Include="Pictures\gnomelogo.png" />
+    <EmbeddedResource Include="Pictures\header.svg" />
+    <EmbeddedResource Include="Pictures\kdelogo.png" />
+    <EmbeddedResource Include="Pictures\lxdelogo.png" />
+    <EmbeddedResource Include="Pictures\splash.png" />
+    <EmbeddedResource Include="Pictures\nmlogo.png" />
+    <EmbeddedResource Include="Pictures\wicdlogo.png" />
+    <EmbeddedResource Include="Pictures\xfcelogo.png" />
+    <EmbeddedResource Include="Pictures\xorglogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -99,12 +99,14 @@
   <ItemGroup>
     <Folder Include="RSS\" />
     <Folder Include="OUTILS\" />
+    <Folder Include="Pictures\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TODO" />
     <None Include="LICENSE" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="frugal-tweak.desktop" />
+    <Content Include="Data\frugal-tweak.desktop" />
   </ItemGroup>
 </Project>
