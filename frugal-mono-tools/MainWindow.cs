@@ -16,6 +16,7 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 using System;
+using System.Timers;
 using System.Net;
 using System.IO;
 using Gtk;
@@ -58,6 +59,11 @@ public partial class MainWindow : Gtk.Window
 		this.SetDefaultSize (700, 500);
 		Build ();
 		
+		System.Timers.Timer aTimer = new System.Timers.Timer();
+		aTimer.Elapsed+=new ElapsedEventHandler(checkRSS);
+		// Set the Interval to 1 hour.
+		aTimer.Interval=3600000;
+		aTimer.Enabled=true;
 		//graphical debug
 		if ( Debug.ModeDebug && Debug.ModeDebugGraphique)
 		{
@@ -397,7 +403,23 @@ public partial class MainWindow : Gtk.Window
 		Outils.Service("wicd",this.INT_WICD.Active);
 		
 	}
-	
+	private void checkRSS(object source, ElapsedEventArgs e)
+	{
+		//RSS
+		try{
+			modelFlux.Clear();
+			FluxRss = new RSS(UrlPlanet);
+			int i = 0;
+			foreach (nodetype n in FluxRss.Nodes)  
+       		{  
+			
+				string titre=n.rss_title;
+				modelFlux.AppendValues(titre,i);
+				i++;
+			}
+		}
+		catch{}		
+	}
 	protected virtual void SelectItem (object sender, System.EventArgs e)
 	{
 		TreeIter iter;
@@ -739,7 +761,7 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNSearchClicked (object sender, System.EventArgs e)
 	{
-		_searchPackage;
+		_searchPackage();
 	}
 	private void _searchPackage(){
 	try{
