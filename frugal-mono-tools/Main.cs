@@ -135,11 +135,17 @@ namespace frugalmonotools
 		{
 			try{
 					bus = Bus.Session;
-					if (bus.RequestName (DbusName) == RequestNameReply.PrimaryOwner) {
+					if (bus.RequestName (DbusName) == RequestNameReply.PrimaryOwner)
+					{
 						//create a new instance of the object to be exported
 						DbusCom = new DbusObject ();
 						bus.Register (DbusPath, DbusCom);
 						//EXEMPLE : MainClass.DbusCom.Hello("test");
+					}
+					else
+					{
+						//import a remote to a local proxy
+						DbusCom = bus.GetObject<DbusObject> (DbusName, DbusPath);
 					}
 
 			}
