@@ -48,6 +48,7 @@ namespace frugalmonotools
 						if (ignore)
 								ignore=false;
 							else
+								Console.WriteLine("rss"+Node.rss_title);
 								Nodes.Add(Node);
 						break;
 						
@@ -64,6 +65,7 @@ namespace frugalmonotools
 							// Title
 							case "title":
 							Node.rss_title=strLastText;
+							Console.WriteLine(strLastText);
 							break;
 						
 							// Link

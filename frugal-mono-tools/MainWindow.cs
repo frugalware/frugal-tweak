@@ -22,6 +22,7 @@ using System.IO;
 using Gtk;
 using WebKit;
 using System.Collections.Generic;
+using Rss;
 using frugalmonotools;
 
 public partial class MainWindow : Gtk.Window
@@ -52,7 +53,8 @@ public partial class MainWindow : Gtk.Window
 	//RSS
 	const string UrlPlanet="http://planet.frugalware.org/feed.php?type=rss";
 	ListStore modelFlux = new ListStore (typeof (string),typeof (int)); 
-	RSS FluxRss;
+	RssFeed rssFeed ;
+	//RSS FluxRss;
 		
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
@@ -347,18 +349,17 @@ public partial class MainWindow : Gtk.Window
 
 		//RSS
 		try{
-		CBO_TitleNews.Model=modelFlux;
-		FluxRss = new RSS(UrlPlanet);
-		i = 0;
-		foreach (nodetype n in FluxRss.Nodes)  
-       		{  
-			
-			string titre=n.rss_title;
-			modelFlux.AppendValues(titre,i);
-			i++;
+			CBO_TitleNews.Model=modelFlux;
+			rssFeed =RssFeed.Read(UrlPlanet);
+			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
+
+			i = 0;
+			foreach (RssItem item in rssChannel.Items)
+			{
+				string titre=item.Title;
+				modelFlux.AppendValues(titre,i);
+				i++;
 			}
-			
-			
 		}
 		catch{}
 		
@@ -409,15 +410,17 @@ public partial class MainWindow : Gtk.Window
 		try{
 			int count = modelFlux.Data.Count;
 			modelFlux.Clear();
-			FluxRss = new RSS(UrlPlanet);
+			rssFeed =RssFeed.Read(UrlPlanet);
+			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
+
 			int i = 0;
-			foreach (nodetype n in FluxRss.Nodes)  
-       		{  
-			
-				string titre=n.rss_title;
+			foreach (RssItem item in rssChannel.Items)
+			{
+				string titre=item.Title;
 				modelFlux.AppendValues(titre,i);
 				i++;
 			}
+		
 			if(modelFlux.Data.Count!=count)
 			{
 				if(MainClass.configuration.Get_ShowNotif()) 
@@ -435,11 +438,11 @@ public partial class MainWindow : Gtk.Window
 		if ((sender as ComboBox).GetActiveIter (out iter))
 		{
 			int id =(int)modelFlux.GetValue (iter,1);
-			nodetype Node = (nodetype)FluxRss.Nodes[id];
-			this.LIB_Titre.LabelProp=Node.rss_pubdate;
-			//this.TXT_Description.Buffer.Text=Node.rss_description;
-			this.webview.LoadUri(Node.rss_url);
-			this.BTN_Link.Label=Node.rss_url;
+			
+			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
+			RssItem item = rssChannel.Items[id];
+			this.webview.LoadUri(item.Link.AbsoluteUri.ToString());
+			this.BTN_Link.Label=item.Link.AbsoluteUri.ToString();
 		}
 	}
 	

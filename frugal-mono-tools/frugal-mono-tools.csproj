@@ -109,4 +109,10 @@
   <ItemGroup>
     <Content Include="Data\frugal-tweak.desktop" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RSS.NET\RSS.NET.csproj">
+      <Project>{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}</Project>
+      <Name>RSS.NET</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
