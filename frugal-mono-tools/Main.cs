@@ -24,6 +24,8 @@ using System.Timers;
 using Gdk;
 using Gtk;
 
+using NDesk.DBus;
+using org.freedesktop.DBus;
 
 
 namespace frugalmonotools
@@ -121,10 +123,31 @@ namespace frugalmonotools
 				popupMenu.Popup();
 			}
 		
-		private static MainWindow Fen ;
+		public static MainWindow Fen ;
 		public static bool StartedAutomatic=false;
+		
+		public static Bus bus;
+		public static string DbusName="com.frugalware.tweak";
+		public static ObjectPath DbusPath = new ObjectPath ("com/frugalware/tweak");
+		public static DbusObject DbusCom;
+		
 		public static void Main (string[] args)
 		{
+			try{
+					bus = Bus.Session;
+					if (bus.RequestName (DbusName) == RequestNameReply.PrimaryOwner) {
+						//create a new instance of the object to be exported
+						DbusCom = new DbusObject ();
+						bus.Register (DbusPath, DbusCom);
+						//EXEMPLE : MainClass.DbusCom.Hello("test");
+					}
+
+			}
+			catch(Exception exe)
+			{
+				Console.WriteLine("Can't register :"+DbusName);
+				Console.WriteLine(exe.Message);
+			}
 			
 			System.Timers.Timer aTimer;
 			if(args.Length==0)
