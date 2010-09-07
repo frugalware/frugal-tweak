@@ -74,6 +74,21 @@ namespace frugalmonotools
 			if (wait) proc.WaitForExit();
 			return true;
 		}
+		public static Boolean ExcecuteAsRoot(string Commande,bool wait)
+		{
+			string str_CommandeRoot;
+			if(MainClass.pacmanG2.IsInstalled("gksu-frugalware"))
+			   str_CommandeRoot="gksu";
+			else
+			   str_CommandeRoot="ksu";
+			System.Diagnostics.Process proc = new System.Diagnostics.Process();
+			proc.EnableRaisingEvents=false; 
+			proc.StartInfo.FileName = str_CommandeRoot;
+			proc.StartInfo.Arguments = Commande;
+			if (!proc.Start()) return false;
+			if (wait) proc.WaitForExit();
+			return true;
+		}
 		/// <summary>
 		///enable disable service,enable = false disable and stop this service 
 		/// </summary>

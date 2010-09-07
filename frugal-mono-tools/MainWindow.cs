@@ -245,7 +245,6 @@ public partial class MainWindow : Gtk.Window
 			BTN_Network.Visible=false;
 			BTN_LoginManager.Visible=false;
 			BTN_Xorg.Visible=false;
-			BTN_Update.Visible=false;
 			BTN_Setup.Visible = false;
 			BTN_UpdateDatabase.Visible = false;
 			BTN_System.Visible=false;
@@ -895,7 +894,10 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNUpdateClicked (object sender, System.EventArgs e)
 	{
-		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Syu",false);		
+		if(boRoot)
+			Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Syu",false);	
+		else
+			Outils.ExcecuteAsRoot("python /usr/bin/PyFrugalVTE pacman-g2 -Syu",false);	
 	}
 	
 	protected virtual void OnBTNPrinterClicked (object sender, System.EventArgs e)
