@@ -920,13 +920,25 @@ public partial class MainWindow : Gtk.Window
 		MainClass.configuration.Set_ShowSplash(INT_ShowSplash.Active);
 		MainClass.configuration.ConfSave();
 	}
-	
+	private void _serviceRefresh()
+	{
+		serviceListStore.Clear();
+		foreach(Service service in ServicesRc.Services)
+		{
+			string Etat = "yes";
+			if (!service.IsStarted()) Etat="No";
+			string OnBoot = "yes";
+			if (!service.IsStartedOnBoot()) OnBoot = "No";
+			serviceListStore.AppendValues(service.Get_Name(),Etat,OnBoot,service.GetDescription());             
+		}
+	}
 	protected virtual void OnBTNServiceStartClicked (object sender, System.EventArgs e)
 	{
 		if(ServiceSelected!="")
 		{
 			Service service = new Service(ServiceSelected);
 			service.Start();
+			_serviceRefresh();
 		}
 	}
 	
@@ -936,6 +948,7 @@ public partial class MainWindow : Gtk.Window
 		{
 			Service service = new Service(ServiceSelected);
 			service.Stop();
+			_serviceRefresh();
 		}
 	}
 	
@@ -945,6 +958,7 @@ public partial class MainWindow : Gtk.Window
 		{
 			Service service = new Service(ServiceSelected);
 			service.EnableDisableOnBoot(false);
+			_serviceRefresh();
 		}
 	}
 	
@@ -954,6 +968,7 @@ public partial class MainWindow : Gtk.Window
 		{
 			Service service = new Service(ServiceSelected);
 			service.EnableDisableOnBoot(true);
+			_serviceRefresh();
 		}
 	}
 	
