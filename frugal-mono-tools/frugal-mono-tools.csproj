@@ -72,7 +72,6 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="RSS\RSS.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="FEN_Debug.cs" />
     <Compile Include="gtk-gui\frugalmonotools.FEN_Debug.cs" />
