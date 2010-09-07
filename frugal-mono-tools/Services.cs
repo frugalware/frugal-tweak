@@ -67,7 +67,7 @@ namespace frugalmonotools
 					(rcName!="mount")&&
 					(rcName!="serial")&&
 					(rcName!="single")&&
-				    (rcName!="postgresql")&& //rc status crash should check it!!
+				    (rcName.IndexOf('~')<0)&&
 				    (rcName!="reboot"))
 				{
 					try{
