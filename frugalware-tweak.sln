@@ -13,6 +13,8 @@ Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "PyUtils", "PyUtils\PyUtils.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSS.NET", "RSS.NET\RSS.NET.csproj", "{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "frugal-irc", "frugal-irc\frugal-irc.csproj", "{4E7A55B1-C72A-480A-90CA-6EAF97259A63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -29,6 +31,12 @@ Global
 		{4C4EA50C-8467-4840-B89D-AF1009A0532E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C4EA50C-8467-4840-B89D-AF1009A0532E}.Release|x86.ActiveCfg = Release|Any CPU
 		{4C4EA50C-8467-4840-B89D-AF1009A0532E}.Release|x86.Build.0 = Release|Any CPU
+		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Debug|x86.ActiveCfg = Debug|x86
+		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Debug|x86.Build.0 = Debug|x86
+		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Release|Any CPU.ActiveCfg = Release|x86
+		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Release|Any CPU.Build.0 = Release|x86
+		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Release|x86.ActiveCfg = Release|x86
+		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Release|x86.Build.0 = Release|x86
 		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Release|x86.ActiveCfg = Release|Any CPU
