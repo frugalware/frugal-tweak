@@ -12,6 +12,8 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">FrugalIRC</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="DefaultWidth">800</property>
+    <property name="DefaultHeight">400</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.HBox" id="hbox1">

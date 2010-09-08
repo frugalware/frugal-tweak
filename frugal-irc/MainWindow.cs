@@ -28,9 +28,20 @@ public partial class MainWindow : Gtk.Window
 	 // make an instance of the high-level API
     public static IrcClient irc = new IrcClient();
 	private Thread T;
+	ListStore UpdateListUsers = new Gtk.ListStore (typeof (string));
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		//update package list
+		// Create a column for the package name
+		Gtk.TreeViewColumn pkgupdateColumn = new Gtk.TreeViewColumn ();
+		pkgupdateColumn.Title = "Users";
+		Gtk.CellRendererText pkgupdateNameCell = new Gtk.CellRendererText ();
+		// Add the cell to the column
+		pkgupdateColumn.PackStart (pkgupdateNameCell, true);
+		TREE_Users.AppendColumn (pkgupdateColumn);
+		pkgupdateColumn.AddAttribute (pkgupdateNameCell, "text", 0);
+		TREE_Users.Model=UpdateListUsers;
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -73,6 +84,7 @@ public partial class MainWindow : Gtk.Window
                         nickname_list += "+";
                     }
                     nickname_list += ")"+key+" => "+channeluser.Nick+", ";
+					//UpdateListUsers.AppendValues(channeluser.Nick);
                 }
                 irc.SendMessage(SendType.Message, e.Data.Nick, nickname_list);
 
@@ -123,6 +135,7 @@ public partial class MainWindow : Gtk.Window
                 
                 IList<ChannelInfo> channelInfos = irc.GetChannelList(channel);
                 Console.WriteLine("channel count: {0}", channelInfos.Count);
+				
                 foreach (ChannelInfo channelInfo in channelInfos) {
                     Console.WriteLine("channel: {0} user count: {1} topic: {2}",
                                       channelInfo.Channel,
@@ -200,14 +213,14 @@ public partial class MainWindow : Gtk.Window
             // for reading IRC commands from the keyboard while the IRC connection
             // stays in its own thread
             new Thread(new ThreadStart(ReadCommands)).Start();
-            
+
             // here we tell the IRC API to go into a receive mode, all events
             // will be triggered by _this_ thread (main thread in this case)
             // Listen() blocks by default, you can also use ListenOnce() if you
             // need that does one IRC operation and then returns, so you need then 
             // an own loop 
             irc.Listen();
-            
+
             // when Listen() returns our IRC session is over, to be sure we call
             // disconnect manually
             irc.Disconnect();
@@ -240,6 +253,7 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnBTNSendClicked (object sender, System.EventArgs e)
 	{
 		irc.SendMessage(SendType.Notice, SAI_Chan.Text, SAI_Envoi.Text);
+		AppendText(SAI_Envoi.Text);
 		SAI_Envoi.Text="";
 	}
 	
