@@ -248,6 +248,7 @@ public partial class MainWindow : Gtk.Window
 			BTN_Setup.Visible = false;
 			BTN_UpdateDatabase.Visible = false;
 			BTN_System.Visible=false;
+			BTN_ApplyIgnorePkg.Visible=false;
 		}
 		else
 		{
@@ -377,6 +378,10 @@ public partial class MainWindow : Gtk.Window
 		
 		//update
 		UpdateToTreeview();
+		foreach(string ignore in MainClass.pacmanG2.ignorePkg)
+		{
+			SAI_ignorePkg.Text+=" "+ignore;
+		}
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
