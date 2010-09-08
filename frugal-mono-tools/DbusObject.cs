@@ -26,7 +26,7 @@ namespace frugalmonotools
 	{
 		public void Hello (string arg0)
 		{
-			Console.WriteLine ("Got a Hello" + arg0);
+			Console.WriteLine ("Got a Hello " + arg0);
 		}
 	
 		public void GiveNoReply ()

@@ -826,20 +826,18 @@ public partial class MainWindow : Gtk.Window
 		            string T =(string)model.GetValue (iter, 0);
 					T=MainClass.pacmanG2.extractNamePackage(T);
 					packageSelected=T;
-					if(boRoot)
+
+					if(MainClass.pacmanG2.IsInstalled(T))
 					{
-						//installed ?
-						if(MainClass.pacmanG2.IsInstalled(T))
-						{
-							BTN_Uninstall.Visible=true;
-							BTN_Install.Visible=false;
-						}
-						else
-						{
-							BTN_Uninstall.Visible=false;
-							BTN_Install.Visible=true;
-						}
+						BTN_Uninstall.Visible=true;
+						BTN_Install.Visible=false;
 					}
+					else
+					{
+						BTN_Uninstall.Visible=false;
+						BTN_Install.Visible=true;
+					}
+					
 				}
 			}
 			catch{}
@@ -879,16 +877,20 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnBTNUninstallClicked (object sender, System.EventArgs e)
 	{
 		if(packageSelected=="") return;
-		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Rc "+packageSelected,true);	
-		//refresh list
+		if(boRoot)
+			Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Rc "+packageSelected,true);	
+		else
+			Outils.ExcecuteAsRoot("python /usr/bin/PyFrugalVTE pacman-g2 -Rc "+packageSelected,true);	
 		_searchPackage();
 	}
 	
 	protected virtual void OnBTNInstallClicked (object sender, System.EventArgs e)
 	{
 		if(packageSelected=="") return;
-		Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,true);
-		//refresh list
+		if(boRoot)
+			Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,true);
+		else
+			Outils.ExcecuteAsRoot("python /usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,true);	
 		_searchPackage();
 	}
 	
@@ -1086,6 +1088,12 @@ public partial class MainWindow : Gtk.Window
 		confSystem.SetLocale(SAI_Locale.Text);
 		confSystem.Save();
 	}
+	
+	protected virtual void OnButton2Clicked (object sender, System.EventArgs e)
+	{
+		MainClass.DbusCom.Hello("test");
+	}
+	
 	
 	
 	
