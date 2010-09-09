@@ -20,7 +20,7 @@ using Gtk;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
-
+using frugalirc;
 using Meebey.SmartIrc4net;
 
 public partial class MainWindow : Gtk.Window
@@ -29,7 +29,7 @@ public partial class MainWindow : Gtk.Window
     public static IrcClient irc = new IrcClient();
 	private Thread T;
 	ListStore UpdateListUsers = new Gtk.ListStore (typeof (string));
-
+	
 	private int MyRandom()
 	{
 		Random rndNumbers = new Random();
@@ -38,9 +38,11 @@ public partial class MainWindow : Gtk.Window
         return rndNumber;
     
 	}
+
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		
 		SAI_User.Text+=MyRandom().ToString();
 		//update package list
 		// Create a column for the package name
@@ -52,13 +54,21 @@ public partial class MainWindow : Gtk.Window
 		TREE_Users.AppendColumn (Column);
 		Column.AddAttribute (NameCell, "text", 0);
 		TREE_Users.Model=UpdateListUsers;
+		if (MainClass.ChanParameter!="")
+		{
+			SAI_Chan.Text=MainClass.ChanParameter;
+		}
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
-		Application.Quit ();
-		T.Abort();
-		a.RetVal = true;
+		try
+		{
+			Application.Quit ();
+			T.Abort();
+			a.RetVal = true;
+		}
+		catch{}
 	}
 	 // this method we will use to analyse queries (also known as private messages)
     public  void OnQueryMessage(object sender, IrcEventArgs e)
@@ -267,15 +277,13 @@ public partial class MainWindow : Gtk.Window
             // join the channel
             irc.RfcJoin(channel);
             
-            for (int i = 0; i < 3; i++) {
-                // here we send just 3 different types of messages, 3 times for
-                // testing the delay and flood protection (messagebuffer work)
-				irc.SendMessage(SendType.Notice, channel, "Hello");
-				irc.SendMessage(SendType.Message, channel, "Hello");
-				//ask list users
-				irc.RfcList(channel);
-			}
+            // testing the delay and flood protection (messagebuffer work)
+			irc.SendMessage(SendType.Notice, channel, "Hello");
+			irc.SendMessage(SendType.Message, channel, "Hello");
+			//ask list users
+			irc.RfcList(channel);
 			
+			BTN_Send.Visible=true;
             // spawn a new thread to read the stdin of the console, this we use
             // for reading IRC commands from the keyboard while the IRC connection
             // stays in its own thread
@@ -324,6 +332,12 @@ public partial class MainWindow : Gtk.Window
 		AppendText(SAI_User.Text+" : "+SAI_Envoi.Text);
 		SAI_Envoi.Text="";
 	}
+	
+	protected virtual void OnSAIEnvoiKeyPressEvent (object o, Gtk.KeyPressEventArgs args)
+	{
+		Console.WriteLine("Passe");
+	}
+	
 	
 	
 }

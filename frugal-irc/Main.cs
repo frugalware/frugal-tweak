@@ -20,13 +20,22 @@ using Gtk;
 
 namespace frugalirc
 {
-	class MainClass
+	public class MainClass
 	{
+		public static  string ChanParameter="";
 		public static void Main (string[] args)
 		{
 			Application.Init ();
+			if (args.Length>0)
+			{
+				ChanParameter="#"+args[0];
+				Console.WriteLine("Connection to "+ChanParameter);
+			}
 			MainWindow win = new MainWindow ();
 			win.Show ();
+			//GUI readu
+			if (ChanParameter!="")
+				  Gtk.Application.Invoke (delegate {win.Connection();});
 			Application.Run ();
 		}
 	}

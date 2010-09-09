@@ -158,6 +158,7 @@
                 <child>
                   <widget class="Gtk.Button" id="BTN_Send">
                     <property name="MemberName" />
+                    <property name="Visible">False</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Send</property>
