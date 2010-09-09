@@ -1732,6 +1732,7 @@ public partial class MainWindow
 		}
 		this.DefaultWidth = 1064;
 		this.DefaultHeight = 536;
+		this.BTN_ApplyIgnorePkg.Hide ();
 		this.BTN_Hide.Hide ();
 		this.BTN_Setup.Hide ();
 		this.BTN_ServiceStart.Hide ();

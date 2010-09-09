@@ -41,6 +41,7 @@ public partial class MainWindow
 		// Widget MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("FrugalIRC");
+		this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalirc.header.svg");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		this.DefaultWidth = 800;
 		this.DefaultHeight = 400;
@@ -72,7 +73,7 @@ public partial class MainWindow
 		this.SAI_Chan = new global::Gtk.Entry ();
 		this.SAI_Chan.CanFocus = true;
 		this.SAI_Chan.Name = "SAI_Chan";
-		this.SAI_Chan.Text = global::Mono.Unix.Catalog.GetString ("#test");
+		this.SAI_Chan.Text = global::Mono.Unix.Catalog.GetString ("#frugalware");
 		this.SAI_Chan.IsEditable = false;
 		this.SAI_Chan.InvisibleChar = '•';
 		this.vbox3.Add (this.SAI_Chan);

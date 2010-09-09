@@ -33,9 +33,6 @@ namespace frugalirc
 			}
 			MainWindow win = new MainWindow ();
 			win.Show ();
-			//GUI readu
-			if (ChanParameter!="")
-				  Gtk.Application.Invoke (delegate {win.Connection();});
 			Application.Run ();
 		}
 	}

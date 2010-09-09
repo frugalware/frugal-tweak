@@ -278,7 +278,6 @@ public partial class MainWindow : Gtk.Window
             irc.RfcJoin(channel);
             
             // testing the delay and flood protection (messagebuffer work)
-			irc.SendMessage(SendType.Notice, channel, "Hello");
 			irc.SendMessage(SendType.Message, channel, "Hello");
 			//ask list users
 			irc.RfcList(channel);
