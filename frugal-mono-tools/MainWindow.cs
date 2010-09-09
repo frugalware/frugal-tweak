@@ -990,7 +990,7 @@ public partial class MainWindow : Gtk.Window
 			_joinIrc("frugalware");
 	}
 	private void _joinIrc(string channel){
-		Outils.Excecute("python","/usr/bin/PyFrugalVTE python /usr/bin/PyFrugalIRC " +channel,false);		
+		Outils.Excecute("frugalware-irc",channel,false);		
 	}
 	protected virtual void OnBTNForumsClicked (object sender, System.EventArgs e)
 	{
