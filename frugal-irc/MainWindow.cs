@@ -29,18 +29,33 @@ public partial class MainWindow : Gtk.Window
     public static IrcClient irc = new IrcClient();
 	private Thread T;
 	ListStore UpdateListUsers = new Gtk.ListStore (typeof (string));
+	
+	private int MyRandom()
+	{
+		Random rndNumbers = new Random();
+        int rndNumber = 0;
+
+
+        for (int nbr = 1; nbr < 9; nbr++)
+        {
+            rndNumber = rndNumbers.Next(20);
+            return rndNumber;
+        }
+		return 0;
+	}
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		SAI_User.Text+=MyRandom().ToString();
 		//update package list
 		// Create a column for the package name
-		Gtk.TreeViewColumn pkgupdateColumn = new Gtk.TreeViewColumn ();
-		pkgupdateColumn.Title = "Users";
-		Gtk.CellRendererText pkgupdateNameCell = new Gtk.CellRendererText ();
+		Gtk.TreeViewColumn Column = new Gtk.TreeViewColumn ();
+		Column.Title = "Users";
+		Gtk.CellRendererText NameCell = new Gtk.CellRendererText ();
 		// Add the cell to the column
-		pkgupdateColumn.PackStart (pkgupdateNameCell, true);
-		TREE_Users.AppendColumn (pkgupdateColumn);
-		pkgupdateColumn.AddAttribute (pkgupdateNameCell, "text", 0);
+		Column.PackStart (NameCell, true);
+		TREE_Users.AppendColumn (Column);
+		Column.AddAttribute (NameCell, "text", 0);
 		TREE_Users.Model=UpdateListUsers;
 	}
 
