@@ -29,7 +29,7 @@ public partial class MainWindow : Gtk.Window
     public static IrcClient irc = new IrcClient();
 	private Thread T;
 	ListStore UpdateListUsers = new Gtk.ListStore (typeof (string));
-	private bool _initListUser = false;
+
 	private int MyRandom()
 	{
 		Random rndNumbers = new Random();
@@ -169,13 +169,19 @@ public partial class MainWindow : Gtk.Window
 				AppendText(e.Data.Nick+" : "+e.Data.Message);
 				break;
 			case ReceiveType.Join:
-				UpdateListUsers.Clear();
-				string [] users =GetUserList(SAI_Chan.Text);
-				foreach(string pseudo in users)
-				{
-					UpdateListUsers.AppendValues(pseudo);
-				}
-				
+				UpdateListUsers.AppendValues(e.Data.Nick);
+				break;
+			case ReceiveType.Quit:
+				_userToTreeview();
+				break;
+			case ReceiveType.Part:
+				_userToTreeview();
+				break;
+			case ReceiveType.Login:
+				_userToTreeview();
+				break;
+			case ReceiveType.ChannelNotice:
+				AppendText("NOTIFICATION: "+e.Data.Message);
 				break;
 			default:
 				Console.WriteLine("Received: "+e.Data.RawMessage);
@@ -183,12 +189,7 @@ public partial class MainWindow : Gtk.Window
 		}
 		if(e.Data.ReplyCode==ReplyCode.List)
 		{
-			UpdateListUsers.Clear();
-			string [] users =GetUserList(SAI_Chan.Text);
-			foreach(string pseudo in users)
-			{
-				UpdateListUsers.AppendValues(pseudo);
-			}
+			_userToTreeview();
 		}
     }
 	
@@ -205,11 +206,22 @@ public partial class MainWindow : Gtk.Window
         return userlist;
       }    
 	
-	
+	private void _userToTreeview()
+	{
+		UpdateListUsers.Clear();
+		string [] users =GetUserList(SAI_Chan.Text);
+		foreach(string pseudo in users)
+		{
+			UpdateListUsers.AppendValues(pseudo);
+		}
+	}
 	protected virtual void OnBTNConnectClicked (object sender, System.EventArgs e)
 	{
+		Connection();
+	}
+	public void Connection()
+	{
 		BTN_Connect.Visible=false;
-		
 		T = new Thread(Connect);
 		T.IsBackground=true;
 		T.SetApartmentState(ApartmentState.STA);
