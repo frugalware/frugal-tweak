@@ -46,7 +46,7 @@
                   <widget class="Gtk.Entry" id="SAI_Chan">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Text" translatable="yes">#test</property>
+                    <property name="Text" translatable="yes">#frugalware</property>
                     <property name="IsEditable">False</property>
                     <property name="InvisibleChar">•</property>
                   </widget>
