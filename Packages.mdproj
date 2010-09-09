@@ -14,6 +14,7 @@
               <SolutionItemReference path="Service\Service.csproj" />
               <SolutionItemReference path="Traduction\Traduction.mdproj" />
               <SolutionItemReference path="RSS.NET\RSS.NET.csproj" />
+              <SolutionItemReference path="frugal-irc\frugal-irc.csproj" />
             </ChildEntries>
             <RootEntry path="frugalware-tweak.sln" id=":root:" />
           </Builder>
