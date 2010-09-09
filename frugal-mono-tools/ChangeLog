@@ -1,3 +1,7 @@
+2010-09-09  gaetan gourdin  <bouleetbil@frogdev.info>
+	Added minimalist irc client (will evolve)
+	Added ndesk support
+
 2010-09-06  gaetan gourdin  <bouleetbil@frogdev.info>
 	Added system page
 	Some clean up
