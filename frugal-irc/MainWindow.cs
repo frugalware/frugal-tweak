@@ -29,19 +29,14 @@ public partial class MainWindow : Gtk.Window
     public static IrcClient irc = new IrcClient();
 	private Thread T;
 	ListStore UpdateListUsers = new Gtk.ListStore (typeof (string));
-	
+	private bool _initListUser = false;
 	private int MyRandom()
 	{
 		Random rndNumbers = new Random();
         int rndNumber = 0;
-
-
-        for (int nbr = 1; nbr < 9; nbr++)
-        {
-            rndNumber = rndNumbers.Next(20);
-            return rndNumber;
-        }
-		return 0;
+        rndNumber = rndNumbers.Next(20);
+        return rndNumber;
+    
 	}
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
@@ -127,7 +122,7 @@ public partial class MainWindow : Gtk.Window
         System.Console.WriteLine("Exiting...");
         System.Environment.Exit(0);
     }
-
+	 
     // this method handles when we receive "ERROR" from the IRC server
     public  void OnError(object sender, ErrorEventArgs e)
     {
@@ -167,10 +162,51 @@ public partial class MainWindow : Gtk.Window
     // this method will get all IRC messages
     public  void OnRawMessage(object sender, IrcEventArgs e)
     {
-        AppendText("Received: "+e.Data.RawMessage);
+       //AppendText("Received: "+e.Data.RawMessage);
+		switch(e.Data.Type)
+		{
+			case ReceiveType.ChannelMessage:
+				AppendText(e.Data.Nick+" : "+e.Data.Message);
+				break;
+			case ReceiveType.Join:
+				UpdateListUsers.Clear();
+				string [] users =GetUserList(SAI_Chan.Text);
+				foreach(string pseudo in users)
+				{
+					UpdateListUsers.AppendValues(pseudo);
+				}
+				
+				break;
+			default:
+				Console.WriteLine("Received: "+e.Data.RawMessage);
+				break;
+		}
+		if(e.Data.ReplyCode==ReplyCode.List)
+		{
+			UpdateListUsers.Clear();
+			string [] users =GetUserList(SAI_Chan.Text);
+			foreach(string pseudo in users)
+			{
+				UpdateListUsers.AppendValues(pseudo);
+			}
+		}
     }
-
-    protected virtual void OnBTNConnectClicked (object sender, System.EventArgs e)
+	
+ string[] GetUserList(string channel)
+      {
+        if (channel == null || irc.GetChannel(channel) == null)
+          return new string[0];
+        Hashtable users = irc.GetChannel(channel).Users;
+        string[] userlist = new string[users.Count];
+		
+        int i = 0;
+        foreach (ChannelUser user in users.Values)
+          userlist[i++] = String.Concat(user.IsOp ? "@" : String.Empty, user.Nick);
+        return userlist;
+      }    
+	
+	
+	protected virtual void OnBTNConnectClicked (object sender, System.EventArgs e)
 	{
 		BTN_Connect.Visible=false;
 		
@@ -198,7 +234,8 @@ public partial class MainWindow : Gtk.Window
         irc.OnError += new ErrorEventHandler(OnError);
         irc.OnRawMessage += new IrcEventHandler(OnRawMessage);
 
-        string[] serverlist;
+		
+		string[] serverlist;
         // the server we want to connect to, could be also a simple string
         serverlist = new string[] {SAI_Serveur.Text};
         int port = int.Parse(SAI_Port.Text);
@@ -222,8 +259,11 @@ public partial class MainWindow : Gtk.Window
                 // here we send just 3 different types of messages, 3 times for
                 // testing the delay and flood protection (messagebuffer work)
 				irc.SendMessage(SendType.Notice, channel, "Hello");
+				irc.SendMessage(SendType.Message, channel, "Hello");
+				//ask list users
+				irc.RfcList(channel);
 			}
-            
+			
             // spawn a new thread to read the stdin of the console, this we use
             // for reading IRC commands from the keyboard while the IRC connection
             // stays in its own thread
@@ -261,14 +301,15 @@ public partial class MainWindow : Gtk.Window
         TXT_Messages.ScrollToIter(TXT_Messages.Buffer.EndIter, 0, false, 0, 0);
         });
 
-
+		
 		Console.WriteLine(text);
 	}
 	
 	protected virtual void OnBTNSendClicked (object sender, System.EventArgs e)
 	{
-		irc.SendMessage(SendType.Notice, SAI_Chan.Text, SAI_Envoi.Text);
-		AppendText(SAI_Envoi.Text);
+		if(SAI_Envoi.Text=="") return;
+		irc.SendMessage(SendType.Message, SAI_Chan.Text, SAI_Envoi.Text);
+		AppendText(SAI_User.Text+" : "+SAI_Envoi.Text);
 		SAI_Envoi.Text="";
 	}
 	
