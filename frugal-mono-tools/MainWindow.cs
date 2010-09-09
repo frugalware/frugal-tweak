@@ -378,12 +378,16 @@ public partial class MainWindow : Gtk.Window
 		
 		//update
 		UpdateToTreeview();
+		IgnorepkgToSAI();
+	}
+	private void IgnorepkgToSAI()
+	{
+		SAI_ignorePkg.Text="";
 		foreach(string ignore in MainClass.pacmanG2.ignorePkg)
 		{
 			SAI_ignorePkg.Text+=" "+ignore;
 		}
 	}
-
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		if(MainClass.StartedAutomatic)
@@ -1069,6 +1073,7 @@ public partial class MainWindow : Gtk.Window
 				File.WriteLine(line);
 			}
 			File.Close();
+			IgnorepkgToSAI();
 		}
 		catch(Exception exe)
 		{
