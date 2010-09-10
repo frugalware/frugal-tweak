@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Rss</RootNamespace>
     <AssemblyName>RSS.NET</AssemblyName>
-    <ReleaseVersion>0.1.6.1</ReleaseVersion>
+    <ReleaseVersion>0.1.6.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

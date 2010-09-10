@@ -319,7 +319,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 1;
+		this.ONG_principal.CurrentPage = 6;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -1121,7 +1121,7 @@ public partial class MainWindow
 		this.INT_FW = new global::Gtk.CheckButton ();
 		this.INT_FW.CanFocus = true;
 		this.INT_FW.Name = "INT_FW";
-		this.INT_FW.Label = global::Mono.Unix.Catalog.GetString ("Use Frugalware tools");
+		this.INT_FW.Label = global::Mono.Unix.Catalog.GetString ("Use Netconfig/Gnetconfig");
 		this.INT_FW.DrawIndicator = true;
 		this.INT_FW.UseUnderline = true;
 		this.hbox1.Add (this.INT_FW);
