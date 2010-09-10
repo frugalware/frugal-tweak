@@ -59,6 +59,9 @@ namespace frugalmonotools
 
 			if (Update.CheckUpdate())
 			{
+				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
+				trayIcon.Pixbuf=ico;
+							
 				if(Debug.ModeDebug)
 				{
 					foreach (packageCheck pkg in Update.UpdatePkg)
@@ -69,6 +72,11 @@ namespace frugalmonotools
 
 				if(configuration.Get_ShowNotif()) notif.ShowMessage("Frugalware","Some update are available.");
 				Console.WriteLine("Some packages can be updated.");
+			}
+			else
+			{
+				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
+				trayIcon.Pixbuf=ico;
 			}
 			if(Fen!=null)
 				{
@@ -190,6 +198,11 @@ namespace frugalmonotools
 							//started with X session
 							Gtk.Application.Init();
 							Console.WriteLine("check update packages.");
+							// Creation of the Icon
+							Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
+	
+							trayIcon = new StatusIcon(ico);
+							trayIcon.Visible = true;
 							check();
 							ServicesRc.CheckList();
 							Fen = new MainWindow();
@@ -200,9 +213,7 @@ namespace frugalmonotools
 		        			// Set the Interval to 1 hour.
 		        			aTimer.Interval=3600000;
 		         			aTimer.Enabled=true;
-							// Creation of the Icon
-							trayIcon = new StatusIcon(new Pixbuf ("/usr/share/pixmaps/FrugalTools.png"));
-							trayIcon.Visible = true;
+							
 					 		
 							trayIcon.Activate +=  delegate {  Fen.Visible = !Fen.Visible; };
 
