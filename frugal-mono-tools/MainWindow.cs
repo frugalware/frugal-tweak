@@ -39,6 +39,7 @@ public partial class MainWindow : Gtk.Window
 	ListStore pkgListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof(string));
 	ListStore UpdateListStore = new Gtk.ListStore (typeof (string));
 	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
+	ListStore modelXorgDrivers = new ListStore (typeof (string));
 	ListStore serviceListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof (string),typeof (string));
 	//webkit engine
 	private WebKit.WebView webview=null;
@@ -167,6 +168,7 @@ public partial class MainWindow : Gtk.Window
 		}
 		CBO_Repo.Model=modelRepoList;
 		CBO_Repo.SetActiveIter(iter); 
+	
 		// Assign the model to the TreeView
 		treeviewpkg.Model = pkgListStore;
 		
@@ -278,7 +280,16 @@ public partial class MainWindow : Gtk.Window
 			}
 		}
 		LIB_Lspci.Text=lspci;
-		LIB_XorgGraphic.Text+= GraphicalDevice()+" driver";
+		
+		CBO_GraphicalDevice.Model=modelXorgDrivers;
+		foreach (string driver in  MainClass.xorg.DriversInstalled)
+		{
+			iter=modelXorgDrivers.AppendValues(driver);
+			if(GraphicalDevice()==driver)
+				CBO_GraphicalDevice.SetActiveIter(iter);
+		}
+		
+		
 		INT_Numlock.Active=IsNumlockOnStartX();
 		if ((dmesgOutput.IndexOf("TouchPad")>0) && (!MainClass.pacmanG2.IsInstalled("xf86-input-synaptics")))
 			BTN_Synaptics.Visible=true;

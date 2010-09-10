@@ -90,6 +90,7 @@
     <Compile Include="WebkitBrowser.cs" />
     <Compile Include="ConfSystem.cs" />
     <Compile Include="DbusObject.cs" />
+    <Compile Include="Xorg.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

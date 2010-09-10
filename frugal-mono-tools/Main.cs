@@ -133,7 +133,7 @@ namespace frugalmonotools
 		
 		public static MainWindow Fen ;
 		public static bool StartedAutomatic=false;
-		
+		public static Xorg xorg = new Xorg();
 		public static Bus bus;
 		public static string DbusName="com.frugalware.tweak";
 		public static ObjectPath DbusPath = new ObjectPath ("com/frugalware/tweak");
