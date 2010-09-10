@@ -29,7 +29,7 @@ public partial class MainWindow : Gtk.Window
     public static IrcClient irc = new IrcClient();
 	private Thread T;
 	ListStore UpdateListUsers = new Gtk.ListStore (typeof (string));
-	
+	private bool _initOk = false ;
 	private int MyRandom()
 	{
 		Random rndNumbers = new Random();
@@ -172,6 +172,7 @@ public partial class MainWindow : Gtk.Window
     // this method will get all IRC messages
     public  void OnRawMessage(object sender, IrcEventArgs e)
     {
+		if(!_initOk) return ;
        //AppendText("Received: "+e.Data.RawMessage);
 		switch(e.Data.Type)
 		{
@@ -280,9 +281,12 @@ public partial class MainWindow : Gtk.Window
             // testing the delay and flood protection (messagebuffer work)
 			irc.SendMessage(SendType.Message, channel, "Hello");
 			//ask list users
+			_initOk=true;
 			irc.RfcList(channel);
+			Gtk.Application.Invoke (delegate {
+				BTN_Send.Visible=true;
+			});
 			
-			BTN_Send.Visible=true;
             // spawn a new thread to read the stdin of the console, this we use
             // for reading IRC commands from the keyboard while the IRC connection
             // stays in its own thread
