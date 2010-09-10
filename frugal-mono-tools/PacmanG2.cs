@@ -177,8 +177,57 @@ namespace frugalmonotools
 			}
 			catch{}
 		}
+		public void SetIgnorePkg(string packagename,bool updateAllIgnore )
+		{
+			try
+			{
+				if(packagename=="") return;
+				string strPacmanConf =Outils.ReadFile(cch_pacmanconf);
+				string[] lines = strPacmanConf.Split('\n');	
+				string[] result= new string[lines.Length];
+				string lineResult;
+				int i = 0;
+					foreach (string line in lines) 
+		            {
+						lineResult=line;
+						if (System.Text.RegularExpressions.Regex.Matches(line, "IgnorePkg").Count>0)
+						{
+							//find it :p
+							if(updateAllIgnore)
+							{
+								lineResult="IgnorePkg = "+ packagename;
+							}
+							else
+							{
+								lineResult=lineResult.Replace("=","= "+packagename+" ");
+								lineResult=lineResult.Replace("#","");
+								this.ignorePkg.Add(packagename);
+							}
+						}
+						result[i]=lineResult;
+						i++;
+					}
+				StreamWriter File = new StreamWriter(cch_pacmanconf);
+				foreach (string line in result) 
+		        {
+					File.WriteLine(line);
+				}
+				File.Close();
+				
+			}
+			catch(Exception exe)
+			{
+				Console.WriteLine("Can't update pacman-g2.conf");
+				Console.WriteLine(exe.Message);
+			}
+			if(updateAllIgnore)
+			{
+				_ReadIgnorePkg();
+			}
+		}
 		private void _ReadIgnorePkg(){
 			try{
+				ignorePkg.Clear();
 				string filedesc = cch_pacmanconf;
 				string content = Outils.ReadFile(filedesc);
 				string[] lines = content.Split('\n');	

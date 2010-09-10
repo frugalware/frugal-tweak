@@ -1045,41 +1045,8 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNHideClicked (object sender, System.EventArgs e)
 	{
-		try
-		{
-			if(UpdateSelected=="") return;
-			string pacmanConf = @"/etc/pacman-g2.conf";
-			string strPacmanConf =Outils.ReadFile(pacmanConf);
-			string[] lines = strPacmanConf.Split('\n');	
-			string[] result= new string[lines.Length];
-			string lineResult;
-			int i = 0;
-				foreach (string line in lines) 
-	            {
-					lineResult=line;
-					if (System.Text.RegularExpressions.Regex.Matches(line, "IgnorePkg").Count>0)
-					{
-						//find it :p
-						lineResult=lineResult.Replace("=","= "+UpdateSelected+" ");
-						lineResult=lineResult.Replace("#","");
-						MainClass.pacmanG2.ignorePkg.Add(UpdateSelected);
-					}
-					result[i]=lineResult;
-					i++;
-				}
-			StreamWriter File = new StreamWriter(pacmanConf);
-			foreach (string line in result) 
-	        {
-				File.WriteLine(line);
-			}
-			File.Close();
-			IgnorepkgToSAI();
-		}
-		catch(Exception exe)
-		{
-			Console.WriteLine("Can't update pacman-g2.conf");
-			Console.WriteLine(exe.Message);
-		}
+		MainClass.pacmanG2.SetIgnorePkg(UpdateSelected,false);
+		IgnorepkgToSAI();
 	}
 	
 	protected virtual void OnBTNIrc1Clicked (object sender, System.EventArgs e)
@@ -1099,10 +1066,12 @@ public partial class MainWindow : Gtk.Window
 		confSystem.Save();
 	}
 	
-	protected virtual void OnButton2Clicked (object sender, System.EventArgs e)
+	protected virtual void OnBTNApplyIgnorePkgClicked (object sender, System.EventArgs e)
 	{
-		MainClass.DbusCom.Hello("test");
+		MainClass.pacmanG2.SetIgnorePkg(SAI_ignorePkg.Text,true);
+		IgnorepkgToSAI();
 	}
+	
 	
 	
 	

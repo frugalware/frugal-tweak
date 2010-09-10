@@ -319,7 +319,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 6;
+		this.ONG_principal.CurrentPage = 1;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -1732,7 +1732,6 @@ public partial class MainWindow
 		}
 		this.DefaultWidth = 1064;
 		this.DefaultHeight = 536;
-		this.BTN_ApplyIgnorePkg.Hide ();
 		this.BTN_Hide.Hide ();
 		this.BTN_Setup.Hide ();
 		this.BTN_ServiceStart.Hide ();
@@ -1745,6 +1744,7 @@ public partial class MainWindow
 		this.BTN_Search.Clicked += new global::System.EventHandler (this.OnBTNSearchClicked);
 		this.BTN_Uninstall.Clicked += new global::System.EventHandler (this.OnBTNUninstallClicked);
 		this.BTN_Install.Clicked += new global::System.EventHandler (this.OnBTNInstallClicked);
+		this.BTN_ApplyIgnorePkg.Clicked += new global::System.EventHandler (this.OnBTNApplyIgnorePkgClicked);
 		this.BTN_Hide.Clicked += new global::System.EventHandler (this.OnBTNHideClicked);
 		this.BTN_UpdateDatabase.Clicked += new global::System.EventHandler (this.OnBTNUpdateDatabaseClicked);
 		this.BTN_Refresh.Clicked += new global::System.EventHandler (this.OnBTNRefreshClicked);
