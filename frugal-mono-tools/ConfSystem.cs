@@ -17,6 +17,8 @@
 //  */
 using System;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 namespace frugalmonotools
 {
 	public class ConfSystem
@@ -27,6 +29,7 @@ namespace frugalmonotools
 		private string _hostname;
 		private string _locale;
 		private string _distribution; //can't change it
+		public List<string>  LocaleSystem = new List<string>(); 
 		public string GetHostname()
 		{
 			return _hostname;
@@ -55,6 +58,16 @@ namespace frugalmonotools
 		{
 			this.SetHostname(Outils.ReadFile(cch_hostname).ToString().Replace("\n",""));
 			this._distribution=Outils.ReadFile(cch_release).ToString().Replace("\n","");
+			_findLocaleSystem();
+		}
+		private void _findLocaleSystem()
+		{
+			string output = Outils.getoutput("locale -a");
+			string[] locales = output.Split('\n');
+			foreach(string locale in locales)
+			{
+				LocaleSystem.Add(locale);
+			}
 		}
 		public void Save()
 		{
