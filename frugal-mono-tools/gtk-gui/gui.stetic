@@ -20,14 +20,14 @@
   <widget class="Gtk.Window" id="MainWindow" design-size="1064 536">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Frugalware tweak</property>
-    <property name="Icon">resource:frugalmonotools.Pictures.header.svg</property>
+    <property name="Icon">resource:frugalmonotools.Pictures.fw.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">2</property>
+        <property name="CurrentPage">3</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
