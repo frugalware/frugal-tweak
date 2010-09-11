@@ -41,7 +41,7 @@ public partial class MainWindow
 		// Widget MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("FrugalIRC");
-		this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalirc.header.svg");
+		this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalirc.fw.png");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		this.DefaultWidth = 800;
 		this.DefaultHeight = 400;
