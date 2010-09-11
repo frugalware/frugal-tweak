@@ -35,6 +35,7 @@ namespace frugalmonotools
 		//pacman-g2 initialise
 		public static PacmanG2 pacmanG2 = new PacmanG2();
 		public static Configuration configuration = new Configuration();
+		public static Cache cache = new Cache();
 		
 		private static void checkUpdate(object source, ElapsedEventArgs e)
 		{

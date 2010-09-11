@@ -365,12 +365,15 @@ public partial class MainWindow : Gtk.Window
 			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
 
 			i = 0;
+			string latest="";
 			foreach (RssItem item in rssChannel.Items)
 			{
 				string titre=item.Title;
 				modelFlux.AppendValues(titre,i);
+				if(latest =="")latest=item.Link.AbsoluteUri.ToString();
 				i++;
 			}
+			InformNewFlux(latest);
 		}
 		catch{}
 		
@@ -390,6 +393,17 @@ public partial class MainWindow : Gtk.Window
 		//update
 		UpdateToTreeview();
 		IgnorepkgToSAI();
+	}
+	private void InformNewFlux(string latest)
+	{
+			if (MainClass.cache.GetLatest()!=latest)
+			{
+				IconSummaryBody notif= new IconSummaryBody();
+				if(MainClass.configuration.Get_ShowNotif()) notif.ShowMessage("Frugalware","News are available.");
+				//write cache	
+				MainClass.cache.SetLatest(latest);
+				MainClass.cache.CacheSave();
+		}
 	}
 	private void IgnorepkgToSAI()
 	{
@@ -427,27 +441,20 @@ public partial class MainWindow : Gtk.Window
 	{
 		//RSS
 		try{
-			int count = modelFlux.Data.Count;
 			modelFlux.Clear();
 			rssFeed =RssFeed.Read(UrlPlanet);
 			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
 
 			int i = 0;
+			string latest="";
 			foreach (RssItem item in rssChannel.Items)
 			{
 				string titre=item.Title;
+				if(latest =="")latest=item.Link.AbsoluteUri.ToString();
 				modelFlux.AppendValues(titre,i);
 				i++;
 			}
-		
-			if(modelFlux.Data.Count!=count)
-			{
-				if(MainClass.configuration.Get_ShowNotif()) 
-				{
-					IconSummaryBody notif= new IconSummaryBody();		
-					notif.ShowMessage("Frugalware","New RSS entry");
-				}
-			}
+			InformNewFlux(latest);
 		}
 		catch{}		
 	}

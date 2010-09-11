@@ -20,6 +20,73 @@ using System.Text.RegularExpressions;
 using System.IO;
 namespace frugalmonotools
 {
+	
+	//only uses by rss for now
+	public class Cache
+	{
+		private const string confFile=@"/.cache/FrugalTools";
+		private int _nbFlux = 0;
+		private string _latest="";
+		public Cache()
+		{
+			//read value
+			try{
+				string filedesc = GetConfFile();
+				string content = Outils.ReadFile(filedesc);
+				string[] lines = content.Split('\n');	
+				foreach (string line in lines) 
+				{
+					 if (Regex.Matches(line, "nbRSS").Count>0)
+						{
+							int nb = int.Parse(line.Split('=')[1]);
+							this.SetNbFlux(nb);
+						}
+					 if (Regex.Matches(line, "last").Count>0)
+						{
+							string last = line.Split('=')[1];
+							this.SetLatest(last);
+						}
+				}
+			}
+			catch{	}
+		}
+		public void CacheSave()
+		{
+			try
+			{
+				StreamWriter FileConf = new StreamWriter(GetConfFile());
+				FileConf.WriteLine("nbRSS="+this.GetNbFlux());
+				FileConf.WriteLine("last="+this.GetLatest());
+				FileConf.Close();
+			}
+			catch(Exception exe)
+			{
+				Console.WriteLine(exe.Message);
+			}
+		}
+		public string GetConfFile(){
+			return Environment.GetFolderPath(System.Environment.SpecialFolder
+.Personal)+confFile;
+		}
+		public int GetNbFlux()
+		{
+			return _nbFlux;
+		}
+		public void SetNbFlux(int valeur)
+		{
+			_nbFlux=valeur;
+		}
+		
+		public string GetLatest()
+		{
+			return _latest;
+		}
+		public void SetLatest(string valeur)
+		{
+			_latest=valeur;
+		}
+	}
+	
 	public class Configuration
 	{
 	
