@@ -68,6 +68,7 @@
     <EmbeddedResource Include="Pictures\wicdlogo.png" />
     <EmbeddedResource Include="Pictures\xfcelogo.png" />
     <EmbeddedResource Include="Pictures\xorglogo.png" />
+    <EmbeddedResource Include="Pictures\fw-mini.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

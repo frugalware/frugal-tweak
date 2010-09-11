@@ -237,6 +237,7 @@ public partial class MainWindow : Gtk.Window
 		T.IsBackground=true;
 		T.SetApartmentState(ApartmentState.STA);
 		T.Start();
+		
 	}
 	private void Connect()
 	{
@@ -257,7 +258,6 @@ public partial class MainWindow : Gtk.Window
         irc.OnError += new ErrorEventHandler(OnError);
         irc.OnRawMessage += new IrcEventHandler(OnRawMessage);
 
-		
 		string[] serverlist;
         // the server we want to connect to, could be also a simple string
         serverlist = new string[] {SAI_Serveur.Text};
@@ -271,27 +271,31 @@ public partial class MainWindow : Gtk.Window
             System.Console.WriteLine("couldn't connect! Reason: "+exe.Message);
             Exit();
         }
-        
+		
         try {
             // here we logon and register our nickname and so on 
             irc.Login(SAI_User.Text,SAI_User.Text);
             // join the channel
             irc.RfcJoin(channel);
-            
-            // testing the delay and flood protection (messagebuffer work)
-			irc.SendMessage(SendType.Message, channel, "Hello");
-			//ask list users
+           
+			// testing the delay and flood protection (messagebuffer work)
+			irc.RfcList(SAI_Chan.Text);
+			irc.SendMessage(SendType.Message, SAI_Chan.Text, "Hello");
+	
 			_initOk=true;
+			/*
 			irc.RfcList(channel);
 			Gtk.Application.Invoke (delegate {
 				BTN_Send.Visible=true;
-			});
+			});*/
 			
             // spawn a new thread to read the stdin of the console, this we use
             // for reading IRC commands from the keyboard while the IRC connection
             // stays in its own thread
-            new Thread(new ThreadStart(ReadCommands)).Start();
+            //new Thread(new ThreadStart(ReadCommands)).Start();
 
+			
+			
             // here we tell the IRC API to go into a receive mode, all events
             // will be triggered by _this_ thread (main thread in this case)
             // Listen() blocks by default, you can also use ListenOnce() if you
@@ -330,6 +334,7 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNSendClicked (object sender, System.EventArgs e)
 	{
+		if(!_initOk) return;
 		if(SAI_Envoi.Text=="") return;
 		irc.SendMessage(SendType.Message, SAI_Chan.Text, SAI_Envoi.Text);
 		AppendText(SAI_User.Text+" : "+SAI_Envoi.Text);

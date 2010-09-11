@@ -317,7 +317,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 1;
+		this.ONG_principal.CurrentPage = 6;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -1058,7 +1058,7 @@ public partial class MainWindow
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.image6 = new global::Gtk.Image ();
 		this.image6.Name = "image6";
-		this.image6.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.fw.png");
+		this.image6.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.fw-mini.png");
 		this.hbox1.Add (this.image6);
 		global::Gtk.Box.BoxChild w77 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.image6]));
 		w77.Position = 0;

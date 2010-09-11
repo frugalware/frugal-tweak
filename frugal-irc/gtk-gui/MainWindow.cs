@@ -188,7 +188,6 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.BTN_Send.Hide ();
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.BTN_Connect.Clicked += new global::System.EventHandler (this.OnBTNConnectClicked);
