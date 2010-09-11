@@ -49,6 +49,7 @@
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="..\frugal-mono-tools\Pictures\header.svg" />
+    <EmbeddedResource Include="..\frugal-mono-tools\Pictures\fw.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
