@@ -27,7 +27,7 @@
       <widget class="Gtk.Notebook" id="ONG_principal">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">3</property>
+        <property name="CurrentPage">2</property>
         <child>
           <widget class="Gtk.VBox" id="vbox4">
             <property name="MemberName" />
@@ -731,15 +731,16 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Entry" id="SAI_Locale">
+                  <widget class="Gtk.ComboBoxEntry" id="CBO_Locale">
                     <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="IsEditable">True</property>
-                    <property name="InvisibleChar">•</property>
+                    <property name="IsTextCombo">True</property>
+                    <property name="Items" translatable="yes" />
                   </widget>
                   <packing>
                     <property name="Position">2</property>
                     <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
                   </packing>
                 </child>
               </widget>

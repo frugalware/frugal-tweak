@@ -40,6 +40,7 @@ public partial class MainWindow : Gtk.Window
 	ListStore UpdateListStore = new Gtk.ListStore (typeof (string));
 	ListStore modelRepoList = new ListStore (typeof (string),typeof (int)); 
 	ListStore modelXorgDrivers = new ListStore (typeof (string));
+	ListStore modelLocale = new ListStore (typeof (string));
 	ListStore serviceListStore = new Gtk.ListStore (typeof (string),typeof (string),typeof (string),typeof (string));
 	//webkit engine
 	private WebKit.WebView webview=null;
@@ -382,7 +383,13 @@ public partial class MainWindow : Gtk.Window
 		SAI_Distribution.Text=confSystem.GetDistribution();
 		SAI_Kernel.Text=confSystem.GetKernel();
 		SAI_Shell.Text=confSystem.GetUserShell();
-		SAI_Locale.Text=confSystem.GetLocale();
+		CBO_Locale.Model=modelLocale;
+		foreach (string locale in  confSystem.LocaleSystem)
+		{
+			iter=modelLocale.AppendValues(locale);
+			if(confSystem.GetLocale()==locale)
+				CBO_Locale.SetActiveIter(iter);
+		}
 		
 		//configuration
 		INT_CheckStartup.Active=MainClass.configuration.Get_CheckUpdate();
@@ -1079,7 +1086,7 @@ public partial class MainWindow : Gtk.Window
 	protected virtual void OnBTNSystemClicked (object sender, System.EventArgs e)
 	{
 		confSystem.SetHostname(SAI_Host.Text);
-		confSystem.SetLocale(SAI_Locale.Text);
+		confSystem.SetLocale(CBO_Locale.Entry.Text);
 		confSystem.Save();
 	}
 	

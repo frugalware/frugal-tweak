@@ -115,7 +115,7 @@ public partial class MainWindow
 
 	private global::Gtk.Label label16;
 
-	private global::Gtk.Entry SAI_Locale;
+	private global::Gtk.ComboBoxEntry CBO_Locale;
 
 	private global::Gtk.HBox hbox29;
 
@@ -317,7 +317,7 @@ public partial class MainWindow
 		this.ONG_principal = new global::Gtk.Notebook ();
 		this.ONG_principal.CanFocus = true;
 		this.ONG_principal.Name = "ONG_principal";
-		this.ONG_principal.CurrentPage = 3;
+		this.ONG_principal.CurrentPage = 2;
 		// Container child ONG_principal.Gtk.Notebook+NotebookChild
 		this.vbox4 = new global::Gtk.VBox ();
 		this.vbox4.Name = "vbox4";
@@ -805,14 +805,13 @@ public partial class MainWindow
 		w50.Expand = false;
 		w50.Fill = false;
 		// Container child hbox28.Gtk.Box+BoxChild
-		this.SAI_Locale = new global::Gtk.Entry ();
-		this.SAI_Locale.CanFocus = true;
-		this.SAI_Locale.Name = "SAI_Locale";
-		this.SAI_Locale.IsEditable = true;
-		this.SAI_Locale.InvisibleChar = '•';
-		this.hbox28.Add (this.SAI_Locale);
-		global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.hbox28[this.SAI_Locale]));
+		this.CBO_Locale = global::Gtk.ComboBoxEntry.NewText ();
+		this.CBO_Locale.Name = "CBO_Locale";
+		this.hbox28.Add (this.CBO_Locale);
+		global::Gtk.Box.BoxChild w51 = ((global::Gtk.Box.BoxChild)(this.hbox28[this.CBO_Locale]));
 		w51.Position = 2;
+		w51.Expand = false;
+		w51.Fill = false;
 		this.vbox11.Add (this.hbox28);
 		global::Gtk.Box.BoxChild w52 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.hbox28]));
 		w52.Position = 5;
