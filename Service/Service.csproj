@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Service</RootNamespace>
     <AssemblyName>ServiceMonoFrugal</AssemblyName>
-    <ReleaseVersion>0.1.6.2</ReleaseVersion>
+    <ReleaseVersion>0.1.6.3</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
