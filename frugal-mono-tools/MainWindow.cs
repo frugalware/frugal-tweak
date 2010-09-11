@@ -398,8 +398,7 @@ public partial class MainWindow : Gtk.Window
 	{
 			if (MainClass.cache.GetLatest()!=latest)
 			{
-				IconSummaryBody notif= new IconSummaryBody();
-				if(MainClass.configuration.Get_ShowNotif()) notif.ShowMessage("Frugalware","News are available.");
+				Outils.Inform("Frugalware","News are available.");
 				//write cache	
 				MainClass.cache.SetLatest(latest);
 				MainClass.cache.CacheSave();

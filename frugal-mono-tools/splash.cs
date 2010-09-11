@@ -26,11 +26,7 @@ namespace frugalmonotools
 						Console.WriteLine(pkg.packagename+" can be updated to "+pkg.packageversion);
 					}
 				}
-				try{
-				IconSummaryBody notif= new IconSummaryBody();
-				if(MainClass.configuration.Get_ShowNotif()) notif.ShowMessage("Frugalware","Some update are available.");
-				}
-				catch{}
+				Outils.Inform("Frugalware","Some update are available.");
 				Console.WriteLine("Some packages can be updated.");
 			}
 			

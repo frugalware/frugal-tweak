@@ -56,8 +56,6 @@ namespace frugalmonotools
 		
 		public static void check()
 		{
-			IconSummaryBody notif= new IconSummaryBody();		
-
 			if (Update.CheckUpdate())
 			{
 				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
@@ -71,7 +69,7 @@ namespace frugalmonotools
 					}
 				}
 
-				if(configuration.Get_ShowNotif()) notif.ShowMessage("Frugalware","Some update are available.");
+				Outils.Inform("Frugalware","Some update are available.");
 				Console.WriteLine("Some packages can be updated.");
 			}
 			else

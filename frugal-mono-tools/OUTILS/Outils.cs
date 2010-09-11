@@ -21,6 +21,17 @@ namespace frugalmonotools
 {
 	public static class Outils
 	{
+		public static void Inform(string title,string text)
+		{
+			try{
+				IconSummaryBody notif= new IconSummaryBody();
+				if(MainClass.configuration.Get_ShowNotif()) notif.ShowMessage(title,text);
+			}
+			catch{
+				Console.WriteLine("System don't support notification");
+				Console.WriteLine(title+" : "+text);
+			}
+		}
 		public static string getoutput( string cmd )
 		{
 			string[] parts = cmd.Split( ' ' );	
