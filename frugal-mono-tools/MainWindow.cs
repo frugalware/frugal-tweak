@@ -1050,7 +1050,16 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OnBTNRefreshClicked (object sender, System.EventArgs e)
 	{
+		_refreshUpdate();
+	}
+	private void _refreshUpdate()
+	{
 		if(Update.CheckUpdate())
+		{
+			Gdk.Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
+			MainClass.trayIcon.Pixbuf=ico;
+		}
+		else
 		{
 			Gdk.Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
 			MainClass.trayIcon.Pixbuf=ico;
