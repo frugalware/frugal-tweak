@@ -183,62 +183,7 @@ public partial class MainWindow : Gtk.Window
 		this.vbox5.Add (this.scroll);
 		this.scroll.ShowAll();
 		
-		//HW
-		if(!MainClass.pacmanG2.IsInstalled("system-config-printer"))
-		{
-			BTN_Printer.Visible=false;
-			LAB_Printer.Visible=true;
-		}
-		else
-		{
-			BTN_Printer.Visible=true;
-			LAB_Printer.Visible=false;
-		}
-		if(!MainClass.pacmanG2.IsInstalled("frugalwareutils"))
-		{
-			BTN_Setup.Visible=false;
-			LIB_Setup.Visible=true;
-		}
-		else
-		{
-			BTN_Setup.Visible=true;
-			LIB_Setup.Visible=false;
-		}
-	
-		string dmesgOutput=Outils.ReadFile( "/var/log/syslog");//Outils.getoutput("/bin/dmesg");
-		if(dmesgOutput.IndexOf("lirc")>0)
-		{
-			if (!MainClass.pacmanG2.IsInstalled("lirc"))
-			{
-				LIB_Lirc.Visible=true;
-			}
-			else
-			{
-				LIB_Lirc.Visible=false;
-			}
-		}
-		else
-		{
-			LIB_Lirc.Visible=false;
-		}
-				
-		
-		if(dmesgOutput.IndexOf("Bluetooth")>0)
-		{
-			if (!MainClass.pacmanG2.IsInstalled("bluez"))
-			{
-				LIB_Bluez.Visible=true;
-			}
-			else
-			{
-				LIB_Bluez.Visible=false;
-			}
-		}
-		else
-		{
-			LIB_Bluez.Visible=false;
-		}
-		
+		_initHardware();
 		
 		BTN_Uninstall.Visible=false;
 		BTN_Install.Visible=false;
@@ -290,74 +235,17 @@ public partial class MainWindow : Gtk.Window
 				CBO_GraphicalDevice.SetActiveIter(iter);
 		}
 		
-		
 		INT_Numlock.Active=IsNumlockOnStartX();
+		string dmesgOutput=Outils.ReadFile( "/var/log/syslog");//Outils.getoutput("/bin/dmesg");
 		if ((dmesgOutput.IndexOf("TouchPad")>0) && (!MainClass.pacmanG2.IsInstalled("xf86-input-synaptics")))
 			BTN_Synaptics.Visible=true;
 		else
 			BTN_Synaptics.Visible=false;
 		
-		//network init
-		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
-		EnableDisable(INT_NM,"networkmanager",LIB_NMNotInstalled);
-		INT_WICD.Active=Outils.ServiceOnStartUp("S99rc.wicd");
-		EnableDisable(INT_WICD,"wicd",LIB_WICDNotInstalled);
-		if((!INT_NM.Active) && (!INT_WICD.Active))
-		{
-			INT_FW.Active=true;
-		}
-		else
-		{
-			INT_FW.Active=false;
-		}
-		//Login Manager init
-		EnableDisable(INT_XDM,"xdm",LIB_XDM);
-		EnableDisable(INT_LXDM,"lxdm",LIB_LXDM);
-		EnableDisable(INT_Slim,"slim",LIB_SLIM);
-		EnableDisable(INT_GDM,"gdm",LIB_GDM);
-		EnableDisable(INT_KDM,"kdm",LIB_KDM);
-		 try
-            {
-                System.IO.StreamReader textFile = new System.IO.StreamReader(cch_FileLoginManager);
-                string fileContents = textFile.ReadToEnd();
-                textFile.Close();
-				fileContents = fileContents.Replace("\n\n", "\n");
-                string[] lines = fileContents.Split('\n');
-                foreach (string line in lines)
-                {
-                    if (line.Substring(0, 1) != "#")
-                    {
-                        //We can search a login manager
-                        if (line.IndexOf("/usr/bin/xdm") > 0)
-                        {
-                            //use xdm
-							this.INT_XDM.Active=true;
-                        }
-                        if (line.IndexOf("/usr/sbin/lxdm") > 0)
-                        {
-                            //use lxdm
-							this.INT_LXDM.Active=true;
-                        }
-                        if (line.IndexOf("/usr/bin/slim") > 0)
-                        {
-                            //use Slim
-							this.INT_Slim.Active=true;
-                        }
-                        if (line.IndexOf("/usr/sbin/gdm") > 0)
-                        {
-                            //use GDM
-							this.INT_GDM.Active=true;
-                        }
-                        if (line.IndexOf("/usr/bin/kdm") > 0)
-                        {
-                            //use KDM
-							this.INT_KDM.Active=true;
-                        }
-
-                    }
-                }
-            }
-            catch { }
+		
+		
+		_initNetworkManager();
+		_initLoginManager();
 
 		//RSS
 		try{
@@ -418,6 +306,132 @@ public partial class MainWindow : Gtk.Window
 		{
 			SAI_ignorePkg.Text+=" "+ignore;
 		}
+	}
+	private  void _initHardware()
+	{
+			//HW
+		if(!MainClass.pacmanG2.IsInstalled("system-config-printer"))
+		{
+			BTN_Printer.Visible=false;
+			LAB_Printer.Visible=true;
+		}
+		else
+		{
+			BTN_Printer.Visible=true;
+			LAB_Printer.Visible=false;
+		}
+		if(!MainClass.pacmanG2.IsInstalled("frugalwareutils"))
+		{
+			BTN_Setup.Visible=false;
+			LIB_Setup.Visible=true;
+		}
+		else
+		{
+			BTN_Setup.Visible=true;
+			LIB_Setup.Visible=false;
+		}
+	
+		string dmesgOutput=Outils.ReadFile( "/var/log/syslog");//Outils.getoutput("/bin/dmesg");
+		if(dmesgOutput.IndexOf("lirc")>0)
+		{
+			if (!MainClass.pacmanG2.IsInstalled("lirc"))
+			{
+				LIB_Lirc.Visible=true;
+			}
+			else
+			{
+				LIB_Lirc.Visible=false;
+			}
+		}
+		else
+		{
+			LIB_Lirc.Visible=false;
+		}
+				
+		
+		if(dmesgOutput.IndexOf("Bluetooth")>0)
+		{
+			if (!MainClass.pacmanG2.IsInstalled("bluez"))
+			{
+				LIB_Bluez.Visible=true;
+			}
+			else
+			{
+				LIB_Bluez.Visible=false;
+			}
+		}
+		else
+		{
+			LIB_Bluez.Visible=false;
+		}
+	
+	}
+	private void _initNetworkManager()
+	{
+		//network init
+		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
+		EnableDisable(INT_NM,"networkmanager",LIB_NMNotInstalled);
+		INT_WICD.Active=Outils.ServiceOnStartUp("S99rc.wicd");
+		EnableDisable(INT_WICD,"wicd",LIB_WICDNotInstalled);
+		if((!INT_NM.Active) && (!INT_WICD.Active))
+		{
+			INT_FW.Active=true;
+		}
+		else
+		{
+			INT_FW.Active=false;
+		}
+	}
+	private void _initLoginManager()
+	{
+		//Login Manager init
+		EnableDisable(INT_XDM,"xdm",LIB_XDM);
+		EnableDisable(INT_LXDM,"lxdm",LIB_LXDM);
+		EnableDisable(INT_Slim,"slim",LIB_SLIM);
+		EnableDisable(INT_GDM,"gdm",LIB_GDM);
+		EnableDisable(INT_KDM,"kdm",LIB_KDM);
+		 try
+            {
+                System.IO.StreamReader textFile = new System.IO.StreamReader(cch_FileLoginManager);
+                string fileContents = textFile.ReadToEnd();
+                textFile.Close();
+				fileContents = fileContents.Replace("\n\n", "\n");
+                string[] lines = fileContents.Split('\n');
+                foreach (string line in lines)
+                {
+                    if (line.Substring(0, 1) != "#")
+                    {
+                        //We can search a login manager
+                        if (line.IndexOf("/usr/bin/xdm") > 0)
+                        {
+                            //use xdm
+							this.INT_XDM.Active=true;
+                        }
+                        if (line.IndexOf("/usr/sbin/lxdm") > 0)
+                        {
+                            //use lxdm
+							this.INT_LXDM.Active=true;
+                        }
+                        if (line.IndexOf("/usr/bin/slim") > 0)
+                        {
+                            //use Slim
+							this.INT_Slim.Active=true;
+                        }
+                        if (line.IndexOf("/usr/sbin/gdm") > 0)
+                        {
+                            //use GDM
+							this.INT_GDM.Active=true;
+                        }
+                        if (line.IndexOf("/usr/bin/kdm") > 0)
+                        {
+                            //use KDM
+							this.INT_KDM.Active=true;
+                        }
+
+                    }
+                }
+            }
+            catch { }
 	}
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
@@ -915,6 +929,10 @@ public partial class MainWindow : Gtk.Window
 		else
 			Outils.ExcecuteAsRoot("python /usr/bin/PyFrugalVTE pacman-g2 -Rc "+packageSelected,true);	
 		_searchPackage();
+		
+		_initHardware();
+		_initLoginManager();
+		_initNetworkManager();
 	}
 	
 	protected virtual void OnBTNInstallClicked (object sender, System.EventArgs e)
@@ -925,6 +943,10 @@ public partial class MainWindow : Gtk.Window
 		else
 			Outils.ExcecuteAsRoot("python /usr/bin/PyFrugalVTE pacman-g2 -Sy "+packageSelected,true);	
 		_searchPackage();
+		
+		_initHardware();
+		_initLoginManager();
+		_initNetworkManager();
 	}
 	
 	protected virtual void OnBTNUpdateClicked (object sender, System.EventArgs e)
