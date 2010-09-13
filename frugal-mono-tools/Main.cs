@@ -36,6 +36,7 @@ namespace frugalmonotools
 		public static PacmanG2 pacmanG2 = new PacmanG2();
 		public static Configuration configuration = new Configuration();
 		public static Cache cache = new Cache();
+		public static  bool boRoot = false;
 		
 		private static void checkUpdate(object source, ElapsedEventArgs e)
 		{
@@ -80,7 +81,8 @@ namespace frugalmonotools
 			if(Fen!=null)
 				{
 					//update list to treeview
-					Fen.UpdateToTreeview();
+					//FIXE ME
+					//Fen.UpdateToTreeview();
 				}
 		}
 		private static splash win;
@@ -130,7 +132,7 @@ namespace frugalmonotools
 				popupMenu.Popup();
 			}
 		
-		public static MainWindow Fen ;
+		public static Fen_Menu Fen ;
 		public static bool StartedAutomatic=false;
 		public static Xorg xorg = new Xorg();
 		public static Bus bus;
@@ -140,6 +142,11 @@ namespace frugalmonotools
 		
 		public static void Main (string[] args)
 		{
+			//root options
+		if (Mono.Unix.Native.Syscall.getuid()!=0)
+			boRoot=false;
+		else
+			boRoot=true;
 			try{
 					bus = Bus.Session;
 					if (bus.RequestName (DbusName) == RequestNameReply.PrimaryOwner)
@@ -180,7 +187,7 @@ namespace frugalmonotools
 				{
 					System.Threading.Thread.Sleep(1000);
 					ServicesRc.CheckList();
-					Fen = new MainWindow();
+					Fen = new Fen_Menu();
 					Fen.Show();
 				}
 				Gtk.Application.Run ();
@@ -204,7 +211,7 @@ namespace frugalmonotools
 							trayIcon.Visible = true;
 							check();
 							ServicesRc.CheckList();
-							Fen = new MainWindow();
+							Fen = new Fen_Menu();
 							Fen.Hide();
 							StartedAutomatic=true;
 							aTimer = new System.Timers.Timer();

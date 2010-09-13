@@ -92,6 +92,32 @@
     <Compile Include="ConfSystem.cs" />
     <Compile Include="DbusObject.cs" />
     <Compile Include="Xorg.cs" />
+    <Compile Include="Fen_Menu.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.Fen_Menu.cs" />
+    <Compile Include="WID_Pkg.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Pkg.cs" />
+    <Compile Include="WID_Xorg.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Xorg.cs" />
+    <Compile Include="WID_Update.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Update.cs" />
+    <Compile Include="WID_System.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_System.cs" />
+    <Compile Include="WID_Hardware.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Hardware.cs" />
+    <Compile Include="WID_Services.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Services.cs" />
+    <Compile Include="WID_Network.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Network.cs" />
+    <Compile Include="WID_LoginManager.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_LoginManager.cs" />
+    <Compile Include="WID_Support.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Support.cs" />
+    <Compile Include="WID_News.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_News.cs" />
+    <Compile Include="WID_Config.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Config.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_About.cs" />
+    <Compile Include="WID_About.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

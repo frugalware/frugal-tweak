@@ -12,7 +12,7 @@ namespace frugalmonotools
 		}
 		
 		private void Start() {
-			MainWindow win = new MainWindow();
+			Fen_Menu win = new Fen_Menu();
 			win.Show();
 			this.Hide();
 			Console.WriteLine("Start control center");
