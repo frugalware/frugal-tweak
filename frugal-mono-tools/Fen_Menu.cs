@@ -18,6 +18,7 @@
 using System;
 using Gdk;
 using Gtk;
+using Rss;
 using System.Timers;
 
 namespace frugalmonotools
@@ -50,6 +51,8 @@ namespace frugalmonotools
 		WID_Config fen_config ;
 		WID_Hardware fen_hardware ;
 		WID_LoginManager fen_loginManager;
+		
+		string CurrentWidget="";
 
 		protected Gtk.TreeIter iter;
 		public Fen_Menu () : base(Gtk.WindowType.Toplevel)
@@ -123,7 +126,7 @@ namespace frugalmonotools
 		private void SelectModule(string module)
 		{
 					
-					
+					CurrentWidget=module;
 					this.HBOX_Details.Destroy();
 					this.HBOX_Details = new global::Gtk.HBox ();
 					this.HBOX_Details.SetSizeRequest(680,500);
@@ -226,26 +229,32 @@ namespace frugalmonotools
 		}
 		private void checkRSS(object source, ElapsedEventArgs e)
 		{
-			//FIX ME	
-			/*
 		//RSS
 		try{
-			modelFlux.Clear();
-			rssFeed =RssFeed.Read(UrlPlanet);
+			if (CurrentWidget==cch_news)
+			{
+					fen_news.CheckRss();
+					return;
+			}
+			RssFeed rssFeed =RssFeed.Read(MainClass.UrlPlanet);
 			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
-
-			int i = 0;
 			string latest="";
 			foreach (RssItem item in rssChannel.Items)
 			{
-				string titre=item.Title;
 				if(latest =="")latest=item.Link.AbsoluteUri.ToString();
-				modelFlux.AppendValues(titre,i);
-				i++;
+				if (MainClass.cache.GetLatest()!=latest)
+				{
+					Outils.Inform("Frugalware","News are available.");
+					//write cache	
+					MainClass.cache.SetLatest(latest);
+					MainClass.cache.CacheSave();
+				}
+				return;
 			}
-			InformNewFlux(latest);
+			
 		}
-		catch{}		*/
+			catch{}
+		
 		}
 	
 		

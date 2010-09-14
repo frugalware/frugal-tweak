@@ -32,7 +32,7 @@ namespace frugalmonotools
 		//HTML htl;
 
 		//RSS
-		const string UrlPlanet="http://planet.frugalware.org/feed.php?type=rss";
+		
 		ListStore modelFlux = new ListStore (typeof (string),typeof (int)); 
 		RssFeed rssFeed ;
 		//RSS FluxRss;
@@ -49,11 +49,15 @@ namespace frugalmonotools
 			scroll.Add(webview);
 			this.vbox5.Add (this.scroll);
 			this.scroll.ShowAll();
+			CheckRss();
 			
-		//RSS
+		}
+		public void CheckRss()
+		{
+			//RSS
 		try{
 			CBO_TitleNews.Model=modelFlux;
-			rssFeed =RssFeed.Read(UrlPlanet);
+			rssFeed =RssFeed.Read(MainClass.UrlPlanet);
 			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
 
 			int i = 0;
@@ -68,9 +72,9 @@ namespace frugalmonotools
 			InformNewFlux(latest);
 		}
 		catch{}	
+
 		}
-		
-		private void InformNewFlux(string latest)
+		public void InformNewFlux(string latest)
 		{
 			if (MainClass.cache.GetLatest()!=latest)
 			{

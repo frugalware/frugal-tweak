@@ -32,6 +32,7 @@ namespace frugalmonotools
 {
 	class MainClass
 	{
+		public static string UrlPlanet="http://planet.frugalware.org/feed.php?type=rss";
 		//pacman-g2 initialise
 		public static PacmanG2 pacmanG2 = new PacmanG2();
 		public static Configuration configuration = new Configuration();
