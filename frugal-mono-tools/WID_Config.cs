@@ -25,9 +25,8 @@ namespace frugalmonotools
 		public WID_Config ()
 		{
 			this.Build ();
-			_initConfig();
 		}
-		private void _initConfig()
+		public  void InitConfig()
 		{
 			//configuration
 			INT_CheckStartup.Active=MainClass.configuration.Get_CheckUpdate();

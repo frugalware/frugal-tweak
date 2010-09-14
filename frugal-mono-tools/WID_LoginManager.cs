@@ -26,13 +26,12 @@ namespace frugalmonotools
 		const string cch_FileLoginManager=@"/etc/sysconfig/desktop";
 		public WID_LoginManager ()
 		{
-			this.Build ();
-			_initLoginManager();
-			if(!MainClass.boRoot)
-				BTN_LoginManager.Visible=false;
+			this.Build ();			
 		}
-		private void _initLoginManager()
+		public void InitLoginManager()
 		{
+		if(!MainClass.boRoot)
+				BTN_LoginManager.Visible=false;
 		//Login Manager init
 		EnableDisable(INT_XDM,"xdm",LIB_XDM);
 		EnableDisable(INT_LXDM,"lxdm",LIB_LXDM);

@@ -25,12 +25,11 @@ namespace frugalmonotools
 		public WID_Network ()
 		{
 			this.Build ();
-			if(!MainClass.boRoot)
-				BTN_Network.Visible=false;
-			_initNetworkManager();
 		}
-	private void _initNetworkManager()
+	public void InitNetworkManager()
 	{
+		if(!MainClass.boRoot)
+				BTN_Network.Visible=false;
 		//network init
 		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
 		EnableDisable(INT_NM,"networkmanager",LIB_NMNotInstalled);

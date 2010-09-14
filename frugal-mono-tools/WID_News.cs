@@ -40,9 +40,8 @@ namespace frugalmonotools
 		public WID_News ()
 		{
 			this.Build ();
-			_initnews();
 		}
-		private void _initnews()
+		public void InitNews()
 		{
 			//webkit engine
 			this.webview = new WebView();

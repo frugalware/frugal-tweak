@@ -29,12 +29,14 @@ namespace frugalmonotools
 		public WID_System ()
 		{
 			this.Build ();
-			_initSystem();
-			if(!MainClass.boRoot)
-				BTN_System.Visible=false;
+			
 		}
-		private void _initSystem()
+		public void InitSystem()
 		{
+			if(!MainClass.boRoot)
+			{
+				BTN_System.Visible=false;	
+			}
 		//system configuration
 		SAI_Host.Text=confSystem.GetHostname();
 		SAI_Distribution.Text=confSystem.GetDistribution();

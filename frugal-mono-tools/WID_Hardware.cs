@@ -24,14 +24,13 @@ namespace frugalmonotools
 		public WID_Hardware ()
 		{
 			this.Build ();
-			_initHardware();
+		}
+		public void InitHardware()
+		{
 			if(!MainClass.boRoot)
 			{
 				BTN_Setup.Visible = false;
 			}
-		}
-		private void _initHardware()
-		{
 			if(!MainClass.pacmanG2.IsInstalled("system-config-printer"))
 		{
 			BTN_Printer.Visible=false;

@@ -29,15 +29,14 @@ namespace frugalmonotools
 		public WID_Update ()
 		{
 			this.Build ();
-			_initUpdate();
-			if(!MainClass.boRoot)
-			{
-				BTN_UpdateDatabase.Visible = false;
-				BTN_ApplyIgnorePkg.Visible=false;
-			}
 		}
-		private void _initUpdate()
+		public  void InitUpdate()
 		{
+		if(!MainClass.boRoot)
+		{
+			BTN_UpdateDatabase.Visible = false;
+			BTN_ApplyIgnorePkg.Visible=false;
+		}
 		//update package list
 		// Create a column for the package name
 		Gtk.TreeViewColumn pkgupdateColumn = new Gtk.TreeViewColumn ();

@@ -31,15 +31,14 @@ namespace frugalmonotools
 		
 		public WID_Xorg ()
 		{
-			this.Build ();
-			_initXorg();
-			if(!MainClass.boRoot)
-				BTN_Xorg.Visible=false;
+			this.Build ();		
 		}
 		
-		private void _initXorg()
+		public void InitXorg()
 		{
-			//xorg configuration
+			if(!MainClass.boRoot)
+				BTN_Xorg.Visible=false;
+		//xorg configuration
 		SAI_Layout.Text=this.LayoutXorg();
 		
 		string lspci ="/usr/sbin/lspci";

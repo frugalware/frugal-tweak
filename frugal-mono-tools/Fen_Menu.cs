@@ -38,18 +38,18 @@ namespace frugalmonotools
 		private const string cch_about="About";
 		
 		//widget
-		WID_Network fen_network = new WID_Network();
+		WID_Network fen_network ;
 		WID_News fen_news ;
-		WID_Pkg fen_pkg= new WID_Pkg();
-		WID_Xorg fen_xorg= new WID_Xorg();
-		WID_Update fen_update= new WID_Update();
-		WID_Services fen_services = new WID_Services();
-		WID_Support fen_support = new WID_Support();
-		WID_System fen_system = new WID_System();
-		WID_About fen_about = new WID_About();
-		WID_Config fen_config = new WID_Config();
-		WID_Hardware fen_hardware = new WID_Hardware();
-		WID_LoginManager fen_loginManager = new WID_LoginManager();
+		WID_Pkg fen_pkg;
+		WID_Xorg fen_xorg;
+		WID_Update fen_update;
+		WID_Services fen_services;
+		WID_Support fen_support;
+		WID_System fen_system;
+		WID_About fen_about ;
+		WID_Config fen_config ;
+		WID_Hardware fen_hardware ;
+		WID_LoginManager fen_loginManager;
 
 		protected Gtk.TreeIter iter;
 		public Fen_Menu () : base(Gtk.WindowType.Toplevel)
@@ -136,12 +136,14 @@ namespace frugalmonotools
 							this.fen_pkg = new WID_Pkg();
 							this.HBOX_Details.PackStart(fen_pkg);
 							this.HBOX_Details.ShowAll();
+							this.fen_pkg.InitPkg();
 						break;
 						
 						case cch_update:
 							this.fen_update = new WID_Update();
 							this.HBOX_Details.PackStart(fen_update);
 							this.HBOX_Details.ShowAll();
+							this.fen_update.InitUpdate();
 						break;
 				
 						case cch_about:
@@ -154,36 +156,42 @@ namespace frugalmonotools
 							this.fen_config = new WID_Config();
 							this.HBOX_Details.PackStart(fen_config);
 							this.HBOX_Details.ShowAll();
+							this.fen_config.InitConfig();
 						break;
 
 						case cch_hardware:
 							this.fen_hardware = new WID_Hardware();
 							this.HBOX_Details.PackStart(fen_hardware);
 							this.HBOX_Details.ShowAll();
+							this.fen_hardware.InitHardware();
 						break;
 
 						case cch_loginManager:
 							this.fen_loginManager = new WID_LoginManager();
 							this.HBOX_Details.PackStart(fen_loginManager);
 							this.HBOX_Details.ShowAll();
+							this.fen_loginManager.InitLoginManager();
 						break;
 				
 						case cch_network:
 							this.fen_network=new WID_Network();
 							this.HBOX_Details.PackStart(fen_network);
 							this.HBOX_Details.ShowAll();
+							this.fen_network.InitNetworkManager();
 						break;
 				
 						case cch_news:
 							this.fen_news = new WID_News();
 							this.HBOX_Details.PackStart(fen_news);
 							this.HBOX_Details.ShowAll();
+							this.fen_news.InitNews();
 						break;
 
 						case cch_services:
 							this.fen_services = new WID_Services();
 							this.HBOX_Details.PackStart(fen_services);
 							this.HBOX_Details.ShowAll();
+							this.fen_services.InitService();
 						break;
 
 						case cch_support:
@@ -196,12 +204,14 @@ namespace frugalmonotools
 							this.fen_system=new WID_System();
 							this.HBOX_Details.PackStart(fen_system);
 							this.HBOX_Details.ShowAll();
+							this.fen_system.InitSystem();
 						break;
 				
 						case cch_xorg:
 							this.fen_xorg=new WID_Xorg();
 							this.HBOX_Details.PackStart(fen_xorg);
 							this.HBOX_Details.ShowAll();
+							this.fen_xorg.InitXorg();
 						break;
 					}
 		}

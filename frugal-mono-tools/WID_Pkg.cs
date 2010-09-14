@@ -31,9 +31,8 @@ namespace frugalmonotools
 		public WID_Pkg ()
 		{
 			this.Build ();
-			_initPkg();
 		}
-		private void _initPkg()
+		public void InitPkg()
 		{
 		//pacman-g2
 		// Create a column for the package name

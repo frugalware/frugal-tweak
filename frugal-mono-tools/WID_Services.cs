@@ -29,9 +29,8 @@ namespace frugalmonotools
 		public WID_Services ()
 		{
 			this.Build ();
-			_initService();
 		}
-		private void _initService()
+		public void InitService()
 		{
 		// services
 		Gtk.TreeViewColumn ColumnServiceName = new Gtk.TreeViewColumn ();
