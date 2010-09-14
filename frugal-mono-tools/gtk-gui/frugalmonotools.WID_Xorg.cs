@@ -152,6 +152,7 @@ namespace frugalmonotools
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.BTN_Synaptics.Clicked += new global::System.EventHandler (this.OnBTNSynapticsClicked);
 			this.BTN_Xorg.Clicked += new global::System.EventHandler (this.OnBTNXorgClicked);
 		}
 	}

@@ -27,6 +27,9 @@ namespace frugalmonotools
 		public WID_LoginManager ()
 		{
 			this.Build ();
+			_initLoginManager();
+			if(!MainClass.boRoot)
+				BTN_LoginManager.Visible=false;
 		}
 		private void _initLoginManager()
 		{
@@ -160,6 +163,67 @@ namespace frugalmonotools
 			text.Visible=false;
 		}
 	}
+		
+	protected virtual void OnINTXDMClicked (object sender, System.EventArgs e)
+	{
+		if (this.INT_XDM.Active)
+		{
+			this.INT_KDM.Active=false;
+			this.INT_GDM.Active=false;
+			this.INT_Slim.Active=false;
+			this.INT_LXDM.Active=false;
+		}
+		
+	}
+		
+	protected virtual void OnINTLXDMClicked (object sender, System.EventArgs e)
+	{
+		if (this.INT_LXDM.Active)
+		{
+			this.INT_KDM.Active=false;
+			this.INT_GDM.Active=false;
+			this.INT_Slim.Active=false;
+			this.INT_XDM.Active=false;
+		}
+	}
+		
+	protected virtual void OnINTSlimClicked (object sender, System.EventArgs e)
+	{
+		if (this.INT_Slim.Active)
+		{
+			this.INT_KDM.Active=false;
+			this.INT_GDM.Active=false;
+			this.INT_XDM.Active=false;
+			this.INT_LXDM.Active=false;
+		}
+	}
+		
+	protected virtual void OnINTGDMClicked (object sender, System.EventArgs e)
+	{
+		if (this.INT_GDM.Active)
+		{
+			this.INT_KDM.Active=false;
+			this.INT_XDM.Active=false;
+			this.INT_Slim.Active=false;
+			this.INT_LXDM.Active=false;
+		}
+	}
+		
+	protected virtual void OnINTKDMClicked (object sender, System.EventArgs e)
+	{
+		if (this.INT_KDM.Active)
+		{
+			this.INT_XDM.Active=false;
+			this.INT_GDM.Active=false;
+			this.INT_Slim.Active=false;
+			this.INT_LXDM.Active=false;
+		}
+	}
+		
+		
+		
+		
+		
 		
 	}
 }

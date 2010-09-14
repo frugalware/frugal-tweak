@@ -33,6 +33,8 @@ namespace frugalmonotools
 		{
 			this.Build ();
 			_initXorg();
+			if(!MainClass.boRoot)
+				BTN_Xorg.Visible=false;
 		}
 		
 		private void _initXorg()
@@ -193,6 +195,12 @@ namespace frugalmonotools
 		}
 	}
 	
+	protected virtual void OnBTNSynapticsClicked (object sender, System.EventArgs e)
+	{
+			Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy xf86-input-synaptics",false);	
+	}
+		
+		
 	
 
 	}

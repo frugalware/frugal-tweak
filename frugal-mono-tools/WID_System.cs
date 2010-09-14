@@ -30,6 +30,8 @@ namespace frugalmonotools
 		{
 			this.Build ();
 			_initSystem();
+			if(!MainClass.boRoot)
+				BTN_System.Visible=false;
 		}
 		private void _initSystem()
 		{

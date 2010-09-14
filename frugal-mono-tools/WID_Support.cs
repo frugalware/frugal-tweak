@@ -21,10 +21,70 @@ namespace frugalmonotools
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class WID_Support : Gtk.Bin
 	{
+		private void _joinIrc(string channel)
+		{
+			Outils.Excecute("mono","/usr/lib/frugalware-tweak/frugal-irc.exe "+channel,false);		
+		}
+	
+		protected virtual void OnBTNIrcClicked (object sender, System.EventArgs e)
+		{
+			_joinIrc("frugalware");
+		}
+		
+		
 		public WID_Support ()
 		{
 			this.Build ();
 		}
+		protected virtual void OnBTNForumsClicked (object sender, System.EventArgs e)
+		{
+			WebkitBrowser browser = new WebkitBrowser("http://forums.frugalware.org");
+			browser.Show();
+		}
+		
+		protected virtual void OnBTNWikiClicked (object sender, System.EventArgs e)
+		{
+			WebkitBrowser browser = new WebkitBrowser("http://wiki.frugalware.org");
+			browser.Show();
+		}
+		
+		protected virtual void OnBTNDanishClicked (object sender, System.EventArgs e)
+		{
+			WebkitBrowser browser = new WebkitBrowser("http://frugalware.dk/");
+			browser.Show();
+		}
+		
+		protected virtual void OnBTNFrenchClicked (object sender, System.EventArgs e)
+		{
+			WebkitBrowser browser = new WebkitBrowser("http://www.frugalware.fr");
+			browser.Show();
+		}
+		
+		protected virtual void OnBTNBugsClicked (object sender, System.EventArgs e)
+		{
+			WebkitBrowser browser = new WebkitBrowser("http://bugs.frugalware.org");
+			browser.Show();
+		}
+		
+		protected virtual void OnBTNIrc1Clicked (object sender, System.EventArgs e)
+		{
+			_joinIrc("frugalware.fr");
+		}
+		
+		protected virtual void OnBTNIrc2Clicked (object sender, System.EventArgs e)
+		{
+			_joinIrc("frugalware.hu");
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }
 

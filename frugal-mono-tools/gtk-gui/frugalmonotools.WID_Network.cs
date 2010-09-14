@@ -170,6 +170,10 @@ namespace frugalmonotools
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.INT_FW.Clicked += new global::System.EventHandler (this.OnINTFWClicked);
+			this.INT_NM.Clicked += new global::System.EventHandler (this.OnINTNMClicked);
+			this.INT_WICD.Clicked += new global::System.EventHandler (this.OnINTWICDClicked);
+			this.BTN_Network.Clicked += new global::System.EventHandler (this.OnBTNNetworkClicked);
 		}
 	}
 }

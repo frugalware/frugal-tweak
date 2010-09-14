@@ -51,7 +51,6 @@ namespace frugalmonotools
 			{
 				updatePkg=Update.CheckUpdate();
 			}
-			ServicesRc.CheckList();
 			win.InitFinish();	
 		}
 		
@@ -186,7 +185,6 @@ namespace frugalmonotools
 				else
 				{
 					System.Threading.Thread.Sleep(1000);
-					ServicesRc.CheckList();
 					Fen = new Fen_Menu();
 					Fen.Show();
 				}
@@ -210,7 +208,6 @@ namespace frugalmonotools
 							trayIcon = new StatusIcon(ico);
 							trayIcon.Visible = true;
 							check();
-							ServicesRc.CheckList();
 							Fen = new Fen_Menu();
 							Fen.Hide();
 							StartedAutomatic=true;

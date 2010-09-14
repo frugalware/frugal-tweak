@@ -158,6 +158,14 @@ namespace frugalmonotools
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.BTN_Irc.Clicked += new global::System.EventHandler (this.OnBTNIrcClicked);
+			this.BTN_Irc1.Clicked += new global::System.EventHandler (this.OnBTNIrc1Clicked);
+			this.BTN_Irc2.Clicked += new global::System.EventHandler (this.OnBTNIrc2Clicked);
+			this.BTN_Forums.Clicked += new global::System.EventHandler (this.OnBTNForumsClicked);
+			this.BTN_Wiki.Clicked += new global::System.EventHandler (this.OnBTNWikiClicked);
+			this.BTN_Bugs.Clicked += new global::System.EventHandler (this.OnBTNBugsClicked);
+			this.BTN_French.Clicked += new global::System.EventHandler (this.OnBTNFrenchClicked);
+			this.BTN_Danish.Clicked += new global::System.EventHandler (this.OnBTNDanishClicked);
 		}
 	}
 }

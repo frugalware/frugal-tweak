@@ -271,6 +271,11 @@ namespace frugalmonotools
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.INT_XDM.Clicked += new global::System.EventHandler (this.OnINTXDMClicked);
+			this.INT_LXDM.Clicked += new global::System.EventHandler (this.OnINTLXDMClicked);
+			this.INT_Slim.Clicked += new global::System.EventHandler (this.OnINTSlimClicked);
+			this.INT_GDM.Clicked += new global::System.EventHandler (this.OnINTGDMClicked);
+			this.INT_KDM.Clicked += new global::System.EventHandler (this.OnINTKDMClicked);
 			this.BTN_LoginManager.Clicked += new global::System.EventHandler (this.OnBTNLoginManagerClicked);
 		}
 	}

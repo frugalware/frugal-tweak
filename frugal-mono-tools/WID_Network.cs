@@ -25,6 +25,8 @@ namespace frugalmonotools
 		public WID_Network ()
 		{
 			this.Build ();
+			if(!MainClass.boRoot)
+				BTN_Network.Visible=false;
 			_initNetworkManager();
 		}
 	private void _initNetworkManager()
@@ -58,6 +60,58 @@ namespace frugalmonotools
 			text.Visible=false;
 		}
 	}	
+		
+	protected virtual void OnBTNNetworkClicked (object sender, System.EventArgs e)
+	{
+		Outils.Service("networkmanager",this.INT_NM.Active);
+		Outils.Service("wicd",this.INT_WICD.Active);
+	}
+		
+	protected virtual void OnINTFWClicked (object sender, System.EventArgs e)
+	{
+			if (this.INT_FW.Active)
+		{
+			this.INT_NM.Active=false;
+			this.INT_WICD.Active=false;
+		}
+		else
+		{ if((this.INT_NM.Active==false) && (this.INT_WICD.Active==false))
+			this.INT_FW.Active=true;
+		}
+	}
+		
+	protected virtual void OnINTNMClicked (object sender, System.EventArgs e)
+	{
+		if (INT_NM.Inconsistent) return;
+		if (this.INT_NM.Active)
+		{
+			this.INT_FW.Active=false;
+			this.INT_WICD.Active=false;
+		}
+		else
+		{ if((this.INT_FW.Active==false) && (this.INT_WICD.Active==false))
+			this.INT_NM.Active=true;
+		}
+
+	}
+		
+	protected virtual void OnINTWICDClicked (object sender, System.EventArgs e)
+	{
+		if (INT_NM.Inconsistent) return;
+		if (this.INT_WICD.Active)
+		{
+			this.INT_FW.Active=false;
+			this.INT_NM.Active=false;
+		}
+		else
+		{ if((this.INT_FW.Active==false) && (this.INT_NM.Active==false))
+			this.INT_WICD.Active=true;
+		}
+	}
+		
+		
+		
+		
 		
 
 	}

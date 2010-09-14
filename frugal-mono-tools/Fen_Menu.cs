@@ -56,6 +56,12 @@ namespace frugalmonotools
 		{
 			
 			this.Build ();
+			//graphical debug
+			if ( Debug.ModeDebug && Debug.ModeDebugGraphique)
+			{
+				Debug.winDebug = new FEN_Debug(); 
+				Debug.winDebug.Show();
+			}
 			ListStore ListMenu = new Gtk.ListStore (typeof (string));
 			TREE_Menu.Model=ListMenu;
 			// Create a column for the package name
@@ -69,7 +75,8 @@ namespace frugalmonotools
 			// Event on treeview
 			TREE_Menu.Selection.Changed += OnSelectionEntryUpdate;
 			
-			ListMenu.AppendValues(cch_system);
+			iter = ListMenu.AppendValues(cch_system);
+			//FIX ME select first element
 			ListMenu.AppendValues(cch_xorg);
 			ListMenu.AppendValues(cch_update);
 			ListMenu.AppendValues(cch_packages);

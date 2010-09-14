@@ -51,7 +51,7 @@ namespace frugalmonotools
 			this.vbox5.Add (this.scroll);
 			this.scroll.ShowAll();
 			
-				//RSS
+		//RSS
 		try{
 			CBO_TitleNews.Model=modelFlux;
 			rssFeed =RssFeed.Read(UrlPlanet);
@@ -95,6 +95,21 @@ namespace frugalmonotools
 				this.BTN_Link.Label=item.Link.AbsoluteUri.ToString();
 			}
 		}
+		
+		protected virtual void OnBTNLinkClicked (object sender, System.EventArgs e)
+		{
+			//by default use firefox
+			if (!Outils.Excecute("firefox",BTN_Link.Label,false))
+			{
+				if (!Outils.Excecute("midori",BTN_Link.Label,false))
+				{
+				//last chance :p
+				Outils.Excecute("konqueror",BTN_Link.Label,false);
+				}
+			}
+
+		}
+		
 		
 		
 	}

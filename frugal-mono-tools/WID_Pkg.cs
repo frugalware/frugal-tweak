@@ -73,7 +73,8 @@ namespace frugalmonotools
 		}
 		CBO_Repo.Model=modelRepoList;
 		CBO_Repo.SetActiveIter(iter); 
-	
+		BTN_Uninstall.Visible=false;
+		BTN_Install.Visible=false;
 		// Assign the model to the TreeView
 		treeviewpkg.Model = pkgListStore;
 		

@@ -156,6 +156,8 @@ namespace frugalmonotools
 			}
 			this.BTN_Setup.Hide ();
 			this.Hide ();
+			this.BTN_Printer.Clicked += new global::System.EventHandler (this.OnBTNPrinterClicked);
+			this.BTN_Setup.Clicked += new global::System.EventHandler (this.OnBTNSetupClicked);
 		}
 	}
 }

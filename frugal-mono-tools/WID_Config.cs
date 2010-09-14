@@ -35,6 +35,16 @@ namespace frugalmonotools
 			INT_ShowNotif.Active=MainClass.configuration.Get_ShowNotif();
 			INT_ShowSplash.Active=MainClass.configuration.Get_ShowSplash();
 		}
+		protected virtual void OnBTNSaveConfClicked (object sender, System.EventArgs e)
+		{
+			MainClass.configuration.Set_CheckUpdate(INT_CheckStartup.Active);
+			MainClass.configuration.Set_StartWithX(INT_StartWithXSession.Active);
+			MainClass.configuration.Set_ShowNotif(INT_ShowNotif.Active);
+			MainClass.configuration.Set_ShowSplash(INT_ShowSplash.Active);
+			MainClass.configuration.ConfSave();
+		}
+		
+		
 	}
 }
 

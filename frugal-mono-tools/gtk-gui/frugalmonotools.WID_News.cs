@@ -55,6 +55,7 @@ namespace frugalmonotools
 			}
 			this.Hide ();
 			this.CBO_TitleNews.Changed += new global::System.EventHandler (this.OnCBOTitleNewsChanged);
+			this.BTN_Link.Clicked += new global::System.EventHandler (this.OnBTNLinkClicked);
 		}
 	}
 }

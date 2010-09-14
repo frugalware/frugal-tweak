@@ -24,21 +24,93 @@ namespace frugalmonotools
 		public WID_Hardware ()
 		{
 			this.Build ();
+			_initHardware();
+			if(!MainClass.boRoot)
+			{
+				BTN_Setup.Visible = false;
+			}
 		}
 		private void _initHardware()
 		{
-			string lspci ="/usr/sbin/lspci";
-			try
+			if(!MainClass.pacmanG2.IsInstalled("system-config-printer"))
+		{
+			BTN_Printer.Visible=false;
+			LAB_Printer.Visible=true;
+		}
+		else
+		{
+			BTN_Printer.Visible=true;
+			LAB_Printer.Visible=false;
+		}
+		if(!MainClass.pacmanG2.IsInstalled("frugalwareutils"))
+		{
+			BTN_Setup.Visible=false;
+			LIB_Setup.Visible=true;
+		}
+		else
+		{
+			BTN_Setup.Visible=true;
+			LIB_Setup.Visible=false;
+		}
+	
+		string dmesgOutput=Outils.ReadFile( "/var/log/syslog");//Outils.getoutput("/bin/dmesg");
+		if(dmesgOutput.IndexOf("lirc")>0)
+		{
+			if (!MainClass.pacmanG2.IsInstalled("lirc"))
+			{
+				LIB_Lirc.Visible=true;
+			}
+			else
+			{
+				LIB_Lirc.Visible=false;
+			}
+		}
+		else
+		{
+			LIB_Lirc.Visible=false;
+		}
+				
+		
+		if(dmesgOutput.IndexOf("Bluetooth")>0)
+		{
+			if (!MainClass.pacmanG2.IsInstalled("bluez"))
+			{
+				LIB_Bluez.Visible=true;
+			}
+			else
+			{
+				LIB_Bluez.Visible=false;
+			}
+		}
+		else
+		{
+			LIB_Bluez.Visible=false;
+		}
+	
+		string lspci ="/usr/sbin/lspci";
+		try
 			{
 				lspci=Outils.getoutput(lspci);
 				TXT_Lspci.Buffer.Text=lspci;
 			}
-			catch
+		catch
 			{
 				lspci="";
 			}
 
 		}
+		protected virtual void OnBTNPrinterClicked (object sender, System.EventArgs e)
+		{
+			Outils.Excecute("system-config-printer","",true);
+		}
+		
+		protected virtual void OnBTNSetupClicked (object sender, System.EventArgs e)
+		{
+			Outils.Excecute("python","/usr/bin/PyFrugalVTE /sbin/setup",false);		
+		}
+		
+		
+		
 	}
 }
 

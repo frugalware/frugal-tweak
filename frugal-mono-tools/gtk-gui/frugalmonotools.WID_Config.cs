@@ -103,6 +103,7 @@ namespace frugalmonotools
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.BTN_SaveConf.Clicked += new global::System.EventHandler (this.OnBTNSaveConfClicked);
 		}
 	}
 }
