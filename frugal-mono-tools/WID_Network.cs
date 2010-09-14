@@ -90,7 +90,7 @@ namespace frugalmonotools
 		
 	protected virtual void OnINTWICDClicked (object sender, System.EventArgs e)
 	{
-		if (INT_NM.Inconsistent) return;
+		if (INT_WICD .Inconsistent) return;
 		if (this.INT_WICD.Active)
 		{
 			this.INT_FW.Active=false;

@@ -12,7 +12,6 @@ namespace frugalmonotools
 		}
 		
 		private void Start() {
-			Fen_Menu win = new Fen_Menu();
 			this.Hide();
 			Console.WriteLine("Start control center");
 			//now notifications
@@ -28,6 +27,7 @@ namespace frugalmonotools
 				Outils.Inform("Frugalware","Some update are available.");
 				Console.WriteLine("Some packages can be updated.");
 			}
+			Fen_Menu win = new Fen_Menu();
 			win.Show();
 		}
 		public void InitFinish()

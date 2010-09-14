@@ -226,7 +226,7 @@ namespace frugalmonotools
 		}
 		private void checkRSS(object source, ElapsedEventArgs e)
 		{
-			
+			//FIX ME	
 			/*
 		//RSS
 		try{
