@@ -25,7 +25,6 @@ namespace frugalmonotools
 	public class Cache
 	{
 		private const string confFile=@"/.cache/FrugalTools";
-		private int _nbFlux = 0;
 		private string _latest="";
 		public Cache()
 		{
@@ -36,14 +35,9 @@ namespace frugalmonotools
 				string[] lines = content.Split('\n');	
 				foreach (string line in lines) 
 				{
-					 if (Regex.Matches(line, "nbRSS").Count>0)
-						{
-							int nb = int.Parse(line.Split('=')[1]);
-							this.SetNbFlux(nb);
-						}
 					 if (Regex.Matches(line, "last").Count>0)
 						{
-							string last = line.Split('=')[1];
+							string last = line.Split('"')[1];
 							this.SetLatest(last);
 						}
 				}
@@ -55,8 +49,7 @@ namespace frugalmonotools
 			try
 			{
 				StreamWriter FileConf = new StreamWriter(GetConfFile());
-				FileConf.WriteLine("nbRSS="+this.GetNbFlux());
-				FileConf.WriteLine("last="+this.GetLatest());
+				FileConf.WriteLine("last=\""+this.GetLatest()+"\"");
 				FileConf.Close();
 			}
 			catch(Exception exe)
@@ -67,14 +60,6 @@ namespace frugalmonotools
 		public string GetConfFile(){
 			return Environment.GetFolderPath(System.Environment.SpecialFolder
 .Personal)+confFile;
-		}
-		public int GetNbFlux()
-		{
-			return _nbFlux;
-		}
-		public void SetNbFlux(int valeur)
-		{
-			_nbFlux=valeur;
 		}
 		
 		public string GetLatest()

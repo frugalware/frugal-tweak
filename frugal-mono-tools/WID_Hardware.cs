@@ -27,11 +27,7 @@ namespace frugalmonotools
 		}
 		public void InitHardware()
 		{
-			if(!MainClass.boRoot)
-			{
-				BTN_Setup.Visible = false;
-			}
-			if(!MainClass.pacmanG2.IsInstalled("system-config-printer"))
+		if(!MainClass.pacmanG2.IsInstalled("system-config-printer"))
 		{
 			BTN_Printer.Visible=false;
 			LAB_Printer.Visible=true;
@@ -51,7 +47,10 @@ namespace frugalmonotools
 			BTN_Setup.Visible=true;
 			LIB_Setup.Visible=false;
 		}
-	
+		if(!MainClass.boRoot)
+		{
+			BTN_Setup.Visible = false;
+		}
 		string dmesgOutput=Outils.ReadFile( "/var/log/syslog");//Outils.getoutput("/bin/dmesg");
 		if(dmesgOutput.IndexOf("lirc")>0)
 		{

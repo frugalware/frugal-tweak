@@ -31,18 +31,12 @@ namespace frugalmonotools
 		if(!MainClass.boRoot)
 				BTN_Network.Visible=false;
 		//network init
-		INT_NM.Active=Outils.ServiceOnStartUp("S99rc.networkmanager");
-		EnableDisable(INT_NM,"networkmanager",LIB_NMNotInstalled);
-		INT_WICD.Active=Outils.ServiceOnStartUp("S99rc.wicd");
 		EnableDisable(INT_WICD,"wicd",LIB_WICDNotInstalled);
-		if((!INT_NM.Active) && (!INT_WICD.Active))
-		{
-			INT_FW.Active=true;
-		}
-		else
-		{
-			INT_FW.Active=false;
-		}
+		EnableDisable(INT_NM,"networkmanager",LIB_NMNotInstalled);
+		Service nm = new Service("networkmanager");
+		INT_NM.Active=nm.IsStartedOnBoot();
+		Service wicd = new Service("wicd");
+		INT_WICD.Active=wicd.IsStartedOnBoot();
 	}
 		
 	public void EnableDisable(CheckButton INT_Option,string packageName, Label text)

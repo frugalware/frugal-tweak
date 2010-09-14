@@ -97,7 +97,7 @@ namespace frugalmonotools
 			this.BTN_Hide.CanFocus = true;
 			this.BTN_Hide.Name = "BTN_Hide";
 			this.BTN_Hide.UseUnderline = true;
-			this.BTN_Hide.Label = global::Mono.Unix.Catalog.GetString ("Hide this update package");
+			this.BTN_Hide.Label = global::Mono.Unix.Catalog.GetString ("Hide this package");
 			this.hbox22.Add (this.BTN_Hide);
 			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_Hide]));
 			w7.Position = 0;
@@ -108,7 +108,7 @@ namespace frugalmonotools
 			this.BTN_UpdateDatabase.CanFocus = true;
 			this.BTN_UpdateDatabase.Name = "BTN_UpdateDatabase";
 			this.BTN_UpdateDatabase.UseUnderline = true;
-			this.BTN_UpdateDatabase.Label = global::Mono.Unix.Catalog.GetString ("Update pacman-g2 database");
+			this.BTN_UpdateDatabase.Label = global::Mono.Unix.Catalog.GetString ("Update database");
 			this.hbox22.Add (this.BTN_UpdateDatabase);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_UpdateDatabase]));
 			w8.Position = 1;

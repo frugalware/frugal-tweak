@@ -514,7 +514,7 @@
                 <property name="Visible">False</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Hide this update package</property>
+                <property name="Label" translatable="yes">Hide this package</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNHideClicked" />
               </widget>
@@ -530,7 +530,7 @@
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Update pacman-g2 database</property>
+                <property name="Label" translatable="yes">Update database</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNUpdateDatabaseClicked" />
               </widget>

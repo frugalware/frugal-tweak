@@ -32,6 +32,14 @@ namespace frugalmonotools
 		}
 		public void InitService()
 		{
+		ServicesRc.CheckList();
+		if(!MainClass.boRoot)
+		{
+					BTN_ServiceStop.Visible=false;
+					BTN_ServiceStart.Visible=false;
+					BTN_ServiceDelBoot.Visible=false;
+					BTN_ServiceAddBoot.Visible=false;
+		}
 		// services
 		Gtk.TreeViewColumn ColumnServiceName = new Gtk.TreeViewColumn ();
 		ColumnServiceName.Title = "Services";
@@ -64,7 +72,8 @@ namespace frugalmonotools
 		ColumnServiceDesc.PackStart (ServiceDescCell, true);
 		TREE_Services.AppendColumn (ColumnServiceDesc);
 		ColumnServiceDesc.AddAttribute (ServiceDescCell, "text", 3);
-	
+		serviceListStore.Clear();
+			
 		foreach(Service service in ServicesRc.Services)
 		{
 			string Etat = "yes";

@@ -85,7 +85,7 @@ namespace frugalmonotools
 				}
 		}
 		private static splash win;
-		public static StatusIcon trayIcon;
+		public static StatusIcon trayIcon = null ;
 		// Create the popup menu, on right click.
 			static void OnTrayIconPopup (object o, EventArgs args) {
 				Menu popupMenu = new Menu();

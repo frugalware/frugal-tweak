@@ -29,6 +29,18 @@ namespace frugalmonotools
 		public WID_Update ()
 		{
 			this.Build ();
+			//update package list
+			// Create a column for the package name
+			Gtk.TreeViewColumn pkgupdateColumn = new Gtk.TreeViewColumn ();
+			pkgupdateColumn.Title = "Package name";
+			Gtk.CellRendererText pkgupdateNameCell = new Gtk.CellRendererText ();
+			// Add the cell to the column
+			pkgupdateColumn.PackStart (pkgupdateNameCell, true);
+			TREE_UpdatePkg.AppendColumn (pkgupdateColumn);
+			pkgupdateColumn.AddAttribute (pkgupdateNameCell, "text", 0);
+			// Event on treeview
+			TREE_UpdatePkg.Selection.Changed += OnSelectionEntryUpdate;
+			TREE_UpdatePkg.Model=UpdateListStore;
 		}
 		public  void InitUpdate()
 		{
@@ -36,19 +48,9 @@ namespace frugalmonotools
 		{
 			BTN_UpdateDatabase.Visible = false;
 			BTN_ApplyIgnorePkg.Visible=false;
+			BTN_Hide.Visible=false;
+			BTN_Update.Visible=false;
 		}
-		//update package list
-		// Create a column for the package name
-		Gtk.TreeViewColumn pkgupdateColumn = new Gtk.TreeViewColumn ();
-		pkgupdateColumn.Title = "Package name";
-		Gtk.CellRendererText pkgupdateNameCell = new Gtk.CellRendererText ();
-		// Add the cell to the column
-		pkgupdateColumn.PackStart (pkgupdateNameCell, true);
-		TREE_UpdatePkg.AppendColumn (pkgupdateColumn);
-		pkgupdateColumn.AddAttribute (pkgupdateNameCell, "text", 0);
-		// Event on treeview
-		TREE_UpdatePkg.Selection.Changed += OnSelectionEntryUpdate;
-		TREE_UpdatePkg.Model=UpdateListStore;
 			
 		//update
 		UpdateToTreeview();
@@ -65,26 +67,32 @@ namespace frugalmonotools
 		}
 		private void _refreshUpdate()
 		{
-		if(Update.CheckUpdate())
-		{
-			Gdk.Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
-			MainClass.trayIcon.Pixbuf=ico;
-		}
-		else
-		{
-			Gdk.Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
-			MainClass.trayIcon.Pixbuf=ico;
-		}
-		UpdateToTreeview();
+			if(Update.CheckUpdate())
+			{
+				if (MainClass.trayIcon!=null)
+				{
+					Gdk.Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
+					MainClass.trayIcon.Pixbuf=ico;
+				}
+			}
+			else
+			{
+				if(MainClass.trayIcon!=null)
+				{
+					Gdk.Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
+					MainClass.trayIcon.Pixbuf=ico;
+				}
+			}
+			UpdateToTreeview();
 	}
 		public void UpdateToTreeview()
 		{
-		UpdateListStore.Clear();
-		foreach (packageCheck package in Update.UpdatePkg)
-			{
-			// Add some data to the store
-			UpdateListStore.AppendValues (package.packagename+"-"+package.packageversion);
-			}
+			UpdateListStore.Clear();
+			foreach (packageCheck package in Update.UpdatePkg)
+				{
+				// Add some data to the store
+				UpdateListStore.AppendValues (package.packagename+"-"+package.packageversion);
+				}
 		}
 		protected void OnSelectionEntryUpdate(object o, EventArgs args)
 	    {
