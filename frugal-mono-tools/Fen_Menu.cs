@@ -62,32 +62,38 @@ namespace frugalmonotools
 				Debug.winDebug = new FEN_Debug(); 
 				Debug.winDebug.Show();
 			}
-			ListStore ListMenu = new Gtk.ListStore (typeof (string));
+			ListStore ListMenu = new Gtk.ListStore (typeof (Gdk.Pixbuf),typeof (string));
 			TREE_Menu.Model=ListMenu;
+			TREE_Menu.AppendColumn ("", new Gtk.CellRendererPixbuf (), "pixbuf", 0);
 			// Create a column for the package name
 			Gtk.TreeViewColumn ListColumn = new Gtk.TreeViewColumn ();
 			ListColumn.Title = "Module";
+			/*ListColumn.FixedWidth=70;
+			ListColumn.MaxWidth=70;
+			ListColumn.MinWidth=70;*/
 			Gtk.CellRendererText ListCell = new Gtk.CellRendererText ();
 			// Add the cell to the column
 			ListColumn.PackStart (ListCell, true);
 			TREE_Menu.AppendColumn (ListColumn);
-			ListColumn.AddAttribute (ListCell, "text", 0);
+			ListColumn.AddAttribute (ListCell, "text", 1);
 			// Event on treeview
 			TREE_Menu.Selection.Changed += OnSelectionEntryUpdate;
 			
-			iter = ListMenu.AppendValues(cch_system);
+			
+			Pixbuf icoSys = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
+			iter = ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_system);
 			//FIX ME select first element
-			ListMenu.AppendValues(cch_xorg);
-			ListMenu.AppendValues(cch_update);
-			ListMenu.AppendValues(cch_packages);
-			ListMenu.AppendValues(cch_hardware);
-			ListMenu.AppendValues(cch_services);
-			ListMenu.AppendValues(cch_network);
-			ListMenu.AppendValues(cch_loginManager);
-			ListMenu.AppendValues(cch_support);
-			ListMenu.AppendValues(cch_news);
-			ListMenu.AppendValues(cch_configuration);
-			ListMenu.AppendValues(cch_about);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_xorg);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_update);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_packages);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_hardware);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_services);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_network);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_loginManager);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_support);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_news);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_configuration);
+			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_about);
 			
 			//see module system
 			SelectModule(cch_system);
@@ -107,7 +113,7 @@ namespace frugalmonotools
 			 	TreeModel model;
 				 if (((TreeSelection)o).GetSelected(out model, out iter))
 		        {
-					string T =(string)model.GetValue (iter, 0);
+					string T =(string)model.GetValue (iter, 1);
 					SelectModule(T);
 				}
 			}
@@ -120,6 +126,7 @@ namespace frugalmonotools
 					
 					this.HBOX_Details.Destroy();
 					this.HBOX_Details = new global::Gtk.HBox ();
+					this.HBOX_Details.SetSizeRequest(680,500);
 					this.HBOX_Details.Name = "HBOX_Details";
 					this.HBOX_Menu.Add (this.HBOX_Details);
 		            

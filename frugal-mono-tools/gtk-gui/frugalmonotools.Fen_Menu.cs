@@ -20,6 +20,9 @@ namespace frugalmonotools
 			this.Title = global::Mono.Unix.Catalog.GetString ("Frugalware tweak !");
 			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.fw.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Resizable = false;
+			this.DefaultWidth = 900;
+			this.DefaultHeight = 600;
 			// Container child frugalmonotools.Fen_Menu.Gtk.Container+ContainerChild
 			this.HBOX_Menu = new global::Gtk.HBox ();
 			this.HBOX_Menu.Name = "HBOX_Menu";
@@ -30,8 +33,8 @@ namespace frugalmonotools
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
 			this.TREE_Menu = new global::Gtk.TreeView ();
-			this.TREE_Menu.WidthRequest = 50;
-			this.TREE_Menu.HeightRequest = 50;
+			this.TREE_Menu.WidthRequest = 165;
+			this.TREE_Menu.HeightRequest = 165;
 			this.TREE_Menu.CanFocus = true;
 			this.TREE_Menu.Name = "TREE_Menu";
 			this.GtkScrolledWindow.Add (this.TREE_Menu);
@@ -49,8 +52,6 @@ namespace frugalmonotools
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 892;
-			this.DefaultHeight = 300;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		}

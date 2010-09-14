@@ -94,6 +94,9 @@
     <property name="Title" translatable="yes">Frugalware tweak !</property>
     <property name="Icon">resource:frugalmonotools.Pictures.fw.png</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Resizable">False</property>
+    <property name="DefaultWidth">900</property>
+    <property name="DefaultHeight">600</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.HBox" id="HBOX_Menu">
@@ -106,8 +109,8 @@
             <child>
               <widget class="Gtk.TreeView" id="TREE_Menu">
                 <property name="MemberName" />
-                <property name="WidthRequest">50</property>
-                <property name="HeightRequest">50</property>
+                <property name="WidthRequest">165</property>
+                <property name="HeightRequest">165</property>
                 <property name="CanFocus">True</property>
                 <property name="ShowScrollbars">True</property>
               </widget>
