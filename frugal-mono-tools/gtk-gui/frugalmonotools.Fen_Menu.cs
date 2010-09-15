@@ -68,7 +68,6 @@ namespace frugalmonotools
 			// Container child STA_Info.Gtk.Box+BoxChild
 			this.LAB_Info = new global::Gtk.Label ();
 			this.LAB_Info.Name = "LAB_Info";
-			this.LAB_Info.LabelProp = global::Mono.Unix.Catalog.GetString ("label2");
 			this.STA_Info.Add (this.LAB_Info);
 			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.STA_Info[this.LAB_Info]));
 			w5.Position = 1;

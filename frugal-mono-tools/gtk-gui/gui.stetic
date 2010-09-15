@@ -152,7 +152,6 @@
             <child>
               <widget class="Gtk.Label" id="LAB_Info">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">label2</property>
               </widget>
               <packing>
                 <property name="Position">1</property>
