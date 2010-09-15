@@ -91,6 +91,7 @@
   </widget>
   <widget class="Gtk.Window" id="frugalmonotools.Fen_Menu" design-size="892 300">
     <property name="MemberName" />
+    <property name="Visible">False</property>
     <property name="Title" translatable="yes">Frugalware tweak !</property>
     <property name="Icon">resource:frugalmonotools.Pictures.fw.png</property>
     <property name="WindowPosition">CenterOnParent</property>

@@ -82,7 +82,7 @@ namespace frugalmonotools
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.Show ();
+			this.Hide ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		}
 	}
