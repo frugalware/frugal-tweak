@@ -83,21 +83,32 @@ namespace frugalmonotools
 			TREE_Menu.Selection.Changed += OnSelectionEntryUpdate;
 			
 			
-			Pixbuf icoSys = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
+			Pixbuf icoSys = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.system.png");
 			iter = ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_system);
 			this.TREE_Menu.SetCursor(ListMenu.GetPath(iter),TREE_Menu.GetColumn(1),false);
 			//FIX ME select first element
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_xorg);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_update);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_packages);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_hardware);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_services);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_network);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_loginManager);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_support);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_news);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_configuration);
-			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_about);
+			Pixbuf icoX = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.xorg.png");
+			ListMenu.AppendValues(icoX.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_xorg);
+			Pixbuf icoupdate = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.update.png");
+			ListMenu.AppendValues(icoupdate.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_update);
+			Pixbuf icopkg = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.packages.png");
+			ListMenu.AppendValues(icopkg.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_packages);
+			Pixbuf icohardware = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.hardware.png");
+			ListMenu.AppendValues(icohardware.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_hardware);
+			Pixbuf icoservices = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.services.png");
+			ListMenu.AppendValues(icoservices.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_services);
+			Pixbuf iconet = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.network.png");
+			ListMenu.AppendValues(iconet.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_network);
+			Pixbuf icologin = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.loginmanager.png");
+			ListMenu.AppendValues(icologin.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_loginManager);
+			Pixbuf icosup = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.support.png");
+			ListMenu.AppendValues(icosup.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_support);
+			Pixbuf iconews = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.news.png");
+			ListMenu.AppendValues(iconews.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_news);
+			Pixbuf icoconfig = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.configurations.png");
+			ListMenu.AppendValues(icoconfig.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_configuration);
+			Pixbuf icoabout = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.about.png");
+			ListMenu.AppendValues(icoabout.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_about);
 			
 			//see module system
 			SelectModule(cch_system);
