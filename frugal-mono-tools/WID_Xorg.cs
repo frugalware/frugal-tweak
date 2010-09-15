@@ -156,7 +156,7 @@ namespace frugalmonotools
 		FileX.WriteLine("");
 		string str_EnableNum="0";
 		if(INT_Numlock.Active) str_EnableNum="1";
-		FileX.WriteLine("#NUMLOCK_ON="+str_EnableNum);
+		FileX.WriteLine("NUMLOCK_ON="+str_EnableNum);
 		FileX.Close();
 		}
 		
