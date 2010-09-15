@@ -19,6 +19,8 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
 namespace frugalmonotools
 {
 	public class ConfSystem
@@ -49,6 +51,19 @@ namespace frugalmonotools
 			return Mono.Unix.Native.Syscall.getusershell();
 		}	
 		public string GetLocale() {
+			try{
+				string content = Outils.ReadFile(cch_locale);
+				string[] lines = content.Split('\n');	
+				foreach (string line in lines) 
+				{
+					 if (Regex.Matches(line, "export LANG=").Count>0)
+						{
+							string local = line.Split('=')[1];
+							return local;
+						}
+				}
+			}
+			catch{	}
 			return Mono.Unix.Native.Syscall.getenv("LANG");
 		}
 		public void SetLocale(string locale) {
