@@ -4,6 +4,8 @@ namespace frugalmonotools
 {
 	public partial class Fen_Menu
 	{
+		private global::Gtk.VBox vbox1;
+
 		private global::Gtk.HBox HBOX_Menu;
 
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
@@ -11,6 +13,10 @@ namespace frugalmonotools
 		private global::Gtk.TreeView TREE_Menu;
 
 		private global::Gtk.HBox HBOX_Details;
+
+		private global::Gtk.Statusbar STA_Info;
+
+		private global::Gtk.Label LAB_Info;
 
 		protected virtual void Build ()
 		{
@@ -24,6 +30,10 @@ namespace frugalmonotools
 			this.DefaultWidth = 900;
 			this.DefaultHeight = 600;
 			// Container child frugalmonotools.Fen_Menu.Gtk.Container+ContainerChild
+			this.vbox1 = new global::Gtk.VBox ();
+			this.vbox1.Name = "vbox1";
+			this.vbox1.Spacing = 6;
+			// Container child vbox1.Gtk.Box+BoxChild
 			this.HBOX_Menu = new global::Gtk.HBox ();
 			this.HBOX_Menu.Name = "HBOX_Menu";
 			this.HBOX_Menu.Spacing = 6;
@@ -48,7 +58,28 @@ namespace frugalmonotools
 			this.HBOX_Menu.Add (this.HBOX_Details);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.HBOX_Menu[this.HBOX_Details]));
 			w3.Position = 1;
-			this.Add (this.HBOX_Menu);
+			this.vbox1.Add (this.HBOX_Menu);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.HBOX_Menu]));
+			w4.Position = 0;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.STA_Info = new global::Gtk.Statusbar ();
+			this.STA_Info.Name = "STA_Info";
+			this.STA_Info.Spacing = 6;
+			// Container child STA_Info.Gtk.Box+BoxChild
+			this.LAB_Info = new global::Gtk.Label ();
+			this.LAB_Info.Name = "LAB_Info";
+			this.LAB_Info.LabelProp = global::Mono.Unix.Catalog.GetString ("label2");
+			this.STA_Info.Add (this.LAB_Info);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.STA_Info[this.LAB_Info]));
+			w5.Position = 1;
+			w5.Expand = false;
+			w5.Fill = false;
+			this.vbox1.Add (this.STA_Info);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.STA_Info]));
+			w6.Position = 1;
+			w6.Expand = false;
+			w6.Fill = false;
+			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}

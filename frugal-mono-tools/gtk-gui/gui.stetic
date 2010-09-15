@@ -99,21 +99,44 @@
     <property name="DefaultHeight">600</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.HBox" id="HBOX_Menu">
+      <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <child>
-          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+          <widget class="Gtk.HBox" id="HBOX_Menu">
             <property name="MemberName" />
-            <property name="ShadowType">In</property>
+            <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.TreeView" id="TREE_Menu">
+              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
                 <property name="MemberName" />
-                <property name="WidthRequest">165</property>
-                <property name="HeightRequest">165</property>
-                <property name="CanFocus">True</property>
-                <property name="ShowScrollbars">True</property>
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.TreeView" id="TREE_Menu">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">165</property>
+                    <property name="HeightRequest">165</property>
+                    <property name="CanFocus">True</property>
+                    <property name="ShowScrollbars">True</property>
+                  </widget>
+                </child>
               </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.HBox" id="HBOX_Details">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+              </packing>
             </child>
           </widget>
           <packing>
@@ -122,9 +145,22 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HBox" id="HBOX_Details">
+          <widget class="Gtk.Statusbar" id="STA_Info">
             <property name="MemberName" />
+            <property name="Tooltip" translatable="yes" />
             <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="LAB_Info">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">label2</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
             <child>
               <placeholder />
             </child>
@@ -132,6 +168,8 @@
           <packing>
             <property name="Position">1</property>
             <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
       </widget>

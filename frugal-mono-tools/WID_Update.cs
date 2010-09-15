@@ -142,12 +142,6 @@ namespace frugalmonotools
 			else
 				Outils.ExcecuteAsRoot("python /usr/bin/PyFrugalVTE pacman-g2 -Syu",false);	
 		}
-		
-		
-		
-		
-		
-		
 	}
 }
 

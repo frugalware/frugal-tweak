@@ -85,6 +85,7 @@ namespace frugalmonotools
 			
 			Pixbuf icoSys = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
 			iter = ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_system);
+			this.TREE_Menu.SetCursor(ListMenu.GetPath(iter),TREE_Menu.GetColumn(1),false);
 			//FIX ME select first element
 			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_xorg);
 			ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_update);
@@ -195,6 +196,7 @@ namespace frugalmonotools
 							this.HBOX_Details.PackStart(fen_services);
 							this.HBOX_Details.ShowAll();
 							this.fen_services.InitService();
+							
 						break;
 
 						case cch_support:
