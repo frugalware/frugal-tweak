@@ -108,6 +108,7 @@ namespace frugalmonotools
 			// Set the Interval to 1 hour.
 			aTimer.Interval=3600000;
 			aTimer.Enabled=true;
+			_checkRss();
 		}
 		
 		protected void OnSelectionEntryUpdate(object o, EventArgs args)
@@ -231,7 +232,11 @@ namespace frugalmonotools
 		}
 		private void checkRSS(object source, ElapsedEventArgs e)
 		{
-		//RSS
+			_checkRss();
+		}
+		private void _checkRss()
+		{
+				//RSS
 		try{
 			if (CurrentWidget==cch_news)
 			{
@@ -258,7 +263,6 @@ namespace frugalmonotools
 			catch{}
 		
 		}
-	
 		
 	}
 }
