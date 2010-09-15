@@ -49,7 +49,6 @@ namespace frugalmonotools
 			BTN_UpdateDatabase.Visible = false;
 			BTN_ApplyIgnorePkg.Visible=false;
 			BTN_Hide.Visible=false;
-			BTN_Update.Visible=false;
 		}
 			
 		//update
