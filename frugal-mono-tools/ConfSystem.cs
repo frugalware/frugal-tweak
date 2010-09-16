@@ -28,9 +28,11 @@ namespace frugalmonotools
 		const  string cch_hostname =@"/etc/HOSTNAME";
 		const string cch_release=@"/etc/frugalware-release";
 		const string cch_locale=@"/etc/profile.d/lang.sh";
+		const string cch_keymap=@"/etc/sysconfig/keymap";
 		private string _hostname;
 		private string _locale;
 		private string _distribution; //can't change it
+		private string _keymap;
 		public List<string>  LocaleSystem = new List<string>(); 
 		public string GetHostname()
 		{
@@ -68,6 +70,27 @@ namespace frugalmonotools
 		}
 		public void SetLocale(string locale) {
 			_locale=locale;
+		}
+		public string GetKeymap()
+		{
+			try{
+				string content = Outils.ReadFile(cch_keymap);
+				string[] lines = content.Split('\n');	
+				foreach (string line in lines) 
+				{
+					 if (Regex.Matches(line, "keymap=").Count>0)
+						{
+							string keymap = line.Split('=')[1];
+							_keymap=keymap;
+							return keymap;
+						}
+				}
+			}
+			catch{	}
+			return "";
+		}
+		public void SetKeymap(string keymap) {
+			_keymap=keymap;
 		}
 		public ConfSystem ()
 		{
