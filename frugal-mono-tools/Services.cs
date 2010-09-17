@@ -65,6 +65,7 @@ namespace frugalmonotools
 					(rcName!="local")&&
 					(rcName!="modules")&&
 					(rcName!="mount")&&
+				    (rcName!="random")&&
 					(rcName!="serial")&&
 					(rcName!="single")&&
 				    (rcName.IndexOf('~')<0)&&

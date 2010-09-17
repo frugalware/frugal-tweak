@@ -60,6 +60,10 @@ namespace frugalmonotools
 				{
 					return false;
 				}
+				if(strSatus.Trim()=="")
+				{
+					return false;
+				}
 				Console.WriteLine(this.Get_Name()+" don't use status this service should be fixed");
 				return false;
 			}
