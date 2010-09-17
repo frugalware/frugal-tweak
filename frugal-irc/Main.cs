@@ -33,6 +33,11 @@ namespace frugalirc
 			}
 			MainWindow win = new MainWindow ();
 			win.Show ();
+			if(ChanParameter!="")
+			{
+				//auto connect
+				win.Connection();
+			}
 			Application.Run ();
 		}
 	}
