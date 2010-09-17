@@ -77,7 +77,6 @@ namespace frugalmonotools
 			confSystem.Save();
 		}
 		
-		
 	}
 }
 
