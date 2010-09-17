@@ -78,12 +78,6 @@ namespace frugalmonotools
 				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
 				trayIcon.Pixbuf=ico;
 			}
-			if(Fen!=null)
-				{
-					//update list to treeview
-					//FIXE ME
-					//Fen.UpdateToTreeview();
-				}
 		}
 		private static splash win;
 		public static StatusIcon trayIcon = null ;
@@ -123,7 +117,7 @@ namespace frugalmonotools
 													WebkitBrowser browser = new WebkitBrowser("http://wiki.frugalware.org");
 													browser.Show(); 
 													};
-				menuItemcc.Activated += delegate {  Fen.Visible = !Fen.Visible; };
+				menuItemcc.Activated += delegate { Outils.Excecute("frugalware-tweak","",false); };
 				menuItemccRoot.Activated += delegate { Outils.Excecute("sucontrolcenter","",false); };
 				
 				// Quit the application when quit has been clicked.
@@ -219,7 +213,7 @@ namespace frugalmonotools
 		         			aTimer.Enabled=true;
 							
 					 		
-							trayIcon.Activate +=  delegate {  Fen.Visible = !Fen.Visible; };
+							trayIcon.Activate += delegate { Outils.Excecute("frugalware-tweak","",false); };
 
 							// Show a pop up menu when the icon has been right clicked.
 							trayIcon.PopupMenu += OnTrayIconPopup;
