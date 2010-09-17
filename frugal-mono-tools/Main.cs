@@ -23,6 +23,7 @@ using System.Threading;
 using System.Timers;
 using Gdk;
 using Gtk;
+using Rss;
 
 using NDesk.DBus;
 using org.freedesktop.DBus;
@@ -72,6 +73,21 @@ namespace frugalmonotools
 
 				Outils.Inform("Frugalware","Some update are available.");
 				Console.WriteLine("Some packages can be updated.");
+				RssFeed rssFeed =RssFeed.Read(UrlPlanet);
+				RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
+				string latest="";
+				foreach (RssItem item in rssChannel.Items)
+					{
+						if(latest =="")latest=item.Link.AbsoluteUri.ToString();
+						if (cache.GetLatest()!=latest)
+						{
+							Outils.Inform("Frugalware","News are available.");
+							//write cache	
+							cache.SetLatest(latest);
+							cache.CacheSave();
+						}
+					
+					}
 			}
 			else
 			{
