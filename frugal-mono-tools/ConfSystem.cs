@@ -34,6 +34,7 @@ namespace frugalmonotools
 		private string _distribution; //can't change it
 		private string _keymap;
 		public List<string>  LocaleSystem = new List<string>(); 
+		public List<string>  KeymapSystem = new List<string>(); 
 		public string GetHostname()
 		{
 			return _hostname;
@@ -97,6 +98,22 @@ namespace frugalmonotools
 			this.SetHostname(Outils.ReadFile(cch_hostname).ToString().Replace("\n",""));
 			this._distribution=Outils.ReadFile(cch_release).ToString().Replace("\n","");
 			_findLocaleSystem();
+			_findKeymapSystem();
+		}
+		private void _findKeymapSystem()
+		{
+			string ext=".map.gz";
+			string dirKeymap="/usr/share/keymaps/";
+			string[] files= Directory.GetFiles(dirKeymap,"*"+ext,SearchOption.AllDirectories);
+			
+            foreach (string file in files) 
+            {
+				string strKeymap = file;
+				strKeymap=System.IO.Path.GetFileName(strKeymap);
+				strKeymap=strKeymap.Replace(ext,"");
+				KeymapSystem.Add(strKeymap);
+				
+			}
 		}
 		private void _findLocaleSystem()
 		{
