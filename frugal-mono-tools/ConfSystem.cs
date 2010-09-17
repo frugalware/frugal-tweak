@@ -103,7 +103,8 @@ namespace frugalmonotools
 		private void _findKeymapSystem()
 		{
 			string ext=".map.gz";
-			string dirKeymap="/usr/share/keymaps/";
+			string dirKeymap=@"/usr/share/keymaps/";
+			KeymapSystem.Clear();
 			string[] files= Directory.GetFiles(dirKeymap,"*"+ext,SearchOption.AllDirectories);
 			
             foreach (string file in files) 
@@ -112,9 +113,10 @@ namespace frugalmonotools
 				strKeymap=System.IO.Path.GetFileName(strKeymap);
 				strKeymap=strKeymap.Replace(ext,"");
 				KeymapSystem.Add(strKeymap);
-				
 			}
 		}
+		
+
 		private void _findLocaleSystem()
 		{
 			string output = Outils.getoutput("locale -a");

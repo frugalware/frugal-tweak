@@ -24,6 +24,7 @@ namespace frugalmonotools
 	{
 		private ConfSystem  confSystem = new ConfSystem();
 		ListStore modelLocale = new ListStore (typeof (string));
+		ListStore modelKeymap = new ListStore (typeof (string));
 		private Gtk.TreeIter iter;
 		
 		public WID_System ()
@@ -49,6 +50,15 @@ namespace frugalmonotools
 				if(confSystem.GetLocale()==locale)
 					CBO_Locale.SetActiveIter(iter);
 			}
+			CBO_Keymap.Model=modelKeymap;
+			foreach (string keymap in  confSystem.KeymapSystem)
+			{
+				iter=modelKeymap.AppendValues(keymap);
+				//Console.WriteLine("compare "+confSystem.GetKeymap()+" "+keymap);
+				if(confSystem.GetKeymap()==keymap)
+					CBO_Keymap.SetActiveIter(iter);
+			}
+
 		}
 		protected virtual void OnBTNSystemClicked (object sender, System.EventArgs e)
 		{
