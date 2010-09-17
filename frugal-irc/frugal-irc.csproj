@@ -50,6 +50,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\frugal-mono-tools\Pictures\header.svg" />
     <EmbeddedResource Include="..\frugal-mono-tools\Pictures\fw.png" />
+    <EmbeddedResource Include="..\frugal-mono-tools\Pictures\fw-mini.png" />
+    <EmbeddedResource Include="..\frugal-mono-tools\Pictures\systray.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

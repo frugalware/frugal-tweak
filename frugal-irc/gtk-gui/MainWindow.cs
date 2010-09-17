@@ -31,6 +31,10 @@ public partial class MainWindow
 
 	private global::Gtk.Button BTN_Send;
 
+	private global::Gtk.VBox vbox1;
+
+	private global::Gtk.Image image1;
+
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 
 	private global::Gtk.TreeView TREE_Users;
@@ -173,6 +177,19 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox2]));
 		w13.Position = 0;
 		// Container child hbox1.Gtk.Box+BoxChild
+		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1.Name = "vbox1";
+		this.vbox1.Spacing = 6;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.image1 = new global::Gtk.Image ();
+		this.image1.Name = "image1";
+		this.image1.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalirc.fw.png");
+		this.vbox1.Add (this.image1);
+		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.image1]));
+		w14.Position = 0;
+		w14.Expand = false;
+		w14.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
@@ -181,13 +198,20 @@ public partial class MainWindow
 		this.TREE_Users.CanFocus = true;
 		this.TREE_Users.Name = "TREE_Users";
 		this.GtkScrolledWindow.Add (this.TREE_Users);
-		this.hbox1.Add (this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.GtkScrolledWindow]));
-		w15.Position = 1;
+		this.vbox1.Add (this.GtkScrolledWindow);
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
+		w16.Position = 1;
+		this.hbox1.Add (this.vbox1);
+		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox1]));
+		w17.Position = 1;
+		w17.Expand = false;
+		w17.Fill = false;
 		this.Add (this.hbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
+		this.SAI_Serveur.Hide ();
+		this.SAI_Port.Hide ();
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.BTN_Connect.Clicked += new global::System.EventHandler (this.OnBTNConnectClicked);
