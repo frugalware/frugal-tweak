@@ -203,8 +203,6 @@ namespace frugalmonotools
 							trayIcon = new StatusIcon(ico);
 							trayIcon.Visible = true;
 							check();
-							Fen = new Fen_Menu();
-							Fen.Hide();
 							StartedAutomatic=true;
 							aTimer = new System.Timers.Timer();
 		         			aTimer.Elapsed+=new ElapsedEventHandler(checkUpdate);
