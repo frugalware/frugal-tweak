@@ -157,6 +157,30 @@ namespace frugalmonotools
 				}
 				FileConf.Close();
 				
+				//keymap
+				//search keymap=
+				content = Outils.ReadFile(cch_keymap);
+				lines = content.Split('\n');
+				linesResult = new string[lines.Length];
+				i =0;
+	            foreach (string line in lines)
+	            {
+					lineResult=line;
+					if (lineResult.IndexOf("keymap=")>=0)
+					{
+						lineResult="keymap="+_keymap;
+					}
+					linesResult[i]=lineResult;
+					i++;
+				}
+				//now save keymap
+				FileConf = new StreamWriter(cch_keymap);
+				foreach (string line in linesResult)
+	            {
+					FileConf.WriteLine(line);
+				}
+				FileConf.Close();
+				
 			}
 			catch(Exception exe)
 			{
