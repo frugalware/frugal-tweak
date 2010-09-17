@@ -48,6 +48,12 @@ namespace frugalmonotools
 
 		private global::Gtk.ComboBoxEntry CBO_Keymap;
 
+		private global::Gtk.HBox hbox2;
+
+		private global::Gtk.Label label18;
+
+		private global::Gtk.ComboBoxEntry CBO_Time;
+
 		private global::Gtk.HBox hbox29;
 
 		private global::Gtk.Button BTN_System;
@@ -254,6 +260,32 @@ namespace frugalmonotools
 			w21.Expand = false;
 			w21.Fill = false;
 			// Container child vbox11.Gtk.Box+BoxChild
+			this.hbox2 = new global::Gtk.HBox ();
+			this.hbox2.Name = "hbox2";
+			this.hbox2.Spacing = 6;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.label18 = new global::Gtk.Label ();
+			this.label18.Name = "label18";
+			this.label18.LabelProp = global::Mono.Unix.Catalog.GetString ("Time config");
+			this.hbox2.Add (this.label18);
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.label18]));
+			w22.Position = 0;
+			w22.Expand = false;
+			w22.Fill = false;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.CBO_Time = global::Gtk.ComboBoxEntry.NewText ();
+			this.CBO_Time.Name = "CBO_Time";
+			this.hbox2.Add (this.CBO_Time);
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.CBO_Time]));
+			w23.Position = 2;
+			w23.Expand = false;
+			w23.Fill = false;
+			this.vbox11.Add (this.hbox2);
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.hbox2]));
+			w24.Position = 7;
+			w24.Expand = false;
+			w24.Fill = false;
+			// Container child vbox11.Gtk.Box+BoxChild
 			this.hbox29 = new global::Gtk.HBox ();
 			this.hbox29.Name = "hbox29";
 			this.hbox29.Spacing = 6;
@@ -264,15 +296,15 @@ namespace frugalmonotools
 			this.BTN_System.UseUnderline = true;
 			this.BTN_System.Label = global::Mono.Unix.Catalog.GetString ("Apply");
 			this.hbox29.Add (this.BTN_System);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox29[this.BTN_System]));
-			w22.Position = 2;
-			w22.Expand = false;
-			w22.Fill = false;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox29[this.BTN_System]));
+			w25.Position = 2;
+			w25.Expand = false;
+			w25.Fill = false;
 			this.vbox11.Add (this.hbox29);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.hbox29]));
-			w23.Position = 7;
-			w23.Expand = false;
-			w23.Fill = false;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.hbox29]));
+			w26.Position = 8;
+			w26.Expand = false;
+			w26.Fill = false;
 			this.Add (this.vbox11);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

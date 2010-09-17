@@ -25,6 +25,7 @@ namespace frugalmonotools
 		private ConfSystem  confSystem = new ConfSystem();
 		ListStore modelLocale = new ListStore (typeof (string));
 		ListStore modelKeymap = new ListStore (typeof (string));
+		ListStore modelTime = new ListStore (typeof (string));
 		private Gtk.TreeIter iter;
 		
 		public WID_System ()
@@ -54,9 +55,16 @@ namespace frugalmonotools
 			foreach (string keymap in  confSystem.KeymapSystem)
 			{
 				iter=modelKeymap.AppendValues(keymap);
-				//Console.WriteLine("compare "+confSystem.GetKeymap()+" "+keymap);
 				if(confSystem.GetKeymap()==keymap)
 					CBO_Keymap.SetActiveIter(iter);
+			}
+			
+			CBO_Time.Model=modelTime;
+			foreach (string time in  confSystem.LocalTimeSystem)
+			{
+				iter=modelTime.AppendValues(time);
+				if(confSystem.GetLocalTime()==time)
+					CBO_Time.SetActiveIter(iter);
 			}
 
 		}
@@ -64,6 +72,8 @@ namespace frugalmonotools
 		{
 			confSystem.SetHostname(SAI_Host.Text);
 			confSystem.SetLocale(CBO_Locale.Entry.Text);
+			confSystem.SetKeymap(CBO_Keymap.Entry.Text);
+			confSystem.SetTime(CBO_Time.Entry.Text);
 			confSystem.Save();
 		}
 		
