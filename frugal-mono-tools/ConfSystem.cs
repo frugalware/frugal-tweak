@@ -41,6 +41,7 @@ namespace frugalmonotools
 		public List<string>  LocaleSystem = new List<string>(); 
 		public List<string>  KeymapSystem = new List<string>(); 
 		public List<string>  LocalTimeSystem = new List<string>(); 
+		private string _shell="";
 		public string GetHostname()
 		{
 			return _hostname;
@@ -57,7 +58,9 @@ namespace frugalmonotools
 			return Outils.getoutput("uname -a");
 		}
 		public string GetUserShell() {
-			return Mono.Unix.Native.Syscall.getusershell();
+			if(_shell=="")
+				_shell= Mono.Unix.Native.Syscall.getusershell();
+			return _shell;
 		}	
 		public string GetLocale() {
 			try{
