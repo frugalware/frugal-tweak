@@ -70,7 +70,7 @@ namespace frugalmonotools
 			{
 				if (MainClass.trayIcon!=null)
 				{
-					Gdk.Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
+					Gdk.Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
 					MainClass.trayIcon.Pixbuf=ico;
 				}
 			}
