@@ -131,6 +131,7 @@
                 <child>
                   <widget class="Gtk.TextView" id="TXT_Messages">
                     <property name="MemberName" />
+                    <property name="Sensitive">False</property>
                     <property name="CanFocus">True</property>
                     <property name="ShowScrollbars">True</property>
                     <property name="Text" translatable="yes" />

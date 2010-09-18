@@ -138,6 +138,7 @@ public partial class MainWindow
 		this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
 		// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
 		this.TXT_Messages = new global::Gtk.TextView ();
+		this.TXT_Messages.Sensitive = false;
 		this.TXT_Messages.CanFocus = true;
 		this.TXT_Messages.Name = "TXT_Messages";
 		this.GtkScrolledWindow1.Add (this.TXT_Messages);
