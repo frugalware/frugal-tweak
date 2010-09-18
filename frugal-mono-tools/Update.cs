@@ -48,8 +48,28 @@ namespace frugalmonotools
 						bool AddIt = false;
 						if(string.Compare(pkginstall.packageversion,pkg.packageversion)<0) 
 							AddIt =true;
-						//check force read info only here for startup more quickly
 						
+						//pff 
+						//3.6.8 is > to 3.6.10 but that can be some string
+						//so compare string
+						try
+						{
+							//parse numeric
+							string []tmpinst = pkginstall.packageversion.Split('-');
+							string []tmpupdate = pkg.packageversion.Split('-');
+							string [] versionInstalled= tmpinst[0].Split('.');
+							string []updateVersion= tmpupdate[0].Split('.');
+							int i =0;
+							foreach(string ver in updateVersion)
+							{
+								if(string.Compare(versionInstalled[i],ver)<0)
+									AddIt=true;
+								if (int.Parse(versionInstalled[i])<int.Parse(ver))
+									AddIt=true;
+								i++;
+							}
+						}
+						catch{}
 						if ((PacmanG2.ShouldPackageForce(pkg.packagename+"-"+pkg.packageversion,pkg.repo)) && 
 						    (pkginstall.packageversion!=pkg.packageversion))
 							AddIt=true;

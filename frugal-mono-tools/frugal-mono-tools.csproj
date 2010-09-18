@@ -50,7 +50,6 @@
     <Reference Include="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
     <Reference Include="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" />
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="NDesk.DBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -100,7 +99,6 @@
     <Compile Include="Services.cs" />
     <Compile Include="WebkitBrowser.cs" />
     <Compile Include="ConfSystem.cs" />
-    <Compile Include="DbusObject.cs" />
     <Compile Include="Xorg.cs" />
     <Compile Include="Fen_Menu.cs" />
     <Compile Include="gtk-gui\frugalmonotools.Fen_Menu.cs" />

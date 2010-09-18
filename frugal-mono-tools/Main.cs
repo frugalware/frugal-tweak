@@ -25,9 +25,6 @@ using Gdk;
 using Gtk;
 using Rss;
 
-using NDesk.DBus;
-using org.freedesktop.DBus;
-
 
 namespace frugalmonotools
 {
@@ -133,7 +130,12 @@ namespace frugalmonotools
 													WebkitBrowser browser = new WebkitBrowser("http://wiki.frugalware.org");
 													browser.Show(); 
 													};
-				menuItemcc.Activated += delegate { Outils.Excecute("frugalware-tweak","",false); };
+				menuItemcc.Activated += delegate {  
+								Fen.Visible = !Fen.Visible; 
+								if (Fen.Visible)
+									Fen.Show();
+								};
+
 				menuItemccRoot.Activated += delegate { Outils.Excecute("sucontrolcenter","",false); };
 				
 				// Quit the application when quit has been clicked.
@@ -145,39 +147,15 @@ namespace frugalmonotools
 		public static Fen_Menu Fen ;
 		public static bool StartedAutomatic=false;
 		public static Xorg xorg = new Xorg();
-		public static Bus bus;
-		public static string DbusName="com.frugalware.tweak";
-		public static ObjectPath DbusPath = new ObjectPath ("com/frugalware/tweak");
-		public static DbusObject DbusCom;
+		
 		
 		public static void Main (string[] args)
 		{
 			//root options
-		if (Mono.Unix.Native.Syscall.getuid()!=0)
-			boRoot=false;
-		else
-			boRoot=true;
-			try{
-					bus = Bus.Session;
-					if (bus.RequestName (DbusName) == RequestNameReply.PrimaryOwner)
-					{
-						//create a new instance of the object to be exported
-						DbusCom = new DbusObject ();
-						bus.Register (DbusPath, DbusCom);
-						//EXEMPLE : MainClass.DbusCom.Hello("test");
-					}
-					else
-					{
-						//import a remote to a local proxy
-						DbusCom = bus.GetObject<DbusObject> (DbusName, DbusPath);
-					}
-
-			}
-			catch(Exception exe)
-			{
-				Console.WriteLine("Can't register :"+DbusName);
-				Console.WriteLine(exe.Message);
-			}
+			if (Mono.Unix.Native.Syscall.getuid()!=0)
+				boRoot=false;
+			else
+				boRoot=true;
 			
 			System.Timers.Timer aTimer;
 			if(args.Length==0)
@@ -216,6 +194,7 @@ namespace frugalmonotools
 							// Creation of the Icon
 							Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
 	
+							Fen = new Fen_Menu();
 							trayIcon = new StatusIcon(ico);
 							trayIcon.Visible = true;
 							check();
@@ -227,7 +206,11 @@ namespace frugalmonotools
 		         			aTimer.Enabled=true;
 							
 					 		
-							trayIcon.Activate += delegate { Outils.Excecute("frugalware-tweak","",false); };
+							trayIcon.Activate += delegate {  
+								Fen.Visible = !Fen.Visible; 
+								if (Fen.Visible)
+									Fen.Show();
+								};
 
 							// Show a pop up menu when the icon has been right clicked.
 							trayIcon.PopupMenu += OnTrayIconPopup;

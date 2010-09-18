@@ -110,9 +110,6 @@ namespace frugalmonotools
 			Pixbuf icoabout = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.about.png");
 			ListMenu.AppendValues(icoabout.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_about);
 			
-			//see module system
-			SelectModule(cch_system);
-			
 			//timer news
 			System.Timers.Timer aTimer = new System.Timers.Timer();
 			aTimer.Elapsed+=new ElapsedEventHandler(checkRSS);
@@ -234,11 +231,14 @@ namespace frugalmonotools
 		}
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-				if(MainClass.StartedAutomatic)
-					this.Hide();
-				else
-					Application.Quit ();
-		
+			if(MainClass.StartedAutomatic)
+			{
+				this.Hide();
+			}
+			else
+			{
+				Application.Quit ();
+			}
 			args.RetVal = true;
 		}
 		private void checkRSS(object source, ElapsedEventArgs e)
