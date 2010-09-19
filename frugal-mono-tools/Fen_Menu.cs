@@ -88,7 +88,6 @@ namespace frugalmonotools
 			Pixbuf icoSys = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.system.png");
 			iter = ListMenu.AppendValues(icoSys.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_system);
 			this.TREE_Menu.SetCursor(ListMenu.GetPath(iter),TREE_Menu.GetColumn(1),false);
-			//FIX ME select first element
 			Pixbuf icoX = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.xorg.png");
 			ListMenu.AppendValues(icoX.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_xorg);
 			Pixbuf icoupdate = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.update.png");
@@ -122,7 +121,10 @@ namespace frugalmonotools
 			aTimer.Enabled=true;
 			_checkRss();
 		}
-		
+		public void Init()
+		{
+			SelectModule(cch_system);
+		}
 		protected void OnSelectionEntryUpdate(object o, EventArgs args)
 	    {
 	   		try
@@ -245,13 +247,15 @@ namespace frugalmonotools
 		}
 		protected virtual void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-			if(MainClass.StartedAutomatic)
+			if(!MainClass.StartedAutomatic)
 			{
-				this.Hide();
+				Application.Quit ();
 			}
 			else
 			{
-				Application.Quit ();
+				this.Destroy();
+				this.Dispose();
+				MainClass.Fen=null;
 			}
 			args.RetVal = true;
 		}

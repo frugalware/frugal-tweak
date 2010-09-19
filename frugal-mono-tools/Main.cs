@@ -85,7 +85,7 @@ namespace frugalmonotools
 				}
 
 				Outils.Inform("Frugalware","Some update are available.");
-				Console.WriteLine("Some packages can be updated.");
+				//Console.WriteLine("Some packages can be updated.");
 				
 			}
 			else
@@ -133,10 +133,18 @@ namespace frugalmonotools
 													browser.Show(); 
 													};
 				menuItemcc.Activated += delegate {  
-								Fen.Visible = !Fen.Visible; 
-								if (Fen.Visible)
-									Fen.Show();
-								};
+													if(Fen==null)
+													{
+														Fen = new Fen_Menu();
+														Fen.Show();
+													}
+													else
+													{
+														Fen.Destroy();
+														Fen.Dispose();
+														Fen=null;
+													}
+											};
 
 				menuItemccRoot.Activated += delegate { Outils.Excecute("sucontrolcenter","",false); };
 				
@@ -196,7 +204,6 @@ namespace frugalmonotools
 							// Creation of the Icon
 							Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
 	
-							Fen = new Fen_Menu();
 							trayIcon = new StatusIcon(ico);
 							trayIcon.Visible = true;
 							check();
@@ -209,10 +216,19 @@ namespace frugalmonotools
 							
 					 		
 							trayIcon.Activate += delegate {  
-								Fen.Visible = !Fen.Visible; 
-								if (Fen.Visible)
+								if(Fen==null)
+								{
+									Fen = new Fen_Menu();
 									Fen.Show();
-								};
+								}
+								else
+								{
+									Fen.Destroy();
+									Fen.Dispose();
+									Fen=null;
+								}
+							
+							};
 
 							// Show a pop up menu when the icon has been right clicked.
 							trayIcon.PopupMenu += OnTrayIconPopup;
