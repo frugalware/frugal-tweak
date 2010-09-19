@@ -56,6 +56,8 @@ namespace frugalmonotools
 		
 		public static void check()
 		{
+			try
+			{
 			RssFeed rssFeed =RssFeed.Read(UrlPlanet);
 			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
 			string latest="";
@@ -71,6 +73,8 @@ namespace frugalmonotools
 					}
 				
 				}
+			}
+			catch{}
 			if (Update.CheckUpdate())
 			{
 				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
