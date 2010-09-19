@@ -93,10 +93,8 @@ namespace frugalmonotools
 			ListMenu.AppendValues(icoX.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_xorg);
 			Pixbuf icoupdate = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.update.png");
 			ListMenu.AppendValues(icoupdate.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_update);
-			//TODO change icon
-			Pixbuf icoupdateConf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.update.png");
+			Pixbuf icoupdateConf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.updateconf.png");
 			ListMenu.AppendValues(icoupdateConf.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_updateConf);
-			
 			Pixbuf icopkg = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.packages.png");
 			ListMenu.AppendValues(icopkg.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_packages);
 			Pixbuf icohardware = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.hardware.png");

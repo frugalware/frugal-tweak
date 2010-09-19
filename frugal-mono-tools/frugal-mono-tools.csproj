@@ -80,6 +80,7 @@
     <EmbeddedResource Include="Pictures\icons\system.png" />
     <EmbeddedResource Include="Pictures\icons\xorg.png" />
     <EmbeddedResource Include="Pictures\icons\update.png" />
+    <EmbeddedResource Include="Pictures\icons\updateconf.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
