@@ -23,6 +23,57 @@ namespace frugalmonotools
 {
 	public static class Outils
 	{
+		
+		public static List<string>  WalkDirectoryTree(System.IO.DirectoryInfo root,string pattern)
+	    {
+			List<string>  strFiles = new List<string>(); 
+	        System.IO.FileInfo[] files = null;
+	        System.IO.DirectoryInfo[] subDirs = null;
+	
+	        // First, process all the files directly under this folder
+	        try
+	        {
+	            files = root.GetFiles(pattern);
+	        }
+	        // This is thrown if even one of the files requires permissions greater
+	        // than the application provides.
+	        catch (UnauthorizedAccessException e)
+	        {
+	            // This code just writes out the message and continues to recurse.
+	           Console.WriteLine(e.Message);
+	        }
+	
+	        catch (System.IO.DirectoryNotFoundException e)
+	        {
+	            Console.WriteLine(e.Message);
+	        }
+	
+	        if (files != null)
+	        {
+	            foreach (System.IO.FileInfo fi in files)
+	            {
+	             
+	                Console.WriteLine(fi.FullName);
+					strFiles.Add(fi.FullName);
+	            }
+	
+	            // Now find all the subdirectories under this directory.
+	            subDirs = root.GetDirectories();
+	
+	            foreach (System.IO.DirectoryInfo dirInfo in subDirs)
+	            {
+	                // Resursive call for each subdirectory.
+					List<string>  strFiles2 = new List<string>(); 
+	                strFiles2=WalkDirectoryTree(dirInfo,pattern);
+					 foreach (string strfile in strFiles2)
+	            	{
+						strFiles.Add(strfile);
+					}
+	            }
+	        }      
+			return strFiles;
+	    }
+
 		public static void Inform(string title,string text)
 		{
 			try{

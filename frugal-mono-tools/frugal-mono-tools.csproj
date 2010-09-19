@@ -126,6 +126,8 @@
     <Compile Include="gtk-gui\frugalmonotools.WID_Config.cs" />
     <Compile Include="gtk-gui\frugalmonotools.WID_About.cs" />
     <Compile Include="WID_About.cs" />
+    <Compile Include="WID_UpdateConf.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_UpdateConf.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

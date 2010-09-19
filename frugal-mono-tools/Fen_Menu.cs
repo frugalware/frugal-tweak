@@ -28,6 +28,7 @@ namespace frugalmonotools
 		private const string cch_system="System";
 		private const string cch_xorg="Xorg";
 		private const string cch_update="Update";
+		private const string cch_updateConf="Update configuration";
 		private const string cch_packages="Packages";
 		private const string cch_hardware="Hardware";
 		private const string cch_services="Services";
@@ -44,6 +45,7 @@ namespace frugalmonotools
 		WID_Pkg fen_pkg;
 		WID_Xorg fen_xorg;
 		WID_Update fen_update;
+		WID_UpdateConf fen_updateConf;
 		WID_Services fen_services;
 		WID_Support fen_support;
 		WID_System fen_system;
@@ -91,6 +93,10 @@ namespace frugalmonotools
 			ListMenu.AppendValues(icoX.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_xorg);
 			Pixbuf icoupdate = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.update.png");
 			ListMenu.AppendValues(icoupdate.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_update);
+			//TODO change icon
+			Pixbuf icoupdateConf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.update.png");
+			ListMenu.AppendValues(icoupdateConf.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_updateConf);
+			
 			Pixbuf icopkg = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.packages.png");
 			ListMenu.AppendValues(icopkg.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_packages);
 			Pixbuf icohardware = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.hardware.png");
@@ -130,7 +136,10 @@ namespace frugalmonotools
 					SelectModule(T);
 				}
 			}
-			catch{}
+			catch(Exception exe)
+			{
+				Console.WriteLine(exe.Message);
+			}
 		}
 		
 		private void SelectModule(string module)
@@ -157,6 +166,13 @@ namespace frugalmonotools
 							this.HBOX_Details.PackStart(fen_update);
 							this.HBOX_Details.ShowAll();
 							this.fen_update.InitUpdate();
+						break;
+				
+						case cch_updateConf:
+							this.fen_updateConf = new WID_UpdateConf();
+							this.HBOX_Details.PackStart(fen_updateConf);
+							this.HBOX_Details.ShowAll();
+							this.fen_updateConf.InitUpdateConf();
 						break;
 				
 						case cch_about:
