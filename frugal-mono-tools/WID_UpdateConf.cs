@@ -50,6 +50,7 @@ namespace frugalmonotools
 		
 		public void InitUpdateConf()
 		{
+			listStore.Clear();
 			string dir=@"/etc/";
 			string pattern ="*"+cch_extPacnew;
 			System.IO.DirectoryInfo rootDir = new System.IO.DirectoryInfo(dir);
@@ -72,6 +73,39 @@ namespace frugalmonotools
 			}
 			catch{}
 		}
+		
+		protected virtual void OnBTNSeeDiffClicked (object sender, System.EventArgs e)
+		{
+			string strOrg =FileSelected.Replace(cch_extPacnew,"");
+			if(MainClass.boRoot)
+				Outils.Excecute("python","/usr/bin/PyFrugalVTE diff -u "+strOrg+" "+FileSelected,false);	
+			else
+				Outils.ExcecuteAsRoot("python /usr/bin/PyFrugalVTE diff -u "+strOrg+" "+FileSelected,false);		
+		}
+		
+		protected virtual void OnBTNReplaceClicked (object sender, System.EventArgs e)
+		{
+			//use mv instead c# for a user can start it with gksu/ksu
+			string strOrg =FileSelected.Replace(cch_extPacnew,"");
+			if(MainClass.boRoot)
+				Outils.Excecute("mv",FileSelected+" "+strOrg,true);	
+			else
+				Outils.ExcecuteAsRoot("mv "+FileSelected+" "+strOrg,true);	
+			this.InitUpdateConf();
+		}
+		
+		protected virtual void OnBTNDeleteClicked (object sender, System.EventArgs e)
+		{
+			//use rm instead c# for a user can start it with gksu/ksu
+			if(MainClass.boRoot)
+				Outils.Excecute("rm",FileSelected,true);	
+			else
+				Outils.ExcecuteAsRoot("rm "+FileSelected,true);	
+			this.InitUpdateConf();
+		}
+		
+		
+		
 		
 		
 	}

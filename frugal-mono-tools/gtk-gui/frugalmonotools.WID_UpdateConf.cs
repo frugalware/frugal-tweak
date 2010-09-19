@@ -12,6 +12,12 @@ namespace frugalmonotools
 
 		private global::Gtk.HBox hbox1;
 
+		private global::Gtk.Button BTN_SeeDiff;
+
+		private global::Gtk.Button BTN_Replace;
+
+		private global::Gtk.Button BTN_Delete;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -38,14 +44,52 @@ namespace frugalmonotools
 			this.hbox1 = new global::Gtk.HBox ();
 			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.BTN_SeeDiff = new global::Gtk.Button ();
+			this.BTN_SeeDiff.CanFocus = true;
+			this.BTN_SeeDiff.Name = "BTN_SeeDiff";
+			this.BTN_SeeDiff.UseUnderline = true;
+			this.BTN_SeeDiff.Label = global::Mono.Unix.Catalog.GetString ("See diff");
+			this.hbox1.Add (this.BTN_SeeDiff);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_SeeDiff]));
+			w3.Position = 0;
+			w3.Expand = false;
+			w3.Fill = false;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.BTN_Replace = new global::Gtk.Button ();
+			this.BTN_Replace.CanFocus = true;
+			this.BTN_Replace.Name = "BTN_Replace";
+			this.BTN_Replace.UseUnderline = true;
+			this.BTN_Replace.Label = global::Mono.Unix.Catalog.GetString ("Replace");
+			this.hbox1.Add (this.BTN_Replace);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_Replace]));
+			w4.Position = 1;
+			w4.Expand = false;
+			w4.Fill = false;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.BTN_Delete = new global::Gtk.Button ();
+			this.BTN_Delete.CanFocus = true;
+			this.BTN_Delete.Name = "BTN_Delete";
+			this.BTN_Delete.UseUnderline = true;
+			this.BTN_Delete.Label = global::Mono.Unix.Catalog.GetString ("Delete");
+			this.hbox1.Add (this.BTN_Delete);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_Delete]));
+			w5.Position = 2;
+			w5.Expand = false;
+			w5.Fill = false;
 			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
-			w3.Position = 2;
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
+			w6.Position = 1;
+			w6.Expand = false;
+			w6.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.BTN_SeeDiff.Clicked += new global::System.EventHandler (this.OnBTNSeeDiffClicked);
+			this.BTN_Replace.Clicked += new global::System.EventHandler (this.OnBTNReplaceClicked);
+			this.BTN_Delete.Clicked += new global::System.EventHandler (this.OnBTNDeleteClicked);
 		}
 	}
 }
