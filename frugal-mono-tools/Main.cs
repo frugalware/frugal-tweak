@@ -56,6 +56,21 @@ namespace frugalmonotools
 		
 		public static void check()
 		{
+			RssFeed rssFeed =RssFeed.Read(UrlPlanet);
+			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
+			string latest="";
+			foreach (RssItem item in rssChannel.Items)
+				{
+					if(latest =="")latest=item.Link.AbsoluteUri.ToString();
+					if (cache.GetLatest()!=latest)
+					{
+						Outils.Inform("Frugalware","News are available.");
+						//write cache	
+						cache.SetLatest(latest);
+						cache.CacheSave();
+					}
+				
+				}
 			if (Update.CheckUpdate())
 			{
 				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
@@ -71,21 +86,7 @@ namespace frugalmonotools
 
 				Outils.Inform("Frugalware","Some update are available.");
 				Console.WriteLine("Some packages can be updated.");
-				RssFeed rssFeed =RssFeed.Read(UrlPlanet);
-				RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
-				string latest="";
-				foreach (RssItem item in rssChannel.Items)
-					{
-						if(latest =="")latest=item.Link.AbsoluteUri.ToString();
-						if (cache.GetLatest()!=latest)
-						{
-							Outils.Inform("Frugalware","News are available.");
-							//write cache	
-							cache.SetLatest(latest);
-							cache.CacheSave();
-						}
-					
-					}
+				
 			}
 			else
 			{
