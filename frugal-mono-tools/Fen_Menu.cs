@@ -18,8 +18,7 @@
 using System;
 using Gdk;
 using Gtk;
-using Rss;
-using System.Timers;
+
 
 namespace frugalmonotools
 {
@@ -113,13 +112,6 @@ namespace frugalmonotools
 			Pixbuf icoabout = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.about.png");
 			ListMenu.AppendValues(icoabout.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_about);
 			
-			//timer news
-			System.Timers.Timer aTimer = new System.Timers.Timer();
-			aTimer.Elapsed+=new ElapsedEventHandler(checkRSS);
-			// Set the Interval to 1 hour.
-			aTimer.Interval=3600000;
-			aTimer.Enabled=true;
-			_checkRss();
 		}
 		public void Init()
 		{
@@ -259,39 +251,8 @@ namespace frugalmonotools
 			}
 			args.RetVal = true;
 		}
-		private void checkRSS(object source, ElapsedEventArgs e)
-		{
-			_checkRss();
-		}
-		private void _checkRss()
-		{
-				//RSS
-		try{
-			if (CurrentWidget==cch_news)
-			{
-					fen_news.CheckRss();
-					return;
-			}
-			RssFeed rssFeed =RssFeed.Read(MainClass.UrlPlanet);
-			RssChannel rssChannel = (RssChannel)rssFeed.Channels[0];
-			string latest="";
-			foreach (RssItem item in rssChannel.Items)
-			{
-				if(latest =="")latest=item.Link.AbsoluteUri.ToString();
-				if (MainClass.cache.GetLatest()!=latest)
-				{
-					Outils.Inform("Frugalware","News are available.");
-					//write cache	
-					MainClass.cache.SetLatest(latest);
-					MainClass.cache.CacheSave();
-				}
-				return;
-			}
-			
-		}
-			catch{}
 		
-		}
+				
 		
 	}
 }
