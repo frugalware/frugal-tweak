@@ -251,7 +251,7 @@ namespace frugalmonotools
 			this.CBO_Keymap.Name = "CBO_Keymap";
 			this.hbox1.Add (this.CBO_Keymap);
 			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.CBO_Keymap]));
-			w20.Position = 2;
+			w20.Position = 1;
 			w20.Expand = false;
 			w20.Fill = false;
 			this.vbox11.Add (this.hbox1);
@@ -277,7 +277,7 @@ namespace frugalmonotools
 			this.CBO_Time.Name = "CBO_Time";
 			this.hbox2.Add (this.CBO_Time);
 			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.CBO_Time]));
-			w23.Position = 2;
+			w23.Position = 1;
 			w23.Expand = false;
 			w23.Fill = false;
 			this.vbox11.Add (this.hbox2);
