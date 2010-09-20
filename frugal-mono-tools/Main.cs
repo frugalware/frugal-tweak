@@ -41,7 +41,12 @@ namespace frugalmonotools
 		private static void checkUpdate(object source, ElapsedEventArgs e)
 		{
 			Console.WriteLine("check update packages.");
-			check();
+			//start it in a new thread
+			Thread th = new Thread(new ThreadStart(check));
+			th.IsBackground=true;
+			th.SetApartmentState(ApartmentState.STA);
+			th.Start();
+
 		}
 		public static bool updatePkg = false;
 		public static void checktest()
@@ -78,7 +83,7 @@ namespace frugalmonotools
 			if (Update.CheckUpdate())
 			{
 				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
-				trayIcon.Pixbuf=ico;
+				Gtk.Application.Invoke (delegate{trayIcon.Pixbuf=ico;});
 							
 				if(Debug.ModeDebug)
 				{
@@ -95,7 +100,7 @@ namespace frugalmonotools
 			else
 			{
 				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
-				trayIcon.Pixbuf=ico;
+				Gtk.Application.Invoke (delegate{trayIcon.Pixbuf=ico;});
 			}
 		}
 		private static splash win;
