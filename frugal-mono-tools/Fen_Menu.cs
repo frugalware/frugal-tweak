@@ -27,7 +27,7 @@ namespace frugalmonotools
 		private const string cch_system="System";
 		private const string cch_xorg="Xorg";
 		private const string cch_update="Update";
-		private const string cch_updateConf="Update configuration";
+		private const string cch_updateConf="Config Files";
 		private const string cch_packages="Packages";
 		private const string cch_hardware="Hardware";
 		private const string cch_services="Services";
