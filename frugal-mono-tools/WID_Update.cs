@@ -79,7 +79,7 @@ namespace frugalmonotools
 		}
 		private void _initCache()
 		{
-			if(!MainClass.boRoot) BTN_ClearCache.Visible=false;
+
 			//cache
 			List<string>  fpms = new List<string>(); 
 			listStore.Clear();
@@ -193,7 +193,10 @@ namespace frugalmonotools
 		}
 		protected virtual void OnBTNClearCacheClicked (object sender, System.EventArgs e)
 		{
-			if(MainClass.boRoot)	System.IO.File.Delete(dirCache+"/*.fpm");
+			if(MainClass.boRoot)
+				Outils.Excecute("rm",dirCache+"/pkg/*.fpm && exit",true);	
+			else
+				Outils.ExcecuteAsRoot("rm  "+dirCache+"/pkg/*.fpm && exit",true);		
 			_initCache();
 		}
 		
