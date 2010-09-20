@@ -53,7 +53,7 @@ namespace frugalmonotools
 	            foreach (System.IO.FileInfo fi in files)
 	            {
 	             
-	                Console.WriteLine(fi.FullName);
+	               if (Debug.ModeDebug) Console.WriteLine(fi.FullName);
 					strFiles.Add(fi.FullName);
 	            }
 	

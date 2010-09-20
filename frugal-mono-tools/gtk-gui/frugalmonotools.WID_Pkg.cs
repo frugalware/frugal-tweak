@@ -93,28 +93,58 @@ namespace frugalmonotools
 			this.BTN_Uninstall.CanFocus = true;
 			this.BTN_Uninstall.Name = "BTN_Uninstall";
 			this.BTN_Uninstall.UseUnderline = true;
-			this.BTN_Uninstall.Label = global::Mono.Unix.Catalog.GetString ("Uninstall");
+			// Container child BTN_Uninstall.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w7 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w8 = new global::Gtk.HBox ();
+			w8.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w9 = new global::Gtk.Image ();
+			w9.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-remove", global::Gtk.IconSize.Menu);
+			w8.Add (w9);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w11 = new global::Gtk.Label ();
+			w11.LabelProp = global::Mono.Unix.Catalog.GetString ("Uninstall");
+			w11.UseUnderline = true;
+			w8.Add (w11);
+			w7.Add (w8);
+			this.BTN_Uninstall.Add (w7);
 			this.hbox12.Add (this.BTN_Uninstall);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox12[this.BTN_Uninstall]));
-			w7.Position = 1;
-			w7.Expand = false;
-			w7.Fill = false;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox12[this.BTN_Uninstall]));
+			w15.Position = 1;
+			w15.Expand = false;
+			w15.Fill = false;
 			// Container child hbox12.Gtk.Box+BoxChild
 			this.BTN_Install = new global::Gtk.Button ();
 			this.BTN_Install.CanFocus = true;
 			this.BTN_Install.Name = "BTN_Install";
 			this.BTN_Install.UseUnderline = true;
-			this.BTN_Install.Label = global::Mono.Unix.Catalog.GetString ("Install");
+			// Container child BTN_Install.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w16 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w17 = new global::Gtk.HBox ();
+			w17.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w18 = new global::Gtk.Image ();
+			w18.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.update.png");
+			w17.Add (w18);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w20 = new global::Gtk.Label ();
+			w20.LabelProp = global::Mono.Unix.Catalog.GetString ("_Install");
+			w20.UseUnderline = true;
+			w17.Add (w20);
+			w16.Add (w17);
+			this.BTN_Install.Add (w16);
 			this.hbox12.Add (this.BTN_Install);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox12[this.BTN_Install]));
-			w8.Position = 2;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox12[this.BTN_Install]));
+			w24.Position = 2;
+			w24.Expand = false;
+			w24.Fill = false;
 			this.vbox4.Add (this.hbox12);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hbox12]));
-			w9.Position = 3;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hbox12]));
+			w25.Position = 3;
+			w25.Expand = false;
+			w25.Fill = false;
 			this.Add (this.vbox4);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

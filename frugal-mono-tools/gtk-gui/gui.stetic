@@ -8,7 +8,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
     <widget-library name="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" />
-    <widget-library name="../bin/Release/frugal-mono-tools.exe" internal="true" />
+    <widget-library name="../bin/Debug/frugal-mono-tools.exe" internal="true" />
   </import>
   <icon-factory>
     <icon-set id="iconeFwCC">
@@ -268,7 +268,8 @@
               <widget class="Gtk.Button" id="BTN_Uninstall">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-remove Menu</property>
                 <property name="Label" translatable="yes">Uninstall</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNUninstallClicked" />
@@ -284,8 +285,9 @@
               <widget class="Gtk.Button" id="BTN_Install">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Install</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">resource:frugalmonotools.Pictures.icons.update.png</property>
+                <property name="Label" translatable="yes">_Install</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNInstallClicked" />
               </widget>
@@ -443,7 +445,8 @@
               <widget class="Gtk.Button" id="BTN_Xorg">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-apply Menu</property>
                 <property name="Label" translatable="yes">Apply</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNXorgClicked" />
@@ -470,65 +473,237 @@
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
-      <widget class="Gtk.VBox" id="vbox10">
+      <widget class="Gtk.Notebook" id="notebook1">
         <property name="MemberName" />
-        <property name="Spacing">6</property>
+        <property name="CanFocus">True</property>
+        <property name="CurrentPage">0</property>
         <child>
-          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow4">
-            <property name="MemberName" />
-            <property name="ShadowType">In</property>
-            <child>
-              <widget class="Gtk.TreeView" id="TREE_UpdatePkg">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="ShowScrollbars">True</property>
-              </widget>
-            </child>
-          </widget>
-          <packing>
-            <property name="Position">0</property>
-            <property name="AutoSize">True</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.HBox" id="hbox31">
+          <widget class="Gtk.VBox" id="vbox10">
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.Label" id="label17">
+              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow4">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Package ignored when system is updated</property>
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.TreeView" id="TREE_UpdatePkg">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="ShowScrollbars">True</property>
+                  </widget>
+                </child>
               </widget>
               <packing>
                 <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.HBox" id="hbox31">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Label" id="label17">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Package ignored when system is updated</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="SAI_ignorePkg">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">•</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_ApplyIgnorePkg">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Apply</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNApplyIgnorePkgClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Entry" id="SAI_ignorePkg">
+              <widget class="Gtk.HBox" id="hbox22">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="IsEditable">True</property>
-                <property name="InvisibleChar">•</property>
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Hide">
+                    <property name="MemberName" />
+                    <property name="Visible">False</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextAndIcon</property>
+                    <property name="Icon">stock:gtk-delete Menu</property>
+                    <property name="Label" translatable="yes">Hide this package</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNHideClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_UpdateDatabase">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextAndIcon</property>
+                    <property name="Icon">stock:gtk-refresh Menu</property>
+                    <property name="Label" translatable="yes">Update database</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNUpdateDatabaseClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Refresh">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextAndIcon</property>
+                    <property name="Icon">stock:gtk-refresh Menu</property>
+                    <property name="Label" translatable="yes">Refresh list</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNRefreshClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Update">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextAndIcon</property>
+                    <property name="Icon">stock:gtk-ok Menu</property>
+                    <property name="Label" translatable="yes">Update system</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNUpdateClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">3</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
-                <property name="Position">1</property>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+          </widget>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label1">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Update</property>
+          </widget>
+          <packing>
+            <property name="type">tab</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.VBox" id="vbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+                <property name="MemberName" />
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.TreeView" id="TREE_Cache">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="ShowScrollbars">True</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
                 <property name="AutoSize">True</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="BTN_ApplyIgnorePkg">
+              <widget class="Gtk.HBox" id="hbox1">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Apply</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBTNApplyIgnorePkgClicked" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_ClearCache">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextAndIcon</property>
+                    <property name="Icon">stock:gtk-delete Menu</property>
+                    <property name="Label" translatable="yes">Clear cache</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNClearCacheClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Install">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextAndIcon</property>
+                    <property name="Icon">resource:frugalmonotools.Pictures.icons.update.png</property>
+                    <property name="Label" translatable="yes">Install</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNInstallClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
-                <property name="Position">2</property>
+                <property name="Position">1</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -537,86 +712,15 @@
           </widget>
           <packing>
             <property name="Position">1</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HBox" id="hbox22">
+          <widget class="Gtk.Label" id="label2">
             <property name="MemberName" />
-            <property name="Spacing">6</property>
-            <child>
-              <widget class="Gtk.Button" id="BTN_Hide">
-                <property name="MemberName" />
-                <property name="Visible">False</property>
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Hide this package</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBTNHideClicked" />
-              </widget>
-              <packing>
-                <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Button" id="BTN_UpdateDatabase">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Update database</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBTNUpdateDatabaseClicked" />
-              </widget>
-              <packing>
-                <property name="Position">1</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Button" id="BTN_Refresh">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Refresh list</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBTNRefreshClicked" />
-              </widget>
-              <packing>
-                <property name="Position">2</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.Button" id="BTN_Update">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Update system</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBTNUpdateClicked" />
-              </widget>
-              <packing>
-                <property name="Position">3</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
+            <property name="LabelProp" translatable="yes">Cache</property>
           </widget>
           <packing>
-            <property name="Position">2</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
+            <property name="type">tab</property>
           </packing>
         </child>
       </widget>
@@ -956,7 +1060,8 @@
               <widget class="Gtk.Button" id="BTN_System">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-apply Menu</property>
                 <property name="Label" translatable="yes">Apply</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNSystemClicked" />
@@ -994,7 +1099,8 @@
               <widget class="Gtk.Button" id="BTN_Printer">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-print Menu</property>
                 <property name="Label" translatable="yes">System Configuration Printer</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNPrinterClicked" />
@@ -1418,7 +1524,8 @@
               <widget class="Gtk.Button" id="BTN_Network">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-apply Menu</property>
                 <property name="Label" translatable="yes">Apply</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNNetworkClicked" />
@@ -1718,7 +1825,8 @@
               <widget class="Gtk.Button" id="BTN_LoginManager">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-apply Menu</property>
                 <property name="Label" translatable="yes">Apply</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNLoginManagerClicked" />
@@ -2069,7 +2177,8 @@ irc : irc.freenode.net channel #frugalware</property>
               <widget class="Gtk.Button" id="BTN_SaveConf">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-apply Menu</property>
                 <property name="Label" translatable="yes">Apply</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNSaveConfClicked" />

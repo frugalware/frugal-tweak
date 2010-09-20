@@ -52,8 +52,6 @@ namespace frugalmonotools
 		WID_Config fen_config ;
 		WID_Hardware fen_hardware ;
 		WID_LoginManager fen_loginManager;
-		
-		string CurrentWidget="";
 
 		protected Gtk.TreeIter iter;
 		public Fen_Menu () : base(Gtk.WindowType.Toplevel)
@@ -137,7 +135,6 @@ namespace frugalmonotools
 		private void SelectModule(string module)
 		{
 					
-					CurrentWidget=module;
 					this.HBOX_Details.Destroy();
 					this.HBOX_Details = new global::Gtk.HBox ();
 					this.HBOX_Details.SetSizeRequest(680,500);

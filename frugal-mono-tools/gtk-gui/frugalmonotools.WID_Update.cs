@@ -4,6 +4,8 @@ namespace frugalmonotools
 {
 	public partial class WID_Update
 	{
+		private global::Gtk.Notebook notebook1;
+
 		private global::Gtk.VBox vbox10;
 
 		private global::Gtk.ScrolledWindow GtkScrolledWindow4;
@@ -28,6 +30,22 @@ namespace frugalmonotools
 
 		private global::Gtk.Button BTN_Update;
 
+		private global::Gtk.Label label1;
+
+		private global::Gtk.VBox vbox1;
+
+		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+
+		private global::Gtk.TreeView TREE_Cache;
+
+		private global::Gtk.HBox hbox1;
+
+		private global::Gtk.Button BTN_ClearCache;
+
+		private global::Gtk.Button BTN_Install;
+
+		private global::Gtk.Label label2;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -35,6 +53,11 @@ namespace frugalmonotools
 			global::Stetic.BinContainer.Attach (this);
 			this.Name = "frugalmonotools.WID_Update";
 			// Container child frugalmonotools.WID_Update.Gtk.Container+ContainerChild
+			this.notebook1 = new global::Gtk.Notebook ();
+			this.notebook1.CanFocus = true;
+			this.notebook1.Name = "notebook1";
+			this.notebook1.CurrentPage = 0;
+			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.vbox10 = new global::Gtk.VBox ();
 			this.vbox10.Name = "vbox10";
 			this.vbox10.Spacing = 6;
@@ -97,51 +120,204 @@ namespace frugalmonotools
 			this.BTN_Hide.CanFocus = true;
 			this.BTN_Hide.Name = "BTN_Hide";
 			this.BTN_Hide.UseUnderline = true;
-			this.BTN_Hide.Label = global::Mono.Unix.Catalog.GetString ("Hide this package");
+			// Container child BTN_Hide.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w7 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w8 = new global::Gtk.HBox ();
+			w8.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w9 = new global::Gtk.Image ();
+			w9.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-delete", global::Gtk.IconSize.Menu);
+			w8.Add (w9);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w11 = new global::Gtk.Label ();
+			w11.LabelProp = global::Mono.Unix.Catalog.GetString ("Hide this package");
+			w11.UseUnderline = true;
+			w8.Add (w11);
+			w7.Add (w8);
+			this.BTN_Hide.Add (w7);
 			this.hbox22.Add (this.BTN_Hide);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_Hide]));
-			w7.Position = 0;
-			w7.Expand = false;
-			w7.Fill = false;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_Hide]));
+			w15.Position = 0;
+			w15.Expand = false;
+			w15.Fill = false;
 			// Container child hbox22.Gtk.Box+BoxChild
 			this.BTN_UpdateDatabase = new global::Gtk.Button ();
 			this.BTN_UpdateDatabase.CanFocus = true;
 			this.BTN_UpdateDatabase.Name = "BTN_UpdateDatabase";
 			this.BTN_UpdateDatabase.UseUnderline = true;
-			this.BTN_UpdateDatabase.Label = global::Mono.Unix.Catalog.GetString ("Update database");
+			// Container child BTN_UpdateDatabase.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w16 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w17 = new global::Gtk.HBox ();
+			w17.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w18 = new global::Gtk.Image ();
+			w18.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-refresh", global::Gtk.IconSize.Menu);
+			w17.Add (w18);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w20 = new global::Gtk.Label ();
+			w20.LabelProp = global::Mono.Unix.Catalog.GetString ("Update database");
+			w20.UseUnderline = true;
+			w17.Add (w20);
+			w16.Add (w17);
+			this.BTN_UpdateDatabase.Add (w16);
 			this.hbox22.Add (this.BTN_UpdateDatabase);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_UpdateDatabase]));
-			w8.Position = 1;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_UpdateDatabase]));
+			w24.Position = 1;
+			w24.Expand = false;
+			w24.Fill = false;
 			// Container child hbox22.Gtk.Box+BoxChild
 			this.BTN_Refresh = new global::Gtk.Button ();
 			this.BTN_Refresh.CanFocus = true;
 			this.BTN_Refresh.Name = "BTN_Refresh";
 			this.BTN_Refresh.UseUnderline = true;
-			this.BTN_Refresh.Label = global::Mono.Unix.Catalog.GetString ("Refresh list");
+			// Container child BTN_Refresh.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w25 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w26 = new global::Gtk.HBox ();
+			w26.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w27 = new global::Gtk.Image ();
+			w27.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-refresh", global::Gtk.IconSize.Menu);
+			w26.Add (w27);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w29 = new global::Gtk.Label ();
+			w29.LabelProp = global::Mono.Unix.Catalog.GetString ("Refresh list");
+			w29.UseUnderline = true;
+			w26.Add (w29);
+			w25.Add (w26);
+			this.BTN_Refresh.Add (w25);
 			this.hbox22.Add (this.BTN_Refresh);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_Refresh]));
-			w9.Position = 2;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_Refresh]));
+			w33.Position = 2;
+			w33.Expand = false;
+			w33.Fill = false;
 			// Container child hbox22.Gtk.Box+BoxChild
 			this.BTN_Update = new global::Gtk.Button ();
 			this.BTN_Update.CanFocus = true;
 			this.BTN_Update.Name = "BTN_Update";
 			this.BTN_Update.UseUnderline = true;
-			this.BTN_Update.Label = global::Mono.Unix.Catalog.GetString ("Update system");
+			// Container child BTN_Update.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w34 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w35 = new global::Gtk.HBox ();
+			w35.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w36 = new global::Gtk.Image ();
+			w36.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-ok", global::Gtk.IconSize.Menu);
+			w35.Add (w36);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w38 = new global::Gtk.Label ();
+			w38.LabelProp = global::Mono.Unix.Catalog.GetString ("Update system");
+			w38.UseUnderline = true;
+			w35.Add (w38);
+			w34.Add (w35);
+			this.BTN_Update.Add (w34);
 			this.hbox22.Add (this.BTN_Update);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_Update]));
-			w10.Position = 3;
-			w10.Expand = false;
-			w10.Fill = false;
+			global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.hbox22[this.BTN_Update]));
+			w42.Position = 3;
+			w42.Expand = false;
+			w42.Fill = false;
 			this.vbox10.Add (this.hbox22);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox10[this.hbox22]));
-			w11.Position = 2;
-			w11.Expand = false;
-			w11.Fill = false;
-			this.Add (this.vbox10);
+			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.vbox10[this.hbox22]));
+			w43.Position = 2;
+			w43.Expand = false;
+			w43.Fill = false;
+			this.notebook1.Add (this.vbox10);
+			// Notebook tab
+			this.label1 = new global::Gtk.Label ();
+			this.label1.Name = "label1";
+			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Update");
+			this.notebook1.SetTabLabel (this.vbox10, this.label1);
+			this.label1.ShowAll ();
+			// Container child notebook1.Gtk.Notebook+NotebookChild
+			this.vbox1 = new global::Gtk.VBox ();
+			this.vbox1.Name = "vbox1";
+			this.vbox1.Spacing = 6;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+			this.TREE_Cache = new global::Gtk.TreeView ();
+			this.TREE_Cache.CanFocus = true;
+			this.TREE_Cache.Name = "TREE_Cache";
+			this.GtkScrolledWindow.Add (this.TREE_Cache);
+			this.vbox1.Add (this.GtkScrolledWindow);
+			global::Gtk.Box.BoxChild w46 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
+			w46.Position = 0;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1.Name = "hbox1";
+			this.hbox1.Spacing = 6;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.BTN_ClearCache = new global::Gtk.Button ();
+			this.BTN_ClearCache.CanFocus = true;
+			this.BTN_ClearCache.Name = "BTN_ClearCache";
+			this.BTN_ClearCache.UseUnderline = true;
+			// Container child BTN_ClearCache.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w47 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w48 = new global::Gtk.HBox ();
+			w48.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w49 = new global::Gtk.Image ();
+			w49.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-delete", global::Gtk.IconSize.Menu);
+			w48.Add (w49);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w51 = new global::Gtk.Label ();
+			w51.LabelProp = global::Mono.Unix.Catalog.GetString ("Clear cache");
+			w51.UseUnderline = true;
+			w48.Add (w51);
+			w47.Add (w48);
+			this.BTN_ClearCache.Add (w47);
+			this.hbox1.Add (this.BTN_ClearCache);
+			global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_ClearCache]));
+			w55.Position = 0;
+			w55.Expand = false;
+			w55.Fill = false;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.BTN_Install = new global::Gtk.Button ();
+			this.BTN_Install.CanFocus = true;
+			this.BTN_Install.Name = "BTN_Install";
+			this.BTN_Install.UseUnderline = true;
+			// Container child BTN_Install.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w56 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w57 = new global::Gtk.HBox ();
+			w57.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w58 = new global::Gtk.Image ();
+			w58.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.update.png");
+			w57.Add (w58);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w60 = new global::Gtk.Label ();
+			w60.LabelProp = global::Mono.Unix.Catalog.GetString ("Install");
+			w60.UseUnderline = true;
+			w57.Add (w60);
+			w56.Add (w57);
+			this.BTN_Install.Add (w56);
+			this.hbox1.Add (this.BTN_Install);
+			global::Gtk.Box.BoxChild w64 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_Install]));
+			w64.Position = 1;
+			w64.Expand = false;
+			w64.Fill = false;
+			this.vbox1.Add (this.hbox1);
+			global::Gtk.Box.BoxChild w65 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
+			w65.Position = 1;
+			w65.Expand = false;
+			w65.Fill = false;
+			this.notebook1.Add (this.vbox1);
+			global::Gtk.Notebook.NotebookChild w66 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.vbox1]));
+			w66.Position = 1;
+			// Notebook tab
+			this.label2 = new global::Gtk.Label ();
+			this.label2.Name = "label2";
+			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Cache");
+			this.notebook1.SetTabLabel (this.vbox1, this.label2);
+			this.label2.ShowAll ();
+			this.Add (this.notebook1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
@@ -152,6 +328,8 @@ namespace frugalmonotools
 			this.BTN_UpdateDatabase.Clicked += new global::System.EventHandler (this.OnBTNUpdateDatabaseClicked);
 			this.BTN_Refresh.Clicked += new global::System.EventHandler (this.OnBTNRefreshClicked);
 			this.BTN_Update.Clicked += new global::System.EventHandler (this.OnBTNUpdateClicked);
+			this.BTN_ClearCache.Clicked += new global::System.EventHandler (this.OnBTNClearCacheClicked);
+			this.BTN_Install.Clicked += new global::System.EventHandler (this.OnBTNInstallClicked);
 		}
 	}
 }
