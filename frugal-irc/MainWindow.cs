@@ -195,7 +195,7 @@ public partial class MainWindow : Gtk.Window
 				AppendText("NOTIFICATION: "+e.Data.Message);
 				break;
 			default:
-				Console.WriteLine("Received: "+e.Data.RawMessage);
+				//Console.WriteLine("Received: "+e.Data.RawMessage);
 				break;
 		}
 		if(e.Data.ReplyCode==ReplyCode.List)
@@ -331,9 +331,7 @@ public partial class MainWindow : Gtk.Window
         TXT_Messages.Buffer.Insert(ref mIter, text+"\n");
         TXT_Messages.ScrollToIter(TXT_Messages.Buffer.EndIter, 0, false, 0, 0);
         });
-
-		
-		Console.WriteLine(text);
+		//Console.WriteLine(text);
 	}
 	
 	protected virtual void OnBTNSendClicked (object sender, System.EventArgs e)
@@ -344,9 +342,5 @@ public partial class MainWindow : Gtk.Window
 		AppendText(SAI_User.Text+" : "+SAI_Envoi.Text);
 		SAI_Envoi.Text="";
 	}
-	
-	
-	
-	
 }
 
