@@ -345,10 +345,6 @@ public partial class MainWindow : Gtk.Window
 		SAI_Envoi.Text="";
 	}
 	
-	protected virtual void OnSAIEnvoiKeyPressEvent (object o, Gtk.KeyPressEventArgs args)
-	{
-		Console.WriteLine("Passe");
-	}
 	
 	
 	
