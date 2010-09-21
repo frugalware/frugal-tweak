@@ -165,6 +165,7 @@ namespace frugalmonotools
 		
 	protected virtual void OnINTXDMClicked (object sender, System.EventArgs e)
 	{
+		if(this.INT_XDM.Inconsistent==true) return;
 		if (this.INT_XDM.Active)
 		{
 			this.INT_KDM.Active=false;
@@ -177,6 +178,7 @@ namespace frugalmonotools
 		
 	protected virtual void OnINTLXDMClicked (object sender, System.EventArgs e)
 	{
+		if(this.INT_LXDM.Inconsistent==true) return;
 		if (this.INT_LXDM.Active)
 		{
 			this.INT_KDM.Active=false;
@@ -188,6 +190,7 @@ namespace frugalmonotools
 		
 	protected virtual void OnINTSlimClicked (object sender, System.EventArgs e)
 	{
+		if(this.INT_Slim.Inconsistent==true) return;
 		if (this.INT_Slim.Active)
 		{
 			this.INT_KDM.Active=false;
@@ -199,6 +202,7 @@ namespace frugalmonotools
 		
 	protected virtual void OnINTGDMClicked (object sender, System.EventArgs e)
 	{
+		if(this.INT_GDM.Inconsistent==true) return;
 		if (this.INT_GDM.Active)
 		{
 			this.INT_KDM.Active=false;
@@ -210,6 +214,7 @@ namespace frugalmonotools
 		
 	protected virtual void OnINTKDMClicked (object sender, System.EventArgs e)
 	{
+		if(this.INT_KDM.Inconsistent==true) return;
 		if (this.INT_KDM.Active)
 		{
 			this.INT_XDM.Active=false;
