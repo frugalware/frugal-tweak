@@ -163,7 +163,7 @@ public partial class MainWindow
 		this.BTN_Send.CanFocus = true;
 		this.BTN_Send.Name = "BTN_Send";
 		this.BTN_Send.UseUnderline = true;
-		this.BTN_Send.Label = global::Mono.Unix.Catalog.GetString ("Send");
+		this.BTN_Send.Label = global::Mono.Unix.Catalog.GetString ("_Send");
 		this.hbox2.Add (this.BTN_Send);
 		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.BTN_Send]));
 		w11.Position = 1;
