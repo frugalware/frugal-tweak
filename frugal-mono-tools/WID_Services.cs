@@ -33,13 +33,12 @@ namespace frugalmonotools
 		public void InitService()
 		{
 		ServicesRc.CheckList();
-		if(!MainClass.boRoot)
-		{
-					BTN_ServiceStop.Visible=false;
-					BTN_ServiceStart.Visible=false;
-					BTN_ServiceDelBoot.Visible=false;
-					BTN_ServiceAddBoot.Visible=false;
-		}
+		
+		BTN_ServiceStop.Visible=false;
+		BTN_ServiceStart.Visible=false;
+		BTN_ServiceDelBoot.Visible=false;
+		BTN_ServiceAddBoot.Visible=false;
+		
 		// services
 		Gtk.TreeViewColumn ColumnServiceName = new Gtk.TreeViewColumn ();
 		ColumnServiceName.Title = "Services";
@@ -97,23 +96,22 @@ namespace frugalmonotools
 		        {
 		            string T =(string)model.GetValue (iter, 0);
 					ServiceSelected=T;
-					if(MainClass.boRoot)
-					{
-						BTN_ServiceStop.Visible=false;
-						BTN_ServiceStart.Visible=false;
-						BTN_ServiceDelBoot.Visible=false;
-						BTN_ServiceAddBoot.Visible=false;
-						Service service = new Service(T);
-						if (service.IsStarted())
-							BTN_ServiceStop.Visible=true;
-						else
-							BTN_ServiceStart.Visible=true;
-						if(service.IsStartedOnBoot())
-							BTN_ServiceDelBoot.Visible=true;
-						else
-							BTN_ServiceAddBoot.Visible=true;
+									
+					BTN_ServiceStop.Visible=false;
+					BTN_ServiceStart.Visible=false;
+					BTN_ServiceDelBoot.Visible=false;
+					BTN_ServiceAddBoot.Visible=false;
+					Service service = new Service(T);
+					if (service.IsStarted())
+						BTN_ServiceStop.Visible=true;
+					else
+						BTN_ServiceStart.Visible=true;
+					if(service.IsStartedOnBoot())
+						BTN_ServiceDelBoot.Visible=true;
+					else
+						BTN_ServiceAddBoot.Visible=true;
 						
-					}
+					
 				}
 			}
 			catch{}

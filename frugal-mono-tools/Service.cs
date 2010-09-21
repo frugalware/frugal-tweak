@@ -100,18 +100,31 @@ namespace frugalmonotools
 		}
 		public void Start()
 		{
-			Outils.Excecute("/sbin/service",this.Get_Name()+" start",true);
+			if(MainClass.boRoot)
+				Outils.Excecute("/sbin/service",this.Get_Name()+" start",true);
+			else
+				Outils.ExcecuteAsRoot("/sbin/service "+this.Get_Name()+" start",true);
 		}
 		public void Stop()
 		{
-			Outils.Excecute("/sbin/service",this.Get_Name()+" stop",true);
+			if(MainClass.boRoot)
+				Outils.Excecute("/sbin/service",this.Get_Name()+" stop",true);
+			else
+				Outils.ExcecuteAsRoot("/sbin/service "+this.Get_Name()+" stop",true);
 		}
 		public void EnableDisableOnBoot(bool enableit)
 		{
 			if(enableit)
-				Outils.Excecute("/sbin/service",this.Get_Name()+" add",true);
+				if(MainClass.boRoot)
+					Outils.Excecute("/sbin/service",this.Get_Name()+" add",true);
+				else
+					Outils.ExcecuteAsRoot("/sbin/service "+this.Get_Name()+" add",true);
 			else
-				Outils.Excecute("/sbin/service",this.Get_Name()+" del",true);
+				if(MainClass.boRoot)
+					Outils.Excecute("/sbin/service",this.Get_Name()+" del",true);
+				else
+					Outils.ExcecuteAsRoot("/sbin/service "+this.Get_Name()+" del",true);
+
 		}
 	}
 }

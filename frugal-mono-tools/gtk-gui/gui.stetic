@@ -1253,7 +1253,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="frugalmonotools.WID_Services" design-size="320 300">
+  <widget class="Gtk.Bin" id="frugalmonotools.WID_Services" design-size="600 300">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -1286,7 +1286,8 @@
                 <property name="MemberName" />
                 <property name="Visible">False</property>
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-media-play Menu</property>
                 <property name="Label" translatable="yes">Start</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNServiceStartClicked" />
@@ -1303,7 +1304,8 @@
                 <property name="MemberName" />
                 <property name="Visible">False</property>
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-media-stop Menu</property>
                 <property name="Label" translatable="yes">Stop</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNServiceStopClicked" />
@@ -1320,7 +1322,8 @@
                 <property name="MemberName" />
                 <property name="Visible">False</property>
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-delete Menu</property>
                 <property name="Label" translatable="yes">Don't start it on boot</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNServiceDelBootClicked" />
@@ -1337,7 +1340,8 @@
                 <property name="MemberName" />
                 <property name="Visible">False</property>
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-add Menu</property>
                 <property name="Label" translatable="yes">Start it on boot</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBTNServiceAddBootClicked" />
