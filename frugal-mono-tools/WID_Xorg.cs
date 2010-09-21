@@ -77,7 +77,7 @@ namespace frugalmonotools
 		}
 		
 		INT_Numlock.Active=IsNumlockOnStartX();
-		string dmesgOutput=Outils.ReadFile( "/var/log/syslog");//Outils.getoutput("/bin/dmesg");
+		string dmesgOutput=Outils.getoutput("/bin/dmesg");
 		if ((dmesgOutput.IndexOf("TouchPad")>0) && (!MainClass.pacmanG2.IsInstalled("xf86-input-synaptics")))
 			BTN_Synaptics.Visible=true;
 		else

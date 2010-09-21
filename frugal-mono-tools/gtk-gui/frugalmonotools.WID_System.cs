@@ -78,6 +78,7 @@ namespace frugalmonotools
 			this.image9.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.fw.png");
 			this.hbox30.Add (this.image9);
 			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox30[this.image9]));
+			w1.PackType = ((global::Gtk.PackType)(1));
 			w1.Position = 2;
 			w1.Expand = false;
 			w1.Fill = false;
