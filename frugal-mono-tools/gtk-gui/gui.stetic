@@ -577,8 +577,8 @@
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
-                    <property name="Icon">stock:gtk-refresh Menu</property>
-                    <property name="Label" translatable="yes">Update database</property>
+                    <property name="Icon">stock:gtk-go-up Menu</property>
+                    <property name="Label" translatable="yes">Search update</property>
                     <property name="UseUnderline">True</property>
                     <signal name="Clicked" handler="OnBTNUpdateDatabaseClicked" />
                   </widget>

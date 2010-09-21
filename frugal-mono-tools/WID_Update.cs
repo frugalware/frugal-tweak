@@ -67,7 +67,6 @@ namespace frugalmonotools
 		{
 		if(!MainClass.boRoot)
 		{
-			BTN_UpdateDatabase.Visible = false;
 			BTN_ApplyIgnorePkg.Visible=false;
 			BTN_Hide.Visible=false;
 		}
@@ -162,9 +161,14 @@ namespace frugalmonotools
 			catch{}
 		}
 
-	protected virtual void OnBTNUpdateDatabaseClicked (object sender, System.EventArgs e)
+		protected virtual void OnBTNUpdateDatabaseClicked (object sender, System.EventArgs e)
 		{
-			Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2 -Sy ",false);	
+			if(MainClass.boRoot)
+				Outils.Excecute("pacman-g2","-Sy",true);	
+			else
+				Outils.ExcecuteAsRoot("pacman-g2 -Sy", true);		
+			
+			_refreshUpdate();
 		}
 		
 		protected virtual void OnBTNRefreshClicked (object sender, System.EventArgs e)

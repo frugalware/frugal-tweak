@@ -153,11 +153,11 @@ namespace frugalmonotools
 			w17.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w18 = new global::Gtk.Image ();
-			w18.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-refresh", global::Gtk.IconSize.Menu);
+			w18.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-go-up", global::Gtk.IconSize.Menu);
 			w17.Add (w18);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w20 = new global::Gtk.Label ();
-			w20.LabelProp = global::Mono.Unix.Catalog.GetString ("Update database");
+			w20.LabelProp = global::Mono.Unix.Catalog.GetString ("Search update");
 			w20.UseUnderline = true;
 			w17.Add (w20);
 			w16.Add (w17);
