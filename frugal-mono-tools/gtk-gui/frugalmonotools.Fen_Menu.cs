@@ -24,7 +24,7 @@ namespace frugalmonotools
 			// Widget frugalmonotools.Fen_Menu
 			this.Name = "frugalmonotools.Fen_Menu";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Frugalware tweak !");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.logs.png");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.fw.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Resizable = false;
 			this.DefaultWidth = 900;

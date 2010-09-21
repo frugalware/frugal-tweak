@@ -105,6 +105,7 @@ namespace frugalmonotools
 			this.BTN_SaveConf.Add (w5);
 			this.hbox21.Add (this.BTN_SaveConf);
 			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox21[this.BTN_SaveConf]));
+			w13.PackType = ((global::Gtk.PackType)(1));
 			w13.Position = 2;
 			w13.Expand = false;
 			w13.Fill = false;

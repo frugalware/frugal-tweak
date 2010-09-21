@@ -93,7 +93,7 @@
     <property name="MemberName" />
     <property name="Visible">False</property>
     <property name="Title" translatable="yes">Frugalware tweak !</property>
-    <property name="Icon">resource:frugalmonotools.Pictures.icons.logs.png</property>
+    <property name="Icon">resource:frugalmonotools.Pictures.fw.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Resizable">False</property>
     <property name="DefaultWidth">900</property>
@@ -2236,6 +2236,7 @@ irc : irc.freenode.net channel #frugalware</property>
                 <signal name="Clicked" handler="OnBTNSaveConfClicked" />
               </widget>
               <packing>
+                <property name="PackType">End</property>
                 <property name="Position">2</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
