@@ -24,6 +24,8 @@ namespace frugalmonotools
 
 		private global::Gtk.HBox hbox14;
 
+		private global::Gtk.Label LIB_Root;
+
 		private global::Gtk.Button BTN_Xorg;
 
 		protected virtual void Build ()
@@ -121,36 +123,46 @@ namespace frugalmonotools
 			this.hbox14.Name = "hbox14";
 			this.hbox14.Spacing = 6;
 			// Container child hbox14.Gtk.Box+BoxChild
+			this.LIB_Root = new global::Gtk.Label ();
+			this.LIB_Root.Name = "LIB_Root";
+			this.LIB_Root.LabelProp = global::Mono.Unix.Catalog.GetString ("Can't save, should be started as root");
+			this.hbox14.Add (this.LIB_Root);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox14[this.LIB_Root]));
+			w9.Position = 0;
+			w9.Expand = false;
+			w9.Fill = false;
+			// Container child hbox14.Gtk.Box+BoxChild
 			this.BTN_Xorg = new global::Gtk.Button ();
 			this.BTN_Xorg.CanFocus = true;
 			this.BTN_Xorg.Name = "BTN_Xorg";
 			this.BTN_Xorg.UseUnderline = true;
 			// Container child BTN_Xorg.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w9 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w10 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w10 = new global::Gtk.HBox ();
-			w10.Spacing = 2;
+			global::Gtk.HBox w11 = new global::Gtk.HBox ();
+			w11.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w11 = new global::Gtk.Image ();
-			w11.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			global::Gtk.Image w12 = new global::Gtk.Image ();
+			w12.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			w11.Add (w12);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w14 = new global::Gtk.Label ();
+			w14.LabelProp = global::Mono.Unix.Catalog.GetString ("Apply");
+			w14.UseUnderline = true;
+			w11.Add (w14);
 			w10.Add (w11);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w13 = new global::Gtk.Label ();
-			w13.LabelProp = global::Mono.Unix.Catalog.GetString ("Apply");
-			w13.UseUnderline = true;
-			w10.Add (w13);
-			w9.Add (w10);
-			this.BTN_Xorg.Add (w9);
+			this.BTN_Xorg.Add (w10);
 			this.hbox14.Add (this.BTN_Xorg);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox14[this.BTN_Xorg]));
-			w17.Position = 2;
-			w17.Expand = false;
-			w17.Fill = false;
-			this.vbox6.Add (this.hbox14);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.hbox14]));
-			w18.Position = 6;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox14[this.BTN_Xorg]));
+			w18.PackType = ((global::Gtk.PackType)(1));
+			w18.Position = 2;
 			w18.Expand = false;
 			w18.Fill = false;
+			this.vbox6.Add (this.hbox14);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.hbox14]));
+			w19.Position = 6;
+			w19.Expand = false;
+			w19.Fill = false;
 			this.Add (this.vbox6);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

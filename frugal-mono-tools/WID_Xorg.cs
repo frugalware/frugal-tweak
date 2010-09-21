@@ -37,7 +37,14 @@ namespace frugalmonotools
 		public void InitXorg()
 		{
 			if(!MainClass.boRoot)
+			{
 				BTN_Xorg.Visible=false;
+				LIB_Root.Visible=true;
+			}
+			else
+			{
+				LIB_Root.Visible=false;
+			}
 		//xorg configuration
 		SAI_Layout.Text=this.LayoutXorg();
 		

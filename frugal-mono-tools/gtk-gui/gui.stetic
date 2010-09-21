@@ -437,7 +437,16 @@
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <placeholder />
+              <widget class="Gtk.Label" id="LIB_Root">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Can't save, should be started as root</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
             <child>
               <placeholder />
@@ -453,6 +462,7 @@
                 <signal name="Clicked" handler="OnBTNXorgClicked" />
               </widget>
               <packing>
+                <property name="PackType">End</property>
                 <property name="Position">2</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
