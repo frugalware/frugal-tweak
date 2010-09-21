@@ -1,4 +1,5 @@
 1. added grub for i686 and x86_64
-1. tool for create FruaglUsbKey
-2. see for add repoman merge update...
-3. switch service in mono to python
+2. tool for create FruaglUsbKey
+3. send log to pastbin frugalware
+4. see for add repoman merge update...
+5. switch service in mono to python
