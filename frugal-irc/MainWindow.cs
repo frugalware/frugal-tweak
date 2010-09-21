@@ -219,12 +219,16 @@ public partial class MainWindow : Gtk.Window
 	
 	private void _userToTreeview()
 	{
-		UpdateListUsers.Clear();
-		string [] users =GetUserList(SAI_Chan.Text);
-		foreach(string pseudo in users)
+		try
 		{
-			UpdateListUsers.AppendValues(pseudo);
+			UpdateListUsers.Clear();
+			string [] users =GetUserList(SAI_Chan.Text);
+			foreach(string pseudo in users)
+			{
+				UpdateListUsers.AppendValues(pseudo);
+			}
 		}
+		catch{}
 	}
 	protected virtual void OnBTNConnectClicked (object sender, System.EventArgs e)
 	{
