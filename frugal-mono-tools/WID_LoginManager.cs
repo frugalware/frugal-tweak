@@ -31,7 +31,14 @@ namespace frugalmonotools
 		public void InitLoginManager()
 		{
 		if(!MainClass.boRoot)
-				BTN_LoginManager.Visible=false;
+		{
+			BTN_LoginManager.Visible=false;
+			LIB_Root.Visible=true;
+		}
+		else
+		{
+			LIB_Root.Visible=false;
+		}
 		//Login Manager init
 		EnableDisable(INT_XDM,"xdm",LIB_XDM);
 		EnableDisable(INT_LXDM,"lxdm",LIB_LXDM);

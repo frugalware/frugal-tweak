@@ -38,7 +38,12 @@ namespace frugalmonotools
 			BTN_System.Visible=false;	
 			if(MainClass.boRoot)
 			{
-				BTN_System.Visible=true;	
+				BTN_System.Visible=true;
+				LIB_Root.Visible=false;
+			}
+			else
+			{
+				LIB_Root.Visible=true;
 			}
 		//system configuration
 		SAI_Host.Text=MainClass.confSystem.GetHostname();

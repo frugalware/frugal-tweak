@@ -42,19 +42,19 @@ namespace frugalmonotools
 
 		private global::Gtk.ComboBoxEntry CBO_Locale;
 
-		private global::Gtk.HBox hbox1;
-
-		private global::Gtk.Label label17;
-
-		private global::Gtk.ComboBoxEntry CBO_Keymap;
-
 		private global::Gtk.HBox hbox2;
 
 		private global::Gtk.Label label18;
 
 		private global::Gtk.ComboBoxEntry CBO_Time;
 
+		private global::Gtk.Label label17;
+
+		private global::Gtk.ComboBoxEntry CBO_Keymap;
+
 		private global::Gtk.HBox hbox29;
+
+		private global::Gtk.Label LIB_Root;
 
 		private global::Gtk.Button BTN_System;
 
@@ -234,32 +234,6 @@ namespace frugalmonotools
 			w18.Expand = false;
 			w18.Fill = false;
 			// Container child vbox11.Gtk.Box+BoxChild
-			this.hbox1 = new global::Gtk.HBox ();
-			this.hbox1.Name = "hbox1";
-			this.hbox1.Spacing = 6;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.label17 = new global::Gtk.Label ();
-			this.label17.Name = "label17";
-			this.label17.LabelProp = global::Mono.Unix.Catalog.GetString ("Keymap     ");
-			this.hbox1.Add (this.label17);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.label17]));
-			w19.Position = 0;
-			w19.Expand = false;
-			w19.Fill = false;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.CBO_Keymap = global::Gtk.ComboBoxEntry.NewText ();
-			this.CBO_Keymap.Name = "CBO_Keymap";
-			this.hbox1.Add (this.CBO_Keymap);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.CBO_Keymap]));
-			w20.Position = 1;
-			w20.Expand = false;
-			w20.Fill = false;
-			this.vbox11.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.hbox1]));
-			w21.Position = 6;
-			w21.Expand = false;
-			w21.Fill = false;
-			// Container child vbox11.Gtk.Box+BoxChild
 			this.hbox2 = new global::Gtk.HBox ();
 			this.hbox2.Name = "hbox2";
 			this.hbox2.Spacing = 6;
@@ -268,27 +242,53 @@ namespace frugalmonotools
 			this.label18.Name = "label18";
 			this.label18.LabelProp = global::Mono.Unix.Catalog.GetString ("Time config");
 			this.hbox2.Add (this.label18);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.label18]));
-			w22.Position = 0;
-			w22.Expand = false;
-			w22.Fill = false;
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.label18]));
+			w19.Position = 0;
+			w19.Expand = false;
+			w19.Fill = false;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.CBO_Time = global::Gtk.ComboBoxEntry.NewText ();
 			this.CBO_Time.Name = "CBO_Time";
 			this.hbox2.Add (this.CBO_Time);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.CBO_Time]));
-			w23.Position = 1;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.CBO_Time]));
+			w20.Position = 1;
+			w20.Expand = false;
+			w20.Fill = false;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.label17 = new global::Gtk.Label ();
+			this.label17.Name = "label17";
+			this.label17.LabelProp = global::Mono.Unix.Catalog.GetString ("Keymap");
+			this.hbox2.Add (this.label17);
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.label17]));
+			w21.Position = 2;
+			w21.Expand = false;
+			w21.Fill = false;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.CBO_Keymap = global::Gtk.ComboBoxEntry.NewText ();
+			this.CBO_Keymap.Name = "CBO_Keymap";
+			this.hbox2.Add (this.CBO_Keymap);
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.CBO_Keymap]));
+			w22.Position = 3;
+			w22.Expand = false;
+			w22.Fill = false;
+			this.vbox11.Add (this.hbox2);
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.hbox2]));
+			w23.Position = 6;
 			w23.Expand = false;
 			w23.Fill = false;
-			this.vbox11.Add (this.hbox2);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.hbox2]));
-			w24.Position = 7;
-			w24.Expand = false;
-			w24.Fill = false;
 			// Container child vbox11.Gtk.Box+BoxChild
 			this.hbox29 = new global::Gtk.HBox ();
 			this.hbox29.Name = "hbox29";
 			this.hbox29.Spacing = 6;
+			// Container child hbox29.Gtk.Box+BoxChild
+			this.LIB_Root = new global::Gtk.Label ();
+			this.LIB_Root.Name = "LIB_Root";
+			this.LIB_Root.LabelProp = global::Mono.Unix.Catalog.GetString ("Can't save, should be started as root");
+			this.hbox29.Add (this.LIB_Root);
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox29[this.LIB_Root]));
+			w24.Position = 0;
+			w24.Expand = false;
+			w24.Fill = false;
 			// Container child hbox29.Gtk.Box+BoxChild
 			this.BTN_System = new global::Gtk.Button ();
 			this.BTN_System.CanFocus = true;
@@ -312,12 +312,13 @@ namespace frugalmonotools
 			this.BTN_System.Add (w25);
 			this.hbox29.Add (this.BTN_System);
 			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox29[this.BTN_System]));
+			w33.PackType = ((global::Gtk.PackType)(1));
 			w33.Position = 2;
 			w33.Expand = false;
 			w33.Fill = false;
 			this.vbox11.Add (this.hbox29);
 			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vbox11[this.hbox29]));
-			w34.Position = 8;
+			w34.Position = 7;
 			w34.Expand = false;
 			w34.Fill = false;
 			this.Add (this.vbox11);

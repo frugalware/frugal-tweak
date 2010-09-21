@@ -29,7 +29,14 @@ namespace frugalmonotools
 	public void InitNetworkManager()
 	{
 		if(!MainClass.boRoot)
+			{
 				BTN_Network.Visible=false;
+				LIB_Root.Visible=true;
+			}
+		else
+			{
+				LIB_Root.Visible=false;
+			}
 		//network init
 		EnableDisable(INT_WICD,"wicd",LIB_WICDNotInstalled);
 		EnableDisable(INT_NM,"networkmanager",LIB_NMNotInstalled);
