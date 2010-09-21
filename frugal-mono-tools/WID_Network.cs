@@ -37,6 +37,8 @@ namespace frugalmonotools
 		INT_NM.Active=nm.IsStartedOnBoot();
 		Service wicd = new Service("wicd");
 		INT_WICD.Active=wicd.IsStartedOnBoot();
+		if(!INT_FW.Active && !INT_NM.Active)
+				INT_FW.Active=true;
 	}
 		
 	public void EnableDisable(CheckButton INT_Option,string packageName, Label text)
