@@ -213,6 +213,16 @@ namespace frugalmonotools
 				Outils.ExcecuteAsRoot("python /usr/bin/PyFrugalVTE pacman-g2 -U "+pkgSelected,false);		
 		}
 		
+		protected virtual void OnBTNOptimizeClicked (object sender, System.EventArgs e)
+		{
+			if(MainClass.boRoot)
+				Outils.Excecute("python","/usr/bin/PyFrugalVTE pacman-g2-optimize",false);	
+			else
+				Outils.ExcecuteAsRoot("python /usr/bin/PyFrugalVTE pacman-g2-optimize",false);		
+
+		}
+		
+		
 		
 		
 	}

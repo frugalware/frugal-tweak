@@ -477,7 +477,7 @@
       <widget class="Gtk.Notebook" id="notebook1">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">0</property>
+        <property name="CurrentPage">1</property>
         <child>
           <widget class="Gtk.VBox" id="vbox10">
             <property name="MemberName" />
@@ -697,6 +697,24 @@
                   </widget>
                   <packing>
                     <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Button" id="BTN_Optimize">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextAndIcon</property>
+                    <property name="Icon">stock:stock_smiley-7 Button</property>
+                    <property name="Label" translatable="yes">Optimize database</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNOptimizeClicked" />
+                  </widget>
+                  <packing>
+                    <property name="PackType">End</property>
+                    <property name="Position">2</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
                     <property name="Fill">False</property>

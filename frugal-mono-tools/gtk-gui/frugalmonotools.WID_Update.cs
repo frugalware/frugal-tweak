@@ -44,6 +44,8 @@ namespace frugalmonotools
 
 		private global::Gtk.Button BTN_Install;
 
+		private global::Gtk.Button BTN_Optimize;
+
 		private global::Gtk.Label label2;
 
 		protected virtual void Build ()
@@ -56,7 +58,7 @@ namespace frugalmonotools
 			this.notebook1 = new global::Gtk.Notebook ();
 			this.notebook1.CanFocus = true;
 			this.notebook1.Name = "notebook1";
-			this.notebook1.CurrentPage = 0;
+			this.notebook1.CurrentPage = 1;
 			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.vbox10 = new global::Gtk.VBox ();
 			this.vbox10.Name = "vbox10";
@@ -303,14 +305,41 @@ namespace frugalmonotools
 			w64.Position = 1;
 			w64.Expand = false;
 			w64.Fill = false;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.BTN_Optimize = new global::Gtk.Button ();
+			this.BTN_Optimize.CanFocus = true;
+			this.BTN_Optimize.Name = "BTN_Optimize";
+			this.BTN_Optimize.UseUnderline = true;
+			// Container child BTN_Optimize.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w65 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w66 = new global::Gtk.HBox ();
+			w66.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w67 = new global::Gtk.Image ();
+			w67.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "stock_smiley-7", global::Gtk.IconSize.Button);
+			w66.Add (w67);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w69 = new global::Gtk.Label ();
+			w69.LabelProp = global::Mono.Unix.Catalog.GetString ("Optimize database");
+			w69.UseUnderline = true;
+			w66.Add (w69);
+			w65.Add (w66);
+			this.BTN_Optimize.Add (w65);
+			this.hbox1.Add (this.BTN_Optimize);
+			global::Gtk.Box.BoxChild w73 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_Optimize]));
+			w73.PackType = ((global::Gtk.PackType)(1));
+			w73.Position = 2;
+			w73.Expand = false;
+			w73.Fill = false;
 			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w65 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
-			w65.Position = 1;
-			w65.Expand = false;
-			w65.Fill = false;
+			global::Gtk.Box.BoxChild w74 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
+			w74.Position = 1;
+			w74.Expand = false;
+			w74.Fill = false;
 			this.notebook1.Add (this.vbox1);
-			global::Gtk.Notebook.NotebookChild w66 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.vbox1]));
-			w66.Position = 1;
+			global::Gtk.Notebook.NotebookChild w75 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.vbox1]));
+			w75.Position = 1;
 			// Notebook tab
 			this.label2 = new global::Gtk.Label ();
 			this.label2.Name = "label2";
@@ -330,6 +359,7 @@ namespace frugalmonotools
 			this.BTN_Update.Clicked += new global::System.EventHandler (this.OnBTNUpdateClicked);
 			this.BTN_ClearCache.Clicked += new global::System.EventHandler (this.OnBTNClearCacheClicked);
 			this.BTN_Install.Clicked += new global::System.EventHandler (this.OnBTNInstallClicked);
+			this.BTN_Optimize.Clicked += new global::System.EventHandler (this.OnBTNOptimizeClicked);
 		}
 	}
 }
