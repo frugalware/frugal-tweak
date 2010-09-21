@@ -18,6 +18,12 @@ namespace frugalmonotools
 
 		private global::Gtk.Label label2;
 
+		private global::Gtk.ScrolledWindow GtkScrolledWindow2;
+
+		private global::Gtk.TextView TXT_XsessionErrors;
+
+		private global::Gtk.Label label3;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -28,7 +34,7 @@ namespace frugalmonotools
 			this.notebook1 = new global::Gtk.Notebook ();
 			this.notebook1.CanFocus = true;
 			this.notebook1.Name = "notebook1";
-			this.notebook1.CurrentPage = 1;
+			this.notebook1.CurrentPage = 2;
 			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -63,6 +69,24 @@ namespace frugalmonotools
 			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("xorg");
 			this.notebook1.SetTabLabel (this.GtkScrolledWindow1, this.label2);
 			this.label2.ShowAll ();
+			// Container child notebook1.Gtk.Notebook+NotebookChild
+			this.GtkScrolledWindow2 = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow2.Name = "GtkScrolledWindow2";
+			this.GtkScrolledWindow2.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child GtkScrolledWindow2.Gtk.Container+ContainerChild
+			this.TXT_XsessionErrors = new global::Gtk.TextView ();
+			this.TXT_XsessionErrors.CanFocus = true;
+			this.TXT_XsessionErrors.Name = "TXT_XsessionErrors";
+			this.GtkScrolledWindow2.Add (this.TXT_XsessionErrors);
+			this.notebook1.Add (this.GtkScrolledWindow2);
+			global::Gtk.Notebook.NotebookChild w6 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow2]));
+			w6.Position = 2;
+			// Notebook tab
+			this.label3 = new global::Gtk.Label ();
+			this.label3.Name = "label3";
+			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("xsession-errors");
+			this.notebook1.SetTabLabel (this.GtkScrolledWindow2, this.label3);
+			this.label3.ShowAll ();
 			this.Add (this.notebook1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

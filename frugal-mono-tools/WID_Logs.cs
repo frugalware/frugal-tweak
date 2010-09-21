@@ -32,6 +32,7 @@ namespace frugalmonotools
 			display =displays[0];
 			string logXorg = "/var/log/Xorg."+display+".log";
 			TXT_Xorg.Buffer.Text=Outils.getoutput("cat "+logXorg);
+			TXT_XsessionErrors.Buffer.Text=Outils.ReadFile(Environment.GetFolderPath(Environment.SpecialFolder.Personal)+"/.xsession-errors");
 		}
 	}
 }
