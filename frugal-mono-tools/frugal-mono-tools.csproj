@@ -81,6 +81,8 @@
     <EmbeddedResource Include="Pictures\icons\xorg.png" />
     <EmbeddedResource Include="Pictures\icons\update.png" />
     <EmbeddedResource Include="Pictures\icons\updateconf.png" />
+    <EmbeddedResource Include="Pictures\Mono-powered.png" />
+    <EmbeddedResource Include="Pictures\icons\logs.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -129,6 +131,8 @@
     <Compile Include="WID_About.cs" />
     <Compile Include="WID_UpdateConf.cs" />
     <Compile Include="gtk-gui\frugalmonotools.WID_UpdateConf.cs" />
+    <Compile Include="WID_Logs.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Logs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -34,6 +34,7 @@ namespace frugalmonotools
 		private const string cch_network="Network";
 		private const string cch_loginManager="Login Manager";
 		private const string cch_support="Support";
+		private const string cch_logs="Logs";
 		private const string cch_news="News";
 		private const string cch_configuration="Configuration";
 		private const string cch_about="About";
@@ -52,7 +53,8 @@ namespace frugalmonotools
 		WID_Config fen_config ;
 		WID_Hardware fen_hardware ;
 		WID_LoginManager fen_loginManager;
-
+		WID_Logs fen_logs;
+		
 		protected Gtk.TreeIter iter;
 		public Fen_Menu () : base(Gtk.WindowType.Toplevel)
 		{
@@ -105,6 +107,8 @@ namespace frugalmonotools
 			ListMenu.AppendValues(icosup.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_support);
 			Pixbuf iconews = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.news.png");
 			ListMenu.AppendValues(iconews.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_news);
+			Pixbuf icologs = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.logs.png");
+			ListMenu.AppendValues(icologs.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_logs);
 			Pixbuf icoconfig = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.configurations.png");
 			ListMenu.AppendValues(icoconfig.ScaleSimple(20,20, Gdk.InterpType.Nearest),cch_configuration);
 			Pixbuf icoabout = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.about.png");
@@ -196,6 +200,12 @@ namespace frugalmonotools
 							this.HBOX_Details.PackStart(fen_network);
 							this.HBOX_Details.ShowAll();
 							this.fen_network.InitNetworkManager();
+						break;
+				
+						case cch_logs:
+							this.fen_logs = new WID_Logs();
+							this.HBOX_Details.PackStart(fen_logs);
+							this.HBOX_Details.ShowAll();
 						break;
 				
 						case cch_news:

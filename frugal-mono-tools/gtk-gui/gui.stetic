@@ -93,7 +93,7 @@
     <property name="MemberName" />
     <property name="Visible">False</property>
     <property name="Title" translatable="yes">Frugalware tweak !</property>
-    <property name="Icon">resource:frugalmonotools.Pictures.fw.png</property>
+    <property name="Icon">resource:frugalmonotools.Pictures.icons.logs.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Resizable">False</property>
     <property name="DefaultWidth">900</property>
@@ -778,6 +778,7 @@
                 <property name="Pixbuf">resource:frugalmonotools.Pictures.fw.png</property>
               </widget>
               <packing>
+                <property name="PackType">End</property>
                 <property name="Position">2</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
@@ -2256,15 +2257,31 @@ irc : irc.freenode.net channel #frugalware</property>
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
-      <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+      <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
-        <property name="ShadowType">In</property>
+        <property name="Spacing">6</property>
         <child>
-          <widget class="Gtk.TextView" id="textview2">
+          <widget class="Gtk.Image" id="image66">
             <property name="MemberName" />
-            <property name="CanFocus">True</property>
-            <property name="ShowScrollbars">True</property>
-            <property name="Text" translatable="yes">Tools for Frugalware.
+            <property name="Pixbuf">resource:frugalmonotools.Pictures.Mono-powered.png</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+            <property name="MemberName" />
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.TextView" id="textview2">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShowScrollbars">True</property>
+                <property name="Text" translatable="yes">Tools for Frugalware.
 Written in Gtk#
 Author:
 Bouleetbil &lt;bouleetbil@frogdev.info&gt;
@@ -2610,7 +2627,13 @@ consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.
 </property>
+              </widget>
+            </child>
           </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+          </packing>
         </child>
       </widget>
     </child>
@@ -2697,6 +2720,66 @@ Public License instead of this License.
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Bin" id="frugalmonotools.WID_Logs" design-size="300 300">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <child>
+      <widget class="Gtk.Notebook" id="notebook1">
+        <property name="MemberName" />
+        <property name="CanFocus">True</property>
+        <property name="CurrentPage">1</property>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+            <property name="MemberName" />
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.TextView" id="TXT_Dmesg">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShowScrollbars">True</property>
+                <property name="Text" translatable="yes" />
+              </widget>
+            </child>
+          </widget>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label1">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">dmesg</property>
+          </widget>
+          <packing>
+            <property name="type">tab</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow1">
+            <property name="MemberName" />
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.TextView" id="TXT_Xorg">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShowScrollbars">True</property>
+                <property name="Text" translatable="yes" />
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label2">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">xorg</property>
+          </widget>
+          <packing>
+            <property name="type">tab</property>
           </packing>
         </child>
       </widget>
