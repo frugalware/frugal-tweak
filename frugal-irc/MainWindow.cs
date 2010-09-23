@@ -22,6 +22,7 @@ using System.Collections;
 using System.Collections.Generic;
 using frugalirc;
 using Meebey.SmartIrc4net;
+using Notifications;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -325,7 +326,8 @@ public partial class MainWindow : Gtk.Window
 	
 	private void AppendText(string text)
 	{
-		
+	if(text.IndexOf(text)>=0)
+		Inform("New message",text);
     Gtk.Application.Invoke (delegate {
         TextIter mIter = TXT_Messages.Buffer.EndIter;
         TXT_Messages.Buffer.Insert(ref mIter, text+"\n");
@@ -342,5 +344,16 @@ public partial class MainWindow : Gtk.Window
 		AppendText(SAI_User.Text+" : "+SAI_Envoi.Text);
 		SAI_Envoi.Text="";
 	}
+		private static void Inform(string title,string text)
+		{
+			try{
+				IconSummaryBody notif= new IconSummaryBody();
+				notif.ShowMessage(title,text);
+			}
+			catch{
+				Console.WriteLine("System don't support notification");
+				Console.WriteLine(title+" : "+text);
+			}
+		}
 }
 

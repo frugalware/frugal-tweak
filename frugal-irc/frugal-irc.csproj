@@ -43,6 +43,7 @@
     <Reference Include="Meebey.SmartIrc4net, Version=0.4.5.0, Culture=neutral, PublicKeyToken=7868485fbf407e0f">
       <Package>smartirc4net</Package>
     </Reference>
+    <Reference Include="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -59,6 +60,7 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="IconSummaryBody.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
