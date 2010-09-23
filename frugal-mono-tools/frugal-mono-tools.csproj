@@ -136,6 +136,7 @@
     <Compile Include="gtk-gui\frugalmonotools.WID_Logs.cs" />
     <Compile Include="WID_Grub.cs" />
     <Compile Include="gtk-gui\frugalmonotools.WID_Grub.cs" />
+    <Compile Include="Grub.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

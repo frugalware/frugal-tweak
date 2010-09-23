@@ -36,6 +36,7 @@ namespace frugalmonotools
 		public static Configuration configuration = new Configuration();
 		public static ConfSystem  confSystem = new ConfSystem();
 		public static Cache cache = new Cache();
+		public static Grub grub = new Grub();
 		public static  bool boRoot = false;
 		
 		private static void checkUpdate(object source, ElapsedEventArgs e)

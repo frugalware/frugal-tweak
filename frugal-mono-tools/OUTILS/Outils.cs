@@ -208,8 +208,9 @@ namespace frugalmonotools
 				fileContents = fileContents.Replace("\\\n", "");
 				return fileContents;
 			}
-			catch
+			catch(Exception exe)
 			{
+				Console.WriteLine(exe.Message);
 				return "";
 			}
 		}
