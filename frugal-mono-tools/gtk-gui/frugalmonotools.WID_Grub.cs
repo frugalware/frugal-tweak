@@ -112,6 +112,7 @@ namespace frugalmonotools
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.CBO_Entry.Changed += new global::System.EventHandler (this.OnCBOEntryChanged);
 		}
 	}
 }

@@ -214,6 +214,7 @@ namespace frugalmonotools
 							this.fen_grub= new WID_Grub();
 							this.HBOX_Details.PackStart(fen_grub);
 							this.HBOX_Details.ShowAll();
+							this.fen_grub.InitGrub();
 						break;
 				
 						case cch_logs:
