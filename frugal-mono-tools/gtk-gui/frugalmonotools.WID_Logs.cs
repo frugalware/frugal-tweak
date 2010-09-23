@@ -18,11 +18,17 @@ namespace frugalmonotools
 
 		private global::Gtk.Label label2;
 
+		private global::Gtk.ScrolledWindow GtkScrolledWindow3;
+
+		private global::Gtk.TextView TXT_pacmang2;
+
+		private global::Gtk.Label label3;
+
 		private global::Gtk.ScrolledWindow GtkScrolledWindow2;
 
 		private global::Gtk.TextView TXT_XsessionErrors;
 
-		private global::Gtk.Label label3;
+		private global::Gtk.Label label4;
 
 		protected virtual void Build ()
 		{
@@ -70,6 +76,24 @@ namespace frugalmonotools
 			this.notebook1.SetTabLabel (this.GtkScrolledWindow1, this.label2);
 			this.label2.ShowAll ();
 			// Container child notebook1.Gtk.Notebook+NotebookChild
+			this.GtkScrolledWindow3 = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow3.Name = "GtkScrolledWindow3";
+			this.GtkScrolledWindow3.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child GtkScrolledWindow3.Gtk.Container+ContainerChild
+			this.TXT_pacmang2 = new global::Gtk.TextView ();
+			this.TXT_pacmang2.CanFocus = true;
+			this.TXT_pacmang2.Name = "TXT_pacmang2";
+			this.GtkScrolledWindow3.Add (this.TXT_pacmang2);
+			this.notebook1.Add (this.GtkScrolledWindow3);
+			global::Gtk.Notebook.NotebookChild w6 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow3]));
+			w6.Position = 2;
+			// Notebook tab
+			this.label3 = new global::Gtk.Label ();
+			this.label3.Name = "label3";
+			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("pacman-g2");
+			this.notebook1.SetTabLabel (this.GtkScrolledWindow3, this.label3);
+			this.label3.ShowAll ();
+			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.GtkScrolledWindow2 = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow2.Name = "GtkScrolledWindow2";
 			this.GtkScrolledWindow2.ShadowType = ((global::Gtk.ShadowType)(1));
@@ -79,14 +103,14 @@ namespace frugalmonotools
 			this.TXT_XsessionErrors.Name = "TXT_XsessionErrors";
 			this.GtkScrolledWindow2.Add (this.TXT_XsessionErrors);
 			this.notebook1.Add (this.GtkScrolledWindow2);
-			global::Gtk.Notebook.NotebookChild w6 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow2]));
-			w6.Position = 2;
+			global::Gtk.Notebook.NotebookChild w8 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow2]));
+			w8.Position = 3;
 			// Notebook tab
-			this.label3 = new global::Gtk.Label ();
-			this.label3.Name = "label3";
-			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("xsession-errors");
-			this.notebook1.SetTabLabel (this.GtkScrolledWindow2, this.label3);
-			this.label3.ShowAll ();
+			this.label4 = new global::Gtk.Label ();
+			this.label4.Name = "label4";
+			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("xsession-errors");
+			this.notebook1.SetTabLabel (this.GtkScrolledWindow2, this.label4);
+			this.label4.ShowAll ();
 			this.Add (this.notebook1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
