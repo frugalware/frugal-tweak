@@ -75,16 +75,6 @@ namespace frugalmonotools
 		{
 			_gfx=value;
 		}
-
-		private string _options="";
-		public string GetOptions()
-		{
-			return _options;
-		}
-		public void SetOptions(string value)
-		{
-			_options=value;
-		}
 		
 		public List<GrubEntry> Entrys = new List<GrubEntry>();
 		

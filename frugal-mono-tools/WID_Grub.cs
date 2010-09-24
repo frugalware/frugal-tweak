@@ -25,13 +25,14 @@ namespace frugalmonotools
 	public partial class WID_Grub : Gtk.Bin
 	{
 		ListStore model = new ListStore (typeof (string),typeof (int)); 
-		
+		int EntrySelected = 0;
 		public WID_Grub ()
 		{
 			this.Build ();
 		}
 		public void InitGrub()
 		{
+			model.Clear();
 			CBO_Entry.Model=model;
 			int i = 0;
 			TreeIter iter =new TreeIter(); 
@@ -43,6 +44,9 @@ namespace frugalmonotools
 					CBO_Entry.SetActiveIter(iter); 
 				i++;
 			}
+			SAI_Default.Text=MainClass.grub.GetDefault().ToString();
+			SAI_TimeOut.Text=MainClass.grub.GetTimeout().ToString();
+			SAI_Gfx.Text=MainClass.grub.GetGfx();
 			
 		}
 		protected virtual void OnCBOEntryChanged (object sender, System.EventArgs e)
@@ -51,9 +55,23 @@ namespace frugalmonotools
 			if ((sender as ComboBox).GetActiveIter (out iter))
 			{
 				int id =(int)model.GetValue (iter,1);
+				this.EntrySelected= id;
 				this.TXT_Options.Buffer.Text=MainClass.grub.Entrys[id].options;
 				this.SAI_Title.Text=MainClass.grub.Entrys[id].title;
 			}
+		}
+		
+		protected virtual void OnBTNRemoveEntryClicked (object sender, System.EventArgs e)
+		{
+			MainClass.grub.Entrys.RemoveAt(this.EntrySelected);
+			this.InitGrub();
+		}
+		
+		protected virtual void OnBTNApplyClicked (object sender, System.EventArgs e)
+		{
+			MainClass.grub.SetDefault(int.Parse(this.SAI_Default.Text));
+			MainClass.grub.SetGfx(this.SAI_Gfx.Text);
+			MainClass.grub.SetTimeOut(int.Parse(this.SAI_TimeOut.Text));
 		}
 		
 		
