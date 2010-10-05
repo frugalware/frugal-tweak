@@ -153,9 +153,14 @@ namespace frugalmonotools
 		//public
 		public string repoSelected="";
 		public List<string> fwRepo = new List<string>();
-		public List<string> ignorePkg = new List<string>();
 		public const string repoInstalled= "Installed";
 		
+		private List<string> ignorePkg = new List<string>();
+		public List<string> GetignorePkg ()
+		{
+			_ReadIgnorePkg();
+			return ignorePkg;
+		}
 		private void EnumRepoProc(string section, string lParam)
 		{
 			if(Debug.ModeDebug) Console.WriteLine(section);
@@ -166,7 +171,6 @@ namespace frugalmonotools
 		{
 			try{
 				//load ignore pkg
-				_ReadIgnorePkg();
 				EnumRepoProcDelegate _cd_db = new EnumRepoProcDelegate(EnumRepoProc);
 				if (pacman_initialize(ROOT_PATH)!=pm_errno)
 				{
@@ -180,8 +184,7 @@ namespace frugalmonotools
 		public void SetIgnorePkg(string packagename,bool updateAllIgnore )
 		{
 			try
-			{
-				if(packagename=="") return;
+			{					
 				string strPacmanConf =Outils.ReadFile(cch_pacmanconf);
 				string[] lines = strPacmanConf.Split('\n');	
 				string[] result= new string[lines.Length];

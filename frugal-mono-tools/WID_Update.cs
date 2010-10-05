@@ -94,7 +94,7 @@ namespace frugalmonotools
 		private void IgnorepkgToSAI()
 		{
 		SAI_ignorePkg.Text="";
-		foreach(string ignore in MainClass.pacmanG2.ignorePkg)
+		foreach(string ignore in MainClass.pacmanG2.GetignorePkg())
 			{
 				SAI_ignorePkg.Text+=" "+ignore;
 			}

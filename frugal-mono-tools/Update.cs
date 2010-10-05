@@ -126,7 +126,7 @@ namespace frugalmonotools
 				else
 				{
 					bool AddIt = true;
-					foreach (string pkgignore in MainClass.pacmanG2.ignorePkg)
+					foreach (string pkgignore in MainClass.pacmanG2.GetignorePkg())
 					{
 						if(pkgignore==MainClass.pacmanG2.extractNamePackage(package.GetPkgname())) AddIt =false;
 						if(MainClass.pacmanG2.extractNamePackage(pkgignore)==MainClass.pacmanG2.extractNamePackage(package.GetPkgname())) AddIt =false;
