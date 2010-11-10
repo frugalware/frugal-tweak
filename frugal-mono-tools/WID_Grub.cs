@@ -39,6 +39,7 @@ namespace frugalmonotools
 				BTN_AddEntry.Visible = false;
 				BTN_Save.Visible = false;
 				BTN_Apply.Visible = false;
+				SAI_Hdd.Visible = false;
 				LIB_Root.Visible=true;
 			}
 			else
@@ -82,9 +83,7 @@ namespace frugalmonotools
 		
 		protected virtual void OnBTNApplyClicked (object sender, System.EventArgs e)
 		{
-			MainClass.grub.SetDefault(int.Parse(this.SAI_Default.Text));
-			MainClass.grub.SetGfx(this.SAI_Gfx.Text);
-			MainClass.grub.SetTimeOut(int.Parse(this.SAI_TimeOut.Text));
+			MainClass.grub.Install(SAI_Hdd.Text);
 		}
 		
 		protected virtual void OnBTNAddEntryClicked (object sender, System.EventArgs e)
@@ -96,6 +95,9 @@ namespace frugalmonotools
 		
 		protected virtual void OnBTNSaveClicked (object sender, System.EventArgs e)
 		{
+			MainClass.grub.SetDefault(int.Parse(this.SAI_Default.Text));
+			MainClass.grub.SetGfx(this.SAI_Gfx.Text);
+			MainClass.grub.SetTimeOut(int.Parse(this.SAI_TimeOut.Text));
 			MainClass.grub.Save();
 		}
 		

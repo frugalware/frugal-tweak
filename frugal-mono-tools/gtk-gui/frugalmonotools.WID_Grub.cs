@@ -58,6 +58,8 @@ namespace frugalmonotools
 
 		private global::Gtk.Button BTN_Apply;
 
+		private global::Gtk.Entry SAI_Hdd;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -337,22 +339,32 @@ namespace frugalmonotools
 			w48.Add (w49);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w51 = new global::Gtk.Label ();
-			w51.LabelProp = global::Mono.Unix.Catalog.GetString ("Install Grub");
+			w51.LabelProp = global::Mono.Unix.Catalog.GetString ("Install Grub to");
 			w51.UseUnderline = true;
 			w48.Add (w51);
 			w47.Add (w48);
 			this.BTN_Apply.Add (w47);
 			this.hbox6.Add (this.BTN_Apply);
 			global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.BTN_Apply]));
-			w55.PackType = ((global::Gtk.PackType)(1));
 			w55.Position = 2;
 			w55.Expand = false;
 			w55.Fill = false;
+			// Container child hbox6.Gtk.Box+BoxChild
+			this.SAI_Hdd = new global::Gtk.Entry ();
+			this.SAI_Hdd.CanFocus = true;
+			this.SAI_Hdd.Name = "SAI_Hdd";
+			this.SAI_Hdd.Text = global::Mono.Unix.Catalog.GetString ("/dev/sda");
+			this.SAI_Hdd.IsEditable = true;
+			this.SAI_Hdd.InvisibleChar = '•';
+			this.hbox6.Add (this.SAI_Hdd);
+			global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.SAI_Hdd]));
+			w56.PackType = ((global::Gtk.PackType)(1));
+			w56.Position = 3;
 			this.vbox2.Add (this.hbox6);
-			global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox6]));
-			w56.Position = 1;
-			w56.Expand = false;
-			w56.Fill = false;
+			global::Gtk.Box.BoxChild w57 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox6]));
+			w57.Position = 1;
+			w57.Expand = false;
+			w57.Fill = false;
 			this.Add (this.vbox2);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

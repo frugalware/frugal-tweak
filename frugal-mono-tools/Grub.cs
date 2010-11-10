@@ -173,6 +173,10 @@ namespace frugalmonotools
 			}
 			catch{}
 		}
+		public void Install(string hdd)
+		{
+			Outils.Excecute("grub-install",hdd,false);
+		}
 	}
 }
 
