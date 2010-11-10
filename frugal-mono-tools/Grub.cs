@@ -18,6 +18,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 namespace frugalmonotools
 {
@@ -148,6 +149,29 @@ namespace frugalmonotools
 				}
 				
 			}
+		}
+		public void Save()
+		{
+			try{
+			/*
+			 default=0
+			timeout=5
+			gfxmenu (hd0,2)/boot/grub/message
+			title Frugalware 1.3.3040.g42b497b (Nexon) - 2.6.36-fw1
+			kernel (hd0,2)/boot/vmlinuz root=/dev/sda3 ro quiet resume=/dev/sda1
+			*/
+			StreamWriter MenuGrub = new StreamWriter(cch_FileMenu);
+			MenuGrub.WriteLine("default="+this.GetDefault());
+			MenuGrub.WriteLine("timeout="+this.GetTimeout());
+			MenuGrub.WriteLine("gfxmenu "+this.GetGfx());
+			 foreach (GrubEntry entry in Entrys)
+	         {
+				MenuGrub.WriteLine("title "+entry.title);
+				MenuGrub.WriteLine(entry.options);
+			}
+			MenuGrub.Close();
+			}
+			catch{}
 		}
 	}
 }

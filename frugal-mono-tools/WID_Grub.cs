@@ -81,6 +81,12 @@ namespace frugalmonotools
 			this.InitGrub();
 		}
 		
+		protected virtual void OnBTNSaveClicked (object sender, System.EventArgs e)
+		{
+			MainClass.grub.Save();
+		}
+		
+		
 		
 
 		

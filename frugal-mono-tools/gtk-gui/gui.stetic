@@ -2975,6 +2975,7 @@ Public License instead of this License.
                         <property name="Icon">stock:gtk-save Menu</property>
                         <property name="Label" translatable="yes">Save</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="OnBTNSaveClicked" />
                       </widget>
                       <packing>
                         <property name="Position">3</property>
@@ -3174,13 +3175,6 @@ Public License instead of this License.
           </packing>
         </child>
       </widget>
-    </child>
-  </widget>
-  <widget class="Gtk.Bin" id="frugalmonotools.WID_GrubEntry" design-size="300 300">
-    <property name="MemberName" />
-    <property name="Visible">False</property>
-    <child>
-      <placeholder />
     </child>
   </widget>
   <widget class="Gtk.Dialog" id="frugalmonotools.ModalGrubEntry" design-size="400 300">
