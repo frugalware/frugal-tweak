@@ -57,6 +57,7 @@ namespace frugalmonotools
 		WID_Logs fen_logs;
 		WID_Grub fen_grub;
 		
+		
 		protected Gtk.TreeIter iter;
 		public Fen_Menu () : base(Gtk.WindowType.Toplevel)
 		{
@@ -127,6 +128,8 @@ namespace frugalmonotools
 		{
 			SelectModule(cch_system);
 		}
+		
+		
 		protected void OnSelectionEntryUpdate(object o, EventArgs args)
 	    {
 	   		try
@@ -144,7 +147,7 @@ namespace frugalmonotools
 			}
 		}
 		
-		private void SelectModule(string module)
+		public void SelectModule(string module)
 		{
 					
 					this.HBOX_Details.Destroy();

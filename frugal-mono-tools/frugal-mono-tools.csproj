@@ -50,6 +50,7 @@
     <Reference Include="webkit-sharp, Version=1.1.15.0, Culture=neutral, PublicKeyToken=eaa1d335d2e19745" />
     <Reference Include="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="dbus-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5675b0c3093115b5" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -137,6 +138,9 @@
     <Compile Include="WID_Grub.cs" />
     <Compile Include="gtk-gui\frugalmonotools.WID_Grub.cs" />
     <Compile Include="Grub.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_GrubEntry.cs" />
+    <Compile Include="DiagGrub.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.DiagGrub.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

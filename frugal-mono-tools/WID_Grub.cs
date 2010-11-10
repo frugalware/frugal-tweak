@@ -74,6 +74,15 @@ namespace frugalmonotools
 			MainClass.grub.SetTimeOut(int.Parse(this.SAI_TimeOut.Text));
 		}
 		
+		protected virtual void OnBTNAddEntryClicked (object sender, System.EventArgs e)
+		{
+			DiagGrub dialog = new DiagGrub();
+			dialog.Run();
+			this.InitGrub();
+		}
+		
+		
+
 		
 	}
 }

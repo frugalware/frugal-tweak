@@ -378,6 +378,7 @@ namespace frugalmonotools
 			this.Hide ();
 			this.CBO_Entry.Changed += new global::System.EventHandler (this.OnCBOEntryChanged);
 			this.BTN_RemoveEntry.Clicked += new global::System.EventHandler (this.OnBTNRemoveEntryClicked);
+			this.BTN_AddEntry.Clicked += new global::System.EventHandler (this.OnBTNAddEntryClicked);
 			this.BTN_Apply.Clicked += new global::System.EventHandler (this.OnBTNApplyClicked);
 		}
 	}

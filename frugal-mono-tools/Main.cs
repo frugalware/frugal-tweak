@@ -24,6 +24,8 @@ using System.Timers;
 using Gdk;
 using Gtk;
 using Rss;
+using DBus;
+using org.freedesktop.DBus;
 
 
 namespace frugalmonotools
@@ -31,6 +33,8 @@ namespace frugalmonotools
 	class MainClass
 	{
 		public static string UrlPlanet="http://planet.frugalware.org/feed.php?type=rss";
+
+			
 		//pacman-g2 initialise
 		public static PacmanG2 pacmanG2 = new PacmanG2();
 		public static Configuration configuration = new Configuration();
@@ -168,7 +172,7 @@ namespace frugalmonotools
 		public static bool StartedAutomatic=false;
 		public static Xorg xorg = new Xorg();
 		
-		
+	
 		public static void Main (string[] args)
 		{
 			//root options
@@ -257,4 +261,5 @@ namespace frugalmonotools
 		}
 	}
 }
+
 
