@@ -29,9 +29,22 @@ namespace frugalmonotools
 		public WID_Grub ()
 		{
 			this.Build ();
+			
 		}
 		public void InitGrub()
 		{
+			if(!MainClass.boRoot)
+			{
+				BTN_RemoveEntry.Visible = false;
+				BTN_AddEntry.Visible = false;
+				BTN_Save.Visible = false;
+				BTN_Apply.Visible = false;
+				LIB_Root.Visible=true;
+			}
+			else
+			{
+				LIB_Root.Visible=false;
+			}
 			model.Clear();
 			CBO_Entry.Model=model;
 			int i = 0;

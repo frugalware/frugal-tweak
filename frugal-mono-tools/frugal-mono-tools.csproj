@@ -138,7 +138,6 @@
     <Compile Include="WID_Grub.cs" />
     <Compile Include="gtk-gui\frugalmonotools.WID_Grub.cs" />
     <Compile Include="Grub.cs" />
-    <Compile Include="gtk-gui\frugalmonotools.WID_GrubEntry.cs" />
     <Compile Include="DiagGrub.cs" />
     <Compile Include="gtk-gui\frugalmonotools.DiagGrub.cs" />
   </ItemGroup>
