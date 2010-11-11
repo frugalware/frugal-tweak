@@ -39,6 +39,7 @@ namespace frugalmonotools
 				BTN_AddEntry.Visible = false;
 				BTN_Save.Visible = false;
 				BTN_Apply.Visible = false;
+				BTN_Modify.Visible=false;
 				SAI_Hdd.Visible = false;
 				LIB_Root.Visible=true;
 			}
@@ -100,6 +101,15 @@ namespace frugalmonotools
 			MainClass.grub.SetTimeOut(int.Parse(this.SAI_TimeOut.Text));
 			MainClass.grub.Save();
 		}
+		
+		protected virtual void OnBTNModifyClicked (object sender, System.EventArgs e)
+		{
+			GrubEntry entry = new GrubEntry();
+			entry.title=SAI_Title.Text;
+			entry.options=TXT_Options.Buffer.Text;
+			MainClass.grub.Entrys[EntrySelected]=entry;
+		}
+		
 		
 		
 		

@@ -2917,6 +2917,23 @@ Public License instead of this License.
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
+                      <widget class="Gtk.Button" id="BTN_Modify">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextAndIcon</property>
+                        <property name="Icon">stock:gtk-apply Menu</property>
+                        <property name="Label" translatable="yes">Modify entry</property>
+                        <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="OnBTNModifyClicked" />
+                      </widget>
+                      <packing>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
                       <widget class="Gtk.Button" id="BTN_RemoveEntry">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
@@ -2927,7 +2944,7 @@ Public License instead of this License.
                         <signal name="Clicked" handler="OnBTNRemoveEntryClicked" />
                       </widget>
                       <packing>
-                        <property name="Position">0</property>
+                        <property name="Position">1</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
@@ -2944,14 +2961,11 @@ Public License instead of this License.
                         <signal name="Clicked" handler="OnBTNAddEntryClicked" />
                       </widget>
                       <packing>
-                        <property name="Position">1</property>
+                        <property name="Position">2</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder />
                     </child>
                     <child>
                       <placeholder />
