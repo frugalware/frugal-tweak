@@ -85,6 +85,7 @@
     <EmbeddedResource Include="Pictures\Mono-powered.png" />
     <EmbeddedResource Include="Pictures\icons\logs.png" />
     <EmbeddedResource Include="Pictures\icons\grub.png" />
+    <EmbeddedResource Include="Pictures\icons\datetime.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -140,6 +141,8 @@
     <Compile Include="Grub.cs" />
     <Compile Include="DiagGrub.cs" />
     <Compile Include="gtk-gui\frugalmonotools.DiagGrub.cs" />
+    <Compile Include="WID_DateTime.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_DateTime.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
