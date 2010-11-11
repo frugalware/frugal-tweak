@@ -326,7 +326,7 @@ public partial class MainWindow : Gtk.Window
 	
 	private void AppendText(string text)
 	{
-	if(text.IndexOf(text)>=0)
+	if(text.IndexOf(SAI_User.Text)>=0)
 		Inform("New message",text);
     Gtk.Application.Invoke (delegate {
         TextIter mIter = TXT_Messages.Buffer.EndIter;
