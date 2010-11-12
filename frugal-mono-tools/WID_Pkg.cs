@@ -156,6 +156,15 @@ namespace frugalmonotools
 			_searchPackage();
 		}
 		
+		protected virtual void OnSAIPkgKeyReleaseEvent (object o, Gtk.KeyReleaseEventArgs args)
+		{
+			if (args.Event.Key.ToString()=="Return")
+			{
+				_searchPackage();
+			}
+		}
+		
+		
 		
 		
 		

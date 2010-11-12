@@ -166,6 +166,7 @@ namespace frugalmonotools
 			}
 			this.Hide ();
 			this.CBO_Repo.Changed += new global::System.EventHandler (this.OnCBORepoChanged);
+			this.SAI_pkg.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler (this.OnSAIPkgKeyReleaseEvent);
 			this.BTN_Search.Clicked += new global::System.EventHandler (this.OnBTNSearchClicked);
 			this.BTN_Uninstall.Clicked += new global::System.EventHandler (this.OnBTNUninstallClicked);
 			this.BTN_Install.Clicked += new global::System.EventHandler (this.OnBTNInstallClicked);
