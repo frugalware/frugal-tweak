@@ -99,6 +99,7 @@ namespace frugalmonotools
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.SAI_Name = new global::Gtk.Entry ();
+			this.SAI_Name.TooltipMarkup = "Name";
 			this.SAI_Name.CanFocus = true;
 			this.SAI_Name.Name = "SAI_Name";
 			this.SAI_Name.IsEditable = true;
@@ -108,6 +109,7 @@ namespace frugalmonotools
 			w5.Position = 0;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.SAI_Comment = new global::Gtk.Entry ();
+			this.SAI_Comment.TooltipMarkup = "Comment";
 			this.SAI_Comment.CanFocus = true;
 			this.SAI_Comment.Name = "SAI_Comment";
 			this.SAI_Comment.IsEditable = true;
@@ -126,6 +128,7 @@ namespace frugalmonotools
 			this.hbox4.Spacing = 6;
 			// Container child hbox4.Gtk.Box+BoxChild
 			this.SAI_Shell = new global::Gtk.Entry ();
+			this.SAI_Shell.TooltipMarkup = "Shell";
 			this.SAI_Shell.CanFocus = true;
 			this.SAI_Shell.Name = "SAI_Shell";
 			this.SAI_Shell.IsEditable = true;
@@ -135,6 +138,7 @@ namespace frugalmonotools
 			w8.Position = 0;
 			// Container child hbox4.Gtk.Box+BoxChild
 			this.SAI_Home = new global::Gtk.Entry ();
+			this.SAI_Home.TooltipMarkup = "Home";
 			this.SAI_Home.CanFocus = true;
 			this.SAI_Home.Name = "SAI_Home";
 			this.SAI_Home.IsEditable = true;
@@ -178,7 +182,7 @@ namespace frugalmonotools
 			w13.Add (w14);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w16 = new global::Gtk.Label ();
-			w16.LabelProp = global::Mono.Unix.Catalog.GetString ("Add new user");
+			w16.LabelProp = global::Mono.Unix.Catalog.GetString ("Add user");
 			w16.UseUnderline = true;
 			w13.Add (w16);
 			w12.Add (w13);

@@ -3538,6 +3538,7 @@ Public License instead of this License.
                 <child>
                   <widget class="Gtk.Entry" id="SAI_Name">
                     <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes">Name</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">•</property>
@@ -3553,6 +3554,7 @@ Public License instead of this License.
                 <child>
                   <widget class="Gtk.Entry" id="SAI_Comment">
                     <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes">Comment</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">•</property>
@@ -3577,6 +3579,7 @@ Public License instead of this License.
                 <child>
                   <widget class="Gtk.Entry" id="SAI_Shell">
                     <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes">Shell</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">•</property>
@@ -3592,6 +3595,7 @@ Public License instead of this License.
                 <child>
                   <widget class="Gtk.Entry" id="SAI_Home">
                     <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes">Home</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">•</property>
@@ -3636,7 +3640,7 @@ Public License instead of this License.
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
                     <property name="Icon">stock:gtk-add Menu</property>
-                    <property name="Label" translatable="yes">Add new user</property>
+                    <property name="Label" translatable="yes">Add user</property>
                     <property name="UseUnderline">True</property>
                   </widget>
                   <packing>
