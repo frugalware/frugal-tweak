@@ -154,6 +154,7 @@
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">•</property>
+                    <signal name="KeyReleaseEvent" handler="OnSAIEnvoiKeyReleaseEvent" />
                   </widget>
                   <packing>
                     <property name="Position">0</property>

@@ -335,14 +335,17 @@ public partial class MainWindow : Gtk.Window
         });
 		//Console.WriteLine(text);
 	}
-	
-	protected virtual void OnBTNSendClicked (object sender, System.EventArgs e)
+	private void _sendMessage()
 	{
 		if(!_initOk) return;
 		if(SAI_Envoi.Text=="") return;
 		irc.SendMessage(SendType.Message, SAI_Chan.Text, SAI_Envoi.Text);
 		AppendText(SAI_User.Text+" : "+SAI_Envoi.Text);
 		SAI_Envoi.Text="";
+	}
+	protected virtual void OnBTNSendClicked (object sender, System.EventArgs e)
+	{
+		_sendMessage();
 	}
 		private static void Inform(string title,string text)
 		{
@@ -355,5 +358,14 @@ public partial class MainWindow : Gtk.Window
 				Console.WriteLine(title+" : "+text);
 			}
 		}
+		protected virtual void OnSAIEnvoiKeyReleaseEvent (object o, Gtk.KeyReleaseEventArgs args)
+		{
+			if (args.Event.Key.ToString()=="Return")
+			{
+				_sendMessage();
+			}
+		}
+	
+	
 }
 

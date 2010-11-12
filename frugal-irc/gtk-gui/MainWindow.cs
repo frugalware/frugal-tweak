@@ -216,6 +216,7 @@ public partial class MainWindow
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.BTN_Connect.Clicked += new global::System.EventHandler (this.OnBTNConnectClicked);
+		this.SAI_Envoi.KeyReleaseEvent += new global::Gtk.KeyReleaseEventHandler (this.OnSAIEnvoiKeyReleaseEvent);
 		this.BTN_Send.Clicked += new global::System.EventHandler (this.OnBTNSendClicked);
 	}
 }
