@@ -40,6 +40,7 @@ namespace frugalmonotools
 		private const string cch_configuration="Configuration";
 		private const string cch_about="About";
 		private const string cch_datetime="Date Time";
+		private const string cch_users="Users";
 		
 		//widget
 		WID_Network fen_network ;
@@ -58,6 +59,7 @@ namespace frugalmonotools
 		WID_Logs fen_logs;
 		WID_Grub fen_grub;
 		WID_DateTime fen_dateTime;
+		WID_Users fen_users;
 		
 		protected Gtk.TreeIter iter;
 		public Fen_Menu () : base(Gtk.WindowType.Toplevel)
@@ -93,6 +95,8 @@ namespace frugalmonotools
 			this.TREE_Menu.SetCursor(ListMenu.GetPath(iter),TREE_Menu.GetColumn(1),false);
 			Pixbuf icoDate = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.datetime.png");
 			ListMenu.AppendValues(icoDate.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_datetime);
+			Pixbuf icoUsers = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.users.png");
+			ListMenu.AppendValues(icoUsers.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_users);
 			Pixbuf icoX = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.xorg.png");
 			ListMenu.AppendValues(icoX.ScaleSimple(20,20, Gdk.InterpType.Nearest), cch_xorg);
 			Pixbuf icoupdate = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.icons.update.png");
@@ -161,6 +165,13 @@ namespace frugalmonotools
 		            
 					
 					switch (module){
+						case cch_users:
+							this.fen_users = new WID_Users();
+							this.HBOX_Details.PackStart(fen_users);
+							this.HBOX_Details.ShowAll();
+							this.fen_users.InitUsers();
+						break;
+				
 						case cch_datetime:
 							this.fen_dateTime = new WID_DateTime();
 							this.HBOX_Details.PackStart(fen_dateTime);

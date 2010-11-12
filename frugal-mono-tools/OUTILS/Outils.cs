@@ -23,7 +23,6 @@ namespace frugalmonotools
 {
 	public static class Outils
 	{
-		
 		public static List<string>  WalkDirectoryTree(System.IO.DirectoryInfo root,string pattern)
 	    {
 			List<string>  strFiles = new List<string>(); 
