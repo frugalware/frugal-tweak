@@ -41,19 +41,32 @@ namespace frugalmonotools
 			ColumnUser.AddAttribute (NameCellUser, "text", 0);
 			
 			ListStoreUser.Clear();
-			int i = 0;
 			foreach (User user in Groups.GetAllUsers())
 			{
-				// Add some data to the store
-				if (i==0)	
-					iter=ListStoreUser.AppendValues (user.Name);
-				else
-					ListStoreUser.AppendValues (user.Name);
-				i++;
+				ListStoreUser.AppendValues (user.Name);
 			}
 			TREE_Users.Model=ListStoreUser;
-			
+			// Event on treeview
+			TREE_Users.Selection.Changed += OnSelectionUser;
 		}
+		protected void OnSelectionUser (object o, EventArgs args)
+	    {
+	   		try
+			{
+			 	TreeModel model;
+				 if (((TreeSelection)o).GetSelected(out model, out iter))
+		        {
+		            string T =(string)model.GetValue (iter, 0);
+					User user = new User(T);
+					SAI_Name.Text=T;
+					SAI_Comment.Text=user.Comment;
+					SAI_Shell.Text=user.Shell;
+					SAI_Home.Text=user.Home;
+				}
+			}
+			catch{}
+		}
+		
 	}
 }
 

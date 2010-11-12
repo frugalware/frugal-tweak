@@ -81,7 +81,7 @@ namespace frugalmonotools
 		treeviewpkg.Selection.Changed += OnSelectionEntryPkg;
 		
 		}
-			protected void OnSelectionEntryPkg (object o, EventArgs args)
+		protected void OnSelectionEntryPkg (object o, EventArgs args)
 	    {
 	   		try
 			{
