@@ -23,15 +23,19 @@ namespace frugalmonotools
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class WID_Users : Gtk.Bin
 	{
+		private const int columnSelected = 0;
+
 		private Gtk.TreeIter iter;
 		ListStore ListStoreUser = new Gtk.ListStore (typeof (string));
+		ListStore ListStoreUserGroup = new Gtk.ListStore (typeof (bool),typeof (string));
 		public WID_Users ()
 		{
 			this.Build ();
 		}
 		public void InitUsers()
 		{
-			// Create a column for the package name
+			#region treeview users
+			// Create a column for the name
 			Gtk.TreeViewColumn ColumnUser = new Gtk.TreeViewColumn ();
 			ColumnUser.Title = "Users";
 			Gtk.CellRendererText NameCellUser = new Gtk.CellRendererText ();
@@ -48,7 +52,41 @@ namespace frugalmonotools
 			TREE_Users.Model=ListStoreUser;
 			// Event on treeview
 			TREE_Users.Selection.Changed += OnSelectionUser;
+			#endregion
+			
+			#region treeview user groups
+			Gtk.TreeViewColumn ColumnCheck = new Gtk.TreeViewColumn ();
+			ColumnCheck.Title = "";
+			Gtk.CellRendererToggle NameCellCheck= new Gtk.CellRendererToggle ();
+			NameCellCheck.Activatable = true;
+			NameCellCheck.Toggled += new ToggledHandler (SelectToggled);
+			// Add the cell to the column
+			ColumnCheck.PackStart (NameCellCheck, true);
+			TREE_UserGroup.AppendColumn (ColumnCheck);
+			ColumnCheck.AddAttribute (NameCellCheck, "active", 0);
+			
+
+			// Create a column for the package name
+			Gtk.TreeViewColumn ColumnGroup = new Gtk.TreeViewColumn ();
+			ColumnGroup.Title = "Group";
+			Gtk.CellRendererText NameCellGroup= new Gtk.CellRendererText ();
+			// Add the cell to the column
+			ColumnGroup.PackStart (NameCellGroup, true);
+			TREE_UserGroup.AppendColumn (ColumnGroup);
+			ColumnGroup.AddAttribute (NameCellGroup, "text", 1);
+			TREE_UserGroup.Model=ListStoreUserGroup;
+			#endregion
+			
 		}
+		private void SelectToggled (object sender, ToggledArgs args)
+	    {
+	       TreeIter iter;
+	      if (ListStoreUserGroup.GetIterFromString (out iter, args.Path)) {
+	         bool val = (bool) ListStoreUserGroup.GetValue (iter, columnSelected);
+	         ListStoreUserGroup.SetValue (iter, columnSelected, !val);
+	       }
+	    }
+
 		protected void OnSelectionUser (object o, EventArgs args)
 	    {
 	   		try
@@ -62,11 +100,25 @@ namespace frugalmonotools
 					SAI_Comment.Text=user.Comment;
 					SAI_Shell.Text=user.Shell;
 					SAI_Home.Text=user.Home;
+					SAI_Pass.Text="";
+					FindGroupUser(user.Name);
 				}
 			}
 			catch{}
 		}
-		
+		private void FindGroupUser(string name)
+		{
+			ListStoreUserGroup.Clear();
+			List<GroupUser> groupsUser = Groups.GetGroup(name);
+			foreach (GroupUser groupUser in groupsUser) 
+		    {
+				if(groupUser.Into)
+					ListStoreUserGroup.AppendValues (true,groupUser.TheGroup.Name);
+				else
+					ListStoreUserGroup.AppendValues (false,groupUser.TheGroup.Name);
+			}
+
+		}
 	}
 }
 

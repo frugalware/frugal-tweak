@@ -3472,7 +3472,7 @@ Public License instead of this License.
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="frugalmonotools.WID_Users" design-size="346 327">
+  <widget class="Gtk.Bin" id="frugalmonotools.WID_Users" design-size="346 377">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -3614,11 +3614,35 @@ Public License instead of this License.
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Entry" id="SAI_Groups">
+              <widget class="Gtk.HBox" id="hbox5">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="IsEditable">True</property>
-                <property name="InvisibleChar">•</property>
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Label" id="label3">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Password :</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="SAI_Pass">
+                    <property name="MemberName" />
+                    <property name="Tooltip" translatable="yes">Password</property>
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="Visibility">False</property>
+                    <property name="InvisibleChar">•</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">4</property>
@@ -3628,7 +3652,21 @@ Public License instead of this License.
               </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow2">
+                <property name="MemberName" />
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.TreeView" id="TREE_UserGroup">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="ShowScrollbars">True</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">5</property>
+                <property name="AutoSize">True</property>
+              </packing>
             </child>
             <child>
               <widget class="Gtk.HBox" id="hbox2">

@@ -28,10 +28,20 @@ namespace frugalmonotools
 		private string _comment="";
 		private string _shell="";
 		private string _home="";
+		private string _pass="";
 		private List<Group> _groups = new List<Group>();
 		#endregion
 		
 		#region public
+		public string Pass {
+			get {
+				return this._pass;
+			}
+			set {
+				_pass = value;
+			}
+		}
+		
 		public string Comment {
 			get {
 				return this._comment;
@@ -128,11 +138,17 @@ namespace frugalmonotools
 		}
 		public List<Group> GetGroups()
 		{
-			if ((this.Name=="") && (this.Id==0))
-			{
+			if (this.Name=="")
 				return null;
+			_groups.Clear();
+			//read group
+			string ch_ContentsFileUsers=Outils.ReadFile(Groups.cch_FileGroup);
+			string[] lines = ch_ContentsFileUsers.Split('\n');	
+			foreach (string line in lines) 
+		    {
+				//storage::30:hald,gaetan
 			}
-			return null;
+			return _groups;
 		}
 		
 	}

@@ -64,6 +64,13 @@ namespace frugalmonotools
 					try
 					{
 						this.Id=Convert.ToInt32(line.Split(':')[2]);
+						//now find users
+						string[] ch_Users = line.Split(':')[3].ToString().Split(',');
+						foreach (string ch_User in ch_Users) 
+		   				{
+							User user = new User(ch_User);
+							this._users.Add(user);
+						}
 					}
 					catch{}
 					break;

@@ -21,6 +21,11 @@ using System.Collections.Generic;
 
 namespace frugalmonotools
 {
+	public struct GroupUser
+	{
+		public Group TheGroup;
+		public bool Into;
+	}
 	public static class Groups
 	{
 		public static string cch_FileUser = @"/etc/passwd"; 
@@ -42,6 +47,37 @@ namespace frugalmonotools
 			return users;
 		}
 		
+		public static List<GroupUser> GetGroup(string username)
+		{
+			List<GroupUser> groupsUser = new List<GroupUser>();
+				
+			string ch_ContentsFileGroup=Outils.ReadFile(Groups.cch_FileGroup);
+			string[] lines = ch_ContentsFileGroup.Split('\n');	
+			foreach (string line in lines) 
+		    {
+				//storage::30:hald,gaetan
+				if(line.Split(':')[0].ToString().Trim()!="")
+				{
+					Group Agroup = new Group(line.Split(':')[0]);
+					GroupUser groupUser = new GroupUser();
+					groupUser.TheGroup=Agroup;
+					//extract users from this group
+					bool bo_Into = false;
+					string[] userNames = line.Split(':')[3].ToString().Split(',');
+					foreach (string name in userNames) 
+					{
+						if(name==username)
+						{
+							bo_Into=true;
+							break;
+						}
+					}
+					groupUser.Into=bo_Into;
+					groupsUser.Add(groupUser);
+				}
+			}
+			return groupsUser;
+		}
 	}
 }
 
