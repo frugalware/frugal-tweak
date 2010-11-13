@@ -28,6 +28,8 @@ namespace frugalmonotools
 		private Gtk.TreeIter iter;
 		ListStore ListStoreUser = new Gtk.ListStore (typeof (string));
 		ListStore ListStoreUserGroup = new Gtk.ListStore (typeof (bool),typeof (string));
+		ListStore ListStoreGroup = new Gtk.ListStore (typeof (string));
+		
 		public WID_Users ()
 		{
 			this.Build ();
@@ -66,7 +68,7 @@ namespace frugalmonotools
 			ColumnCheck.AddAttribute (NameCellCheck, "active", 0);
 			
 
-			// Create a column for the package name
+			// Create a column for the name
 			Gtk.TreeViewColumn ColumnGroup = new Gtk.TreeViewColumn ();
 			ColumnGroup.Title = "Group";
 			Gtk.CellRendererText NameCellGroup= new Gtk.CellRendererText ();
@@ -77,6 +79,21 @@ namespace frugalmonotools
 			TREE_UserGroup.Model=ListStoreUserGroup;
 			#endregion
 			FindGroupUser("");
+			
+			#region treeview groups
+			// Create a column for the name
+			Gtk.TreeViewColumn ColumnGroups = new Gtk.TreeViewColumn ();
+			ColumnGroups.Title = "Groups";
+			Gtk.CellRendererText NameCellGroups = new Gtk.CellRendererText ();
+			// Add the cell to the column
+			ColumnGroups.PackStart (NameCellGroups, true);
+			TREE_Groups.AppendColumn (ColumnGroups);
+			ColumnGroups.AddAttribute (NameCellGroups, "text", 0);
+			InitGroup();
+			TREE_Groups.Model=ListStoreGroup;
+	
+			#endregion
+			
 		}
 		private void SelectToggled (object sender, ToggledArgs args)
 	    {
@@ -86,7 +103,8 @@ namespace frugalmonotools
 	         ListStoreUserGroup.SetValue (iter, columnSelected, !val);
 	       }
 	    }
-
+		
+	
 		protected void OnSelectionUser (object o, EventArgs args)
 	    {
 	   		try
@@ -119,6 +137,15 @@ namespace frugalmonotools
 			}
 
 		}
+		private void InitGroup()
+		{
+			ListStoreUserGroup.Clear();
+			List<GroupUser> groupsUser = Groups.GetGroup("");
+			foreach (GroupUser groupUser in groupsUser) 
+		    {
+					ListStoreGroup.AppendValues (groupUser.TheGroup.Name);
+			}
+		}
 		protected virtual void OnBTNAddUserClicked (object sender, System.EventArgs e)
 		{
 			SAI_Name.Text="";
@@ -128,6 +155,18 @@ namespace frugalmonotools
 			SAI_Pass.Text="";
 			FindGroupUser("");
 		}
+		
+		protected virtual void OnBTNAddGroupClicked (object sender, System.EventArgs e)
+		{
+			//create group
+		}
+		
+		protected virtual void OnBTNRemoveGroupClicked (object sender, System.EventArgs e)
+		{
+			//remove group
+		}
+		
+		
 		
 		
 	}

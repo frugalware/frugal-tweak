@@ -54,6 +54,14 @@ namespace frugalmonotools
 
 		private global::Gtk.TreeView TREE_Groups;
 
+		private global::Gtk.Entry SAI_GroupName;
+
+		private global::Gtk.HBox hbox6;
+
+		private global::Gtk.Button BTN_AddGroup;
+
+		private global::Gtk.Button BTN_RemoveGroup;
+
 		private global::Gtk.Label label2;
 
 		protected virtual void Build ()
@@ -66,7 +74,7 @@ namespace frugalmonotools
 			this.notebook1 = new global::Gtk.Notebook ();
 			this.notebook1.CanFocus = true;
 			this.notebook1.Name = "notebook1";
-			this.notebook1.CurrentPage = 0;
+			this.notebook1.CurrentPage = 1;
 			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.vbox2 = new global::Gtk.VBox ();
 			this.vbox2.Name = "vbox2";
@@ -310,9 +318,81 @@ namespace frugalmonotools
 			this.vbox3.Add (this.GtkScrolledWindow1);
 			global::Gtk.Box.BoxChild w46 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.GtkScrolledWindow1]));
 			w46.Position = 0;
-			this.notebook1.Add (this.vbox3);
-			global::Gtk.Notebook.NotebookChild w47 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.vbox3]));
+			// Container child vbox3.Gtk.Box+BoxChild
+			this.SAI_GroupName = new global::Gtk.Entry ();
+			this.SAI_GroupName.CanFocus = true;
+			this.SAI_GroupName.Name = "SAI_GroupName";
+			this.SAI_GroupName.IsEditable = true;
+			this.SAI_GroupName.InvisibleChar = '•';
+			this.vbox3.Add (this.SAI_GroupName);
+			global::Gtk.Box.BoxChild w47 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.SAI_GroupName]));
 			w47.Position = 1;
+			w47.Expand = false;
+			w47.Fill = false;
+			// Container child vbox3.Gtk.Box+BoxChild
+			this.hbox6 = new global::Gtk.HBox ();
+			this.hbox6.Name = "hbox6";
+			this.hbox6.Spacing = 6;
+			// Container child hbox6.Gtk.Box+BoxChild
+			this.BTN_AddGroup = new global::Gtk.Button ();
+			this.BTN_AddGroup.CanFocus = true;
+			this.BTN_AddGroup.Name = "BTN_AddGroup";
+			this.BTN_AddGroup.UseUnderline = true;
+			// Container child BTN_AddGroup.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w48 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w49 = new global::Gtk.HBox ();
+			w49.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w50 = new global::Gtk.Image ();
+			w50.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-add", global::Gtk.IconSize.Menu);
+			w49.Add (w50);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w52 = new global::Gtk.Label ();
+			w52.LabelProp = global::Mono.Unix.Catalog.GetString ("Add group");
+			w52.UseUnderline = true;
+			w49.Add (w52);
+			w48.Add (w49);
+			this.BTN_AddGroup.Add (w48);
+			this.hbox6.Add (this.BTN_AddGroup);
+			global::Gtk.Box.BoxChild w56 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.BTN_AddGroup]));
+			w56.Position = 0;
+			w56.Expand = false;
+			w56.Fill = false;
+			// Container child hbox6.Gtk.Box+BoxChild
+			this.BTN_RemoveGroup = new global::Gtk.Button ();
+			this.BTN_RemoveGroup.CanFocus = true;
+			this.BTN_RemoveGroup.Name = "BTN_RemoveGroup";
+			this.BTN_RemoveGroup.UseUnderline = true;
+			// Container child BTN_RemoveGroup.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w57 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w58 = new global::Gtk.HBox ();
+			w58.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w59 = new global::Gtk.Image ();
+			w59.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-delete", global::Gtk.IconSize.Menu);
+			w58.Add (w59);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w61 = new global::Gtk.Label ();
+			w61.LabelProp = global::Mono.Unix.Catalog.GetString ("Remove group");
+			w61.UseUnderline = true;
+			w58.Add (w61);
+			w57.Add (w58);
+			this.BTN_RemoveGroup.Add (w57);
+			this.hbox6.Add (this.BTN_RemoveGroup);
+			global::Gtk.Box.BoxChild w65 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.BTN_RemoveGroup]));
+			w65.Position = 1;
+			w65.Expand = false;
+			w65.Fill = false;
+			this.vbox3.Add (this.hbox6);
+			global::Gtk.Box.BoxChild w66 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox6]));
+			w66.Position = 2;
+			w66.Expand = false;
+			w66.Fill = false;
+			this.notebook1.Add (this.vbox3);
+			global::Gtk.Notebook.NotebookChild w67 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.vbox3]));
+			w67.Position = 1;
 			// Notebook tab
 			this.label2 = new global::Gtk.Label ();
 			this.label2.Name = "label2";
@@ -325,6 +405,8 @@ namespace frugalmonotools
 			}
 			this.Hide ();
 			this.BTN_AddUser.Clicked += new global::System.EventHandler (this.OnBTNAddUserClicked);
+			this.BTN_AddGroup.Clicked += new global::System.EventHandler (this.OnBTNAddGroupClicked);
+			this.BTN_RemoveGroup.Clicked += new global::System.EventHandler (this.OnBTNRemoveGroupClicked);
 		}
 	}
 }
