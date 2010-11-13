@@ -42,6 +42,8 @@ namespace frugalmonotools
 		}
 		protected virtual void OnBTNApplyClicked (object sender, System.EventArgs e)
 		{
+			//TODO :
+			//added calendar widget
 			//date +%Y%m%d+%T -s "20101111 13:09:17"
 			Outils.Excecute("date"," +%Y%m%d+%T -s '" +SAI_Date.Text+" "+SAI_Hours.Text+"'",false);
 			
