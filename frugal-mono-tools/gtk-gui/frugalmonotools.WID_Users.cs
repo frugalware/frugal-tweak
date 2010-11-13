@@ -74,7 +74,7 @@ namespace frugalmonotools
 			this.notebook1 = new global::Gtk.Notebook ();
 			this.notebook1.CanFocus = true;
 			this.notebook1.Name = "notebook1";
-			this.notebook1.CurrentPage = 1;
+			this.notebook1.CurrentPage = 0;
 			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.vbox2 = new global::Gtk.VBox ();
 			this.vbox2.Name = "vbox2";
@@ -405,6 +405,7 @@ namespace frugalmonotools
 			}
 			this.Hide ();
 			this.BTN_AddUser.Clicked += new global::System.EventHandler (this.OnBTNAddUserClicked);
+			this.BTN_Remove.Clicked += new global::System.EventHandler (this.OnBTNRemoveClicked);
 			this.BTN_AddGroup.Clicked += new global::System.EventHandler (this.OnBTNAddGroupClicked);
 			this.BTN_RemoveGroup.Clicked += new global::System.EventHandler (this.OnBTNRemoveGroupClicked);
 		}

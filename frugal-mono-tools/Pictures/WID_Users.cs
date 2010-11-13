@@ -27,6 +27,7 @@ namespace frugalmonotools
 
 		private Gtk.TreeIter iter;
 		string GroupSelect="";
+		string UserSelect="";
 		ListStore ListStoreUser = new Gtk.ListStore (typeof (string));
 		ListStore ListStoreUserGroup = new Gtk.ListStore (typeof (bool),typeof (string));
 		ListStore ListStoreGroup = new Gtk.ListStore (typeof (string));
@@ -47,11 +48,7 @@ namespace frugalmonotools
 			TREE_Users.AppendColumn (ColumnUser);
 			ColumnUser.AddAttribute (NameCellUser, "text", 0);
 			
-			ListStoreUser.Clear();
-			foreach (User user in Groups.GetAllUsers())
-			{
-				ListStoreUser.AppendValues (user.Name);
-			}
+			_InitUsers();
 			TREE_Users.Model=ListStoreUser;
 			// Event on treeview
 			TREE_Users.Selection.Changed += OnSelectionUser;
@@ -90,12 +87,20 @@ namespace frugalmonotools
 			ColumnGroups.PackStart (NameCellGroups, true);
 			TREE_Groups.AppendColumn (ColumnGroups);
 			ColumnGroups.AddAttribute (NameCellGroups, "text", 0);
-			InitGroup();
+			_InitGroup();
 			TREE_Groups.Model=ListStoreGroup;
 	
 			TREE_Groups.Selection.Changed += OnSelectionGroup;
 			#endregion
 			
+		}
+		private void _InitUsers()
+		{
+			ListStoreUser.Clear();
+			foreach (User user in Groups.GetAllUsers())
+			{
+				ListStoreUser.AppendValues (user.Name);
+			}
 		}
 		private void SelectToggled (object sender, ToggledArgs args)
 	    {
@@ -126,6 +131,7 @@ namespace frugalmonotools
 				 if (((TreeSelection)o).GetSelected(out model, out iter))
 		        {
 		            string T =(string)model.GetValue (iter, 0);
+					UserSelect=T;
 					User user = new User(T);
 					SAI_Name.Text=T;
 					SAI_Comment.Text=user.Comment;
@@ -150,7 +156,7 @@ namespace frugalmonotools
 			}
 
 		}
-		private void InitGroup()
+		private void _InitGroup()
 		{
 			ListStoreGroup.Clear();
 			List<GroupUser> groupsUser = Groups.GetGroup("");
@@ -174,7 +180,7 @@ namespace frugalmonotools
 			//create group
 			Outils.ExcecuteAsRoot("/usr/sbin/groupadd "+SAI_GroupName.Text,true);
 			SAI_GroupName.Text="";
-			InitGroup();
+			_InitGroup();
 		}
 		
 		protected virtual void OnBTNRemoveGroupClicked (object sender, System.EventArgs e)
@@ -182,8 +188,16 @@ namespace frugalmonotools
 			//remove group
 			if(GroupSelect=="") return;
 			Outils.ExcecuteAsRoot("/usr/sbin/groupdel "+GroupSelect,true);
-			InitGroup();
+			_InitGroup();
 		}
+		protected virtual void OnBTNRemoveClicked (object sender, System.EventArgs e)
+		{
+			if(UserSelect=="") return;
+			Outils.ExcecuteAsRoot("/usr/sbin/userdel "+GroupSelect,true);
+			_InitUsers();
+		}
+		
+		
 	}
 }
 

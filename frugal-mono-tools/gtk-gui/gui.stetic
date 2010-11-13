@@ -3479,7 +3479,7 @@ Public License instead of this License.
       <widget class="Gtk.Notebook" id="notebook1">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">1</property>
+        <property name="CurrentPage">0</property>
         <child>
           <widget class="Gtk.VBox" id="vbox2">
             <property name="MemberName" />
@@ -3697,6 +3697,7 @@ Public License instead of this License.
                     <property name="Icon">stock:gtk-delete Menu</property>
                     <property name="Label" translatable="yes">Remove user</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNRemoveClicked" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>
