@@ -194,6 +194,7 @@ namespace frugalmonotools
 		protected virtual void OnBTNRemoveClicked (object sender, System.EventArgs e)
 		{
 			if(UserSelect=="") return;
+			if(!Outils.Ask("Remove "+UserSelect+" ?") )return;
 			Outils.ExcecuteAsRoot("/usr/sbin/userdel "+GroupSelect,true);
 			_InitUsers();
 		}
