@@ -140,10 +140,25 @@ namespace frugalmonotools
 		public static Boolean ExcecuteAsRoot(string Commande,bool wait)
 		{
 			string str_CommandeRoot;
+			if(MainClass.boRoot)
+			{
+				string[] parts = Commande.Split( ' ' );	
+				str_CommandeRoot = parts[ 0 ];	
+				string arguments = "";
+				if( parts.Length > 1 ){
+				for( int i = 1; i < parts.Length; i++ ){
+					arguments += " " + parts[ i ];
+					}
+				}
+				Commande=arguments;
+			}
+			else
+			{
 			if(MainClass.pacmanG2.IsInstalled("gksu-frugalware"))
 			   str_CommandeRoot="gksu";
 			else
 			   str_CommandeRoot="ksu";
+			}
 			System.Diagnostics.Process proc = new System.Diagnostics.Process();
 			proc.EnableRaisingEvents=false; 
 			proc.StartInfo.FileName = str_CommandeRoot;
