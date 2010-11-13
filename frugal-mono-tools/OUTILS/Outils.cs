@@ -23,6 +23,13 @@ namespace frugalmonotools
 {
 	public static class Outils
 	{
+		public static bool ResultAsk ;
+		public static bool Ask(string message)
+		{
+			MessageBox dialog = new MessageBox(message);
+			dialog.Run();
+			return ResultAsk;
+		}
 		public static List<string>  WalkDirectoryTree(System.IO.DirectoryInfo root,string pattern)
 	    {
 			List<string>  strFiles = new List<string>(); 

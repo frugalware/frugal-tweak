@@ -187,6 +187,7 @@ namespace frugalmonotools
 		{
 			//remove group
 			if(GroupSelect=="") return;
+			if(!Outils.Ask("Remove "+GroupSelect+" ?") )return;
 			Outils.ExcecuteAsRoot("/usr/sbin/groupdel "+GroupSelect,true);
 			_InitGroup();
 		}

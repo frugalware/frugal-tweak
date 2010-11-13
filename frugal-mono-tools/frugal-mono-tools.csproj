@@ -149,6 +149,8 @@
     <Compile Include="Groups.cs" />
     <Compile Include="Pictures\WID_Users.cs" />
     <Compile Include="gtk-gui\frugalmonotools.WID_Users.cs" />
+    <Compile Include="MessageBox.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.MessageBox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
