@@ -29,7 +29,6 @@ namespace frugalmonotools
 		private string _shell="";
 		private string _home="";
 		private string _pass="";
-		private List<Group> _groups = new List<Group>();
 		#endregion
 		
 		#region public
@@ -136,20 +135,7 @@ namespace frugalmonotools
 				}
 			}
 		}
-		public List<Group> GetGroups()
-		{
-			if (this.Name=="")
-				return null;
-			_groups.Clear();
-			//read group
-			string ch_ContentsFileUsers=Outils.ReadFile(Groups.cch_FileGroup);
-			string[] lines = ch_ContentsFileUsers.Split('\n');	
-			foreach (string line in lines) 
-		    {
-				//storage::30:hald,gaetan
-			}
-			return _groups;
-		}
+		
 		
 	}
 }
