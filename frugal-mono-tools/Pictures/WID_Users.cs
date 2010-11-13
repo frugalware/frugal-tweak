@@ -26,6 +26,7 @@ namespace frugalmonotools
 		private const int columnSelected = 0;
 
 		private Gtk.TreeIter iter;
+		string GroupSelect="";
 		ListStore ListStoreUser = new Gtk.ListStore (typeof (string));
 		ListStore ListStoreUserGroup = new Gtk.ListStore (typeof (bool),typeof (string));
 		ListStore ListStoreGroup = new Gtk.ListStore (typeof (string));
@@ -92,6 +93,7 @@ namespace frugalmonotools
 			InitGroup();
 			TREE_Groups.Model=ListStoreGroup;
 	
+			TREE_Groups.Selection.Changed += OnSelectionGroup;
 			#endregion
 			
 		}
@@ -104,7 +106,18 @@ namespace frugalmonotools
 	       }
 	    }
 		
-	
+		protected void OnSelectionGroup(object o, EventArgs args)
+	    {
+	   		try
+			{
+			 	TreeModel model;
+				 if (((TreeSelection)o).GetSelected(out model, out iter))
+		        {
+		            GroupSelect =(string)model.GetValue (iter, 0);
+				}
+			}
+			catch{}
+		}
 		protected void OnSelectionUser (object o, EventArgs args)
 	    {
 	   		try
@@ -139,7 +152,7 @@ namespace frugalmonotools
 		}
 		private void InitGroup()
 		{
-			ListStoreUserGroup.Clear();
+			ListStoreGroup.Clear();
 			List<GroupUser> groupsUser = Groups.GetGroup("");
 			foreach (GroupUser groupUser in groupsUser) 
 		    {
@@ -159,16 +172,18 @@ namespace frugalmonotools
 		protected virtual void OnBTNAddGroupClicked (object sender, System.EventArgs e)
 		{
 			//create group
+			Outils.ExcecuteAsRoot("/usr/sbin/groupadd "+SAI_GroupName.Text,true);
+			SAI_GroupName.Text="";
+			InitGroup();
 		}
 		
 		protected virtual void OnBTNRemoveGroupClicked (object sender, System.EventArgs e)
 		{
 			//remove group
+			if(GroupSelect=="") return;
+			Outils.ExcecuteAsRoot("/usr/sbin/groupdel "+GroupSelect,true);
+			InitGroup();
 		}
-		
-		
-		
-		
 	}
 }
 
