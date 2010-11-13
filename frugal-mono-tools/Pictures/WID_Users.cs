@@ -76,7 +76,7 @@ namespace frugalmonotools
 			ColumnGroup.AddAttribute (NameCellGroup, "text", 1);
 			TREE_UserGroup.Model=ListStoreUserGroup;
 			#endregion
-			
+			FindGroupUser("");
 		}
 		private void SelectToggled (object sender, ToggledArgs args)
 	    {
@@ -119,6 +119,17 @@ namespace frugalmonotools
 			}
 
 		}
+		protected virtual void OnBTNAddUserClicked (object sender, System.EventArgs e)
+		{
+			SAI_Name.Text="";
+			SAI_Comment.Text="";
+			SAI_Shell.Text="";
+			SAI_Home.Text="";
+			SAI_Pass.Text="";
+			FindGroupUser("");
+		}
+		
+		
 	}
 }
 

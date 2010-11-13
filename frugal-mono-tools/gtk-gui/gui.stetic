@@ -3680,6 +3680,7 @@ Public License instead of this License.
                     <property name="Icon">stock:gtk-add Menu</property>
                     <property name="Label" translatable="yes">Add user</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNAddUserClicked" />
                   </widget>
                   <packing>
                     <property name="Position">0</property>

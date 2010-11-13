@@ -324,6 +324,7 @@ namespace frugalmonotools
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.BTN_AddUser.Clicked += new global::System.EventHandler (this.OnBTNAddUserClicked);
 		}
 	}
 }

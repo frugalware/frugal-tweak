@@ -72,6 +72,7 @@ namespace frugalmonotools
 							break;
 						}
 					}
+					if(username=="") bo_Into =false;
 					groupUser.Into=bo_Into;
 					groupsUser.Add(groupUser);
 				}
