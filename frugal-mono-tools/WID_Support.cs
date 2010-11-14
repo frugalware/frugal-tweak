@@ -76,6 +76,13 @@ namespace frugalmonotools
 			_joinIrc("frugalware.hu");
 		}
 		
+		protected virtual void OnBTNPastbinClicked (object sender, System.EventArgs e)
+		{
+			WebkitBrowser browser = new WebkitBrowser("http://www.frugalware.org/paste/");
+			browser.Show();
+		}
+		
+		
 		
 		
 		

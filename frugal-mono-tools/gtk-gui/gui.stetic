@@ -2037,12 +2037,28 @@ irc : irc.freenode.net channel #frugalware</property>
           </packing>
         </child>
         <child>
+          <widget class="Gtk.Button" id="BTN_Pastbin">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Pastbin</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="OnBTNPastbinClicked" />
+          </widget>
+          <packing>
+            <property name="Position">5</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.Label" id="label8">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">Internationalized Frugalware sites</property>
           </widget>
           <packing>
-            <property name="Position">5</property>
+            <property name="Position">6</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -2058,7 +2074,7 @@ irc : irc.freenode.net channel #frugalware</property>
             <signal name="Clicked" handler="OnBTNFrenchClicked" />
           </widget>
           <packing>
-            <property name="Position">6</property>
+            <property name="Position">7</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -2074,7 +2090,7 @@ irc : irc.freenode.net channel #frugalware</property>
             <signal name="Clicked" handler="OnBTNDanishClicked" />
           </widget>
           <packing>
-            <property name="Position">7</property>
+            <property name="Position">8</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -3312,7 +3328,7 @@ Public License instead of this License.
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="frugalmonotools.WID_DateTime" design-size="300 300">
+  <widget class="Gtk.Bin" id="frugalmonotools.WID_DateTime" design-size="414 310">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -3377,6 +3393,19 @@ Public License instead of this License.
                 <property name="AutoSize">True</property>
               </packing>
             </child>
+            <child>
+              <widget class="Gtk.Calendar" id="calendar1">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="DisplayOptions">35</property>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
           </widget>
           <packing>
             <property name="Position">1</property>
@@ -3406,6 +3435,8 @@ Public License instead of this License.
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="IsEditable">True</property>
+                <property name="WidthChars">8</property>
+                <property name="MaxLength">8</property>
                 <property name="InvisibleChar">•</property>
               </widget>
               <packing>
@@ -3714,6 +3745,7 @@ Public License instead of this License.
                     <property name="Icon">stock:gtk-apply Menu</property>
                     <property name="Label" translatable="yes">Apply</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNApplyClicked" />
                   </widget>
                   <packing>
                     <property name="Position">2</property>
