@@ -168,6 +168,11 @@ namespace frugalmonotools
 			}
 			System.Diagnostics.Process proc = new System.Diagnostics.Process();
 			proc.EnableRaisingEvents=false; 
+			if(Debug.ModeDebug)
+			{
+				Console.WriteLine(str_CommandeRoot);
+				Console.WriteLine(Commande);
+			}
 			proc.StartInfo.FileName = str_CommandeRoot;
 			proc.StartInfo.Arguments = Commande;
 			if (!proc.Start()) return false;

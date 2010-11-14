@@ -16,6 +16,7 @@
 //  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //  */
 using System;
+using System.IO;
 using System.Collections.Generic;
 using Gtk;
 namespace frugalmonotools
@@ -105,9 +106,9 @@ namespace frugalmonotools
 		private void SelectToggled (object sender, ToggledArgs args)
 	    {
 	       TreeIter iter;
-	      if (ListStoreUserGroup.GetIterFromString (out iter, args.Path)) {
-	         bool val = (bool) ListStoreUserGroup.GetValue (iter, columnSelected);
-	         ListStoreUserGroup.SetValue (iter, columnSelected, !val);
+	     	if (ListStoreUserGroup.GetIterFromString (out iter, args.Path)) {
+	         	bool val = (bool) ListStoreUserGroup.GetValue (iter, columnSelected);
+	         	ListStoreUserGroup.SetValue (iter, columnSelected, !val);
 	       }
 	    }
 		
@@ -169,7 +170,8 @@ namespace frugalmonotools
 		{
 			SAI_Name.Text="";
 			SAI_Comment.Text="";
-			SAI_Shell.Text="";
+			//bash shell by default
+			SAI_Shell.Text="/bin/bash";
 			SAI_Home.Text="";
 			SAI_Pass.Text="";
 			FindGroupUser("");
@@ -195,9 +197,78 @@ namespace frugalmonotools
 		{
 			if(UserSelect=="") return;
 			if(!Outils.Ask("Remove "+UserSelect+" ?") )return;
-			Outils.ExcecuteAsRoot("/usr/sbin/userdel "+GroupSelect,true);
+			Outils.ExcecuteAsRoot("/usr/sbin/userdel "+UserSelect,true);
 			_InitUsers();
 		}
+		private void _updateUser()
+		{
+			//create a script for gksu or ksu can update/create user and asking 1 time the password
+			string ch_File= Environment.GetFolderPath(System.Environment.SpecialFolder.Personal)+"/Frugal.sh";
+						
+			//update/create user
+			//find if user exist
+			bool bo_Exist=false;
+			foreach (User user in Groups.GetAllUsers())
+			{
+				if (user.Name==SAI_Name.Text)
+				{
+					bo_Exist=true;
+					break;
+				}
+			}
+			//update conf user : shell,comment...
+			string str_commandeUser ="/usr/sbin/useradd";
+			if(bo_Exist)
+			{
+				Console.WriteLine("Update user");
+				str_commandeUser="/usr/sbin/usermod";
+			}
+			str_commandeUser+="  -s "+SAI_Shell.Text+" -c \""+SAI_Comment.Text+"\"  -d "+SAI_Home.Text+" "+SAI_Name.Text;
+			
+			//update password
+			if (SAI_Pass.Text!="")
+			{
+				str_commandeUser+="\n"+"/usr/bin/passwd -d "+SAI_Name.Text+"\n";
+				string str_pass = SAI_Pass.Text;
+				str_commandeUser+="(sleep 3; echo \""+str_pass+"\";sleep 3;echo \""+str_pass+"\" )";
+				str_commandeUser+="| passwd \""+SAI_Name.Text+"\" > /dev/null";
+				
+			}
+			//update group
+			str_commandeUser+="\n"+"/usr/sbin/usermod -G ";
+			string str_GroupList="";
+			foreach (object[] row in ListStoreUserGroup) 
+			{   			
+				bool bo_into = (bool) row[0];
+				string str_nameGroup = (string) row[1];
+				
+				if(bo_into)
+				{
+					str_GroupList+=str_nameGroup+" ";
+				}
+			}
+			str_commandeUser+=""+str_GroupList+" "+SAI_Name.Text;
+			
+			//delete file
+			System.IO.File.Delete(ch_File);
+			StreamWriter FileScript = new StreamWriter(ch_File);
+			FileScript.WriteLine(str_commandeUser);
+			FileScript.Close();
+			
+			//execut script
+			Outils.ExcecuteAsRoot("sh "+ch_File,true);
+			//delete file
+			System.IO.File.Delete(ch_File);
+			//Mono.Unix.Native can be use but should be started as root
+		}
+		
+		protected virtual void OnBTNApplyClicked (object sender, System.EventArgs e)
+		{
+			_updateUser();
+			_InitUsers();
+		}
+		
+		
 		
 		
 	}

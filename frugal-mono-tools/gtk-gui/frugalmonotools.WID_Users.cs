@@ -406,6 +406,7 @@ namespace frugalmonotools
 			this.Hide ();
 			this.BTN_AddUser.Clicked += new global::System.EventHandler (this.OnBTNAddUserClicked);
 			this.BTN_Remove.Clicked += new global::System.EventHandler (this.OnBTNRemoveClicked);
+			this.BTN_Apply.Clicked += new global::System.EventHandler (this.OnBTNApplyClicked);
 			this.BTN_AddGroup.Clicked += new global::System.EventHandler (this.OnBTNAddGroupClicked);
 			this.BTN_RemoveGroup.Clicked += new global::System.EventHandler (this.OnBTNRemoveGroupClicked);
 		}
