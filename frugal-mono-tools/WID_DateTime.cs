@@ -37,18 +37,31 @@ namespace frugalmonotools
 				BTN_Apply.Visible=true;
 				LIB_Root.Visible=false;
 			}
+			SAI_Date.Visible=false;
 			SAI_Date.Text=Outils.getoutput("date +%Y%m%d");
 			SAI_Hours.Text=Outils.getoutput("date +%T ");
 		}
 		protected virtual void OnBTNApplyClicked (object sender, System.EventArgs e)
 		{
-			//TODO :
-			//added calendar widget
+			
 			//date +%Y%m%d+%T -s "20101111 13:09:17"
 			Outils.Excecute("date"," +%Y%m%d+%T -s '" +SAI_Date.Text+" "+SAI_Hours.Text+"'",false);
 			
 		}
 		
+		protected virtual void OnCALDateSysDaySelected (object sender, System.EventArgs e)
+		{
+			Gtk.Calendar date = (Gtk.Calendar) sender;
+			SAI_Date.Text=date.Year.ToString()+ToDate(date.Month)+ToDate(date.Day);
+		}
+		
+		private string ToDate(int integer)
+		{
+			if (integer<10)
+				return "0"+integer.ToString();
+			else
+				return integer.ToString();
+		}
 		
 	}
 }

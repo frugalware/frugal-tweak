@@ -16,6 +16,8 @@ namespace frugalmonotools
 
 		private global::Gtk.Entry SAI_Date;
 
+		private global::Gtk.Calendar CAL_DateSys;
+
 		private global::Gtk.HBox hbox4;
 
 		private global::Gtk.Label label2;
@@ -78,11 +80,21 @@ namespace frugalmonotools
 			this.hbox3.Add (this.SAI_Date);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.SAI_Date]));
 			w4.Position = 1;
-			this.vbox2.Add (this.hbox3);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox3]));
-			w5.Position = 1;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.CAL_DateSys = new global::Gtk.Calendar ();
+			this.CAL_DateSys.CanFocus = true;
+			this.CAL_DateSys.Name = "CAL_DateSys";
+			this.CAL_DateSys.DisplayOptions = ((global::Gtk.CalendarDisplayOptions)(35));
+			this.hbox3.Add (this.CAL_DateSys);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.CAL_DateSys]));
+			w5.Position = 2;
 			w5.Expand = false;
 			w5.Fill = false;
+			this.vbox2.Add (this.hbox3);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox3]));
+			w6.Position = 1;
+			w6.Expand = false;
+			w6.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbox4 = new global::Gtk.HBox ();
 			this.hbox4.Name = "hbox4";
@@ -92,24 +104,26 @@ namespace frugalmonotools
 			this.label2.Name = "label2";
 			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Hours");
 			this.hbox4.Add (this.label2);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.label2]));
-			w6.Position = 0;
-			w6.Expand = false;
-			w6.Fill = false;
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.label2]));
+			w7.Position = 0;
+			w7.Expand = false;
+			w7.Fill = false;
 			// Container child hbox4.Gtk.Box+BoxChild
 			this.SAI_Hours = new global::Gtk.Entry ();
 			this.SAI_Hours.CanFocus = true;
 			this.SAI_Hours.Name = "SAI_Hours";
 			this.SAI_Hours.IsEditable = true;
+			this.SAI_Hours.WidthChars = 8;
+			this.SAI_Hours.MaxLength = 8;
 			this.SAI_Hours.InvisibleChar = '•';
 			this.hbox4.Add (this.SAI_Hours);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.SAI_Hours]));
-			w7.Position = 1;
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.SAI_Hours]));
+			w8.Position = 1;
 			this.vbox2.Add (this.hbox4);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox4]));
-			w8.Position = 2;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox4]));
+			w9.Position = 2;
+			w9.Expand = false;
+			w9.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbox1 = new global::Gtk.HBox ();
 			this.hbox1.Name = "hbox1";
@@ -119,47 +133,49 @@ namespace frugalmonotools
 			this.LIB_Root.Name = "LIB_Root";
 			this.LIB_Root.LabelProp = global::Mono.Unix.Catalog.GetString ("Can't save, should be started as root");
 			this.hbox1.Add (this.LIB_Root);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.LIB_Root]));
-			w9.Position = 0;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.LIB_Root]));
+			w10.Position = 0;
+			w10.Expand = false;
+			w10.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.BTN_Apply = new global::Gtk.Button ();
 			this.BTN_Apply.CanFocus = true;
 			this.BTN_Apply.Name = "BTN_Apply";
 			this.BTN_Apply.UseUnderline = true;
 			// Container child BTN_Apply.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w10 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w11 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w11 = new global::Gtk.HBox ();
-			w11.Spacing = 2;
+			global::Gtk.HBox w12 = new global::Gtk.HBox ();
+			w12.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w12 = new global::Gtk.Image ();
-			w12.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			global::Gtk.Image w13 = new global::Gtk.Image ();
+			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			w12.Add (w13);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w15 = new global::Gtk.Label ();
+			w15.LabelProp = global::Mono.Unix.Catalog.GetString ("Apply");
+			w15.UseUnderline = true;
+			w12.Add (w15);
 			w11.Add (w12);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w14 = new global::Gtk.Label ();
-			w14.LabelProp = global::Mono.Unix.Catalog.GetString ("Apply");
-			w14.UseUnderline = true;
-			w11.Add (w14);
-			w10.Add (w11);
-			this.BTN_Apply.Add (w10);
+			this.BTN_Apply.Add (w11);
 			this.hbox1.Add (this.BTN_Apply);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_Apply]));
-			w18.Position = 2;
-			w18.Expand = false;
-			w18.Fill = false;
-			this.vbox2.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox1]));
-			w19.Position = 4;
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_Apply]));
+			w19.Position = 2;
 			w19.Expand = false;
 			w19.Fill = false;
+			this.vbox2.Add (this.hbox1);
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox1]));
+			w20.Position = 4;
+			w20.Expand = false;
+			w20.Fill = false;
 			this.Add (this.vbox2);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
+			this.SAI_Date.Hide ();
 			this.LIB_Root.Hide ();
 			this.Hide ();
+			this.CAL_DateSys.DaySelected += new global::System.EventHandler (this.OnCALDateSysDaySelected);
 			this.BTN_Apply.Clicked += new global::System.EventHandler (this.OnBTNApplyClicked);
 		}
 	}

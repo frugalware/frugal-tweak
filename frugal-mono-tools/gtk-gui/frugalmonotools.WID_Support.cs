@@ -22,6 +22,8 @@ namespace frugalmonotools
 
 		private global::Gtk.Button BTN_Bugs;
 
+		private global::Gtk.Button BTN_Pastbin;
+
 		private global::Gtk.Label label8;
 
 		private global::Gtk.Button BTN_French;
@@ -123,14 +125,25 @@ namespace frugalmonotools
 			w8.Expand = false;
 			w8.Fill = false;
 			// Container child vbox9.Gtk.Box+BoxChild
+			this.BTN_Pastbin = new global::Gtk.Button ();
+			this.BTN_Pastbin.CanFocus = true;
+			this.BTN_Pastbin.Name = "BTN_Pastbin";
+			this.BTN_Pastbin.UseUnderline = true;
+			this.BTN_Pastbin.Label = global::Mono.Unix.Catalog.GetString ("Pastbin");
+			this.vbox9.Add (this.BTN_Pastbin);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Pastbin]));
+			w9.Position = 5;
+			w9.Expand = false;
+			w9.Fill = false;
+			// Container child vbox9.Gtk.Box+BoxChild
 			this.label8 = new global::Gtk.Label ();
 			this.label8.Name = "label8";
 			this.label8.LabelProp = global::Mono.Unix.Catalog.GetString ("Internationalized Frugalware sites");
 			this.vbox9.Add (this.label8);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.label8]));
-			w9.Position = 5;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.label8]));
+			w10.Position = 6;
+			w10.Expand = false;
+			w10.Fill = false;
 			// Container child vbox9.Gtk.Box+BoxChild
 			this.BTN_French = new global::Gtk.Button ();
 			this.BTN_French.CanFocus = true;
@@ -138,10 +151,10 @@ namespace frugalmonotools
 			this.BTN_French.UseUnderline = true;
 			this.BTN_French.Label = global::Mono.Unix.Catalog.GetString ("French");
 			this.vbox9.Add (this.BTN_French);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_French]));
-			w10.Position = 6;
-			w10.Expand = false;
-			w10.Fill = false;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_French]));
+			w11.Position = 7;
+			w11.Expand = false;
+			w11.Fill = false;
 			// Container child vbox9.Gtk.Box+BoxChild
 			this.BTN_Danish = new global::Gtk.Button ();
 			this.BTN_Danish.CanFocus = true;
@@ -149,10 +162,10 @@ namespace frugalmonotools
 			this.BTN_Danish.UseUnderline = true;
 			this.BTN_Danish.Label = global::Mono.Unix.Catalog.GetString ("Danish");
 			this.vbox9.Add (this.BTN_Danish);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Danish]));
-			w11.Position = 7;
-			w11.Expand = false;
-			w11.Fill = false;
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Danish]));
+			w12.Position = 8;
+			w12.Expand = false;
+			w12.Fill = false;
 			this.Add (this.vbox9);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -164,6 +177,7 @@ namespace frugalmonotools
 			this.BTN_Forums.Clicked += new global::System.EventHandler (this.OnBTNForumsClicked);
 			this.BTN_Wiki.Clicked += new global::System.EventHandler (this.OnBTNWikiClicked);
 			this.BTN_Bugs.Clicked += new global::System.EventHandler (this.OnBTNBugsClicked);
+			this.BTN_Pastbin.Clicked += new global::System.EventHandler (this.OnBTNPastbinClicked);
 			this.BTN_French.Clicked += new global::System.EventHandler (this.OnBTNFrenchClicked);
 			this.BTN_Danish.Clicked += new global::System.EventHandler (this.OnBTNDanishClicked);
 		}

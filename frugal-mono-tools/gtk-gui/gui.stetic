@@ -3384,6 +3384,7 @@ Public License instead of this License.
             <child>
               <widget class="Gtk.Entry" id="SAI_Date">
                 <property name="MemberName" />
+                <property name="Visible">False</property>
                 <property name="CanFocus">True</property>
                 <property name="IsEditable">True</property>
                 <property name="InvisibleChar">•</property>
@@ -3394,10 +3395,11 @@ Public License instead of this License.
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Calendar" id="calendar1">
+              <widget class="Gtk.Calendar" id="CAL_DateSys">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="DisplayOptions">35</property>
+                <signal name="DaySelected" handler="OnCALDateSysDaySelected" />
               </widget>
               <packing>
                 <property name="Position">2</property>
