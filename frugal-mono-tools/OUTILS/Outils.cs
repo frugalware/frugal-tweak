@@ -23,6 +23,50 @@ namespace frugalmonotools
 {
 	public static class Outils
 	{
+		public static void SendPastbin(string text)
+		{
+		try
+		{
+ 
+	    HttpWebRequest request = (HttpWebRequest)
+	        WebRequest.Create("http://frugalware.org/paste/");
+	 
+	    request.AllowAutoRedirect = false;
+	    request.Method = "POST";
+	 
+	    string post = "&amp;parent_pid=&amp;format=text&amp;code2=" + HttpUtility.UrlEncode(text) + 
+					"&amp;poster=FrugalTweak&amp;paste=Send&amp;expiry=m&amp;email=";
+	    byte[] data = System.Text.Encoding.ASCII.GetBytes(post);
+	 
+	    request.ContentType = "application/x-www-form-urlencoded";
+	    request.ContentLength = data.Length;
+	 
+	    Stream response = request.GetRequestStream();
+	 
+	    response.Write(data,0,data.Length);
+	 
+	    response.Close();
+	 
+	    HttpWebResponse res =(HttpWebResponse) request.GetResponse();
+	    res.Close();
+	    // note that there is no need to hook up a StreamReader and
+	    // look at the response data, since it is of no need
+	 
+	    if (res.StatusCode == HttpStatusCode.Found)
+	    {
+	        Console.WriteLine(res.Headers["location"]);
+	    }
+	    else
+	    {
+	        Console.WriteLine("Error");
+	    }
+	 
+	}
+	catch (Exception ex)
+	{
+	    Console.WriteLine("Error: " + ex.Message);
+	}
+		}
 		public static bool ResultAsk ;
 		public static bool Ask(string message)
 		{
