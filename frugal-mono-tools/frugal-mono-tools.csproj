@@ -87,6 +87,7 @@
     <EmbeddedResource Include="Pictures\icons\grub.png" />
     <EmbeddedResource Include="Pictures\icons\datetime.png" />
     <EmbeddedResource Include="Pictures\icons\users.png" />
+    <EmbeddedResource Include="Pictures\icons\notes.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

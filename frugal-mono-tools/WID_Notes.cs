@@ -16,15 +16,29 @@
 //  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //  */
 using System;
+using System.IO;
 namespace frugalmonotools
 {
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class WID_Notes : Gtk.Bin
 	{
+		const string cch_FileNote= "/notes.txt";
 		public WID_Notes ()
 		{
 			this.Build ();
 		}
+		public void InitNotes()
+		{
+			TXT_Note.Buffer.Text=Outils.ReadFile( DirTweak.GetDirFrugalTweak()+cch_FileNote);
+		}
+		protected virtual void OnBTNSaveClicked (object sender, System.EventArgs e)
+		{
+			StreamWriter FileNotes = new StreamWriter( DirTweak.GetDirFrugalTweak()+cch_FileNote);
+			FileNotes.Write(TXT_Note.Buffer.Text);
+			FileNotes.Close();
+		}
+		
+		
 	}
 }
 

@@ -3982,7 +3982,7 @@ Public License instead of this License.
                 <property name="MemberName" />
                 <property name="ShadowType">In</property>
                 <child>
-                  <widget class="Gtk.TextView" id="textview1">
+                  <widget class="Gtk.TextView" id="TXT_Note">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="ShowScrollbars">True</property>
@@ -4013,6 +4013,7 @@ Public License instead of this License.
                     <property name="Icon">stock:gtk-save Menu</property>
                     <property name="Label" translatable="yes">Save</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNSaveClicked" />
                   </widget>
                   <packing>
                     <property name="Position">2</property>
