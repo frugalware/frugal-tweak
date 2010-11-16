@@ -20,11 +20,26 @@ using System.Text.RegularExpressions;
 using System.IO;
 namespace frugalmonotools
 {
-	
+	public static class DirTweak
+	{
+		public static string GetHome()
+		{
+			return Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+		}
+		public static string GetDirFrugalTweak()
+		{
+			string dirTweak= GetHome()+"/.frugalware-tweak";
+			if(!Directory.Exists(dirTweak))
+				Directory.CreateDirectory(dirTweak);
+			return dirTweak;
+			
+		}
+	}
 	//only uses by rss for now
 	public class Cache
 	{
-		private const string confFile=@"/.cache/FrugalTools";
+		private string oldconfFile = DirTweak.GetHome()+@"/.cache/FrugalTools";
+		private const string confFile =  "/cache";
 		private string _latest="";
 		public Cache()
 		{
@@ -58,8 +73,9 @@ namespace frugalmonotools
 			}
 		}
 		public string GetConfFile(){
-			return Environment.GetFolderPath(System.Environment.SpecialFolder
-.Personal)+confFile;
+			if(File.Exists(oldconfFile))
+			   File.Move(oldconfFile,DirTweak.GetDirFrugalTweak()+confFile);
+			return DirTweak.GetDirFrugalTweak()+confFile;
 		}
 		
 		public string GetLatest()
@@ -75,15 +91,17 @@ namespace frugalmonotools
 	public class Configuration
 	{
 	
-		private const string confFile=@"/.config/FrugalTools.conf";
+		private string oldconfFile=DirTweak.GetHome()+@"/.config/FrugalTools.conf";
+		private const string confFile= "/fwtweak.conf";
 		private bool _checkUpdate = false;
 		private bool _startWithX = true;
 		private bool _showNotif = true;
 		private bool _showSplash = true;
 		
 		public string GetConfFile(){
-			return Environment.GetFolderPath(System.Environment.SpecialFolder
-.Personal)+confFile;
+			if(File.Exists(oldconfFile))
+			   File.Move(oldconfFile,DirTweak.GetDirFrugalTweak()+confFile);
+			return DirTweak.GetDirFrugalTweak()+confFile;
 		}
 		public bool Get_CheckUpdate()
 		{
