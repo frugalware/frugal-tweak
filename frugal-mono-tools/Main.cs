@@ -21,10 +21,10 @@ using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using System.Timers;
+using System.Xml;
 using Gdk;
 using Gtk;
 using Rss;
-using DBus;
 using org.freedesktop.DBus;
 
 
@@ -33,6 +33,7 @@ namespace frugalmonotools
 	class MainClass
 	{
 		public static string UrlPlanet="http://planet.frugalware.org/feed.php?type=rss";
+		public static string UrlRoadmap="http://frugalware.org/xml/roadmap.xml";
 
 			
 		//pacman-g2 initialise
@@ -54,6 +55,7 @@ namespace frugalmonotools
 
 		}
 		public static bool updatePkg = false;
+		
 		public static void checktest()
 		{
 			Console.WriteLine("Thread started");
@@ -64,8 +66,48 @@ namespace frugalmonotools
 			win.InitFinish();	
 		}
 		
+		public static string fwcodeName="";
+		public static DateTime fwRelease;
+		public static string fwVersion="";
+		private static void _readRoadMap(XmlReader reader)
+		{
+		
+		  while (reader.Read())
+		  {
+		 
+		    switch (reader.NodeType) 
+		       {
+		           case XmlNodeType.Element: // The node is an element.
+		               Console.Write("<" + reader.Name);
+		
+		               while (reader.MoveToNextAttribute()) // Read the attributes.
+		                  Console.Write(" " + reader.Name + "='" + reader.Value + "'");
+					      Console.WriteLine(">");
+					               break;	
+					     case XmlNodeType.Text: //Display the text in each element.
+					               Console.WriteLine (reader.Value);
+					               break;
+					     case XmlNodeType. EndElement: //Display the end of the element.
+					               Console.Write("</" + reader.Name);
+					      Console.WriteLine(">");
+					               break;
+		       }
+		  }
+		}
+		private static void _checkRoadmap()
+		{
+			try
+			{
+				//download roadmap
+				XmlTextReader xmlRoadmap = new XmlTextReader(UrlRoadmap);
+				_readRoadMap(xmlRoadmap);
+			}
+			catch{}
+		}
 		public static void check()
 		{
+			_checkRoadmap();
+			
 			try
 			{
 			RssFeed rssFeed =RssFeed.Read(UrlPlanet);
@@ -185,7 +227,7 @@ namespace frugalmonotools
 			if(args.Length==0)
 			{
 				Gtk.Application.Init();		
-				
+				_checkRoadmap();
 				if (configuration.Get_ShowSplash()) 
 				{
 					win = new splash ();
