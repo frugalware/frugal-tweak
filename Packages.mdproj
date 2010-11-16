@@ -29,6 +29,6 @@
         </Package>
       </Packages>
     </Packages>
-    <ReleaseVersion>0.1.9</ReleaseVersion>
+    <ReleaseVersion>0.2.0</ReleaseVersion>
   </PropertyGroup>
 </Project>

@@ -72,6 +72,6 @@ Global
 		$0.StandardHeader = $4
 		$4.Text = @/*\r\n *  Copyright (C) 2010 by Gaetan Gourdin <bouleetbil@frogdev.info>\r\n *\r\n *  This program is free software; you can redistribute it and/or modify\r\n *  it under the terms of the GNU General Public License as published by\r\n *  the Free Software Foundation; either version 2 of the License, or\r\n *  (at your option) any later version.\r\n *\r\n *  This program is distributed in the hope that it will be useful,\r\n *  but WITHOUT ANY WARRANTY; without even the implied warranty of\r\n *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\r\n *  GNU General Public License for more details.\r\n *\r\n *  You should have received a copy of the GNU General Public License\r\n *  along with this program; if not, write to the Free Software\r\n *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\r\n */
 		$4.inheritsSet = Apache2License
-		version = 0.1.9
+		version = 0.2.0
 	EndGlobalSection
 EndGlobal
