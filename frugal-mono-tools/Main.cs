@@ -67,40 +67,78 @@ namespace frugalmonotools
 		}
 		
 		public static string fwcodeName="";
-		public static DateTime fwRelease;
+		public static DateTime fwRelease= new DateTime(2000, 1, 1);
 		public static string fwVersion="";
+		static bool bo_InformLatestStable = false;
+		
 		private static void _readRoadMap(XmlReader reader)
 		{
 		
+		bool bo_Date = false;
+		bool bo_Name = false;
+		bool bo_Version = false;
 		  while (reader.Read())
 		  {
-		 
+		 	
 		    switch (reader.NodeType) 
 		       {
 		           case XmlNodeType.Element: // The node is an element.
-		               Console.Write("<" + reader.Name);
-		
-		               while (reader.MoveToNextAttribute()) // Read the attributes.
-		                  Console.Write(" " + reader.Name + "='" + reader.Value + "'");
-					      Console.WriteLine(">");
+							//keep only first version
+		    		        Console.Write(reader.Name);
+							switch(reader.Name)
+							{
+									case "version":
+										bo_Version=true;
+										break;
+									case "predate":
+										bo_Date=true;
+										break;
+									case "name":
+										bo_Name=true;
+										break;
+							}
+		              
+					    
 					               break;	
-					     case XmlNodeType.Text: //Display the text in each element.
+					    case XmlNodeType.Text: 
+									if((bo_Version)&&(fwVersion==""))
+									{
+										fwVersion=reader.Value;
+									}
+									if((bo_Date) && (fwRelease.Year==2000))
+									{
+										//In the format Mmm DD, YYYY i.e. Sep 30, 2006 
+										DateTime.TryParse(reader.Value,out fwRelease);
+									}
+									if((bo_Name)&&(fwcodeName==""))
+									{
+										fwcodeName=reader.Value;
+									}
 					               Console.WriteLine (reader.Value);
 					               break;
-					     case XmlNodeType. EndElement: //Display the end of the element.
-					               Console.Write("</" + reader.Name);
-					      Console.WriteLine(">");
-					               break;
+					               
+					   
 		       }
 		  }
 		}
 		private static void _checkRoadmap()
 		{
+			if (bo_InformLatestStable) return;
 			try
 			{
 				//download roadmap
 				XmlTextReader xmlRoadmap = new XmlTextReader(UrlRoadmap);
 				_readRoadMap(xmlRoadmap);
+				//now analyse result
+				DateTime now = DateTime.Now;
+				TimeSpan nbDays = fwRelease-now;
+				string text=fwcodeName+" "+fwVersion+" should be release in "+nbDays.Days;
+				if(int.Parse(nbDays.Days.ToString())>1)
+					text+=" days";
+				else
+					text+=" day";
+				Outils.Inform(fwcodeName,text);
+				bo_InformLatestStable=true;
 			}
 			catch{}
 		}
