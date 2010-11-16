@@ -19,6 +19,8 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
+
 namespace frugalmonotools
 {
 	public static class Outils
