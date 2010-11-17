@@ -142,10 +142,8 @@ namespace frugalmonotools
 			}
 			catch{}
 		}
-		public static void check()
+		public static void _checkNews()
 		{
-			_checkRoadmap();
-			
 			try
 			{
 			RssFeed rssFeed =RssFeed.Read(UrlPlanet);
@@ -165,6 +163,10 @@ namespace frugalmonotools
 				}
 			}
 			catch{}
+		}
+		
+		public static void check()
+		{
 			if (Update.CheckUpdate())
 			{
 				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systrayupdate.png");
@@ -180,7 +182,7 @@ namespace frugalmonotools
 
 				Outils.Inform("Frugalware","Some update are available.");
 				//Console.WriteLine("Some packages can be updated.");
-				
+				_checkRoadmap();
 			}
 			else
 			{
