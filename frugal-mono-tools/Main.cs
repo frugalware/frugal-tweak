@@ -182,13 +182,13 @@ namespace frugalmonotools
 
 				Outils.Inform("Frugalware","Some update are available.");
 				//Console.WriteLine("Some packages can be updated.");
-				_checkRoadmap();
 			}
 			else
 			{
 				Pixbuf ico = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.systray.png");
 				Gtk.Application.Invoke (delegate{trayIcon.Pixbuf=ico;});
 			}
+			_checkRoadmap();
 		}
 		private static splash win;
 		public static StatusIcon trayIcon = null ;
