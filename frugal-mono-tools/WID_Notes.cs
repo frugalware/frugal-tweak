@@ -33,6 +33,7 @@ namespace frugalmonotools
 			TXT_Note.Buffer.Text=Outils.ReadFile( DirTweak.GetDirFrugalTweak()+cch_FileNote);
 			SAI_Login.Text=MainClass.configuration.Get_NoteLogin();
 			SAI_Pass.Text=MainClass.configuration.Get_NotePass();
+			LIB_Info.Visible=false;
 		}
 		protected virtual void OnBTNSaveClicked (object sender, System.EventArgs e)
 		{
