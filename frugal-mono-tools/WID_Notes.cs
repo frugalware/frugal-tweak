@@ -22,6 +22,7 @@ namespace frugalmonotools
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class WID_Notes : Gtk.Bin
 	{
+		const string cch_UrlWebService="http://dors.frugalware.org/webservices/FrugalNotes.asmx";
 		const string cch_FileNote= "/notes.txt";
 		public WID_Notes ()
 		{
@@ -46,6 +47,30 @@ namespace frugalmonotools
 			MainClass.configuration.Set_NotePass(SAI_Pass.Text);
 			MainClass.configuration.ConfSave();
 		}
+		
+		protected virtual void OnBTNSendClicked (object sender, System.EventArgs e)
+		{
+			//send to server
+			FrugalNotes note = new FrugalNotes();
+			if(note.SendNote(MainClass.configuration.Get_NoteLogin(),MainClass.configuration.Get_NotePass(),TXT_Note.Buffer.Text))
+			{
+				LIB_Info.Text="Note sending to server";
+			}
+			else
+			{
+				LIB_Info.Text="Error : could not send note to the server";
+			}
+			LIB_Info.Visible=true;
+		}
+		
+		protected virtual void OnBTNDownloadClicked (object sender, System.EventArgs e)
+		{
+			//get from server
+			FrugalNotes note = new FrugalNotes();
+			TXT_Note.Buffer.Text = note.GetNote(MainClass.configuration.Get_NoteLogin(),MainClass.configuration.Get_NotePass());
+		}
+		
+		
 		
 		
 		
