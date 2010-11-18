@@ -36,6 +36,7 @@
     <Compile Include="irc.py" />
     <Compile Include="fw-interfaces\fw-interfaces.py" />
     <Compile Include="fw-login-manager\fw-login-manager.py" />
+    <Compile Include="PyFrugalTweakService.py" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fw-interfaces\Create_archive.sh" />
