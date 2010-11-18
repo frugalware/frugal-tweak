@@ -114,7 +114,6 @@ namespace frugalmonotools
 									{
 										fwcodeName=reader.Value;
 									}
-					               Console.WriteLine (reader.Value);
 					               break;
 					               
 					   
