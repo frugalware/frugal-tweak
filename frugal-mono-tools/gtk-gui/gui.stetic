@@ -3972,7 +3972,7 @@ Public License instead of this License.
       <widget class="Gtk.Notebook" id="notebook2">
         <property name="MemberName" />
         <property name="CanFocus">True</property>
-        <property name="CurrentPage">0</property>
+        <property name="CurrentPage">1</property>
         <child>
           <widget class="Gtk.VBox" id="vbox1">
             <property name="MemberName" />
@@ -4106,6 +4106,7 @@ Inscription is free.</property>
                 <property name="CanFocus">True</property>
                 <property name="Text" translatable="yes">password</property>
                 <property name="IsEditable">True</property>
+                <property name="Visibility">False</property>
                 <property name="InvisibleChar">•</property>
               </widget>
               <packing>
@@ -4136,6 +4137,7 @@ Inscription is free.</property>
                     <property name="Icon">stock:gtk-save Menu</property>
                     <property name="Label" translatable="yes">Save</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnBTNSaveOptionsClicked" />
                   </widget>
                   <packing>
                     <property name="Position">2</property>

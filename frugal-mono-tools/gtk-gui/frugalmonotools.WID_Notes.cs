@@ -46,7 +46,7 @@ namespace frugalmonotools
 			this.notebook2 = new global::Gtk.Notebook ();
 			this.notebook2.CanFocus = true;
 			this.notebook2.Name = "notebook2";
-			this.notebook2.CurrentPage = 0;
+			this.notebook2.CurrentPage = 1;
 			// Container child notebook2.Gtk.Notebook+NotebookChild
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
@@ -188,6 +188,7 @@ namespace frugalmonotools
 			this.SAI_Pass.Name = "SAI_Pass";
 			this.SAI_Pass.Text = global::Mono.Unix.Catalog.GetString ("password");
 			this.SAI_Pass.IsEditable = true;
+			this.SAI_Pass.Visibility = false;
 			this.SAI_Pass.InvisibleChar = '•';
 			this.vbox2.Add (this.SAI_Pass);
 			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.SAI_Pass]));
@@ -245,6 +246,7 @@ namespace frugalmonotools
 			this.Hide ();
 			this.BTN_Download.Clicked += new global::System.EventHandler (this.OnBTNSaveClicked);
 			this.BTN_Save.Clicked += new global::System.EventHandler (this.OnBTNSaveClicked);
+			this.BTN_SaveOptions.Clicked += new global::System.EventHandler (this.OnBTNSaveOptionsClicked);
 		}
 	}
 }

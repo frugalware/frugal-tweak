@@ -30,6 +30,8 @@ namespace frugalmonotools
 		public void InitNotes()
 		{
 			TXT_Note.Buffer.Text=Outils.ReadFile( DirTweak.GetDirFrugalTweak()+cch_FileNote);
+			SAI_Login.Text=MainClass.configuration.Get_NoteLogin();
+			SAI_Pass.Text=MainClass.configuration.Get_NotePass();
 		}
 		protected virtual void OnBTNSaveClicked (object sender, System.EventArgs e)
 		{
@@ -37,6 +39,14 @@ namespace frugalmonotools
 			FileNotes.Write(TXT_Note.Buffer.Text);
 			FileNotes.Close();
 		}
+		
+		protected virtual void OnBTNSaveOptionsClicked (object sender, System.EventArgs e)
+		{
+			MainClass.configuration.Set_NoteLogin(SAI_Login.Text);
+			MainClass.configuration.Set_NotePass(SAI_Pass.Text);
+			MainClass.configuration.ConfSave();
+		}
+		
 		
 		
 	}

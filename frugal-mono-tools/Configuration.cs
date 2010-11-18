@@ -97,6 +97,8 @@ namespace frugalmonotools
 		private bool _startWithX = true;
 		private bool _showNotif = true;
 		private bool _showSplash = true;
+		private string _noteLogin ="Login";
+		private string _notePass="";
 		
 		public string GetConfFile(){
 			if(File.Exists(oldconfFile))
@@ -135,6 +137,22 @@ namespace frugalmonotools
 		{
 			return _showSplash;
 		}
+		public void Set_NoteLogin(string login)
+		{
+			_noteLogin=login;
+		}
+		public string Get_NoteLogin()
+		{
+			return _noteLogin;
+		}
+		public void Set_NotePass(string pass)
+		{
+			_notePass=pass;
+		}
+		public string Get_NotePass()
+		{
+			return _notePass;
+		}
 		
 		public Configuration ()
 		{
@@ -161,6 +179,14 @@ namespace frugalmonotools
 						{
 							Set_ShowSplash(false);
 						}
+					if (Regex.Matches(line, "notelogin=").Count>0)
+						{
+							Set_NoteLogin(line.Split('=')[1]);
+						}
+					if (Regex.Matches(line, "notepass=").Count>0)
+						{
+							Set_NotePass(line.Split('=')[1]);
+						}
 				}
 			}
 			catch
@@ -179,6 +205,8 @@ namespace frugalmonotools
 				if (!Get_StartWithX()) FileConf.WriteLine("dontstartwithx");
 				if (!Get_ShowNotif()) FileConf.WriteLine("dontshownotif");
 				if (!Get_ShowSplash()) FileConf.WriteLine("dontshowsplash");
+				FileConf.WriteLine("notelogin="+this.Get_NoteLogin());
+				FileConf.WriteLine("notepass="+this.Get_NotePass());
 				FileConf.Close();
 			}
 			catch(Exception exe)
