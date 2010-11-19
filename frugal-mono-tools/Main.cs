@@ -131,7 +131,7 @@ namespace frugalmonotools
 				//now analyse result
 				DateTime now = DateTime.Now;
 				TimeSpan nbDays = fwRelease-now;
-				string text=fwcodeName+" "+fwVersion+" should be release in "+nbDays.Days;
+				string text=fwcodeName+" "+fwVersion+" should be released in "+nbDays.Days;
 				if(int.Parse(nbDays.Days.ToString())>1)
 					text+=" days";
 				else
