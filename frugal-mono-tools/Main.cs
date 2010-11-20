@@ -84,7 +84,7 @@ namespace frugalmonotools
 		       {
 		           case XmlNodeType.Element: // The node is an element.
 							//keep only first version
-		    		        Console.Write(reader.Name);
+		    		       // Console.Write(reader.Name);
 							switch(reader.Name)
 							{
 									case "version":
