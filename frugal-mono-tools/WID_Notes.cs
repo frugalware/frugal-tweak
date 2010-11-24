@@ -30,7 +30,7 @@ namespace frugalmonotools
 		}
 		public void InitNotes()
 		{
-			TXT_Note.Buffer.Text=Outils.ReadFile( DirTweak.GetDirFrugalTweak()+cch_FileNote);
+			TXT_Note.Buffer.Text=Outils.ReadFile( DirTweak.GetDirFrugalTweak()+cch_FileNote,false);
 			SAI_Login.Text=MainClass.configuration.Get_NoteLogin();
 			SAI_Pass.Text=MainClass.configuration.Get_NotePass();
 			LIB_Info.Visible=false;

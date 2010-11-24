@@ -225,15 +225,18 @@ namespace frugalmonotools
 			if (System.IO.File.Exists(ch_DirRC+"rc5.d/"+servicename)) return true;
 			return false;
 		}
-		public static string ReadFile(string fileToRead)
+		public static string ReadFile(string fileToRead,bool ignoreRC)
 		{
 			try
 			{
 				System.IO.StreamReader textFile = new System.IO.StreamReader(fileToRead);
                 string fileContents = textFile.ReadToEnd();
                 textFile.Close();
-				fileContents = fileContents.Replace("\n\n", "\n");
-				fileContents = fileContents.Replace("\\\n", "");
+				if (ignoreRC)
+				{
+					fileContents = fileContents.Replace("\n\n", "\n");
+					fileContents = fileContents.Replace("\\\n", "");
+				}
 				return fileContents;
 			}
 			catch(Exception exe)
@@ -241,6 +244,10 @@ namespace frugalmonotools
 				Console.WriteLine(exe.Message);
 				return "";
 			}
+		}
+		public static string ReadFile(string fileToRead)
+		{
+			return ReadFile(fileToRead,true);	
 		}
 		/*
 		public static String ResultExcecute(String Commande,string Arguments)

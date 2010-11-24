@@ -43,7 +43,7 @@ namespace frugalmonotools
 			// Container child vbox9.Gtk.Box+BoxChild
 			this.label7 = new global::Gtk.Label ();
 			this.label7.Name = "label7";
-			this.label7.LabelProp = global::Mono.Unix.Catalog.GetString ("Frugalware provides several means of getting support :\n\nForums : http://forums.frugalware.org\n\nWiki : http://wiki.frugalware.org\n\nirc : irc.freenode.net channel #frugalware");
+			this.label7.LabelProp = global::Mono.Unix.Catalog.GetString ("Frugalware provide some helps supports :\n\nForums : http://forums.frugalware.org\n\nWiki : http://wiki.frugalware.org\n\nirc : irc.freenode.net channel #frugalware");
 			this.vbox9.Add (this.label7);
 			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.label7]));
 			w1.Position = 0;
@@ -96,7 +96,7 @@ namespace frugalmonotools
 			this.BTN_Forums.CanFocus = true;
 			this.BTN_Forums.Name = "BTN_Forums";
 			this.BTN_Forums.UseUnderline = true;
-			this.BTN_Forums.Label = global::Mono.Unix.Catalog.GetString ("Frugalware Forums");
+			this.BTN_Forums.Label = global::Mono.Unix.Catalog.GetString ("Forums Frugalware");
 			this.vbox9.Add (this.BTN_Forums);
 			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Forums]));
 			w6.Position = 2;
@@ -107,7 +107,7 @@ namespace frugalmonotools
 			this.BTN_Wiki.CanFocus = true;
 			this.BTN_Wiki.Name = "BTN_Wiki";
 			this.BTN_Wiki.UseUnderline = true;
-			this.BTN_Wiki.Label = global::Mono.Unix.Catalog.GetString ("Frugalware Wiki");
+			this.BTN_Wiki.Label = global::Mono.Unix.Catalog.GetString ("Wiki Frugalware");
 			this.vbox9.Add (this.BTN_Wiki);
 			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Wiki]));
 			w7.Position = 3;
@@ -118,7 +118,7 @@ namespace frugalmonotools
 			this.BTN_Bugs.CanFocus = true;
 			this.BTN_Bugs.Name = "BTN_Bugs";
 			this.BTN_Bugs.UseUnderline = true;
-			this.BTN_Bugs.Label = global::Mono.Unix.Catalog.GetString ("Bugs Tracker");
+			this.BTN_Bugs.Label = global::Mono.Unix.Catalog.GetString ("Bugs tracker");
 			this.vbox9.Add (this.BTN_Bugs);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox9[this.BTN_Bugs]));
 			w8.Position = 4;
