@@ -215,7 +215,7 @@ namespace frugalmonotools
 			// Container child hbox28.Gtk.Box+BoxChild
 			this.label16 = new global::Gtk.Label ();
 			this.label16.Name = "label16";
-			this.label16.LabelProp = global::Mono.Unix.Catalog.GetString ("Computeur should be restarted");
+			this.label16.LabelProp = global::Mono.Unix.Catalog.GetString ("Computer should be restarted");
 			this.hbox28.Add (this.label16);
 			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox28[this.label16]));
 			w16.Position = 1;

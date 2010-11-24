@@ -153,7 +153,7 @@ namespace frugalmonotools
 					if(latest =="")latest=item.Link.AbsoluteUri.ToString();
 					if (cache.GetLatest()!=latest)
 					{
-						Outils.Inform("Frugalware","News are available.");
+						Outils.Inform("Frugalware","News items are available.");
 						//write cache	
 						cache.SetLatest(latest);
 						cache.CacheSave();
@@ -179,7 +179,7 @@ namespace frugalmonotools
 					}
 				}
 
-				Outils.Inform("Frugalware","Some update are available.");
+				Outils.Inform("Frugalware","Some updates are available.");
 				//Console.WriteLine("Some packages can be updated.");
 			}
 			else
@@ -204,12 +204,12 @@ namespace frugalmonotools
 				menuItemccRoot.Image = ccimgRoot;
 				popupMenu.Add(menuItemccRoot);
 				
-				ImageMenuItem menuItemForum = new ImageMenuItem ("Forums Frugalware");
+				ImageMenuItem menuItemForum = new ImageMenuItem ("Frugalware Forums");
 				Gtk.Image Forumimg = new Gtk.Image(Stock.Help, IconSize.Menu);
 				menuItemForum.Image = Forumimg;
 				popupMenu.Add(menuItemForum);
 			
-				ImageMenuItem menuItemWiki = new ImageMenuItem ("Wiki Frugalware");
+				ImageMenuItem menuItemWiki = new ImageMenuItem ("Frugalware Wiki");
 				Gtk.Image Wikiimg = new Gtk.Image(Stock.Help, IconSize.Menu);
 				menuItemWiki.Image = Wikiimg;
 				popupMenu.Add(menuItemWiki);

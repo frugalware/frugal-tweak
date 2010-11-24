@@ -212,7 +212,7 @@ namespace frugalmonotools
 			// Notebook tab
 			this.Entrys = new global::Gtk.Label ();
 			this.Entrys.Name = "Entrys";
-			this.Entrys.LabelProp = global::Mono.Unix.Catalog.GetString ("Entrys");
+			this.Entrys.LabelProp = global::Mono.Unix.Catalog.GetString ("Entries");
 			this.notebook1.SetTabLabel (this.vbox1, this.Entrys);
 			this.Entrys.ShowAll ();
 			// Container child notebook1.Gtk.Notebook+NotebookChild
