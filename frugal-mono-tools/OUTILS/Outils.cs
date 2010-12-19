@@ -19,6 +19,9 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Net;
 
 namespace frugalmonotools
 {
@@ -264,6 +267,113 @@ namespace frugalmonotools
 			return ret;
 
 		}*/
+		/// <summary>
+		/// Détecte les urls dans une chaine
+		/// </summary>
+		/// <param name="text">
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="System.String"/>
+		/// </returns>
+		public static string UrlDetection(string text,string origine)
+		{
+			// match protocol://url
+			Regex httpRegex = new Regex(@"([a-z]+://[^)(,!\s]+)", RegexOptions.IgnoreCase);
+			// match www. url
+			Regex wwwRegex = new Regex(@"(?:^|\s)(www\.[^)(,!\s]+)", RegexOptions.IgnoreCase);
+			// match @nickname
+			Regex atRegex = new Regex(@"@([^\s:,!]+)", RegexOptions.IgnoreCase);
+			
+			text = httpRegex.Replace(text, "<a href=\"$1\">$1</a>");
+			text = atRegex.Replace(text, "@<a href=\"http://"+origine+"/$1\">$1</a>");
+			text = wwwRegex.Replace(text, "<a href=\"http://$1\">$1</a>");
+			
+			return text;
+		}
+		/// <summary>
+		/// ouvre le navigateur
+		/// </summary>
+		/// <param name="address">
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="System.Boolean"/>
+		/// </returns>
+		public static bool old_OpenLink(string address) {
+    	try {
+	        int plat = (int) Environment.OSVersion.Platform;
+	        if ((plat != 4) && (plat != 128)) {
+	            // Use Microsoft's way of opening sites
+	            Process.Start(address);
+				return true;
+       		 } 
+			else 
+			{
+            // We're on Unix, try gnome-open (used by GNOME), then open
+            // (used my MacOS), then Firefox or Konqueror browsers (our last
+            // hope).
+            string cmdline = String.Format("gnome-open {0} || open {0} || "+
+                "midori {0} || firefox {0} || mozilla-firefox {0} || konqueror {0}", address);
+            Process proc = Process.Start (cmdline);
+ 
+            // Sleep some time to wait for the shell to return in case of error
+            System.Threading.Thread.Sleep(250);
+ 
+            // If the exit code is zero or the process is still running then
+            // appearently we have been successful.
+            return (!proc.HasExited || proc.ExitCode == 0);
+       	 	}
+	    } 
+		catch  {
+	        // We don't want any surprises
+	        return false;
+			}
+		}
+	
+		
+		static public string ToTinyURLS(string txt)
+		{
+	    Regex regx = new Regex("http://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?", RegexOptions.IgnoreCase);
+	
+	    MatchCollection mactches = regx.Matches(txt);
+	
+	    foreach (Match match in mactches)
+	    {
+	        string tURL = MakeTinyUrl(match.Value);
+	        txt = txt.Replace(match.Value, tURL);
+	    }
+	
+	    return txt;
+		}
+
+	public static string MakeTinyUrl(string Url)
+	{
+	    try
+	    {
+	        if (Url.Length <= 12)
+	        {
+	            return Url;
+	        }
+	        if (!Url.ToLower().StartsWith("http") && !Url.ToLower().StartsWith("ftp"))
+	        {
+	            Url = "http://" + Url;
+	        }
+	        var request = WebRequest.Create("http://tinyurl.com/api-create.php?url=" + Url);
+	        var res = request.GetResponse();
+	        string text;
+	        using (var reader = new StreamReader(res.GetResponseStream()))
+	        {
+	            text = reader.ReadToEnd();
+	        }
+	        return text;
+	    }
+	    catch (Exception)
+	    {
+	        return Url;
+	    }
+		}
+	
 	}
 }
 

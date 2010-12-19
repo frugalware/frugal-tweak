@@ -158,6 +158,14 @@
     <Compile Include="gtk-gui\frugalmonotools.WID_Notes.cs" />
     <Compile Include="FrugalNote.cs" />
     <Compile Include="Systemd.cs" />
+    <Compile Include="Objects\Download.cs" />
+    <Compile Include="Objects\Message.cs" />
+    <Compile Include="Objects\Personne.cs" />
+    <Compile Include="Objects\StringExtension.cs" />
+    <Compile Include="Objects\XmlParser.cs" />
+    <Compile Include="Twitter\IdentiObject.cs" />
+    <Compile Include="Twitter\TwitterObject.cs" />
+    <Compile Include="Twitter\Conf.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
