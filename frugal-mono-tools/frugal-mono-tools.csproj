@@ -166,6 +166,9 @@
     <Compile Include="Twitter\IdentiObject.cs" />
     <Compile Include="Twitter\TwitterObject.cs" />
     <Compile Include="Twitter\Conf.cs" />
+    <Compile Include="Twitter\GUI\TreeMessage.cs" />
+    <Compile Include="Twitter\GUI\WID_Identi.cs" />
+    <Compile Include="gtk-gui\frugalmonotools.WID_Identi.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
