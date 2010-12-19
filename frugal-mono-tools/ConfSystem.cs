@@ -32,6 +32,7 @@ namespace frugalmonotools
 		const string cch_time=@"/etc/hardwareclock";
 		const string cch_LocalTime="localtime";
 		const string cch_UTC="UTC";
+		const string cch_SystemdServiceTime="hwclock-load.service";
 		
 		private string _hostname;
 		private string _locale;
@@ -230,6 +231,11 @@ namespace frugalmonotools
 				FileConf.WriteLine(this.GetLocalTime());
 				FileConf.Close();
 				
+				//Systemd
+				if (this.GetLocalTime() == cch_LocalTime)
+					Systemd.DisableService(cch_SystemdServiceTime);
+				else
+					Systemd.EnableService(cch_SystemdServiceTime);
 				//TODO :
 				//Added TimeZone
 				//tzdata

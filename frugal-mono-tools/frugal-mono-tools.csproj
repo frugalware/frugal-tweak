@@ -157,6 +157,7 @@
     <Compile Include="WID_Notes.cs" />
     <Compile Include="gtk-gui\frugalmonotools.WID_Notes.cs" />
     <Compile Include="FrugalNote.cs" />
+    <Compile Include="Systemd.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
