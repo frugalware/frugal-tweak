@@ -158,18 +158,19 @@ namespace frugalmonotools
 			}
 		}
 		
-		public void SelectModule(string module)
+		private void cleanWid()
 		{
-					
 					this.HBOX_Details.Destroy();
 					this.HBOX_Details = new global::Gtk.HBox ();
 					this.HBOX_Details.SetSizeRequest(680,500);
 					this.HBOX_Details.Name = "HBOX_Details";
 					this.HBOX_Menu.Add (this.HBOX_Details);
-		            
-					
+		}
+		public void SelectModule(string module)
+		{
 					switch (module){
 					case cch_notes:
+							cleanWid();
 							this.fen_notes = new WID_Notes();
 							this.HBOX_Details.PackStart(fen_notes);
 							this.HBOX_Details.ShowAll();
@@ -177,6 +178,7 @@ namespace frugalmonotools
 						break;
 				
 						case cch_users:
+							cleanWid();
 							this.fen_users = new WID_Users();
 							this.HBOX_Details.PackStart(fen_users);
 							this.HBOX_Details.ShowAll();
@@ -184,6 +186,7 @@ namespace frugalmonotools
 						break;
 				
 						case cch_datetime:
+							cleanWid();
 							this.fen_dateTime = new WID_DateTime();
 							this.HBOX_Details.PackStart(fen_dateTime);
 							this.HBOX_Details.ShowAll();
@@ -191,6 +194,7 @@ namespace frugalmonotools
 						break;
 				
 						case cch_packages:
+							cleanWid();
 							this.fen_pkg = new WID_Pkg();
 							this.HBOX_Details.PackStart(fen_pkg);
 							this.HBOX_Details.ShowAll();
@@ -198,6 +202,7 @@ namespace frugalmonotools
 						break;
 						
 						case cch_update:
+							cleanWid();
 							this.fen_update = new WID_Update();
 							this.HBOX_Details.PackStart(fen_update);
 							this.HBOX_Details.ShowAll();
@@ -205,6 +210,7 @@ namespace frugalmonotools
 						break;
 				
 						case cch_updateConf:
+							cleanWid();
 							this.fen_updateConf = new WID_UpdateConf();
 							this.HBOX_Details.PackStart(fen_updateConf);
 							this.HBOX_Details.ShowAll();
@@ -212,12 +218,14 @@ namespace frugalmonotools
 						break;
 				
 						case cch_about:
+							cleanWid();
 							this.fen_about = new WID_About();
 							this.HBOX_Details.PackStart(fen_about);
 							this.HBOX_Details.ShowAll();
 						break;
 				
 						case cch_configuration:
+							cleanWid();
 							this.fen_config = new WID_Config();
 							this.HBOX_Details.PackStart(fen_config);
 							this.HBOX_Details.ShowAll();
@@ -225,6 +233,7 @@ namespace frugalmonotools
 						break;
 
 						case cch_hardware:
+							cleanWid();
 							this.fen_hardware = new WID_Hardware();
 							this.HBOX_Details.PackStart(fen_hardware);
 							this.HBOX_Details.ShowAll();
@@ -232,6 +241,7 @@ namespace frugalmonotools
 						break;
 
 						case cch_loginManager:
+							cleanWid();
 							this.fen_loginManager = new WID_LoginManager();
 							this.HBOX_Details.PackStart(fen_loginManager);
 							this.HBOX_Details.ShowAll();
@@ -239,6 +249,7 @@ namespace frugalmonotools
 						break;
 				
 						case cch_network:
+							cleanWid();
 							this.fen_network=new WID_Network();
 							this.HBOX_Details.PackStart(fen_network);
 							this.HBOX_Details.ShowAll();
@@ -246,6 +257,7 @@ namespace frugalmonotools
 						break;
 				
 						case cch_grub:
+							cleanWid();
 							this.fen_grub= new WID_Grub();
 							this.HBOX_Details.PackStart(fen_grub);
 							this.HBOX_Details.ShowAll();
@@ -253,12 +265,14 @@ namespace frugalmonotools
 						break;
 				
 						case cch_logs:
+							cleanWid();
 							this.fen_logs = new WID_Logs();
 							this.HBOX_Details.PackStart(fen_logs);
 							this.HBOX_Details.ShowAll();
 						break;
 				
 						case cch_news:
+							cleanWid();
 							this.fen_news = new WID_News();
 							this.HBOX_Details.PackStart(fen_news);
 							this.HBOX_Details.ShowAll();
@@ -266,20 +280,38 @@ namespace frugalmonotools
 						break;
 
 						case cch_services:
-							this.fen_services = new WID_Services();
-							this.HBOX_Details.PackStart(fen_services);
-							this.HBOX_Details.ShowAll();
-							this.fen_services.InitService();
+							if (Systemd.IsActive())
+							{
+								if(MainClass.pacmanG2.IsInstalled("systemd-gtk"))
+					   					Outils.ExcecuteAsRoot("systemadm",false);
+								else
+								{
+										MessageDialog md = new MessageDialog(this, DialogFlags.Modal, 
+										MessageType.Info, ButtonsType.Close, "You should install system-gtk"); 
+                     					md.Run (); 
+										md.Destroy(); 
+								}
+							}
+							else
+							{
+								cleanWid();
+								this.fen_services = new WID_Services();
+								this.HBOX_Details.PackStart(fen_services);
+								this.HBOX_Details.ShowAll();
+								this.fen_services.InitService();
+							}
 							
 						break;
 
 						case cch_support:
+							cleanWid();
 							this.fen_support= new WID_Support();
 							this.HBOX_Details.PackStart(fen_support);
 							this.HBOX_Details.ShowAll();
 						break;
 				
 						case cch_system:
+							cleanWid();
 							this.fen_system=new WID_System();
 							this.HBOX_Details.PackStart(fen_system);
 							this.HBOX_Details.ShowAll();
@@ -287,6 +319,7 @@ namespace frugalmonotools
 						break;
 				
 						case cch_xorg:
+							cleanWid();
 							this.fen_xorg=new WID_Xorg();
 							this.HBOX_Details.PackStart(fen_xorg);
 							this.HBOX_Details.ShowAll();
