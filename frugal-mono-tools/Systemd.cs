@@ -16,13 +16,17 @@
 //  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //  */
 using System;
+
 namespace frugalmonotools
 {
 	public static class Systemd
 	{
+		
+		
 		public static bool IsActive()
 		{
-			if (Outils.getoutput("ps aux | grep systemd") != "" )
+			
+			if (Outils.getoutput("pidof systemd") == "1" )
 			    return true;
 			 else
 			    return false;
