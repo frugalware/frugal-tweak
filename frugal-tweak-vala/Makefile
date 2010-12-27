@@ -1,5 +1,7 @@
 VERSION = 0.1
 
+VALAFLAG = DEBUG=1
+
 DAEMONSOURCES = daemon.vala
 TERMINALSOURCES = terminal.vala mainwindow.vala
 VALAC = valac
@@ -7,11 +9,11 @@ VALAC = valac
 all: daemon terminal
 
 daemon:
-	$(VALAC) $(DAEMONSOURCES) -o frugalware-tweak-daemon
+	$(VALAC) --define=$(VALAFLAG) $(DAEMONSOURCES) -o frugalware-tweak-daemon
 
 terminal:
-	$(VALAC) --pkg vte $(TERMINALSOURCES) -o frugalware-tweak-terminal
+	$(VALAC) --define=$(VALAFLAG) --pkg vte $(TERMINALSOURCES) -o frugalware-tweak-terminal
 
 clean:
-	rm *.o
+	rm frugalware-tweak-terminal
 	rm frugalware-tweak-daemon

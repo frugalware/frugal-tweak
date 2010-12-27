@@ -21,18 +21,27 @@ using GLib;
 class Deamon : GLib.Object {
 
     public static int main(string[] args) {
-
-        stdout.printf("Start Frugalware Tweak Daemon\n");
-	//timer
-	Timer timer = new Timer();
-	timer.start();
-	
-	stdout.printf("The program will close in three seconds\n");
-
-	for(double x = 0.0; x <= 3.0;) {
-	     x = timer.elapsed();
+	#if DEBUG==1
+	        stdout.printf("Start Frugalware Tweak Daemon\n");
+	#endif
+	UpdateDatabase();
+	while(true)
+	{
+		#if DEBUG==1
+ 			Thread.usleep(120000000); // 2minutes for tested
+		#else
+			Thread.usleep(1800000000);	//1/2 hour
+			Thread.usleep(1800000000); //1/2 hour
+			UpdateDatabase();
+		#endif
+		
 	}
-
-        return 0;
     }
+
+	public static void UpdateDatabase()
+	{
+		#if DEBUG==1
+			stdout.printf("Updated database pacman-g2\n");
+		#endif
+	}
 }
