@@ -7,7 +7,7 @@ TERMINALSOURCES = terminal.vala mainwindow.vala
 BROWSERSOURCES = browser.vala
 VALAC = valac
 
-all: daemon terminal
+all: daemon terminal browser
 
 daemon:
 	$(VALAC) --define=$(VALAFLAG) $(DAEMONSOURCES) -o frugalware-tweak-daemon
