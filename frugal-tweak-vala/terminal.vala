@@ -1,7 +1,7 @@
 /*
  * Vala-Terminal -- a lightweight terminal program
  *
- * (C) 2010 bouleetbil <bouleetbil@frigdev.info>
+ * (C) 2010 bouleetbil <bouleetbil@frogdev.info>
  * (C) 2007-2010 Michael 'Mickey' Lauer <mickey@vanille-media.de>
  * (C) 2009 Aapo Rantalainen
  *
