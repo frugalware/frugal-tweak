@@ -21,11 +21,41 @@ using Pacman;
 
 public class pacman
 {
+	private const string CFG_FILE="/etc/pacman-g2.conf";
+	private delegate void* _db_callback_delegate(string db, Pacman.Database d);	
+
 	public pacman()
 	{
-		Pacman.initialize(Pacman.ROOT);
+		Pacman.release();
+		if (Pacman.initialize(Pacman.ROOT) != -1)
+		{
+			#if DEBUG==1
+				stdout.printf("Initialize pacman-g2\n");		
+			#endif
+			InitDatabase();
+		}
+	}
+
+
+	private void InitDatabase()
+	{
+		Pacman.cb_db_register callback = _db_callback;
+		Pacman.parse_config(CFG_FILE, callback,"");
 		#if DEBUG==1
-	        	stdout.printf("Initialize pacman-g2\n");		
+			stdout.printf("Parse config pacman-g2\n");		
 		#endif
 	}
+	private static void* _db_callback (string db, Pacman.Database d)
+	{
+		#if DEBUG==1
+					stdout.printf("Find repo "+db+"\n");		
+		#endif
+		return null;	
+	}
+	public void UpdateDatabase()
+	{
+		//Pacman.db
+	}
+	
+	 
 }
