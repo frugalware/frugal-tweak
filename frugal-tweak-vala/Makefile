@@ -2,7 +2,7 @@ VERSION = 0.1
 
 VALAFLAG = DEBUG=1
 
-DAEMONSOURCES = daemon.vala
+DAEMONSOURCES = daemon.vala pacman.vala
 TERMINALSOURCES = terminal.vala mainwindow.vala
 BROWSERSOURCES = browser.vala
 VALAC = valac
@@ -10,7 +10,7 @@ VALAC = valac
 all: daemon terminal browser
 
 daemon:
-	$(VALAC) --define=$(VALAFLAG) $(DAEMONSOURCES) -o frugalware-tweak-daemon
+	$(VALAC) --define=$(VALAFLAG) --pkg pacman $(DAEMONSOURCES) -o frugalware-tweak-daemon
 
 terminal:
 	$(VALAC) --define=$(VALAFLAG) --pkg vte $(TERMINALSOURCES) -o frugalware-tweak-terminal

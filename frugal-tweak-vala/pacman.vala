@@ -16,34 +16,16 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
-using GLib;
-using pacman;
 
-class Deamon : GLib.Object {
+using Pacman;
 
-    public static int main(string[] args) {
-	#if DEBUG==1
-	        stdout.printf("Start Frugalware Tweak Daemon\n");
-	#endif
-	UpdateDatabase();
-	while(true)
+public class pacman
+{
+	public pacman()
 	{
+		Pacman.initialize(Pacman.ROOT);
 		#if DEBUG==1
- 			Thread.usleep(120000000); // 2minutes for tested
-		#else
-			Thread.usleep(1800000000);	//1/2 hour
-			Thread.usleep(1800000000); //1/2 hour
-			UpdateDatabase();
+	        	stdout.printf("Initialize pacman-g2\n");		
 		#endif
-		
-	}
-    }
-
-	public static void UpdateDatabase()
-	{
-		#if DEBUG==1
-			stdout.printf("Updated database pacman-g2\n");
-		#endif
-		pacman pacmang2 = new pacman();
 	}
 }
