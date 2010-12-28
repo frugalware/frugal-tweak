@@ -22,8 +22,7 @@ using Pacman;
 public class pacman
 {
 	private const string CFG_FILE="/etc/pacman-g2.conf";
-	private delegate void* _db_callback_delegate(string db, Pacman.Database d);	
-
+	
 	public pacman()
 	{
 		Pacman.release();
