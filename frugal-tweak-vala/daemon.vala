@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 using GLib;
+using DbusServer;
 using pacman;
 
 class Deamon : GLib.Object {
@@ -25,7 +26,11 @@ class Deamon : GLib.Object {
 
 	public static int main(string[] args) {
 	Tools.ConsoleDebug("Start Frugalware Tweak Daemon\n");
-
+	//dbus
+	Bus.own_name (BusType.SESSION, "org.frugal.tweak", BusNameOwnerFlags.NONE,
+		          on_bus_aquired,
+		          () => {},
+		          () => stderr.printf ("Could not aquire name\n"));
 	
 	pacmang2 = new pacman();
 	UpdateAllDatabase();
@@ -49,3 +54,4 @@ class Deamon : GLib.Object {
 		
 	}
 }
+

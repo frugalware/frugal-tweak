@@ -89,8 +89,10 @@ public class pacman
 		
 	}
 	
-	public void CheckUpdate()
+	public void bool CheckUpdate()
 	{
+		PM_LIST *i = null;
+
 		if (pacman_trans_init(Pacman.OptionTrans.TYPE_SYNC, 0, null, null, null) == -1) {
 			Tools.ConsoleDebug("pacman_trans_init  failed \n");
 			return ;
@@ -110,7 +112,7 @@ public class pacman
 		{
 			Tools.ConsoleDebug("Updates are available\n");
 			//TODO send event
-			PM_LIST *i = null;
+			
 			for (i=pacman_list_first(packages);i!=null;i=pacman_list_next(i)) {
 					PM_SYNCPKG *spkg = pacman_list_getdata (i);
 					PM_PKG *pkg = pacman_sync_getinfo (spkg, OptionPMSYNC.PKG);
