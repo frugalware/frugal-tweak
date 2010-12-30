@@ -20,12 +20,16 @@ using GLib;
 using pacman;
 
 class Deamon : GLib.Object {
+	
+	public static pacman pacmang2 ;
 
-    public static int main(string[] args) {
+	public static int main(string[] args) {
 	#if DEBUG==1
 	        stdout.printf("Start Frugalware Tweak Daemon\n");
 	#endif
-	UpdateDatabase();
+	
+	pacmang2 = new pacman();
+	UpdateAllDatabase();
 	while(true)
 	{
 		#if DEBUG==1
@@ -33,17 +37,19 @@ class Deamon : GLib.Object {
 		#else
 			Thread.usleep(1800000000);	//1/2 hour
 			Thread.usleep(1800000000); //1/2 hour
-			UpdateDatabase();
+			UpdateAllDatabase();
 		#endif
 		
 	}
     }
 
-	public static void UpdateDatabase()
+	public static void UpdateAllDatabase()
 	{
 		#if DEBUG==1
 			stdout.printf("Updated database pacman-g2\n");
 		#endif
-		pacman pacmang2 = new pacman();
+			
+		pacmang2.UpdateAllDatabase();
+		
 	}
 }

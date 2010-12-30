@@ -28,8 +28,7 @@ public class pacman
 	private static const string FW_STABLE				="frugalware";
 	private static const string FW_LOCAL				="local";
 	private static unowned Pacman.PM_DB sync_db	= null;
-	private static GLib.List dblist 						= null;
-
+	private static string[] repos						 = new string[0];
 	
 	public pacman()
 	{
@@ -62,15 +61,20 @@ public class pacman
 		#if DEBUG==1
 					stdout.printf("Find repo "+section+"\n");		
 		#endif
-		
-		//dblist = g_list_append (dblist, db);
+		repos += section;
 		return;
 	}
 
 	public void UpdateAllDatabase()
 	{
 		stdout.printf("Update all repo  \n");
-		this.UpdateDatabase(FW_CURRENT);
+		int i =0;
+		while(i <repos.length)
+		{
+			//stdout.printf(repos[i]+" \n");
+			this.UpdateDatabase(repos[i]);
+			i++;
+		}
 	}
 
 	public void UpdateDatabase(string section)
@@ -84,7 +88,6 @@ public class pacman
 		if (retval==-1)
 		{
 			stdout.printf("Update repo "+section+" failed \n");
-			//stdout.printf(Pacman.strerror(err));
 		}
 		
 	}
