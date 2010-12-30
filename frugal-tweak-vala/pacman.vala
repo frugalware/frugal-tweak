@@ -29,7 +29,7 @@ public class pacman
 	private static const string FW_STABLE				="frugalware";
 	private static const string FW_LOCAL				="local";
 	private static unowned Pacman.PM_DB sync_db	= null;
-	private static Pacman.PM_LIST *packages			= null;
+	public static Pacman.PM_LIST *packages			= null;
 	private static string[] repos						 = new string[0];
 	
 	public pacman()
@@ -89,7 +89,7 @@ public class pacman
 		
 	}
 	
-	public void bool CheckUpdate()
+	public void CheckUpdate()
 	{
 		PM_LIST *i = null;
 

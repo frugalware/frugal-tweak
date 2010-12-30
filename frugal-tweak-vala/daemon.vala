@@ -37,12 +37,12 @@ class Deamon : GLib.Object {
 	while(true)
 	{
 		#if DEBUG==1
- 			Thread.usleep(120000000); // 2minutes for tested
+ 			Thread.usleep(120000); // 2minutes for tested
 		#else
 			Thread.usleep(1800000000);	//1/2 hour
 			Thread.usleep(1800000000); //1/2 hour
-			UpdateAllDatabase();
 		#endif
+		UpdateAllDatabase();
 		
 	}
     }

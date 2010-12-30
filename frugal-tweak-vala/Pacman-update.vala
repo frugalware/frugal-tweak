@@ -24,22 +24,14 @@ int main (string[] args) {
 	Gtk.init (ref args);
 
 	var window = new Window ();
-	window.title = "Frugalware Tweak";
+	window.title = "Update packages";
 	window.set_default_size (400, 300);
 	window.position = WindowPosition.CENTER;
 	window.destroy.connect (Gtk.main_quit);
 
-/*
-	var button = new Button.with_label ("Click me!");
-	button.clicked.connect (() => {
-	button.label = "Thank you";
-	});
-
-	window.add (button);
-*/
 	//added treeview for modules
 	var view = new TreeView ();
-        Tree.setup_treeviewModule (view);
+        Tree.setup_treeviewPacmanUpdate (view);
 	window.add(view);
 
 	window.show_all ();
