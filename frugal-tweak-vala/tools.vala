@@ -22,7 +22,7 @@ public static class Tools
 	public static void ConsoleDebug(string text)
 	{
 		#if DEBUG==1
-				stdout.printf(text+"\n");		
+				stdout.printf(text);		
 		#endif
 	}
 }

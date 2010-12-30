@@ -29,6 +29,7 @@ public class pacman
 	private static const string FW_STABLE				="frugalware";
 	private static const string FW_LOCAL				="local";
 	private static unowned Pacman.PM_DB sync_db	= null;
+	private static Pacman.PM_LIST *packages			= null;
 	private static string[] repos						 = new string[0];
 	
 	public pacman()
@@ -92,14 +93,16 @@ public class pacman
 			Tools.ConsoleDebug("pacman_trans_sysupgrade "+section+" failed \n");
 			return ;
 		}
-		/*packages = pacman_trans_getinfo (PM_TRANS_PACKAGES);
+		packages = pacman_trans_getinfo (OptionPM.PACKAGES);
 		if (packages == null) 
 		{
-				#if DEBUG==1
-					 ("No new updates are available\n")
-				#endif
-		}	*/	
-		
+			Tools.ConsoleDebug("No new updates are available\n");
+		}
+		else
+		{
+			Tools.ConsoleDebug("Updates are available\n");
+			//TODO send event
+		}
 		pacman_trans_release ();
 		
 	}
