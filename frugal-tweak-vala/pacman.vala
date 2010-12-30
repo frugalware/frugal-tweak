@@ -89,6 +89,16 @@ public class pacman
 		{
 			stdout.printf("Update repo "+section+" failed \n");
 		}
+		if (pacman_trans_init(Pacman.OptionTrans.TYPE_SYNC, 0, null, null, null) == -1) {
+			stdout.printf("pacman_trans_init "+section+" failed \n");
+			return ;
+		}
+		if (Pacman.pacman_trans_sysupgrade() == -1)
+		{
+			stdout.printf("pacman_trans_sysupgrade "+section+" failed \n");
+			return ;
+		}
+		pacman_trans_release ();
 		
 	}
 	
