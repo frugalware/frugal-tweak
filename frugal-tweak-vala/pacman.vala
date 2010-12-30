@@ -51,8 +51,9 @@ public class pacman
 		Pacman.pacman_parse_config(CFG_FILE, callback,"");		
 		Pacman.pacman_db_register(FW_LOCAL);
 		 /* set some important pacman-g2 options */
-		//Pacman.pacman_set_option (Pacman.Option.LOGCB,-1);
-		//Pacman.pacman_set_option (Pacman.Option.LOGMASK,-1);
+		long _logParam = -1;
+		Pacman.pacman_set_option (Pacman.Option.LOGCB,_logParam);
+		//Pacman.pacman_set_option (Pacman.Option.LOGMASK,_logParam);
 		//Pacman.set_option(Pacman.Option.USESYSLOG,-1);
 	}
 	private static void _db_callback (string section, PM_DB db)
