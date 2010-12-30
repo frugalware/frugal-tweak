@@ -71,26 +71,33 @@ public class pacman
 			this.UpdateDatabase(repos[i]);
 			i++;
 		}
+		this.CheckUpdate();
 	}
 
 	public void UpdateDatabase(string section)
 	{
 		Tools.ConsoleDebug("Update repo "+section+" \n");
-		int	retval = 0;
 		sync_db = Pacman.pacman_db_register(section);
+		int	retval = 0;
 		retval = Pacman.pacman_db_update(0,sync_db);
 		if (retval==-1)
 		{
 			Tools.ConsoleDebug("Update repo "+section+" failed \n");
 			return;
 		}
+		
+	}
+	
+	public void CheckUpdate()
+	{
 		if (pacman_trans_init(Pacman.OptionTrans.TYPE_SYNC, 0, null, null, null) == -1) {
-			Tools.ConsoleDebug("pacman_trans_init "+section+" failed \n");
+			Tools.ConsoleDebug("pacman_trans_init  failed \n");
 			return ;
 		}
+		
 		if (Pacman.pacman_trans_sysupgrade() == -1)
 		{
-			Tools.ConsoleDebug("pacman_trans_sysupgrade "+section+" failed \n");
+			Tools.ConsoleDebug("pacman_trans_sysupgrade failed \n");
 			return ;
 		}
 		packages = pacman_trans_getinfo (OptionPM.PACKAGES);
@@ -102,10 +109,14 @@ public class pacman
 		{
 			Tools.ConsoleDebug("Updates are available\n");
 			//TODO send event
+			PM_LIST *i = null;
+			for (i=pacman_list_first(packages);i!=null;i=pacman_list_next(i)) {
+					PM_SYNCPKG *spkg = pacman_list_getdata (i);
+					PM_PKG *pkg = pacman_sync_getinfo (spkg, OptionPMSYNC.PKG);
+					Tools.ConsoleDebug((string)pacman_pkg_getinfo(pkg,OptionPMPKG.NAME)+"\n");
+				}
+			
 		}
 		pacman_trans_release ();
-		
 	}
-	
-	 
 }
