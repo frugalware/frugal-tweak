@@ -17,16 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
+using GLib;
 using Pacman;
 
 public class pacman
 {
-	private const string CFG_FILE="/etc/pacman-g2.conf";
+	
+	private static const string CFG_FILE				="/etc/pacman-g2.conf";
+	private static const string FW_CURRENT			="frugalware-current";
+	private static const string FW_STABLE				="frugalware";
+	private static const string FW_LOCAL				="local";
+	private static unowned Pacman.PM_DB sync_db	= null;
+	private static GLib.List dblist 						= null;
+
 	
 	public pacman()
 	{
-		Pacman.release();
-		if (Pacman.initialize(Pacman.ROOT) != -1)
+		Pacman.pacman_release();
+		if (Pacman.pacman_initialize(Pacman.PM_ROOT) != -1)
 		{
 			#if DEBUG==1
 				stdout.printf("Initialize pacman-g2\n");		
@@ -38,22 +46,47 @@ public class pacman
 
 	private void InitDatabase()
 	{
-		Pacman.cb_db_register callback = _db_callback;
-		Pacman.parse_config(CFG_FILE, callback,"");
 		#if DEBUG==1
 			stdout.printf("Parse config pacman-g2\n");		
 		#endif
+		Pacman.pacman_cb_db_register callback = _db_callback;
+		Pacman.pacman_parse_config(CFG_FILE, callback,"");		
+		Pacman.pacman_db_register(FW_LOCAL);
+		 /* set some important pacman-g2 options */
+		//Pacman.pacman_set_option (Pacman.Option.LOGCB,-1);
+		//Pacman.pacman_set_option (Pacman.Option.LOGMASK,-1);
+		//Pacman.set_option(Pacman.Option.USESYSLOG,-1);
 	}
-	private static void* _db_callback (string db, Pacman.Database d)
+	private static void _db_callback (string section, PM_DB db)
 	{
 		#if DEBUG==1
-					stdout.printf("Find repo "+db+"\n");		
+					stdout.printf("Find repo "+section+"\n");		
 		#endif
-		return null;	
+		
+		//dblist = g_list_append (dblist, db);
+		return;
 	}
-	public void UpdateDatabase()
+
+	public void UpdateAllDatabase()
 	{
-		//Pacman.db
+		stdout.printf("Update all repo  \n");
+		this.UpdateDatabase(FW_CURRENT);
+	}
+
+	public void UpdateDatabase(string section)
+	{
+		#if DEBUG==1
+			stdout.printf("Update repo "+section+" \n");
+		#endif
+		int	retval = 0;
+		sync_db = Pacman.pacman_db_register(section);
+		retval = Pacman.pacman_db_update(0,sync_db);
+		if (retval==-1)
+		{
+			stdout.printf("Update repo "+section+" failed \n");
+			//stdout.printf(Pacman.strerror(err));
+		}
+		
 	}
 	
 	 
