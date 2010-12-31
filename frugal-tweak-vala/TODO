@@ -1,1 +1,3 @@
-.update pacman-g2 database into daemon.vala
+.Added systray icon
+.have a config file for added modules
+.uses glib schema for save configurations
