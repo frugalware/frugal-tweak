@@ -1,0 +1,13 @@
+<schemalist>
+  <schema id="org.frugalware.frugaltweak" path="/org/frugalware/frugaltweak/" gettext-domain="frugaltweak">
+
+    <key name="shownotif" type="b">
+      <summary>Show Notification</summary>
+      <default>true</default>
+      <description>
+        Show the notifications into frugalware tweak
+      </description>
+    </key>
+
+  </schema>
+</schemalist>

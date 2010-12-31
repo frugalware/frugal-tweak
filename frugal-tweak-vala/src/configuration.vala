@@ -17,28 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
-using Notify;
-using Tools;
-using Configuration;
 
-public static class Popup  {
-	
-	public static void PopupShow(string title,string text) {
-		if(!GetShowNotif()) return ;
+public static class Configuration  {
 
-		Notify.init("Frugalware-tweak");
-		var notification = new Notification (title,text, "icon_name", null);
-		notification.set_timeout(5000);
-		notification.set_urgency(Notify.Urgency.LOW);
-		try
-		{
-			notification.show();
-			ConsoleDebug(text);
-		}
-		catch
-		{
-			ConsoleDebug("Unable to show low notification");
-		}
+	public static bool GetShowNotif()
+	{
+		var settings = new Settings ("org.frugalware.frugaltweak");
+		return settings.get_boolean ("shownotif");
 	}
-}	
-
+	public static void SetShowNotif(bool enable)
+	{
+		var settings = new Settings ("org.frugalware.frugaltweak");
+		settings.set_boolean ("shownotif", enable);
+	}
+}
