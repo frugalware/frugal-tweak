@@ -25,7 +25,7 @@ using Gdk;
 using Gtk;
 using Vte;
 
-public class ValaTerminal2.MokoTerminal : HBox
+public class ValaTerminal.FwTerminal : HBox
 {
     private static string fontname;
       public static void set_font(string font){

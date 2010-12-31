@@ -23,10 +23,10 @@
 using GLib;
 using Gtk;
 
-static const uint DEFAULT_FONTSIZE = 5;
+static const uint DEFAULT_FONTSIZE = 11;
 static const bool DEFAULT_START_VERTICAL = false;
 
-public class ValaTerminal2.MainWindow : Window
+public class ValaTerminal.MainWindow : Window
 {
     private Box box;
     private Box toolbar;
@@ -189,9 +189,9 @@ public class ValaTerminal2.MainWindow : Window
         update_title();
     }
 
-    private ValaTerminal2.MokoTerminal add_new_terminal()
+    private ValaTerminal.FwTerminal add_new_terminal()
     {
-        var terminal = new ValaTerminal2.MokoTerminal();
+        var terminal = new ValaTerminal.FwTerminal();
         terminal.title_changed += on_title_changed;
         notebook.append_page( terminal, new Image.from_stock( STOCK_INDEX, IconSize.LARGE_TOOLBAR ) );
         notebook.child_set (terminal, "tab-expand", true, null );
@@ -209,7 +209,7 @@ public class ValaTerminal2.MainWindow : Window
     private void on_zoom_in_clicked( Gtk.ToolButton b )
     {
         stdout.printf( "on_zoom_in_clicked\n" );
-        ValaTerminal2.MokoTerminal terminal = (ValaTerminal2.MokoTerminal) notebook.get_nth_page( notebook.get_current_page() );
+        ValaTerminal.FwTerminal terminal = (ValaTerminal.FwTerminal) notebook.get_nth_page( notebook.get_current_page() );
         terminal.zoom_in();
         update_toolbar();
     }
@@ -217,7 +217,7 @@ public class ValaTerminal2.MainWindow : Window
     private void on_zoom_out_clicked( Gtk.ToolButton b )
     {
         stdout.printf( "on_zoom_out_clicked\n" );
-        ValaTerminal2.MokoTerminal terminal = (ValaTerminal2.MokoTerminal) notebook.get_nth_page( notebook.get_current_page() );
+        ValaTerminal.FwTerminal terminal = (ValaTerminal.FwTerminal) notebook.get_nth_page( notebook.get_current_page() );
         terminal.zoom_out();
         update_toolbar();
     }
@@ -225,7 +225,7 @@ public class ValaTerminal2.MainWindow : Window
     private void on_paste_clicked( Gtk.ToolButton b )
     {
         stdout.printf( "on_paste_clicked\n" );
-        ValaTerminal2.MokoTerminal terminal = (ValaTerminal2.MokoTerminal) notebook.get_nth_page( notebook.get_current_page() );
+        ValaTerminal.FwTerminal terminal = (ValaTerminal.FwTerminal) notebook.get_nth_page( notebook.get_current_page() );
         terminal.paste();
         update_toolbar();
     }
@@ -288,14 +288,14 @@ public class ValaTerminal2.MainWindow : Window
             this.unfullscreen();
     }
 
-    private void on_title_changed(ValaTerminal2.MokoTerminal terminal)
+    private void on_title_changed(ValaTerminal.FwTerminal terminal)
     {
         update_title();
     }
 
     private void update_title()
     {
-        ValaTerminal2.MokoTerminal terminal = (ValaTerminal2.MokoTerminal) notebook.get_nth_page( notebook.get_current_page() );
+        ValaTerminal.FwTerminal terminal = (ValaTerminal.FwTerminal) notebook.get_nth_page( notebook.get_current_page() );
         string? s = terminal.get_title();
         if (s == null || s.length == 0)
             title = default_title;
@@ -312,7 +312,7 @@ public class ValaTerminal2.MainWindow : Window
             return;
         }
         btn_delete.set_sensitive( notebook.get_n_pages() > 1 );
-        ValaTerminal2.MokoTerminal terminal = (ValaTerminal2.MokoTerminal) notebook.get_nth_page( notebook.get_current_page() );
+        ValaTerminal.FwTerminal terminal = (ValaTerminal.FwTerminal) notebook.get_nth_page( notebook.get_current_page() );
         stdout.printf( "current font size for terminal is %u\n", terminal.get_font_size() );
         btn_zoom_in.set_sensitive( terminal.get_font_size() < 20 );
         btn_zoom_out.set_sensitive( terminal.get_font_size() > 1 );
@@ -428,7 +428,7 @@ public class ValaTerminal2.MainWindow : Window
                     stdout.printf("USAGE: -fc int int int\n");
                     return 0;
                 }
-                ValaTerminal2.MokoTerminal.set_fore_color((args[counter+1]).to_int(), (args[counter+2]).to_int(),(args[counter+3]).to_int());
+                ValaTerminal.FwTerminal.set_fore_color((args[counter+1]).to_int(), (args[counter+2]).to_int(),(args[counter+3]).to_int());
                 counter+=4;
                 //stdout.printf("foreground color changed\n");
             }
@@ -439,7 +439,7 @@ public class ValaTerminal2.MainWindow : Window
                     stdout.printf("USAGE: -bc int int int\n");
                     return 0;
                 }
-                ValaTerminal2.MokoTerminal.set_back_color((args[counter+1]).to_int(), (args[counter+2]).to_int(),(args[counter+3]).to_int());
+                ValaTerminal.FwTerminal.set_back_color((args[counter+1]).to_int(), (args[counter+2]).to_int(),(args[counter+3]).to_int());
                 counter+=4;
                 //stdout.printf("background color changed\n");
             }
@@ -450,8 +450,8 @@ public class ValaTerminal2.MainWindow : Window
                     stdout.printf("USAGE: -g X Y\n");
                     return 0;
                 }
-                MokoTerminal.starting_width = args[counter+1].to_int();
-                MokoTerminal.starting_height = args[counter+2].to_int();
+                FwTerminal.starting_width = args[counter+1].to_int();
+                FwTerminal.starting_height = args[counter+2].to_int();
                 counter+=3;
                 //stdout.printf("starting geometry changed\n");
             }
@@ -462,7 +462,7 @@ public class ValaTerminal2.MainWindow : Window
                     stdout.printf("USAGE: -f fontname\n");
                     return 0;
                 }
-                ValaTerminal2.MokoTerminal.set_font(args[counter+1]);
+                ValaTerminal.FwTerminal.set_font(args[counter+1]);
                 counter+=2;;
                //stdout.printf("font changed\n");
             }
@@ -473,7 +473,7 @@ public class ValaTerminal2.MainWindow : Window
             }
         }
 
-        ValaTerminal2.MokoTerminal.set_starting_fontsize(fontsize);
+        ValaTerminal.FwTerminal.set_starting_fontsize(fontsize);
         var window = new MainWindow(start_vertical, start_fullscreen);
         if ( initial_command != null )
         {
