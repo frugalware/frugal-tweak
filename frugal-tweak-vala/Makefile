@@ -16,7 +16,8 @@ all: daemon terminal browser frugalwaretweak pacmanupdate
 
 frugalwaretweak:
 	#gtk-builder-convert DATA/MainGUI.glade DATA/MainGUI.ui
-	$(VALAC) --define=$(VALAFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman $(FRUGALTWEAKSOURCES) -o frugalware-tweak
+	$(VALAC) --define=$(VALAFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 \
+	$(FRUGALTWEAKSOURCES) -o frugalware-tweak
 
 pacmanupdate:
 	$(VALAC) --define=$(VALAFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman $(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update

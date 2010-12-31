@@ -18,11 +18,27 @@
  */
 
 using Gtk;
+using Unique;
 using Tree;
 
 int main (string[] args) {
+	Unique.App app;
 	Gtk.init (ref args);
-
+	app = new Unique.App("org.fwtweak.unique", null);
+		
+	if(app.is_running) { //not starting if already running
+		Unique.Command command;
+		Unique.Response response;
+		Unique.MessageData message;
+		message = new MessageData ();
+		command = (Unique.Command) Unique.Command.ACTIVATE;
+		response = app.send_message (command, message);
+	
+		if(response == Unique.Response.OK)
+			return 0;
+		else
+			return 1;
+	}
 	var window = new Window ();
 	window.title = "Frugalware Tweak";
 	window.set_default_size (400, 300);
