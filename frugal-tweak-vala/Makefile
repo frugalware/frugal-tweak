@@ -1,17 +1,18 @@
 VERSION = 0.1
 
 VALAFLAG = DEBUG=1
+SOURCEDIR = src
 
-DAEMONSOURCES = daemon.vala pacman.vala tools.vala DbusServer.vala
-TERMINALSOURCES = terminal.vala mainwindow.vala
-BROWSERSOURCES = browser.vala
-PACMANUPDATESOURCES = Tree.vala Pacman-update.vala pacman.vala tools.vala
+DAEMONSOURCES = $(SOURCEDIR)/daemon.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala $(SOURCEDIR)/DbusServer.vala
+TERMINALSOURCES = $(SOURCEDIR)/terminal.vala $(SOURCEDIR)/mainwindow.vala
+BROWSERSOURCES = $(SOURCEDIR)/browser.vala
+PACMANUPDATESOURCES = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/Pacman-update.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala
 
 #for start modules
-FRUGALTWEAKSOURCES = MainClient.vala Tree.vala
+FRUGALTWEAKSOURCES = $(SOURCEDIR)/MainClient.vala $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala
 VALAC = valac
 
-all: daemon terminal browser frugalwaretweak
+all: daemon terminal browser frugalwaretweak pacmanupdate
 
 frugalwaretweak:
 	#gtk-builder-convert DATA/MainGUI.glade DATA/MainGUI.ui
@@ -30,9 +31,9 @@ browser:
 	$(VALAC) --define=$(VALAFLAG) --pkg gtk+-2.0 --pkg webkit-1.0 $(BROWSERSOURCES) -o frugalware-tweak-browser
 
 clean:
-	@rm *.c
 	@rm DATA/*.ui
 	@rm frugalware-tweak-terminal
 	@rm frugalware-tweak-daemon
 	@rm frugalware-tweak-browser
 	@rm frugalware-tweak
+	@rm frugalware-tweak-pacman-update

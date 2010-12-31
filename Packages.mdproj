@@ -11,7 +11,6 @@
           <Builder TargetDirectory="releases" DefaultConfiguration="Release" ctype="TarballDeployTarget">
             <ChildEntries>
               <SolutionItemReference path="frugal-mono-tools\frugal-mono-tools.csproj" />
-              <SolutionItemReference path="Service\Service.csproj" />
               <SolutionItemReference path="Traduction\Traduction.mdproj" />
               <SolutionItemReference path="RSS.NET\RSS.NET.csproj" />
               <SolutionItemReference path="frugal-irc\frugal-irc.csproj" />
