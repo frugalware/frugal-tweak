@@ -41,6 +41,14 @@ int main (string[] args) {
 		else
 			return 1;
 	}
+	 /* Create tray icon */
+        StatusIcon trayicon = new StatusIcon.from_file("/usr/share/pixmaps/FrugalTools.png");
+        trayicon.set_tooltip_text ("Frugalware Tweak !");
+        trayicon.set_visible(true);
+	//TODO
+	//trayicon.activate += icon_clicked;
+        //create_menu()
+
 	var window = new Window ();
 	window.title = "Frugalware Tweak";
 	window.set_default_size (400, 300);
