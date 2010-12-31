@@ -19,9 +19,11 @@
 
 using Gtk;
 using Unique;
+using Popup;
 using Tree;
 
 int main (string[] args) {
+
 	Unique.App app;
 	Gtk.init (ref args);
 	app = new Unique.App("org.fwtweak.unique", null);
@@ -45,18 +47,15 @@ int main (string[] args) {
 	window.position = WindowPosition.CENTER;
 	window.destroy.connect (Gtk.main_quit);
 
-/*
-	var button = new Button.with_label ("Click me!");
-	button.clicked.connect (() => {
-	button.label = "Thank you";
-	});
-
-	window.add (button);
-*/
 	//added treeview for modules
 	var view = new TreeView ();
         Tree.setup_treeviewModule (view);
 	window.add(view);
+
+	#if DEBUG==1
+		//for tested notification
+		Popup.PopupShow("titre test","test");
+	#endif
 
 	window.show_all ();
 
