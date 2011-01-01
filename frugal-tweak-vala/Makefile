@@ -47,7 +47,7 @@ install:
 	cp DATA/org.frugalware.frugaltweak.gschema.xml $(destdir)/usr/share/glib-2.0/schemas/
 	cp DATA/pictures/frugalware-tweak.png $(destdir)/usr/share/pixmaps/
 	cp DATA/desktop/*.desktop $(destdir)/usr/share/applications/
-	cp DATA/desktop/frugalware-tweak.desktop $(destdir)/etc/xdg/autostart/frugalware-tweak.desktop
+	cp DATA/desktop/frugalware-tweak2.desktop $(destdir)/etc/xdg/autostart/frugalware-tweak2.desktop
 	cp DATA/pictures/*.png $(destdir)/usr/share/frugalware-tweak/pictures/
 
 clean:
