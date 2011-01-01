@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=frugalware-tweak
+Comment=frugalware-tweak (vala)
+TryExec=frugalware-tweak2
+Exec=frugalware-tweak2
+Icon=frugalware-tweak
+Type=Application
+Categories=Application;Application;GTK;System;
+StartupNotify=true

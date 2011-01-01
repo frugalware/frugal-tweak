@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=frugalware-tweak-pacman-update
+Comment=check available packages update
+TryExec=frugalware-tweak-pacman-update
+Exec=frugalware-tweak-pacman-update
+Icon=frugalware-tweak
+Type=Application
+Categories=Application;Application;GTK;System;
+StartupNotify=true

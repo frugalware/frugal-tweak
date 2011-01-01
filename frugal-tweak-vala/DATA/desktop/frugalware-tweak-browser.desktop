@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=frugalware-tweak-browser
+Comment=browser webkit engine
+TryExec=frugalware-tweak-browser
+Exec=frugalware-tweak-browser
+Icon=frugalware-tweak
+Type=Application
+Categories=Application;Network;WebBrowser;
+StartupNotify=true

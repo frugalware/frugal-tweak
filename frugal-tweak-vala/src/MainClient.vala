@@ -42,7 +42,7 @@ int main (string[] args) {
 			return 1;
 	}
 	 /* Create tray icon */
-        StatusIcon trayicon = new StatusIcon.from_file("/usr/share/pixmaps/FrugalTools.png");
+        StatusIcon trayicon = new StatusIcon.from_file("/usr/share/frugalware-tweak/pictures/frugalware-tweak.png");
         trayicon.set_tooltip_text ("Frugalware Tweak !");
         trayicon.set_visible(true);
 	//TODO

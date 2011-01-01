@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=frugalware-tweak-terminal
+Comment=Use the command line
+TryExec=frugalware-tweak-terminal
+Exec=frugalware-tweak-terminal
+Icon=frugalware-tweak
+Type=Application
+Categories=GTK;Utility;TerminalEmulator;
+StartupNotify=true
