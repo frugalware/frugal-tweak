@@ -1,0 +1,3 @@
+USER=root
+PROGRAM=/usr/share/apps/fwroot/fwroot
+SESSION=true

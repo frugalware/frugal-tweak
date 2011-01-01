@@ -1,0 +1,4 @@
+#%PAM-1.0
+auth        include     config-fwroot
+account     include     config-fwroot
+session     include     config-fwroot
