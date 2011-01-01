@@ -21,7 +21,7 @@ public static class Tools
 {
 	public static void ConsoleDebug(string text)
 	{
-		#if DEBUG==1
+		#if DEBUG
 				stdout.printf(text);		
 		#endif
 	}

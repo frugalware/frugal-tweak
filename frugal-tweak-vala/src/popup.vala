@@ -20,6 +20,9 @@
 using Notify;
 using Tools;
 using Configuration;
+#if ENABLEINDICATE
+	using Indicate;
+#endif
 
 public static class Popup  {
 	
@@ -39,6 +42,29 @@ public static class Popup  {
 		{
 			ConsoleDebug("Unable to show low notification");
 		}
-	}
+		
+		#if ENABLEINDICATE
+			//indicator support
+			/*var server = Indicate.Server.ref_default();
+
+			server.set_type("message.frugalware-tweak2");
+			server.set_desktop_file("/usr/share/indicators/messages/applications/frugalware-tweak2.desktop");
+			server.server_display.connect(dirty_activate);
+			server.show();*/
+
+			var indicator = new Indicate.Indicator();
+			indicator.set_property("subtype", "im");
+			indicator.set_property("sender", "frugalware-tweak2");
+			indicator.set_property("body", text);
+			indicator.user_display.connect(dirty_activate);
+			indicator.show();
+		#endif
+
+		}
+	
+		public static void dirty_activate() {
+			ConsoleDebug("libindicate activated");
+		}
+
 }	
 

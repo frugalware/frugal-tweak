@@ -1,6 +1,10 @@
 VERSION = 0.1
 
-VALAFLAG = DEBUG=1
+ENABLEDEBUG = 1
+ifeq "$(ENABLEDEBUG)" "1"
+	DEBUGFLAG = DEBUG
+endif
+
 SOURCEDIR = src
 
 DAEMONSOURCES = $(SOURCEDIR)/daemon.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala $(SOURCEDIR)/DbusServer.vala
@@ -10,26 +14,35 @@ PACMANUPDATESOURCES = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/Pacman-update.vala $(S
 
 #for start modules
 FRUGALTWEAKSOURCES = $(SOURCEDIR)/MainClient.vala $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
-						$(SOURCEDIR)/popup.vala $(SOURCEDIR)/configuration.vala
+						$(SOURCEDIR)/popup.vala $(SOURCEDIR)/configuration.vala \
+						./vapi/config.vapi
+
+ENABLEINDICATE = 0
+ifeq "$(ENABLEINDICATE)" "1"
+	INDICATEVALA = --pkg Dbusmenu-Glib-0.2 --pkg Indicate-0.2 --library=Indicate-0.2 -D LIBINDICATE -X -I/usr/include/libindicate-0.2 -X -I/usr/include/libdbusmenu-0.1/ 
+	INDICATEFLAG = ENABLEINDICATE
+endif
+
 VALAC = valac
 
 all: daemon terminal browser frugalwaretweak pacmanupdate
 
 frugalwaretweak:
-	$(VALAC) --define=$(VALAFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 --pkg libnotify \
+	$(VALAC)  --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 --pkg libnotify \
+	 --define=$(INDICATEFLAG) $(INDICATEVALA) \
 	$(FRUGALTWEAKSOURCES) -o frugalware-tweak2
 
 pacmanupdate:
-	$(VALAC) --define=$(VALAFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman $(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update
+	$(VALAC) --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman $(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update
 
 daemon:
-	$(VALAC) --define=$(VALAFLAG) --pkg pacman --pkg gio-2.0 $(DAEMONSOURCES) -o frugalware-tweak-daemon
+	$(VALAC) --define=$(DEBUGFLAG) --pkg pacman --pkg gio-2.0 $(DAEMONSOURCES) -o frugalware-tweak-daemon
 
 terminal:
-	$(VALAC) --define=$(VALAFLAG) --pkg vte $(TERMINALSOURCES) -o frugalware-tweak-terminal
+	$(VALAC) --define=$(DEBUGFLAG) --pkg vte $(TERMINALSOURCES) -o frugalware-tweak-terminal
 
 browser:
-	$(VALAC) --define=$(VALAFLAG) --pkg gtk+-2.0 --pkg webkit-1.0 $(BROWSERSOURCES) -o frugalware-tweak-browser
+	$(VALAC) --define=$(DEBUGFLAG) --pkg gtk+-2.0 --pkg webkit-1.0 $(BROWSERSOURCES) -o frugalware-tweak-browser
 
 install:
 	mkdir -p $(DESTDIR)/usr/bin

@@ -60,7 +60,7 @@ int main (string[] args) {
         Tree.setup_treeviewModule (view);
 	window.add(view);
 
-	#if DEBUG==1
+	#if DEBUG
 		//for tested notification
 		Popup.PopupShow("titre test","test");
 	#endif
