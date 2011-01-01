@@ -18,6 +18,7 @@
 
 using System;
 using Notifications;
+using Indicate;
 
 public class IconSummaryBody
 {
@@ -52,56 +53,56 @@ public class IconSummaryBody
 	private void InitCaps ()
 	{
 
-		if (Global.Capabilities == null)
+		if (Notifications.Global.Capabilities == null)
 			return;
 
-		if (Array.IndexOf (Global.Capabilities, "actions") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "actions") > -1)
 			m_capabilities[(int) Capability.CAP_ACTIONS] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "body") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "body") > -1)
 			m_capabilities[(int) Capability.CAP_BODY] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "body-hyperlinks") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "body-hyperlinks") > -1)
 			m_capabilities[(int) Capability.CAP_BODY_HYPERLINKS] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "body-images") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "body-images") > -1)
 			m_capabilities[(int) Capability.CAP_BODY_IMAGES] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "body-markup") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "body-markup") > -1)
 			m_capabilities[(int) Capability.CAP_BODY_MARKUP] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "icon-multi") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "icon-multi") > -1)
 			m_capabilities[(int) Capability.CAP_ICON_MULTI] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "icon-static") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "icon-static") > -1)
 			m_capabilities[(int) Capability.CAP_ICON_STATIC] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "sound") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "sound") > -1)
 			m_capabilities[(int) Capability.CAP_SOUND] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "image/svg+xml") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "image/svg+xml") > -1)
 			m_capabilities[(int) Capability.CAP_IMAGE_SVG] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "private-synchronous") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "private-synchronous") > -1)
 			m_capabilities[(int) Capability.CAP_SYNCHRONOUS] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "append") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "append") > -1)
 			m_capabilities[(int) Capability.CAP_APPEND] = true;
 
-		if (Array.IndexOf (Global.Capabilities, "private-icon-only") > -1)
+		if (Array.IndexOf (Notifications.Global.Capabilities, "private-icon-only") > -1)
 			m_capabilities[(int) Capability.CAP_LAYOUT_ICON_ONLY] = true;
 	}
 
 	private void PrintCaps ()
 	{
 		Console.WriteLine ("Name:          "
-		                   + Global.ServerInformation.Name);
+		                   + Notifications.Global.ServerInformation.Name);
 		Console.WriteLine ("Vendor:        "
-		                   + Global.ServerInformation.Vendor);
+		                   + Notifications.Global.ServerInformation.Vendor);
 		Console.WriteLine ("Version:       "
-		                   + Global.ServerInformation.Version);
+		                   + Notifications.Global.ServerInformation.Version);
 		Console.WriteLine ("Spec. Version: "
-		                   + Global.ServerInformation.SpecVersion);
+		                   + Notifications.Global.ServerInformation.SpecVersion);
 
 		Console.WriteLine ("Supported capabilities/hints:");
 		if (m_capabilities[(int) Capability.CAP_ACTIONS])
@@ -130,7 +131,7 @@ public class IconSummaryBody
 			Console.WriteLine ("\tprivate-icon-only");
 
 		Console.WriteLine ("Notes:");
-		if (Global.ServerInformation.Name == "notify-osd")
+		if (Notifications.Global.ServerInformation.Name == "notify-osd")
 		{
 			Console.WriteLine ("\tx- and y-coordinates hints are ignored");
 			Console.WriteLine ("\texpire-timeout is ignored");
@@ -155,12 +156,42 @@ public class IconSummaryBody
 	
 	public void ShowMessage (string title,string message)
 	{
+		try
+		{
+			//Server
+			Indicate.Server server = Indicate.Server.RefDefault();
+			server.SetType("message.im");
+			server.DesktopFile("/usr/share/applications/frugalware-tweak.desktop");
+			server.ServerDisplay += new Indicate.ServerDisplayHandler(ServerDisplay);
+			server.Show();
+			//indicate
+			Indicate.Indicator indicator = new Indicate.Indicator();
+			indicator.SetProperty("subtype", "im");
+			indicator.SetProperty("sender", title);
+			indicator.SetProperty("body", message);
+			indicator.UserDisplay += new EventHandler(UserDisplay);
+			indicator.Show();
+	
+		}
+		catch{}
 		try{
 		Notification n = new Notification(title,message,
 		                                   "notification-message-IM");//TODO : use an icon
 		n.Show ();
 		}
 		catch{}
+	}
+	
+	public static void ServerDisplay (object sender, Indicate.ServerDisplayArgs args)
+	{
+	      Console.WriteLine ("Server was displayed");
+	}
+            
+	public static void UserDisplay (object sender, System.EventArgs args)
+	{
+	      Console.WriteLine ("Indicator was displayed");
+	      Indicate.Indicator indicator = sender as Indicate.Indicator;
+	      indicator.Hide();
 	}
 	
 	public void ShowMessage (string title,string message,Gdk.Pixbuf image )
