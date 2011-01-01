@@ -15,7 +15,7 @@
         <ProjectPackage file="/usr/share/vala/vapi/glib-2.0.vapi" name="glib-2.0" IsProject="false" />
       </Packages>
     </Packages>
-    <ReleaseVersion>0.2.3</ReleaseVersion>
+    <ReleaseVersion>0.2.4</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

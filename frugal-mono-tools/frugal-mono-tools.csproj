@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>frugalmonotools</RootNamespace>
     <AssemblyName>frugal-mono-tools</AssemblyName>
-    <ReleaseVersion>0.2.3</ReleaseVersion>
+    <ReleaseVersion>0.2.4</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +53,12 @@
     <Reference Include="dbus-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5675b0c3093115b5" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="indicate-gtk-sharp, Version=0.4.4.0, Culture=neutral, PublicKeyToken=fc29729774d50df1">
+      <Package>indicate-gtk-sharp-0.1</Package>
+    </Reference>
+    <Reference Include="indicate-sharp, Version=0.4.1.0, Culture=neutral, PublicKeyToken=2e8e49ba7d172cb0">
+      <Package>indicate-sharp-0.1</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
