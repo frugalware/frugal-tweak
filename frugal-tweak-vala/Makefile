@@ -28,21 +28,21 @@ VALAC = valac
 all: daemon terminal browser frugalwaretweak pacmanupdate
 
 frugalwaretweak:
-	$(VALAC)  --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 --pkg libnotify \
+	$(VALAC)  --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 --pkg libnotify \
 	 --define=$(INDICATEFLAG) $(INDICATEVALA) \
 	$(FRUGALTWEAKSOURCES) -o frugalware-tweak2
 
 pacmanupdate:
-	$(VALAC) --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman $(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update
+	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman $(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update
 
 daemon:
-	$(VALAC) --define=$(DEBUGFLAG) --pkg pacman --pkg gio-2.0 $(DAEMONSOURCES) -o frugalware-tweak-daemon
+	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg pacman --pkg gio-2.0 $(DAEMONSOURCES) -o frugalware-tweak-daemon
 
 terminal:
-	$(VALAC) --define=$(DEBUGFLAG) --pkg vte $(TERMINALSOURCES) -o frugalware-tweak-terminal
+	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg vte $(TERMINALSOURCES) -o frugalware-tweak-terminal
 
 browser:
-	$(VALAC) --define=$(DEBUGFLAG) --pkg gtk+-2.0 --pkg webkit-1.0 $(BROWSERSOURCES) -o frugalware-tweak-browser
+	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg gtk+-2.0 --pkg webkit-1.0 $(BROWSERSOURCES) -o frugalware-tweak-browser
 
 install:
 	mkdir -p $(DESTDIR)/usr/bin
