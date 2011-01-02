@@ -74,7 +74,7 @@ install:
 	cp DATA/root/console.fwroot $(DESTDIR)/etc/security/console.apps/fwroot
 	cp DATA/root/apps.fwroot $(DESTDIR)/usr/share/apps/fwroot/fwroot
 	chmod +x $(DESTDIR)/usr/share/apps/fwroot/fwroot
-	ln -f $(DESTDIR)/usr/bin/consolehelper $(DESTDIR)/usr/bin/fwroot
+	ln -fs /usr/bin/consolehelper $(DESTDIR)/usr/bin/fwroot
 
 clean:
 	@rm frugalware-tweak-terminal
