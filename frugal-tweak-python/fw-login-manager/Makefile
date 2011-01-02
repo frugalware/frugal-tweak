@@ -17,7 +17,7 @@ install:
 
 	mkdir -p "$(DESTDIR)/usr/bin/"
 	install -m0644 $(files_bin) "$(DESTDIR)/usr/bin/"
-	$(CHMOD) +x "$(DESTDIR)/usr/bin/fw-login-manager"
+	$(CHMOD) +x "$(DESTDIR)/usr/bin/frugalware-tweak-login-manager"
 
 	mkdir -p "$(DESTDIR)/usr/share/frugalware-tweak/plugins/"
 	install -m0644 10.loginmanager.xml "$(DESTDIR)/usr/share/frugalware-tweak/plugins/"
