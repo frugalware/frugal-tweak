@@ -25,7 +25,7 @@ fi
 
 AC_ARG_ENABLE(debug_x86,
 	AC_HELP_STRING([--enable-debug_x86],
-		[Use 'DEBUG_X86' Configuration [default=NO]]),
+		[Use 'DEBUG_X86' Configuration [default=YES]]),
 		enable_debug_x86=yes, enable_debug_x86=no)
 AM_CONDITIONAL(ENABLE_DEBUG_X86, test x$enable_debug_x86 = xyes)
 if test "x$enable_debug_x86" = "xyes" ; then
@@ -41,15 +41,15 @@ if test "x$enable_release_x86" = "xyes" ; then
 fi
 AC_ARG_ENABLE(release,
 	AC_HELP_STRING([--enable-release],
-		[Use 'RELEASE' Configuration [default=YES]]),
+		[Use 'RELEASE' Configuration [default=NO]]),
 		enable_release=yes, enable_release=no)
 AM_CONDITIONAL(ENABLE_RELEASE, test x$enable_release = xyes)
 if test "x$enable_release" = "xyes" ; then
 	CONFIG_REQUESTED="yes"
 fi
 if test -z "$CONFIG_REQUESTED" ; then
-	AM_CONDITIONAL(ENABLE_RELEASE, true)
-	enable_release=yes
+	AM_CONDITIONAL(ENABLE_DEBUG_X86, true)
+	enable_debug_x86=yes
 fi
 
 
@@ -74,7 +74,6 @@ RSS.NET/rss.net.pc
 RSS.NET/Makefile
 frugal-irc/frugalware-irc
 frugal-irc/Makefile
-frugal-tweak-service/Makefile
 WebService/webservice.pc
 WebService/Makefile
 frugal-mono-tools/frugalware-tweak
