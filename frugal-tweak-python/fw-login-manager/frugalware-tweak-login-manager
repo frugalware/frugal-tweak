@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cd /usr/share/fw-login-manager/
+cd /usr/share/frugalware-tweak/
 python ./fw-login-manager.py
