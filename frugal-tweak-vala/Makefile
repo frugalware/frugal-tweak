@@ -14,7 +14,7 @@ PACMANUPDATESOURCES = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/Pacman-update.vala $(S
 
 #for start modules
 FRUGALTWEAKSOURCES = $(SOURCEDIR)/MainClient.vala $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
-						$(SOURCEDIR)/popup.vala $(SOURCEDIR)/configuration.vala \
+						$(SOURCEDIR)/popup.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/Module.vala\
 						./vapi/config.vapi
 
 ENABLEINDICATE = 0
@@ -29,6 +29,7 @@ all: daemon terminal browser frugalwaretweak pacmanupdate
 
 frugalwaretweak:
 	$(VALAC)  --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 --pkg libnotify \
+	--pkg libxml-2.0 \
 	 --define=$(INDICATEFLAG) $(INDICATEVALA) \
 	$(FRUGALTWEAKSOURCES) -o frugalware-tweak2
 

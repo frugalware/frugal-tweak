@@ -21,6 +21,7 @@ using Gtk;
 using Unique;
 using Popup;
 using Tree;
+using Module;
 
 int main (string[] args) {
 
@@ -63,6 +64,9 @@ int main (string[] args) {
 	#if DEBUG
 		//for tested notification
 		Popup.PopupShow("titre test","test");
+		//Tools.ConsoleDebug("test1\n");
+		Module module = new Module("01.system.xml");
+		Tools.ConsoleDebug("test module : "+module.GetTittle()+"\n");
 	#endif
 
 	window.show_all ();

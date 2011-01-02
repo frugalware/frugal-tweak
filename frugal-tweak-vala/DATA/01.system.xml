@@ -1,0 +1,6 @@
+<module>
+	<tittle>system</tittle>
+	<description>Description</description> 
+	<command>command to exec</command> 
+	<group>Group</group> 
+</module>
