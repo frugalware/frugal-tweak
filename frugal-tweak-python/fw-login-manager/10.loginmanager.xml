@@ -1,6 +1,6 @@
 <module>
 	<tittle>Login Manager</tittle>
 	<description>Configure your login manager</description> 
-	<command>fwroot fw-login-manager</command> 
+	<command>fwroot frugalware-tweak-login-manager</command> 
 	<group>X</group> 
 </module>
