@@ -12,8 +12,8 @@ install:
 	mkdir -p "$(DESTDIR)/usr/share/frugalware-tweak"
 	install -m0644 $(files_share) "$(DESTDIR)/usr/share/frugalware-tweak/"
 	
-	mkdir -p "$(DESTDIR)/usr/share/frugalware-tweak"
-	install -m0644 $(files_desktop) "$(DESTDIR)/usr/share/frugalware-tweak/"
+	mkdir -p "$(DESTDIR)/usr/share/applications"
+	install -m0644 $(files_desktop) "$(DESTDIR)/usr/share/applications/"
 
 	mkdir -p "$(DESTDIR)/usr/bin/"
 	install -m0644 $(files_bin) "$(DESTDIR)/usr/bin/"
