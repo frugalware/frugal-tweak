@@ -1,0 +1,6 @@
+Name: WebService
+Description: WebService
+Version: 0.2.4
+
+Requires: 
+Libs: -r:@expanded_libdir@/@PACKAGE@/WebService.dll
