@@ -174,12 +174,7 @@ def sysexec(cmd):
     os.system(cmd)
 
 def install_pkg(packagename):
-	sysexec("pacman-g2 -S "+packagename+" --noconfirm")
-	message_box(title='Information',
-	message=packagename+' is installed',
-	buttons=('Ok',))
-
-	#TODO use python binding
+	sysexec("frugalware-tweak-terminal -e pacman-g2 -S "+packagename)
 	
 
 
@@ -222,7 +217,7 @@ class Start:
 		fprint("Use lxdm")
 		#ask to pacman-g2
 		if find_pkg("lxdm"):
-			USE_NM = 1
+			USE_LXDM = 1
 			RadioButtonxdm.set_active(False)
 			RadioButtonslim.set_active(False)
 			RadioButtongdm.set_active(False)
@@ -232,12 +227,15 @@ class Start:
 			message='Do you want install lxdm ?',
 			buttons=('Ok',"Cancel"))
 			if result == 'Ok':
-				USE_LXDM = 1
 				install_pkg("lxdm")
-				RadioButtonxdm.set_active(False)
-				RadioButtonslim.set_active(False)
-				RadioButtongdm.set_active(False)
-				RadioButtonkdm.set_active(False)
+				if find_pkg("lxdm"):
+					USE_LXDM = 1
+					RadioButtonxdm.set_active(False)
+					RadioButtonslim.set_active(False)
+					RadioButtongdm.set_active(False)
+					RadioButtonkdm.set_active(False)
+				else:
+					RadioButtonlxdm.set_active(False)
 			else:
 				widget.set_active(False)
 	elif donnees == cen_slim:
@@ -254,13 +252,15 @@ class Start:
 			message='Do you want install slim ?',
 			buttons=('Ok',"Cancel"))
 			if result == 'Ok':
-				USE_SLIM = 1
 				install_pkg("slim")
-				RadioButtonxdm.set_active(False)
-				RadioButtonlxdm.set_active(False)
-				RadioButtongdm.set_active(False)
-				RadioButtonkdm.set_active(False)
-
+				if find_pkg("slim"):
+					USE_SLIM = 1
+					RadioButtonxdm.set_active(False)
+					RadioButtonlxdm.set_active(False)
+					RadioButtongdm.set_active(False)
+					RadioButtonkdm.set_active(False)
+				else:
+					RadioButtonslim.set_active(False)
 			else:
 				widget.set_active(False)
 	elif donnees == cen_gdm:
@@ -277,13 +277,15 @@ class Start:
 			message='Do you want install gdm ?',
 			buttons=('Ok',"Cancel"))
 			if result == 'Ok':
-				USE_GDM = 1
 				install_pkg("gdm")
-				RadioButtonxdm.set_active(False)
-				RadioButtonlxdm.set_active(False)
-				RadioButtonslim.set_active(False)
-				RadioButtonkdm.set_active(False)
-
+				if find_pkg("gdm"):
+					USE_GDM = 1
+					RadioButtonxdm.set_active(False)
+					RadioButtonlxdm.set_active(False)
+					RadioButtonslim.set_active(False)
+					RadioButtonkdm.set_active(False)
+				else:
+					RadioButtongdm.set_active(False)
 			else:
 				widget.set_active(False)
 	elif donnees == cen_kdm:
@@ -300,12 +302,15 @@ class Start:
 			message='Do you want install kdm ?',
 			buttons=('Ok',"Cancel"))
 			if result == 'Ok':
-				USE_SLIM = 1
 				install_pkg("kdm")
-				RadioButtonxdm.set_active(False)
-				RadioButtonlxdm.set_active(False)
-				RadioButtongdm.set_active(False)
-				RadioButtonslim.set_active(False)
+				if find_pkg("kdm"):
+					USE_KDM = 1
+					RadioButtonxdm.set_active(False)
+					RadioButtonlxdm.set_active(False)
+					RadioButtongdm.set_active(False)
+					RadioButtonslim.set_active(False)
+				else:
+					RadioButtonkdm.set_active(False)
 
 			else:
 				widget.set_active(False)
