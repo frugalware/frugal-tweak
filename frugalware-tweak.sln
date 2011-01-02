@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "frugal-mono-tools", "frugal
 EndProject
 Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Packages", "Packages.mdproj", "{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}"
-EndProject
 Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Traduction", "Traduction\Traduction.mdproj", "{069FB0B9-80D4-4093-88F3-116B09B0E09F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSS.NET", "RSS.NET\RSS.NET.csproj", "{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}"
@@ -52,12 +50,6 @@ Global
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|x86.ActiveCfg = Release|x86
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|x86.Build.0 = Release|x86
-		{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}.Debug|x86.Build.0 = Debug|Any CPU
-		{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}.Release|x86.ActiveCfg = Release|Any CPU
-		{EFA0F4E7-CCFD-4DE2-A28D-C5D75FE55C43}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = frugal-mono-tools\frugal-mono-tools.csproj
