@@ -69,8 +69,6 @@ programfilesdir = @libdir@/@PACKAGE@
 programfiles_DATA = $(PROGRAMFILES)
 linuxpkgconfigdir = @libdir@/pkgconfig
 linuxpkgconfig_DATA = $(LINUX_PKGCONFIG)
-programfilesbindir = @libdir@/@PACKAGE@/bin
-programfilesbin_DATA = $(PROGRAMFILES_BIN)
 
 
 # macros

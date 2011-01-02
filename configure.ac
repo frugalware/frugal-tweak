@@ -72,8 +72,6 @@ RSS.NET/rss.net.pc
 RSS.NET/Makefile
 frugal-irc/frugalware-irc
 frugal-irc/Makefile
-WebService/webservice.pc
-WebService/Makefile
 frugal-mono-tools/frugalware-tweak
 frugal-mono-tools/Makefile
 Makefile
