@@ -56,6 +56,7 @@ install:
 	mkdir -p $(DESTDIR)/etc/pam.d/
 	mkdir -p $(DESTDIR)/etc/security/console.apps/
 	mkdir -p $(DESTDIR)/usr/share/apps/fwroot/
+	mkdir -p $(DESTDIR)/etc/rc.d/
 	cp frugalware-tweak-browser $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-terminal $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-daemon $(DESTDIR)/usr/bin/
@@ -67,12 +68,13 @@ install:
 	cp DATA/desktop/frugalware-tweak2.desktop $(DESTDIR)/etc/xdg/autostart/frugalware-tweak2.desktop
 	cp DATA/pictures/*.png $(DESTDIR)/usr/share/frugalware-tweak/pictures/
 	cp indicator/frugalware-tweak2.desktop $(DESTDIR)/usr/share/indicators/messages/applications/
+	cp DATA/init/rc.frugalware-tweak $(DESTDIR)/etc/rc.d/
 	cp DATA/root/fwroot $(DESTDIR)/etc/pam.d/fwroot
 	cp DATA/root/config-fwroot $(DESTDIR)/etc/pam.d/config-fwroot
 	cp DATA/root/console.fwroot $(DESTDIR)/etc/security/console.apps/fwroot
 	cp DATA/root/apps.fwroot $(DESTDIR)/usr/share/apps/fwroot/fwroot
 	chmod +x $(DESTDIR)/usr/share/apps/fwroot/fwroot
-	ln $(DESTDIR)/usr/bin/consolehelper $(DESTDIR)/usr/bin/fwroot
+	ln -f $(DESTDIR)/usr/bin/consolehelper $(DESTDIR)/usr/bin/fwroot
 
 clean:
 	@rm frugalware-tweak-terminal

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# (c) 2010 bouleetbil <bouleetbil@frogdev.info>
+# rc.frugal-mono-tools for Frugalware
+# distributed under GPL License
+
+# chkconfig: 2345 99 02
+# description: Daemon to for check update packages
+
+TEXTDOMAIN=frugalware-tweak
+TEXTDOMAINDIR=/lib/initscripts/messages
+source /lib/initscripts/functions
+daemon="Frugalware check update"
+
+actions=(start stop restart status)
+pid="pidof /usr/bin/frugalware-tweak-daemon 2> /dev/null"
+
+
+rc_start()
+{
+	start_msg
+	if [ -z "$(eval $pid)" ]; then
+		/usr/bin/frugalware-tweak-daemon -- 2>/dev/null 1>/dev/null
+		ok $?
+	else
+		ok 999
+	fi
+}
+
+rc_stop()
+{
+	stop_msg
+	if [ ! -z "$(eval $pid)" ] ;then
+		killall /usr/bin/frugalware-tweak-daemon
+		ok $?
+	else
+		ok 999
+	fi
+}
+
+rc_exec $1
