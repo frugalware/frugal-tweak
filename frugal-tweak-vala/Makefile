@@ -69,6 +69,7 @@ install:
 	cp DATA/pictures/*.png $(DESTDIR)/usr/share/frugalware-tweak/pictures/
 	cp indicator/frugalware-tweak2.desktop $(DESTDIR)/usr/share/indicators/messages/applications/
 	cp DATA/init/rc.frugalware-tweak $(DESTDIR)/etc/rc.d/
+	chmod +x $(DESTDIR)/etc/rc.d/rc.frugalware-tweak
 	cp DATA/root/fwroot $(DESTDIR)/etc/pam.d/fwroot
 	cp DATA/root/config-fwroot $(DESTDIR)/etc/pam.d/config-fwroot
 	cp DATA/root/console.fwroot $(DESTDIR)/etc/security/console.apps/fwroot
