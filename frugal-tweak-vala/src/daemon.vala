@@ -33,7 +33,7 @@ class Deamon : GLib.Object {
 		          () => stderr.printf ("Could not aquire name\n"));
 	
 	pacmang2 = new pacman();
-	UpdateAllDatabase();
+
 	while(true)
 	{
 		Thread.usleep(1800000000);	//1/2 hour
