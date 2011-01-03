@@ -20,32 +20,42 @@ using GLib;
 using DbusServer;
 using pacman;
 
+[DBus (name = "org.frugalware.tweak")]
+interface DbusUpd : Object {
+	public abstract void update_available(bool update) throws IOError;
+}
+
 class Deamon : GLib.Object {
 	
 	public static pacman pacmang2 ;
 
 	public static int main(string[] args) {
-	Tools.ConsoleDebug("Start Frugalware Tweak Daemon\n");
+	Tools.ConsoleDebug("Start Frugalware Tweak Daemon");
 	//dbus
-	Bus.own_name (BusType.SESSION, "org.frugal.tweak", BusNameOwnerFlags.NONE,
-		          on_bus_aquired,
-		          () => {},
-		          () => stderr.printf ("Could not aquire name\n"));
-	
+	DbusUpd dbusUpd = Bus.get_proxy_sync (BusType.SYSTEM, "org.frugalware.tweak", "/org/frugalware/tweak");
 	pacmang2 = new pacman();
 
 	while(true)
 	{
 		Thread.usleep(1800000000);	//1/2 hour
-		UpdateAllDatabase();
+		if (UpdateAllDatabase())
+		{
+			Tools.ConsoleDebug("Send dbus event");
+			try{
+				dbusUpd.update_available(true);
+			}
+			catch {
+        			Tools.ConsoleDebug("couldn't send dbus event");
+    			}
+		}
 	}
     }
 
-	public static void UpdateAllDatabase()
+	public static bool UpdateAllDatabase()
 	{
-		Tools.ConsoleDebug("Updated database pacman-g2\n");			
+		Tools.ConsoleDebug("Updated database pacman-g2");			
 		pacmang2.UpdateAllDatabase();
-		
+		return pacmang2.CheckUpdate();
 	}
 }
 

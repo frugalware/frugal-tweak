@@ -37,7 +37,7 @@ public class pacman
 		Pacman.pacman_release();
 		if (Pacman.pacman_initialize(Pacman.PM_ROOT) != -1)
 		{
-			Tools.ConsoleDebug("Initialize pacman-g2\n");
+			Tools.ConsoleDebug("Initialize pacman-g2");
 			InitDatabase();
 		}
 	}
@@ -45,7 +45,7 @@ public class pacman
 
 	private void InitDatabase()
 	{
-		Tools.ConsoleDebug("Parse config pacman-g2\n");
+		Tools.ConsoleDebug("Parse config pacman-g2");
 		
 		Pacman.pacman_cb_db_register callback = _db_callback;
 		Pacman.pacman_parse_config(CFG_FILE, callback,"");		
@@ -58,14 +58,14 @@ public class pacman
 	}
 	private static void _db_callback (string section, PM_DB db)
 	{
-		Tools.ConsoleDebug("Find repo "+section+"\n");
+		Tools.ConsoleDebug("Find repo "+section);
 		repos += section;
 		return;
 	}
 
 	public void UpdateAllDatabase()
 	{
-		Tools.ConsoleDebug("Update all repo  \n");
+		Tools.ConsoleDebug("Update all repo");
 		int i =0;
 		while(i <repos.length)
 		{
@@ -77,13 +77,13 @@ public class pacman
 
 	public void UpdateDatabase(string section)
 	{
-		Tools.ConsoleDebug("Update repo "+section+" \n");
+		Tools.ConsoleDebug("Update repo "+section);
 		sync_db = Pacman.pacman_db_register(section);
 		int	retval = 0;
 		retval = Pacman.pacman_db_update(0,sync_db);
 		if (retval==-1)
 		{
-			Tools.ConsoleDebug("Update repo "+section+" failed \n");
+			Tools.ConsoleDebug("Update repo "+section+" failed");
 			return;
 		}
 		
@@ -95,29 +95,28 @@ public class pacman
 		PM_LIST *i = null;
 
 		if (pacman_trans_init(Pacman.OptionTrans.TYPE_SYNC, 0, null, null, null) == -1) {
-			Tools.ConsoleDebug("pacman_trans_init  failed \n");
+			Tools.ConsoleDebug("pacman_trans_init  failed");
 			return false;
 		}
 		
 		if (Pacman.pacman_trans_sysupgrade() == -1)
 		{
-			Tools.ConsoleDebug("pacman_trans_sysupgrade failed \n");
+			Tools.ConsoleDebug("pacman_trans_sysupgrade failed ");
 			return false;
 		}
 		packages = pacman_trans_getinfo (OptionPM.PACKAGES);
 		if (packages == null) 
 		{
-			Tools.ConsoleDebug("No new updates are available\n");
+			Tools.ConsoleDebug("No new updates are available");
 		}
 		else
 		{
-			Tools.ConsoleDebug("Updates are available\n");
-			//TODO send event
+			Tools.ConsoleDebug("Updates are available");
 			pkgUpdated=true;
 			for (i=pacman_list_first(packages);i!=null;i=pacman_list_next(i)) {
 					PM_SYNCPKG *spkg = pacman_list_getdata (i);
 					PM_PKG *pkg = pacman_sync_getinfo (spkg, OptionPMSYNC.PKG);
-					Tools.ConsoleDebug((string)pacman_pkg_getinfo(pkg,OptionPMPKG.NAME)+"\n");
+					Tools.ConsoleDebug((string)pacman_pkg_getinfo(pkg,OptionPMPKG.NAME));
 				}
 			
 		}

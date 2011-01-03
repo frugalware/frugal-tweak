@@ -22,9 +22,42 @@ using Unique;
 using Popup;
 using Tree;
 using Module;
+using pacman;
 
+[DBus (name = "org.frugalware.tweak")]
+class DbusUpd : GLib.Object {
+
+	public void update_available (bool upd) {
+		if(upd)
+			Popup.PopupShow("frugalware","Updates package available.");		
+	}
+}
+
+void on_bus_aquired (DBusConnection conn) {
+    try {
+        conn.register_object ("/org/frugalware/tweak", new DbusUpd ());
+	Tools.ConsoleDebug("register dbus application");
+    } catch (IOError e) {
+        Tools.ConsoleDebug("Could not register service);
+    }
+}
+
+void* func()
+{
+	pacman pacmang2 = new pacman();
+	if(pacmang2.CheckUpdate())
+	{
+		Popup.PopupShow("frugalware","Updates package available.");
+	}
+	return null;
+}
 int main (string[] args) {
 
+	if(!Thread.supported())
+	{
+		stdout.printf("Thread is not supported\n");
+		return 1;
+	}
 	Unique.App app;
 	Gtk.init (ref args);
 	app = new Unique.App("org.fwtweak.unique", null);
@@ -42,6 +75,12 @@ int main (string[] args) {
 		else
 			return 1;
 	}
+	//register Dbus
+	Bus.own_name (BusType.SYSTEM, "org.frugalware.tweak", BusNameOwnerFlags.NONE,
+                  on_bus_aquired,
+                  () => {},
+                  () => Tools.ConsoleDebug("Could not aquire name));
+		
 	 /* Create tray icon */
         StatusIcon trayicon = new StatusIcon.from_file("/usr/share/frugalware-tweak/pictures/frugalware-tweak.png");
         trayicon.set_tooltip_text ("Frugalware Tweak !");
@@ -70,7 +109,16 @@ int main (string[] args) {
 	#endif
 
 	window.show_all ();
-
-    Gtk.main ();
-    return 0;
+	//start thread
+	try
+	{
+		Thread.create(func,false);
+	}
+	catch
+	{
+		Tools.ConsoleDebug("Couldn't start thread\n");
+	}
+	Gtk.main ();
+	return 0;
 }
+
