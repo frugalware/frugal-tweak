@@ -29,5 +29,6 @@ namespace Config {
         public const string VERSION;
 	public const string HOMEDIR;
 	public const string CACHEDIR;
+	public const string PLUGINSDIR;
 }
 

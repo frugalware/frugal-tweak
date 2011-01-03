@@ -98,6 +98,7 @@ int main (string[] args) {
 	//Fixes home dir
 	Config.HOMEDIR=File.new_for_path (Environment.get_home_dir ());
 	Config.CACHEDIR=Config.HOMEDIR+"/.cache/frugalware-tweak2";
+	Config.PLUGINSDIR="/usr/share/frugalware-tweak/plugins/";
 
 	var window = new Window ();
 	window.title = "Frugalware Tweak";
