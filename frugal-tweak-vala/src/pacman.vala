@@ -89,7 +89,7 @@ public class pacman
 		
 	}
 	
-	public bool CheckUpdate()
+	public bool CheckUpdate( )
 	{
 		bool pkgUpdated = false;
 		PM_LIST *i = null;
