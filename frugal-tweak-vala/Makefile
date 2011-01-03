@@ -79,6 +79,7 @@ install:
 	ln -fs /usr/bin/consolehelper $(DESTDIR)/usr/bin/fwroot
 
 clean:
+	@rm src/*.c
 	@rm frugalware-tweak-terminal
 	@rm frugalware-tweak-daemon
 	@rm frugalware-tweak-browser
