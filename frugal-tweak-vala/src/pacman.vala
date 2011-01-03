@@ -89,19 +89,20 @@ public class pacman
 		
 	}
 	
-	public void CheckUpdate()
+	public bool CheckUpdate()
 	{
+		bool pkgUpdated = false;
 		PM_LIST *i = null;
 
 		if (pacman_trans_init(Pacman.OptionTrans.TYPE_SYNC, 0, null, null, null) == -1) {
 			Tools.ConsoleDebug("pacman_trans_init  failed \n");
-			return ;
+			return false;
 		}
 		
 		if (Pacman.pacman_trans_sysupgrade() == -1)
 		{
 			Tools.ConsoleDebug("pacman_trans_sysupgrade failed \n");
-			return ;
+			return false;
 		}
 		packages = pacman_trans_getinfo (OptionPM.PACKAGES);
 		if (packages == null) 
@@ -112,7 +113,7 @@ public class pacman
 		{
 			Tools.ConsoleDebug("Updates are available\n");
 			//TODO send event
-			
+			pkgUpdated=true;
 			for (i=pacman_list_first(packages);i!=null;i=pacman_list_next(i)) {
 					PM_SYNCPKG *spkg = pacman_list_getdata (i);
 					PM_PKG *pkg = pacman_sync_getinfo (spkg, OptionPMSYNC.PKG);
@@ -121,5 +122,6 @@ public class pacman
 			
 		}
 		pacman_trans_release ();
+		return pkgUpdated;
 	}
 }
