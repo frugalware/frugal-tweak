@@ -29,7 +29,7 @@ class DbusUpd : GLib.Object {
 
 	public void update_available (bool upd) {
 		if(upd)
-			Popup.PopupShow("frugalware","Updates package available.");		
+			informUpdate();
 	}
 }
 
@@ -38,7 +38,7 @@ void on_bus_aquired (DBusConnection conn) {
         conn.register_object ("/org/frugalware/tweak", new DbusUpd ());
 	Tools.ConsoleDebug("register dbus application");
     } catch (IOError e) {
-        Tools.ConsoleDebug("Could not register service);
+        Tools.ConsoleDebug("Could not register service");
     }
 }
 
@@ -47,10 +47,16 @@ void* func()
 	pacman pacmang2 = new pacman();
 	if(pacmang2.CheckUpdate())
 	{
-		Popup.PopupShow("frugalware","Updates package available.");
+		informUpdate();
 	}
 	return null;
 }
+
+void informUpdate()
+{
+	Popup.PopupShow("Frugalware tweak","Some update are available.");
+}
+
 int main (string[] args) {
 
 	if(!Thread.supported())
@@ -79,12 +85,10 @@ int main (string[] args) {
 	Bus.own_name (BusType.SYSTEM, "org.frugalware.tweak", BusNameOwnerFlags.NONE,
                   on_bus_aquired,
                   () => {},
-                  () => Tools.ConsoleDebug("Could not aquire name));
+                  () => Tools.ConsoleDebug("Could not aquire name"));
 		
 	 /* Create tray icon */
-        StatusIcon trayicon = new StatusIcon.from_file("/usr/share/frugalware-tweak/pictures/frugalware-tweak.png");
-        trayicon.set_tooltip_text ("Frugalware Tweak !");
-        trayicon.set_visible(true);
+       systray.init();
 	//TODO
 	//trayicon.activate += icon_clicked;
         //create_menu()

@@ -14,7 +14,7 @@ PACMANUPDATESOURCES = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/Pacman-update.vala $(S
 
 #for start modules
 FRUGALTWEAKSOURCES = $(SOURCEDIR)/MainClient.vala $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
-						$(SOURCEDIR)/popup.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/Module.vala\
+						$(SOURCEDIR)/popup.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/Module.vala $(SOURCEDIR)/systray.vala \
 						./vapi/config.vapi
 
 ENABLEINDICATE = 0
