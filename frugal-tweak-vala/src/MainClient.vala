@@ -49,6 +49,8 @@ void* func()
 	{
 		informUpdate();
 	}
+	roadmap.GetDateRelease();
+	
 	return null;
 }
 
@@ -92,6 +94,10 @@ int main (string[] args) {
 	//TODO
 	//trayicon.activate += icon_clicked;
         //create_menu()
+
+	//Fixes home dir
+	Config.HOMEDIR=File.new_for_path (Environment.get_home_dir ());
+	Config.CACHEDIR=Config.HOMEDIR+"/.cache/frugalware-tweak2";
 
 	var window = new Window ();
 	window.title = "Frugalware Tweak";
