@@ -19,6 +19,10 @@
 
 public static class Tools
 {
+	public static void exec(string commande,string args)
+	{
+		Posix.execlp(commande,args);
+	}
 	public static void ConsoleDebug(string text)
 	{
 		#if DEBUG

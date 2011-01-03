@@ -29,15 +29,17 @@ all: daemon terminal browser frugalwaretweak pacmanupdate
 
 frugalwaretweak:
 	$(VALAC)  --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 --pkg libnotify \
-	--pkg libxml-2.0 \
+	--pkg libxml-2.0 --pkg posix \
 	 --define=$(INDICATEFLAG) $(INDICATEVALA) \
 	$(FRUGALTWEAKSOURCES) -o frugalware-tweak2
 
 pacmanupdate:
-	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman $(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update
+	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman \
+	--pkg posix \
+	$(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update
 
 daemon:
-	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg pacman --pkg gio-2.0 $(DAEMONSOURCES) -o frugalware-tweak-daemon
+	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg pacman --pkg gio-2.0 --pkg posix $(DAEMONSOURCES) -o frugalware-tweak-daemon
 
 terminal:
 	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg vte $(TERMINALSOURCES) -o frugalware-tweak-terminal
