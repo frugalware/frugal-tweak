@@ -27,7 +27,8 @@ using Configuration;
 public static class Popup  {
 	
 	public static void PopupShow(string title,string text) {
-		if(!GetShowNotif()) return ;
+		Configuration conf= new Configuration();
+		if(!conf.GetShowNotif()) return ;
 
 		Notify.init("Frugalware-tweak");
 		var notification = new Notification (title,text, "icon_name", null);

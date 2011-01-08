@@ -1,4 +1,4 @@
-VERSION = 0.1
+PACKAGE_VERSION = 0.1
 
 ENABLEDEBUG = 1
 ifeq "$(ENABLEDEBUG)" "1"
@@ -7,15 +7,19 @@ endif
 
 SOURCEDIR = src
 
-DAEMONSOURCES = $(SOURCEDIR)/daemon.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala $(SOURCEDIR)/DbusServer.vala
+DAEMONSOURCES = $(SOURCEDIR)/daemon.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala $(SOURCEDIR)/DbusServer.vala \
+					$(SOURCEDIR)/configuration.vala
 TERMINALSOURCES = $(SOURCEDIR)/terminal.vala $(SOURCEDIR)/mainwindow.vala
 BROWSERSOURCES = $(SOURCEDIR)/browser.vala
-PACMANUPDATESOURCES = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/Pacman-update.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala
-
+PACMANUPDATESOURCES = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/Pacman-update.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
+					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala
+HOSTNAME = $(SOURCEDIR)/tools.vala $(SOURCEDIR)/FixHostname.vala $(SOURCEDIR)/configuration.vala
+READLOG = $(SOURCEDIR)/tools.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/frugallog.vala $(SOURCEDIR)/EventGtk.vala \
+			$(SOURCEDIR)/GtkObj.vala
 #for start modules
 FRUGALTWEAKSOURCES = $(SOURCEDIR)/MainClient.vala $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
-						$(SOURCEDIR)/popup.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/Module.vala $(SOURCEDIR)/systray.vala \
-						./vapi/config.vapi
+					$(SOURCEDIR)/popup.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/Module.vala $(SOURCEDIR)/systray.vala \
+					$(SOURCEDIR)/ConfSystem.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala
 
 ENABLEINDICATE = 0
 ifeq "$(ENABLEINDICATE)" "1"
@@ -28,18 +32,25 @@ VALAC = valac
 all: daemon terminal browser frugalwaretweak pacmanupdate
 
 frugalwaretweak:
-	$(VALAC)  --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 --pkg libnotify \
-	--pkg libxml-2.0 --pkg posix \
+	$(VALAC)  --Xcc="-Wl,--export-dynamic" --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 --pkg libnotify \
+	--pkg libxml-2.0 --pkg posix --thread --pkg readline -X -lreadline \
 	 --define=$(INDICATEFLAG) $(INDICATEVALA) \
 	$(FRUGALTWEAKSOURCES) -o frugalware-tweak2
 
 pacmanupdate:
 	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman \
-	--pkg posix \
+	--pkg posix  --thread  \
 	$(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update
 
 daemon:
-	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg pacman --pkg gio-2.0 --pkg posix $(DAEMONSOURCES) -o frugalware-tweak-daemon
+	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg pacman --pkg gio-2.0 --pkg posix  --thread  $(DAEMONSOURCES) -o frugalware-tweak-daemon
+
+frugallog:
+	$(VALAC) --Xcc="-Wl,--export-dynamic" --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg posix \
+		$(READLOG) -o frugalware-tweak-log
+
+hostname:
+	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg posix  --thread  $(HOSTNAME) -o frugalware-tweak-hostname
 
 terminal:
 	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg vte $(TERMINALSOURCES) -o frugalware-tweak-terminal
@@ -60,10 +71,12 @@ install:
 	mkdir -p $(DESTDIR)/etc/security/console.apps/
 	mkdir -p $(DESTDIR)/usr/share/apps/fwroot/
 	mkdir -p $(DESTDIR)/etc/rc.d/
+	mkdir -p $(DESTDIR)/usr/share/frugalware-tweak/UI/
 	cp frugalware-tweak-browser $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-terminal $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-daemon $(DESTDIR)/usr/bin/
 	cp frugalware-tweak2 $(DESTDIR)/usr/bin/
+	cp frugalware-tweak-hostname $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-pacman-update $(DESTDIR)/usr/bin/
 	cp DATA/org.frugalware.frugaltweak.gschema.xml $(DESTDIR)/usr/share/glib-2.0/schemas/
 	cp DATA/pictures/frugalware-tweak.png $(DESTDIR)/usr/share/pixmaps/
@@ -79,9 +92,12 @@ install:
 	cp DATA/root/apps.fwroot $(DESTDIR)/usr/share/apps/fwroot/fwroot
 	chmod +x $(DESTDIR)/usr/share/apps/fwroot/fwroot
 	ln -fs /usr/bin/consolehelper $(DESTDIR)/usr/bin/fwroot
+	cp UI/MainUI.ui $(DESTDIR)/usr/share/frugalware-tweak/UI/
+	cp LICENCE $(DESTDIR)/usr/share/frugalware-tweak/
 
 clean:
 	@rm src/*.c
+	@ rm frugalware-tweak-hostname
 	@rm frugalware-tweak-terminal
 	@rm frugalware-tweak-daemon
 	@rm frugalware-tweak-browser

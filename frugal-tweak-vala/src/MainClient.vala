@@ -44,23 +44,41 @@ void on_bus_aquired (DBusConnection conn) {
 
 void* func()
 {
-	pacman pacmang2 = new pacman();
-	if(pacmang2.CheckUpdate())
+	while (true)
 	{
-		informUpdate();
+		Thread.usleep(1800000000);	//1/2 hour
+		if(MyConf.GetCheckUpd())
+		{
+			pacman pacmang2 = new pacman();
+			if(pacmang2.CheckUpdate())
+			{
+				informUpdate();
+			}
+		}
+		//roadmap.GetDateRelease();
 	}
-	roadmap.GetDateRelease();
-	
 	return null;
 }
+
 
 void informUpdate()
 {
 	Popup.PopupShow("Frugalware tweak","Some update are available.");
 }
 
-int main (string[] args) {
+//declarations
+Window window;
+ConfSystem confsystem;
+Systray systrayIcon;
+Configuration MyConf ;
 
+bool onClose(Gdk.Event e)
+{
+	window.hide();
+	return true;
+}
+int main (string[] args) {
+	
 	if(!Thread.supported())
 	{
 		stdout.printf("Thread is not supported\n");
@@ -84,42 +102,65 @@ int main (string[] args) {
 			return 1;
 	}
 	//register Dbus
-	Bus.own_name (BusType.SYSTEM, "org.frugalware.tweak", BusNameOwnerFlags.NONE,
+	Bus.own_name (BusType.SESSION, "org.frugalware.tweak", BusNameOwnerFlags.NONE,
                   on_bus_aquired,
                   () => {},
                   () => Tools.ConsoleDebug("Could not aquire name"));
 		
-	 /* Create tray icon */
-       systray.init();
-	//TODO
-	//trayicon.activate += icon_clicked;
-        //create_menu()
+	confsystem = new ConfSystem();
+	try {
+		var builder = new Builder ();
+		builder.add_from_file ("/usr/share/frugalware-tweak/UI//MainUI.ui");
+		EventGtk event = new EventGtk();
+		builder.connect_signals (event);
+		
+		window = builder.get_object ("window") as Window;
+		window.delete_event += onClose;
 
-	//Fixes home dir
-	Config.HOMEDIR=File.new_for_path (Environment.get_home_dir ());
-	Config.CACHEDIR=Config.HOMEDIR+"/.cache/frugalware-tweak2";
-	Config.PLUGINSDIR="/usr/share/frugalware-tweak/plugins/";
+		//added some var to window
+		GtkObj.host = builder.get_object("entry_host") as Gtk.Entry;
+		GtkObj.host.text=confsystem.GetHostname();
 
-	var window = new Window ();
-	window.title = "Frugalware Tweak";
-	window.set_default_size (400, 300);
-	window.position = WindowPosition.CENTER;
-	window.destroy.connect (Gtk.main_quit);
+		Gtk.Entry distri = builder.get_object("entry_distri") as Gtk.Entry;
+		distri.text=confsystem.GetDitribution();
+		distri.editable=false;
+		distri.sensitive=false;
+		MyConf = new Configuration();
+		Gtk.Entry kernel = builder.get_object("entry_kernel") as Gtk.Entry;
+		kernel.editable=false;
+		kernel.sensitive=false;
+		kernel.text=confsystem.GetKernel();
+		Gtk.Entry shell = builder.get_object("entry_shell") as Gtk.Entry;
+		shell.text=confsystem.GetShell();
+		shell.editable=false;
+		shell.sensitive=false;
 
-	//added treeview for modules
-	var view = new TreeView ();
-        Tree.setup_treeviewModule (view);
-	window.add(view);
+		GtkObj.notif = builder.get_object("chk_notif") as Gtk.CheckButton;
+		GtkObj.notif.active=MyConf.GetShowNotif();
 
-	#if DEBUG
-		//for tested notification
-		Popup.PopupShow("titre test","test");
-		//Tools.ConsoleDebug("test1\n");
-		Module module = new Module("01.system.xml");
-		Tools.ConsoleDebug("test module : "+module.GetTittle()+"\n");
-	#endif
+		GtkObj.update = builder.get_object("chk_update") as Gtk.CheckButton;
+		GtkObj.update.active=MyConf.GetCheckUpd();
+		
 
-	window.show_all ();
+		Gtk.TextView about = builder.get_object("textview_about") as Gtk.TextView;
+		about.buffer.text=Tools.open_file("/usr/share/frugalware-tweak/LICENCE");
+
+	} catch (Error e) {
+		stderr.printf ("Could not load UI: %s\n", e.message);
+		return 1;
+	} 
+	
+	/* Create tray icon */
+	systrayIcon = new Systray(window);
+	if(MyConf.GetCheckUpd())
+	{
+		pacman pacmang2 = new pacman();
+		if(pacmang2.CheckUpdate())
+		{
+			Popup.PopupShow("Frugalware tweak","Some update are available.");
+			systrayIcon.SetIco("/usr/share/frugalware-tweak/pictures/frugalware-tweak-update.png");
+		}
+	}
 	//start thread
 	try
 	{
@@ -129,6 +170,8 @@ int main (string[] args) {
 	{
 		Tools.ConsoleDebug("Couldn't start thread\n");
 	}
+	
+	
 	Gtk.main ();
 	return 0;
 }

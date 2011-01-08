@@ -17,11 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
+using GLib;
+
 public static class Tools
 {
+	public static string ReadLine(string commande)
+	{
+		string result="";
+		Configuration conf = new Configuration();
+		Posix.system(commande+" > "+conf.GetCacheDir()+"/out.txt");
+		result=open_file(conf.GetCacheDir()+"/out.txt");
+		return result;
+	}
 	public static void exec(string commande,string args)
 	{
-		Posix.execlp(commande,args);
+		try{
+			Posix.execlp(commande,args);
+		}
+		catch{}
 	}
 	public static void ConsoleDebug(string text)
 	{
@@ -29,4 +42,69 @@ public static class Tools
 				stdout.printf(text+"\n");	
 		#endif
 	}
+	public static string open_file (string filename) {
+		try {
+			string text;
+			FileUtils.get_contents (filename, out text);
+			return text;
+		} catch (Error e) {
+			ConsoleDebug(e.message);
+		}
+		return "";
+	}
+	public static void write_file(string filelcoation,string content)
+	{
+		try {
+			// Reference a local file name
+			File file = File.new_for_path (filelcoation);
+			if (file.query_exists ()) {
+				// File or directory exists
+				file.delete();	
+			}
+
+			// Create a new file with this name
+			var file_stream = file.create (FileCreateFlags.NONE);
+
+			// Write text data to file
+			var data_stream = new DataOutputStream (file_stream);
+			data_stream.put_string (content);
+			Tools.ConsoleDebug("write "+ content);
+			data_stream.flush();
+			data_stream.close();
+		} catch (Error e) {
+			ConsoleDebug(e.message);
+		}
+		
+	}
+	public static void download()
+	{
+		ConsoleDebug("Donwload File");
+		
+	}
+	public static int run_command(string cmd, string param, bool sync)
+	{
+	string scmd ="";
+	if(cmd == "")
+	    return 0;
+
+	scmd = cmd+" "+param;
+	try
+	{
+		if(sync == false) {
+			if(Process.spawn_command_line_async(scmd))
+			    ConsoleDebug("Execute command : "+ scmd);
+		} else {
+			if(Process.spawn_command_line_sync(scmd))
+	    			ConsoleDebug("Execute command : "+scmd);
+		}
+	}
+
+	catch(SpawnError s) {
+	    ConsoleDebug(s.message);
+	    return 1;
+	}
+
+	return 0;
+	}
 }
+

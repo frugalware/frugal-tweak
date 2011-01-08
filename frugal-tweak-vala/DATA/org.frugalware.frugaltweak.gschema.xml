@@ -9,5 +9,13 @@
       </description>
     </key>
 
+    <key name="checkupdate" type="b">
+      <summary>Check update</summary>
+      <default>true</default>
+      <description>
+        Search update package on startup
+      </description>
+    </key>
+
   </schema>
 </schemalist>

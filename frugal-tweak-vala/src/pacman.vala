@@ -25,12 +25,12 @@ public class pacman
 {
 	
 	private static const string CFG_FILE				="/etc/pacman-g2.conf";
-	private static const string FW_CURRENT			="frugalware-current";
+	private static const string FW_CURRENT				="frugalware-current";
 	private static const string FW_STABLE				="frugalware";
 	private static const string FW_LOCAL				="local";
-	private static unowned Pacman.PM_DB sync_db	= null;
-	public static Pacman.PM_LIST *packages			= null;
-	private static string[] repos						 = new string[0];
+	private static unowned Pacman.PM_DB sync_db		= null;
+	public static Pacman.PM_LIST *packages				= null;
+	private static string[] repos						= new string[0];
 	
 	public pacman()
 	{
@@ -96,6 +96,13 @@ public class pacman
 
 		if (pacman_trans_init(Pacman.OptionTrans.TYPE_SYNC, 0, null, null, null) == -1) {
 			Tools.ConsoleDebug("pacman_trans_init  failed");
+			try{
+				pacman_trans_release ();
+				File file = File.new_for_path("/tmp/pacman-g2.lck");
+				if (file.query_exists())
+					file.delete();
+			}
+			catch{}
 			return false;
 		}
 		

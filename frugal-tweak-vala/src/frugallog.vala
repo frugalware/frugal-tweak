@@ -18,33 +18,26 @@
  */
 
 using Gtk;
-using Tree;
 
-int main (string[] args) {
-	Gtk.init (ref args);
-/*
-	var window = new Window ();
-	window.title = "Update packages";
-	window.set_default_size (400, 300);
-	window.position = WindowPosition.CENTER;
-	window.destroy.connect (Gtk.main_quit);
-
-	//added treeview for modules
-	var view = new TreeView ();*/
-	 var builder = new Builder ();
+static int main (string[] args) {     
+    Gtk.init (ref args);
+ 
+    try {
+        var builder = new Builder ();
         builder.add_from_file ("/usr/share/frugalware-tweak/UI//MainUI.ui");
-        EventGtk event = new EventGtk();
-	builder.connect_signals (event);
-        var window = builder.get_object ("windowupd") as Window;
-	Gtk.TreeView pacman = builder.get_object("treeview_upd") as Gtk.TreeView;
-	window.position = WindowPosition.CENTER;
-	window.set_default_size (800, 200);
-	window.destroy.connect (Gtk.main_quit);
-        Tree.setup_treeviewPacmanUpdate (pacman);
-	//window.add(view);
-
-	window.show_all ();
-
-    Gtk.main ();
+        builder.connect_signals (null);
+        var window = builder.get_object ("windowLog") as Window;
+	Gtk.TextView pacman = builder.get_object("text_pacman") as Gtk.TextView;
+	string text = Tools.open_file("/var/log/pacman-g2.log");
+	//Tools.ConsoleDebug(text);
+	pacman.buffer.text = text ; 
+        window.show_all ();
+        window.destroy.connect (Gtk.main_quit);
+        Gtk.main ();
+    } catch (Error e) {
+        stderr.printf ("Could not load UI: %s\n", e.message);
+        return 1;
+    } 
+ 
     return 0;
 }
