@@ -319,10 +319,18 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTextView" id="textview_about">
+          <object class="GtkScrolledWindow" id="scrolledwindow7">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="editable">False</property>
+            <property name="hscrollbar_policy">automatic</property>
+            <property name="vscrollbar_policy">automatic</property>
+            <child>
+              <object class="GtkTextView" id="textview_about">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="editable">False</property>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="position">3</property>
