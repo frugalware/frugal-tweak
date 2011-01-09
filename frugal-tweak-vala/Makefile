@@ -12,7 +12,9 @@ DAEMONSOURCES = $(SOURCEDIR)/daemon.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/t
 TERMINALSOURCES = $(SOURCEDIR)/terminal.vala $(SOURCEDIR)/mainwindow.vala
 BROWSERSOURCES = $(SOURCEDIR)/browser.vala
 PACMANUPDATESOURCES = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/Pacman-update.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
-					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala
+					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/Module.vala
+MINIPACMAN = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/mini-pacman-g2.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
+					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/Module.vala
 HOSTNAME = $(SOURCEDIR)/tools.vala $(SOURCEDIR)/FixHostname.vala $(SOURCEDIR)/configuration.vala
 READLOG = $(SOURCEDIR)/tools.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/frugallog.vala $(SOURCEDIR)/EventGtk.vala \
 			$(SOURCEDIR)/GtkObj.vala
@@ -29,7 +31,7 @@ endif
 
 VALAC = valac
 
-all: daemon terminal browser frugalwaretweak pacmanupdate
+all: daemon terminal browser frugalwaretweak pacmanupdate frugallog minipacman hostname
 
 frugalwaretweak:
 	$(VALAC)  --Xcc="-Wl,--export-dynamic" --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg pacman  --pkg unique-1.0 --pkg libnotify \
@@ -38,9 +40,14 @@ frugalwaretweak:
 	$(FRUGALTWEAKSOURCES) -o frugalware-tweak2
 
 pacmanupdate:
-	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman \
-	--pkg posix  --thread  \
+	$(VALAC) --Xcc="-Wl,--export-dynamic"  --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman \
+	--pkg posix  --pkg libxml-2.0 --thread  \
 	$(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update
+
+minipacman:
+	$(VALAC) --Xcc="-Wl,--export-dynamic" --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman \
+	--pkg posix  --thread  --pkg libxml-2.0 \
+	$(MINIPACMAN) -o frugalware-tweak-pacman-g2
 
 daemon:
 	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg pacman --pkg gio-2.0 --pkg posix  --thread  $(DAEMONSOURCES) -o frugalware-tweak-daemon
@@ -74,6 +81,7 @@ install:
 	mkdir -p $(DESTDIR)/usr/share/frugalware-tweak/UI/
 	cp frugalware-tweak-log $(DESTDIR)/usr/bin/
 	cp DATA/01.readlog.xml $(DESTDIR)/usr/share/frugalware-tweak/plugins/
+	cp frugalware-tweak-pacman-g2 $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-browser $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-terminal $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-daemon $(DESTDIR)/usr/bin/
@@ -99,6 +107,7 @@ install:
 
 clean:
 	@rm src/*.c
+	@rm frugalware-tweak-pacman-g2
 	@rm frugalware-tweak-log
 	@rm frugalware-tweak-hostname
 	@rm frugalware-tweak-terminal

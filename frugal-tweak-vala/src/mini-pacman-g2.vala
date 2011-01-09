@@ -22,17 +22,13 @@ using Tree;
 
 int main (string[] args) {
 	Gtk.init (ref args);
+
 	 var builder = new Builder ();
         builder.add_from_file ("/usr/share/frugalware-tweak/UI/MainUI.ui");
         EventGtk event = new EventGtk();
 	builder.connect_signals (event);
-        var window = builder.get_object ("windowupd") as Window;
-	Gtk.TreeView pacman = builder.get_object("treeview_upd") as Gtk.TreeView;
-	window.position = WindowPosition.CENTER;
-	window.set_default_size (800, 200);
+        var window = builder.get_object ("window_pacman") as Window;
 	window.destroy.connect (Gtk.main_quit);
-        Tree.setup_treeviewPacmanUpdate (pacman);
-	//window.add(view);
 
 	window.show_all ();
 
