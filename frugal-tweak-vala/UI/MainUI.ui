@@ -498,7 +498,7 @@
           <object class="GtkHBox" id="hbox8">
             <property name="visible">True</property>
             <child>
-              <object class="GtkComboBox" id="combobox1">
+              <object class="GtkComboBox" id="combobox_repo">
                 <property name="visible">True</property>
               </object>
               <packing>
