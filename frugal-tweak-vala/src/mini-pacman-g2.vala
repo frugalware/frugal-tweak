@@ -34,7 +34,7 @@ int main (string[] args) {
 
 	mini_pacman = new pacman();
 	ListStore    model;
-        CellRenderer cell;
+	CellRenderer cell;
 	string [] repos = mini_pacman.repos();
 	Gtk.ComboBox pacman_repo = builder.get_object("combobox_repo") as Gtk.ComboBox;
 	model = new ListStore( 2, typeof( string ), typeof( int ) );
