@@ -18,7 +18,7 @@
  */
 using GLib;
 
-class Deamon : GLib.Object {
+class Hostname : GLib.Object {
 
 	public static int main(string[] args) {
 	Tools.ConsoleDebug("Fixes hostname "+args[1]);

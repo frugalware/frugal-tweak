@@ -22,4 +22,7 @@ public static class GtkObj {
 	public static Gtk.CheckButton notif;
 	public static Gtk.CheckButton update;
 	public static Gtk.Entry host;
+
+	public static Gtk.TreeView modules;
+	public static Gtk.ListStore listmodel_modules;
 }

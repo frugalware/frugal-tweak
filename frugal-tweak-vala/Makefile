@@ -72,6 +72,8 @@ install:
 	mkdir -p $(DESTDIR)/usr/share/apps/fwroot/
 	mkdir -p $(DESTDIR)/etc/rc.d/
 	mkdir -p $(DESTDIR)/usr/share/frugalware-tweak/UI/
+	cp frugalware-tweak-log $(DESTDIR)/usr/bin/
+	cp DATA/01.readlog.xml $(DESTDIR)/usr/share/frugalware-tweak/plugins/
 	cp frugalware-tweak-browser $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-terminal $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-daemon $(DESTDIR)/usr/bin/
@@ -97,7 +99,8 @@ install:
 
 clean:
 	@rm src/*.c
-	@ rm frugalware-tweak-hostname
+	@rm frugalware-tweak-log
+	@rm frugalware-tweak-hostname
 	@rm frugalware-tweak-terminal
 	@rm frugalware-tweak-daemon
 	@rm frugalware-tweak-browser

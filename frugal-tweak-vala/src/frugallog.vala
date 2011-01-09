@@ -23,14 +23,28 @@ static int main (string[] args) {
     Gtk.init (ref args);
  
     try {
+	Configuration conf = new Configuration();
         var builder = new Builder ();
         builder.add_from_file ("/usr/share/frugalware-tweak/UI//MainUI.ui");
         builder.connect_signals (null);
         var window = builder.get_object ("windowLog") as Window;
+	Gtk.TextView xorg = builder.get_object("text_xorg") as Gtk.TextView;
+	string display = Tools.ReadLine("echo $DISPLAY");
+	string []displays=display.split(":");
+	display =displays[1];
+	displays=display.split(".");
+	display =displays[0];
+	Tools.ConsoleDebug(display);
+	xorg.buffer.text=Tools.open_file("/var/log/Xorg."+display+".log");
+
 	Gtk.TextView pacman = builder.get_object("text_pacman") as Gtk.TextView;
-	string text = Tools.open_file("/var/log/pacman-g2.log");
-	//Tools.ConsoleDebug(text);
-	pacman.buffer.text = text ; 
+	string text = Tools.open_file("/var/log/pacman-g2.log2");
+	pacman.buffer.text=text;
+
+	Gtk.TextView xsession = builder.get_object("text_xsession") as Gtk.TextView;
+	xsession.buffer.text=Tools.open_file(conf.HOMEDIR+"/.xsession-errors");
+	
+
         window.show_all ();
         window.destroy.connect (Gtk.main_quit);
         Gtk.main ();

@@ -42,11 +42,19 @@ public static class Tools
 				stdout.printf(text+"\n");	
 		#endif
 	}
+	public static string To_Utf8(string text)
+	{
+		ssize_t size = text.length;
+		return text.locale_to_utf8(size,null,null);
+	}
 	public static string open_file (string filename) {
 		try {
 			string text;
+			string text2;
 			FileUtils.get_contents (filename, out text);
-			return text;
+			text2=To_Utf8(text);
+			ConsoleDebug(text2);
+			return text2;
 		} catch (Error e) {
 			ConsoleDebug(e.message);
 		}

@@ -47,13 +47,10 @@ void* func()
 	while (true)
 	{
 		Thread.usleep(1800000000);	//1/2 hour
-		if(MyConf.GetCheckUpd())
+		pacman pacmang2 = new pacman();
+		if(pacmang2.CheckUpdate())
 		{
-			pacman pacmang2 = new pacman();
-			if(pacmang2.CheckUpdate())
-			{
-				informUpdate();
-			}
+			informUpdate();
 		}
 		//roadmap.GetDateRelease();
 	}
@@ -140,7 +137,9 @@ int main (string[] args) {
 
 		GtkObj.update = builder.get_object("chk_update") as Gtk.CheckButton;
 		GtkObj.update.active=MyConf.GetCheckUpd();
-		
+
+		GtkObj.modules = builder.get_object("treeview_modules") as Gtk.TreeView;
+		setup_treeviewModule(GtkObj.modules);
 
 		Gtk.TextView about = builder.get_object("textview_about") as Gtk.TextView;
 		about.buffer.text=Tools.open_file("/usr/share/frugalware-tweak/LICENCE");

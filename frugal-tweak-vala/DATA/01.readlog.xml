@@ -1,0 +1,6 @@
+<module>
+	<tittle>Read Logs</tittle>
+	<description>Read system log</description> 
+	<command>frugalware-tweak-log</command> 
+	<group>SYSTEM</group> 
+</module>

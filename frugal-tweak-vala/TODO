@@ -1,3 +1,2 @@
-.Added systray icon
-.have a config file for added modules
-.uses glib schema for save configurations
+*Fixes icon gtk delegate when update package available
+*Added splashscreen

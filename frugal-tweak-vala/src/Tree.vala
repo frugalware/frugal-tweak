@@ -25,20 +25,30 @@ public static class Tree {
 
 	public static void setup_treeviewModule(TreeView view) {
 
-	var listmodel = new ListStore (4, typeof (string), typeof (string),
+	GtkObj.listmodel_modules = new ListStore (4, typeof (string), typeof (string),
 		                          typeof (string), typeof (string));
-	view.set_model (listmodel);
+	view.set_model (GtkObj.listmodel_modules);
 
 	view.insert_column_with_attributes (-1, "Module", new CellRendererText (), "text", 0);
-	view.insert_column_with_attributes (-1, "Type", new CellRendererText (), "text", 1);
-
-	var cell = new CellRendererText ();
-	cell.set ("foreground_set", true);
-	view.insert_column_with_attributes (-1, "Balance", cell, "text", 2, "foreground", 3);
-
+	view.insert_column_with_attributes (-1, "Description", new CellRendererText (), "text", 1);
 	TreeIter iter;
-	listmodel.append (out iter);
-	listmodel.set (iter, 0, "System", 1, "test", 2, "102,10", 3, "red");
+
+	Configuration MyConf = new Configuration();
+	//check modules available
+	try {
+		var directory = File.new_for_path (MyConf.PLUGINSDIR);
+		var enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0);
+		FileInfo file_info;
+		while ((file_info = enumerator.next_file ()) != null) {
+			//stdout.printf ("%s\n", file_info.get_name ());
+			Module module = new Module( file_info.get_name ());
+			GtkObj.listmodel_modules.append (out iter);
+			GtkObj.listmodel_modules.set (iter, 0, module.GetTittle(), 1,module.GetDescription() , 2, module.GetCommand(),module.GetGroup(),3);
+		}
+	} 
+	catch (Error e) {
+		stderr.printf ("Error: %s\n", e.message);
+	}
 
 	}
 
