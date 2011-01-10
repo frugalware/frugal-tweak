@@ -82,6 +82,8 @@ install:
 	mkdir -p $(DESTDIR)/etc/rc.d/
 	mkdir -p $(DESTDIR)/usr/share/frugalware-tweak/UI/
 	cp frugalware-tweak-log $(DESTDIR)/usr/bin/
+	cp DATA/01.checkupdate.xml $(DESTDIR)/usr/share/frugalware-tweak/plugins/
+	cp DATA/01.pacman.xml $(DESTDIR)/usr/share/frugalware-tweak/plugins/
 	cp DATA/01.readlog.xml $(DESTDIR)/usr/share/frugalware-tweak/plugins/
 	cp frugalware-tweak-pacman-g2 $(DESTDIR)/usr/bin/
 	cp frugalware-tweak-browser $(DESTDIR)/usr/bin/

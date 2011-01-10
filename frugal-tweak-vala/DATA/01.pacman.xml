@@ -1,0 +1,6 @@
+<module>
+	<tittle>Mini pacman-g2</tittle>
+	<description>Minimalist pacman-g2 fronted</description> 
+	<command>frugalware-tweak-pacman-g2</command> 
+	<group>SYSTEM</group> 
+</module>

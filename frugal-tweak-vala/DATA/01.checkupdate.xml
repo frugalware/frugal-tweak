@@ -1,0 +1,6 @@
+<module>
+	<tittle>Check update</tittle>
+	<description>Check if some packages can be updated</description> 
+	<command>frugalware-tweak-pacman-update</command> 
+	<group>SYSTEM</group> 
+</module>
