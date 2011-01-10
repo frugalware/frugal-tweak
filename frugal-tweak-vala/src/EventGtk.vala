@@ -18,6 +18,7 @@
  */
 
 using Gtk;
+using Pacman;
 
 public class EventGtk{
 	
@@ -65,7 +66,29 @@ public class EventGtk{
 			return ;
 		}
 		//search into pacman-g2 database
-		static_obj.my_pacman.search(str_search,str_repo);
+		unowned Pacman.PM_LIST lst_packages = null;
+		unowned Pacman.PM_DB db_search = null;
+		PM_LIST		*i = null ;
+		PM_PKG		*pm_spkg;
+		TreeIter iter;
+		GtkObj.listmodel_pkg = new ListStore (3, typeof (string), typeof (string),
+				          typeof (string));
+
+		GtkObj.tree_pkg.set_model (GtkObj.listmodel_pkg);
+
+		GtkObj.tree_pkg.insert_column_with_attributes (-1, "Package", new CellRendererText (), "text", 0);
+		GtkObj.tree_pkg.insert_column_with_attributes (-1, "Version", new CellRendererText (), "text", 1);
+		GtkObj.tree_pkg.insert_column_with_attributes (-1, "Description", new CellRendererText (), "text", 2);
+
+		if (static_obj.my_pacman.search(str_search,str_repo,out lst_packages, out db_search))
+		{
+			for (i=pacman_list_first(lst_packages);i!=null;i=pacman_list_next(i)) {
+					pm_spkg = pacman_db_readpkg (db_search, pacman_list_getdata(i));
+					GtkObj.listmodel_pkg.append (out iter);
+					GtkObj.listmodel_pkg.set (iter, 0, (string)pacman_pkg_getinfo(pm_spkg,OptionPMPKG.NAME), 1, (string)pacman_pkg_getinfo(pm_spkg,OptionPMPKG.VERSION), 2, (string)pacman_pkg_getinfo(pm_spkg,OptionPMPKG.DESC), 3);
+					Tools.ConsoleDebug((string)pacman_pkg_getinfo(pm_spkg,OptionPMPKG.NAME));
+				}	
+		}
 	}
 
 }

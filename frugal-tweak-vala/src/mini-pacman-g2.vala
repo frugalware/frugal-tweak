@@ -48,7 +48,7 @@ int main (string[] args) {
 	GtkObj.combobox_repo.model=GtkObj.listmodel_repo;
 
 	GtkObj.entry_search_pkg = builder.get_object("entry_search_pkg") as Gtk.Entry;
-
+	GtkObj.tree_pkg = builder.get_object("tree_package") as Gtk.TreeView;
 	window.show_all ();
 
     Gtk.main ();

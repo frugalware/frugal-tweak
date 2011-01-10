@@ -12,17 +12,18 @@ DAEMONSOURCES = $(SOURCEDIR)/daemon.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/t
 TERMINALSOURCES = $(SOURCEDIR)/terminal.vala $(SOURCEDIR)/mainwindow.vala
 BROWSERSOURCES = $(SOURCEDIR)/browser.vala
 PACMANUPDATESOURCES = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/Pacman-update.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
-					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/Module.vala
+					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/Module.vala \
+					$(SOURCEDIR)/static_obj.vala
 MINIPACMAN = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/mini-pacman-g2.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
 					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/Module.vala \
 					$(SOURCEDIR)/static_obj.vala
 HOSTNAME = $(SOURCEDIR)/tools.vala $(SOURCEDIR)/FixHostname.vala $(SOURCEDIR)/configuration.vala
 READLOG = $(SOURCEDIR)/tools.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/frugallog.vala $(SOURCEDIR)/EventGtk.vala \
-			$(SOURCEDIR)/GtkObj.vala
+			$(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/static_obj.vala $(SOURCEDIR)/pacman.vala
 #for start modules
 FRUGALTWEAKSOURCES = $(SOURCEDIR)/MainClient.vala $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
 					$(SOURCEDIR)/popup.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/Module.vala $(SOURCEDIR)/systray.vala \
-					$(SOURCEDIR)/ConfSystem.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala
+					$(SOURCEDIR)/ConfSystem.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/static_obj.vala
 
 ENABLEINDICATE = 0
 ifeq "$(ENABLEINDICATE)" "1"
@@ -54,7 +55,7 @@ daemon:
 	$(VALAC) --save-temps --define=$(DEBUGFLAG) --pkg pacman --pkg gio-2.0 --pkg posix  --thread  $(DAEMONSOURCES) -o frugalware-tweak-daemon
 
 frugallog:
-	$(VALAC) --Xcc="-Wl,--export-dynamic" --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg posix \
+	$(VALAC) --Xcc="-Wl,--export-dynamic" --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0 --pkg posix  --pkg pacman \
 		$(READLOG) -o frugalware-tweak-log
 
 hostname:

@@ -31,5 +31,7 @@ public static class GtkObj {
 	public static  Gtk.Entry entry_search_pkg;
 	public static  Gtk.ComboBox combobox_repo;
 	public static Gtk.ListStore listmodel_repo;
+	public static Gtk.TreeView tree_pkg;
+	public static Gtk.ListStore listmodel_pkg;
 
 }
