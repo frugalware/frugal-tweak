@@ -46,12 +46,15 @@ void* func()
 {
 	while (true)
 	{
-		Thread.usleep(1800000000);	//1/2 hour
-		pacman pacmang2 = new pacman();
-		if(pacmang2.CheckUpdate())
+		if (MyConf.GetCheckUpd())
 		{
-			informUpdate();
+			pacman pacmang2 = new pacman();
+			if(pacmang2.CheckUpdate())
+			{
+				informUpdate();
+			}
 		}
+		Thread.usleep(1800000000);	//1/2 hour
 		//roadmap.GetDateRelease();
 	}
 	return null;
@@ -61,17 +64,18 @@ void* func()
 void informUpdate()
 {
 	Popup.PopupShow("Frugalware tweak","Some update are available.");
+	systrayIcon.SetTooltip("Some update are available.");
+	systrayIcon.SetIco("/usr/share/frugalware-tweak/pictures/frugalware-tweak-update.png");
 }
 
 //declarations
-Window window;
 ConfSystem confsystem;
 Systray systrayIcon;
 Configuration MyConf ;
 
 bool onClose(Gdk.Event e)
 {
-	window.hide();
+	GtkObj.MainWindow.hide();
 	return true;
 }
 int main (string[] args) {
@@ -111,8 +115,8 @@ int main (string[] args) {
 		EventGtk event = new EventGtk();
 		builder.connect_signals (event);
 		
-		window = builder.get_object ("window") as Window;
-		window.delete_event += onClose;
+		GtkObj.MainWindow = builder.get_object ("window") as Window;
+		GtkObj.MainWindow.delete_event += onClose;
 
 		//added some var to window
 		GtkObj.host = builder.get_object("entry_host") as Gtk.Entry;
@@ -150,16 +154,8 @@ int main (string[] args) {
 	} 
 	
 	/* Create tray icon */
-	systrayIcon = new Systray(window);
-	if(MyConf.GetCheckUpd())
-	{
-		pacman pacmang2 = new pacman();
-		if(pacmang2.CheckUpdate())
-		{
-			Popup.PopupShow("Frugalware tweak","Some update are available.");
-			systrayIcon.SetIco("/usr/share/frugalware-tweak/pictures/frugalware-tweak-update.png");
-		}
-	}
+	systrayIcon = new Systray();
+
 	//start thread
 	try
 	{
@@ -169,8 +165,6 @@ int main (string[] args) {
 	{
 		Tools.ConsoleDebug("Couldn't start thread\n");
 	}
-	
-	
 	Gtk.main ();
 	return 0;
 }

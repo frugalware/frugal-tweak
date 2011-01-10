@@ -28,14 +28,14 @@ public class Systray
 	private string _defaultIco = "/usr/share/frugalware-tweak/pictures/frugalware-tweak.png";
 	private string _ico ="";
 	private Configuration conf = new Configuration();
-	public Systray(Window MainWindow)
+	public Systray()
 	{
-		_window = MainWindow;
+		_window = GtkObj.MainWindow;
 		_ico=_defaultIco;
 		 /* Create tray icon */
 		try
 		{
-			_trayicon = new StatusIcon.from_file(_defaultIco);
+			_trayicon =new StatusIcon.from_file(_defaultIco);
 			_window.set_icon_from_file(_defaultIco);
 		}
 		catch(GLib.Error err)
@@ -48,6 +48,10 @@ public class Systray
 		_trayicon.set_tooltip_text ("Frugalware Tweak2 !");
 		create_menu();
 		this.show();
+	}
+	public void SetTooltip(string text)
+	{
+		_trayicon.set_tooltip_text (text);
 	}
 	private void create_menu ()
 	{
@@ -90,7 +94,6 @@ public class Systray
 		try
 		{
 			_ico=ico;
-			_trayicon.set_from_pixbuf(new Gdk.Pixbuf.from_file(_ico));
 			_window.set_icon_from_file(_ico);
 		}
 		catch(GLib.Error err)

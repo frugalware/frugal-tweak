@@ -20,6 +20,7 @@
 public static class GtkObj {
 
 	//frugalware-tweak
+	public static Gtk.Window MainWindow;
 	public static Gtk.CheckButton notif;
 	public static Gtk.CheckButton update;
 	public static Gtk.Entry host;

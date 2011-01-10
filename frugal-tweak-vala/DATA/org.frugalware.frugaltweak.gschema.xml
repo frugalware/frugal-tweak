@@ -11,9 +11,9 @@
 
     <key name="checkupdate" type="b">
       <summary>Check update</summary>
-      <default>false</default>
+      <default>true</default>
       <description>
-        Search update package on startup
+        Search update packages
       </description>
     </key>
 

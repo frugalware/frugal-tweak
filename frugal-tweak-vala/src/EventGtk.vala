@@ -121,5 +121,12 @@ public class EventGtk{
 		if(str=="") return;
 		Tools.run_command("fwroot" ,"frugalware-tweak-terminal -e pacman-g2 -Rc "+str,false);
 	}
-
+	[CCode (cname = "G_MODULE_EXPORT EventGtk_on_buttonoptimize_clicked",instance_pos = -1)]
+	public void on_BTN_optimize_clicked (Button source) {
+		Tools.run_command("fwroot frugalware-tweak-terminal ","-e pacman-g2-optimize",false);
+	}
+	[CCode (cname = "G_MODULE_EXPORT on_EventGtk_button_upd_database_clicked",instance_pos = -1)]
+	public void on_BTN_Update_database_clicked (Button source) {
+		Tools.run_command("fwroot frugalware-tweak-terminal ","-e pacman-g2 -Syy",false);
+	}
 }
