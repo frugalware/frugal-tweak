@@ -17,17 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
-public static class GtkObj {
-
-	//frugalware-tweak
-	public static Gtk.CheckButton notif;
-	public static Gtk.CheckButton update;
-	public static Gtk.Entry host;
-
-	public static Gtk.TreeView modules;
-	public static Gtk.ListStore listmodel_modules;
-
-	//mini pacman-g2
-	public static  Gtk.Entry entry_search_pkg;
-	public static  Gtk.ComboBox combobox_repo;
+public static class static_obj {
+	public static pacman my_pacman;
 }

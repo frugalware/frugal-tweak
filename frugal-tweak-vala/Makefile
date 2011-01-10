@@ -14,7 +14,8 @@ BROWSERSOURCES = $(SOURCEDIR)/browser.vala
 PACMANUPDATESOURCES = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/Pacman-update.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
 					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/Module.vala
 MINIPACMAN = $(SOURCEDIR)/Tree.vala $(SOURCEDIR)/mini-pacman-g2.vala $(SOURCEDIR)/pacman.vala $(SOURCEDIR)/tools.vala \
-					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/Module.vala
+					$(SOURCEDIR)/configuration.vala $(SOURCEDIR)/EventGtk.vala $(SOURCEDIR)/GtkObj.vala $(SOURCEDIR)/Module.vala \
+					$(SOURCEDIR)/static_obj.vala
 HOSTNAME = $(SOURCEDIR)/tools.vala $(SOURCEDIR)/FixHostname.vala $(SOURCEDIR)/configuration.vala
 READLOG = $(SOURCEDIR)/tools.vala $(SOURCEDIR)/configuration.vala $(SOURCEDIR)/frugallog.vala $(SOURCEDIR)/EventGtk.vala \
 			$(SOURCEDIR)/GtkObj.vala

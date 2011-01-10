@@ -50,5 +50,11 @@ public class EventGtk{
 	public void on_BTN_Update_clicked (Button source) {
 		Tools.run_command("fwroot frugalware-tweak-terminal ","-e pacman-g2 -Syu",false);
 	}
+	//mini pacman-g2
+	[CCode (cname = "G_MODULE_EXPORT EventGtk_On_PacmanG2Search",instance_pos = -1)]
+	public void on_BTN_search_pkg_clicked (Button source) {
+		Tools.ConsoleDebug("search package...");
+		
+	}
 
 }

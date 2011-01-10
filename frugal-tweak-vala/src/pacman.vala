@@ -24,13 +24,13 @@ using Pacman;
 public class pacman
 {
 	
-	private static const string CFG_FILE				="/etc/pacman-g2.conf";
+	private static const string CFG_FILE			="/etc/pacman-g2.conf";
 	private static const string FW_CURRENT			="frugalware-current";
-	private static const string FW_STABLE				="frugalware";
-	private static const string FW_LOCAL				="local";
+	private static const string FW_STABLE			="frugalware";
+	private static const string FW_LOCAL			="local";
 	private static unowned Pacman.PM_DB sync_db	= null;
 	public static Pacman.PM_LIST *packages			= null;
-	private static string[] _repos						= new string[0];
+	private static string[] _repos					= new string[0];
 	
 	public pacman()
 	{
@@ -52,7 +52,7 @@ public class pacman
 		Pacman.pacman_cb_db_register callback = _db_callback;
 		Pacman.pacman_parse_config(CFG_FILE, callback,"");		
 		Pacman.pacman_db_register(FW_LOCAL);
-		_repos += "local";
+		_repos += FW_LOCAL;
 		 /* set some important pacman-g2 options */
 		long _logParam = -1;
 		Pacman.pacman_set_option (Pacman.Option.LOGCB,_logParam);
