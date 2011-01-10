@@ -33,5 +33,7 @@ public static class GtkObj {
 	public static Gtk.ListStore listmodel_repo;
 	public static Gtk.TreeView tree_pkg;
 	public static Gtk.ListStore listmodel_pkg;
+	public static Gtk.Button uninstall_pkg;
+	public static Gtk.Button install_pkg;
 
 }

@@ -91,4 +91,19 @@ public class EventGtk{
 		}
 	}
 
+	[CCode (cname = "G_MODULE_EXPORT EventGtk_on_button_install_clicked",instance_pos = -1)]
+	public void on_BTN_install_clicked (Button source) {
+		TreeIter iter;
+		TreeModel model;
+		string str = "";
+
+		TreeSelection sel = GtkObj.tree_pkg.get_selection();
+		if (sel.count_selected_rows() == 1) {
+			sel.get_selected( out model, out iter);
+			GtkObj.listmodel_pkg.get(iter, 0, out str);
+		}
+		if(str=="") return;
+		Tools.run_command("fwroot" ,"frugalware-tweak-terminal -e pacman-g2 -S "+str,false);
+	}
+
 }
