@@ -18,10 +18,27 @@
  */
 
 using Gtk;
+using Unique;
 using Tree;
 
 int main (string[] args) {
+	Unique.App app;
 	Gtk.init (ref args);
+	app = new Unique.App("org.pacmanupdate.unique", null);
+		
+	if(app.is_running) { //not starting if already running
+		Unique.Command command;
+		Unique.Response response;
+		Unique.MessageData message;
+		message = new MessageData ();
+		command = (Unique.Command) Unique.Command.ACTIVATE;
+		response = app.send_message (command, message);
+	
+		if(response == Unique.Response.OK)
+			return 0;
+		else
+			return 1;
+	}
 	 var builder = new Builder ();
         builder.add_from_file ("/usr/share/frugalware-tweak/UI/MainUI.ui");
         EventGtk event = new EventGtk();

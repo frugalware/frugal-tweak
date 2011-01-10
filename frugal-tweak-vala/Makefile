@@ -43,7 +43,7 @@ frugalwaretweak:
 
 pacmanupdate:
 	$(VALAC) --Xcc="-Wl,--export-dynamic"  --save-temps --define=$(DEBUGFLAG) --pkg gio-2.0 --pkg gtk+-2.0 --pkg gmodule-2.0  --pkg pacman \
-	--pkg posix  --pkg libxml-2.0 --thread  \
+	--pkg posix  --pkg libxml-2.0 --thread  --pkg unique-1.0 \
 	$(PACMANUPDATESOURCES) -o frugalware-tweak-pacman-update
 
 minipacman:
