@@ -64,6 +64,8 @@ public class EventGtk{
 			msg.destroy();
 			return ;
 		}
+		//search into pacman-g2 database
+		static_obj.my_pacman.search(str_search,str_repo);
 	}
 
 }

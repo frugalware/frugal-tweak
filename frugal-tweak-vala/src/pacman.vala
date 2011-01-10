@@ -59,6 +59,32 @@ public class pacman
 		//Pacman.pacman_set_option (Pacman.Option.LOGMASK,_logParam);
 		//Pacman.set_option(Pacman.Option.USESYSLOG,-1);
 	}
+	public unowned Pacman.PM_DB RegisterRepo(string repo)
+	{
+		return Pacman.pacman_db_register(repo);
+	}
+	public bool search(string str_search,string str_repo)
+	{
+		unowned Pacman.PM_DB db_search = null;
+		PM_LIST		*i = null ;
+		PM_PKG		*pm_spkg;
+
+		db_search = RegisterRepo(str_repo);
+		if (db_search == null)
+		{
+			Tools.ConsoleDebug("Couldn't register "+ str_repo);
+			return false;
+		}
+		Pacman.pacman_set_option (Pacman.Option.NEEDLES,(long) str_search);
+		packages = Pacman.pacman_db_search(db_search);
+		
+		for (i=pacman_list_first(packages);i!=null;i=pacman_list_next(i)) {
+					pm_spkg = pacman_db_readpkg (db_search, pacman_list_getdata(i));
+					Tools.ConsoleDebug((string)pacman_pkg_getinfo(pm_spkg,OptionPMPKG.NAME));
+				}
+		Tools.ConsoleDebug("search finish :"+str_search+" into "+str_repo);
+		return true;
+	}
 	private static void _db_callback (string section, PM_DB db)
 	{
 		Tools.ConsoleDebug("Find repo "+section);
