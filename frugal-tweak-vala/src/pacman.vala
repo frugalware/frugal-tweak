@@ -29,6 +29,7 @@ public class pacman
 	private static const string FW_STABLE			="frugalware";
 	private static const string FW_LOCAL			="local";
 	private static unowned Pacman.PM_DB sync_db	= null;
+	private static unowned Pacman.PM_DB local_db	= null;
 	public static Pacman.PM_LIST *packages			= null;
 	private static string[] _repos					= new string[0];
 	
@@ -51,7 +52,9 @@ public class pacman
 		
 		Pacman.pacman_cb_db_register callback = _db_callback;
 		Pacman.pacman_parse_config(CFG_FILE, callback,"");		
-		Pacman.pacman_db_register(FW_LOCAL);
+		local_db = Pacman.pacman_db_register(FW_LOCAL);
+		if(local_db==null)
+				Tools.ConsoleDebug("Couldn't register local database");
 		_repos += FW_LOCAL;
 		 /* set some important pacman-g2 options */
 		long _logParam = -1;
@@ -59,9 +62,12 @@ public class pacman
 		//Pacman.pacman_set_option (Pacman.Option.LOGMASK,_logParam);
 		//Pacman.set_option(Pacman.Option.USESYSLOG,-1);
 	}
-	public unowned Pacman.PM_DB RegisterRepo(string repo)
+	public unowned Pacman.PM_DB RegisterRepo(string str_repo)
 	{
-		return Pacman.pacman_db_register(repo);
+		if(str_repo==FW_LOCAL)
+			return local_db;
+		else
+			return Pacman.pacman_db_register(str_repo);
 	}
 	public bool search(string str_search,string str_repo)
 	{
@@ -72,7 +78,7 @@ public class pacman
 		db_search = RegisterRepo(str_repo);
 		if (db_search == null)
 		{
-			Tools.ConsoleDebug("Couldn't register "+ str_repo);
+			Tools.ConsoleDebug("Couldn't register '"+ str_repo+"'");
 			return false;
 		}
 		Pacman.pacman_set_option (Pacman.Option.NEEDLES,(long) str_search);
