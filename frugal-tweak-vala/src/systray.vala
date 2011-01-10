@@ -43,6 +43,7 @@ public class Systray
 			var msg = new Gtk.MessageDialog(null,Gtk.DialogFlags.MODAL,Gtk.MessageType.ERROR,
 										Gtk.ButtonsType.OK,"Failed to load "+_defaultIco+"\n"+err.message);
 			msg.run();
+			msg.destroy();
 		}
 		_trayicon.set_tooltip_text ("Frugalware Tweak2 !");
 		create_menu();

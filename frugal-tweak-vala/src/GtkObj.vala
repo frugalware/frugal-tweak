@@ -30,4 +30,6 @@ public static class GtkObj {
 	//mini pacman-g2
 	public static  Gtk.Entry entry_search_pkg;
 	public static  Gtk.ComboBox combobox_repo;
+	public static Gtk.ListStore listmodel_repo;
+
 }

@@ -506,7 +506,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry1">
+              <object class="GtkEntry" id="entry_search_pkg">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">&#x2022;</property>
@@ -521,6 +521,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="EventGtk_On_PacmanG2Search"/>
               </object>
               <packing>
                 <property name="position">2</property>

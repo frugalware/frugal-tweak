@@ -53,8 +53,17 @@ public class EventGtk{
 	//mini pacman-g2
 	[CCode (cname = "G_MODULE_EXPORT EventGtk_On_PacmanG2Search",instance_pos = -1)]
 	public void on_BTN_search_pkg_clicked (Button source) {
-		Tools.ConsoleDebug("search package...");
-		
+		string str_repo = GtkObj.combobox_repo.get_active_text();
+		string str_search= GtkObj.entry_search_pkg.text;
+		Tools.ConsoleDebug("search package "+str_search+" into "+str_repo+"...");
+		if(str_repo== null)
+		{
+			var msg = new Gtk.MessageDialog(null,Gtk.DialogFlags.MODAL,Gtk.MessageType.INFO,
+										Gtk.ButtonsType.OK,"You should select a repo.");
+			msg.run();
+			msg.destroy();
+			return ;
+		}
 	}
 
 }

@@ -30,23 +30,24 @@ int main (string[] args) {
 	window.destroy.connect (Gtk.main_quit);
 
 	static_obj.my_pacman = new pacman();
-	ListStore    model;
 	CellRenderer cell;
 	string [] repos = static_obj.my_pacman.repos();
 	GtkObj.combobox_repo = builder.get_object("combobox_repo") as Gtk.ComboBox;
-	model = new ListStore( 2, typeof( string ), typeof( int ) );
+	GtkObj.listmodel_repo = new ListStore( 2, typeof( string ), typeof( int ) );
 	int i = 0;
 	while(i<=repos.length)
 	{
 		TreeIter iter;
-		model.append( out iter );
-		model.set( iter, 0, repos[i], 1, i );
+		GtkObj.listmodel_repo.append( out iter );
+		GtkObj.listmodel_repo.set( iter, 0, repos[i], 1, i );
 		i++;
 	}
 	cell = new CellRendererText();
         GtkObj.combobox_repo.pack_start( cell, false );
         GtkObj.combobox_repo.set_attributes( cell, "text", 0 );
-	GtkObj.combobox_repo.model=model;
+	GtkObj.combobox_repo.model=GtkObj.listmodel_repo;
+
+	GtkObj.entry_search_pkg = builder.get_object("entry_search_pkg") as Gtk.Entry;
 
 	window.show_all ();
 
