@@ -1,0 +1,8 @@
+2011/01/11
+First pre release version 0.1 :
+	can change hostname
+	notification update package
+	wiki/forums access
+	fork moko terminal
+	minimalist fronted pacman-g2
+	rewrite update daemon database
