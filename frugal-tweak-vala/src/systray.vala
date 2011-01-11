@@ -89,11 +89,13 @@ public class Systray
 		_trayicon.activate +=  icon_clicked ;
 		
 	}
+	public delegate void Change_Ico(string ico);
 	public void SetIco(string ico)
 	{
 		try
 		{
 			_ico=ico;
+			_trayicon.set_from_file(_ico);
 			_window.set_icon_from_file(_ico);
 		}
 		catch(GLib.Error err)

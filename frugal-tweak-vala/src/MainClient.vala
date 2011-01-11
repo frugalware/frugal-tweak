@@ -51,6 +51,7 @@ void* func()
 			pacman pacmang2 = new pacman();
 			if(pacmang2.CheckUpdate())
 			{
+				//delegateInform InformUpdate = informUpdate;
 				informUpdate();
 			}
 		}
@@ -65,7 +66,9 @@ void informUpdate()
 {
 	Popup.PopupShow("Frugalware tweak","Some update are available.");
 	systrayIcon.SetTooltip("Some update are available.");
-	systrayIcon.SetIco("/usr/share/frugalware-tweak/pictures/frugalware-tweak-update.png");
+	Systray.Change_Ico change_ico = systrayIcon.SetIco;
+	change_ico("/usr/share/frugalware-tweak/pictures/frugalware-tweak-update.png");
+	Gtk.main_iteration();
 }
 
 //declarations
