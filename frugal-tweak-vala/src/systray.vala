@@ -95,8 +95,10 @@ public class Systray
 		try
 		{
 			_ico=ico;
+			Gdk.threads_enter();
 			_trayicon.set_from_file(_ico);
 			_window.set_icon_from_file(_ico);
+			Gdk.threads_leave();
 		}
 		catch(GLib.Error err)
 		{

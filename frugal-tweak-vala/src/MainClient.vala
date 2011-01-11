@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
+using GLib;
 using Gtk;
 using Unique;
 using Popup;
@@ -68,7 +68,6 @@ void informUpdate()
 	systrayIcon.SetTooltip("Some update are available.");
 	Systray.Change_Ico change_ico = systrayIcon.SetIco;
 	change_ico("/usr/share/frugalware-tweak/pictures/frugalware-tweak-update.png");
-	Gtk.main_iteration();
 }
 
 //declarations
@@ -168,6 +167,7 @@ int main (string[] args) {
 	{
 		Tools.ConsoleDebug("Couldn't start thread\n");
 	}
+	Gdk.threads_init();
 	Gtk.main ();
 	return 0;
 }

@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
+using GLib;
 public static class static_obj {
 	public static pacman my_pacman;
 }
