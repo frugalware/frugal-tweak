@@ -22,26 +22,26 @@ using GLib;
 
 public class Systray
 {
+	public static const string defaultIco = "/usr/share/frugalware-tweak/pictures/frugalware-tweak.png";
 	private StatusIcon _trayicon ;
 	private Menu _popup;
 	private Window _window;
-	private string _defaultIco = "/usr/share/frugalware-tweak/pictures/frugalware-tweak.png";
 	private string _ico ="";
 	private Configuration conf = new Configuration();
 	public Systray()
 	{
 		_window = GtkObj.MainWindow;
-		_ico=_defaultIco;
+		_ico=defaultIco;
 		 /* Create tray icon */
 		try
 		{
-			_trayicon =new StatusIcon.from_file(_defaultIco);
-			_window.set_icon_from_file(_defaultIco);
+			_trayicon =new StatusIcon.from_file(_ico);
+			_window.set_icon_from_file(_ico);
 		}
 		catch(GLib.Error err)
 		{
 			var msg = new Gtk.MessageDialog(null,Gtk.DialogFlags.MODAL,Gtk.MessageType.ERROR,
-										Gtk.ButtonsType.OK,"Failed to load "+_defaultIco+"\n"+err.message);
+										Gtk.ButtonsType.OK,"Failed to load "+_ico+"\n"+err.message);
 			msg.run();
 			msg.destroy();
 		}
@@ -103,7 +103,7 @@ public class Systray
 		catch(GLib.Error err)
 		{
 			var msg = new Gtk.MessageDialog(null,Gtk.DialogFlags.MODAL,Gtk.MessageType.ERROR,
-										Gtk.ButtonsType.OK,"Failed to load "+_defaultIco+"\n"+err.message);
+										Gtk.ButtonsType.OK,"Failed to load "+_ico+"\n"+err.message);
 			msg.run();
 		}
 	}

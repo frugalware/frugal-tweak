@@ -51,8 +51,12 @@ void* func()
 			pacman pacmang2 = new pacman();
 			if(pacmang2.CheckUpdate())
 			{
-				//delegateInform InformUpdate = informUpdate;
 				informUpdate();
+			}
+			else
+			{
+				Systray.Change_Ico change_ico = systrayIcon.SetIco;
+				change_ico(Systray.defaultIco);
 			}
 		}
 		Thread.usleep(1800000000);	//1/2 hour
