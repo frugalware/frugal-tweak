@@ -38,6 +38,8 @@ class Deamon : GLib.Object {
 	while(true)
 	{
 		Thread.usleep(1800000000);	//1/2 hour
+		Thread.usleep(1800000000);	//1/2 hour
+		Thread.usleep(1800000000);	//1/2 hour
 		if (UpdateAllDatabase())
 		{
 			Tools.ConsoleDebug("Send dbus event");
