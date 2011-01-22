@@ -90,7 +90,7 @@ namespace frugalmonotools
 									case "version":
 										bo_Version=true;
 										break;
-									case "predate":
+									case "date":
 										bo_Date=true;
 										break;
 									case "name":
