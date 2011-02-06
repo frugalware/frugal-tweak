@@ -19,9 +19,7 @@
 using GLib;
 using Gtk;
 using Unique;
-using Popup;
-using Tree;
-using Module;
+using fwtweak;
 using pacman;
 
 [DBus (name = "org.frugalware.tweak")]
@@ -42,13 +40,13 @@ void on_bus_aquired (DBusConnection conn) {
     }
 }
 
-void* func()
+bool func()
 {
 	while (true)
 	{
 		if (MyConf.GetCheckUpd())
 		{
-			pacman pacmang2 = new pacman();
+			minipacman pacmang2 = new minipacman();
 			if(pacmang2.CheckUpdate())
 			{
 				informUpdate();
@@ -64,7 +62,7 @@ void* func()
 		Thread.usleep(1800000000);	//1/2 hour
 		//roadmap.GetDateRelease();
 	}
-	return null;
+	return true;
 }
 
 
@@ -151,7 +149,7 @@ int main (string[] args) {
 		GtkObj.update.active=MyConf.GetCheckUpd();
 
 		GtkObj.modules = builder.get_object("treeview_modules") as Gtk.TreeView;
-		setup_treeviewModule(GtkObj.modules);
+		fwtweak.Tree.setup_treeviewModule(GtkObj.modules);
 
 		Gtk.TextView about = builder.get_object("textview_about") as Gtk.TextView;
 		about.buffer.text=Tools.open_file("/usr/share/frugalware-tweak/LICENCE");
@@ -167,7 +165,7 @@ int main (string[] args) {
 	//start thread
 	try
 	{
-		Thread.create(func,false);
+		Thread.create<bool> (func, false);
 	}
 	catch
 	{

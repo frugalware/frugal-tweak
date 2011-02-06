@@ -18,9 +18,9 @@
  */
 
 using GLib;
+using fwtweak;
 
-public static class Tools
-{
+namespace Tools {
 	public static string ReadLine(string commande)
 	{
 		string result="";
@@ -82,12 +82,12 @@ public static class Tools
 		} catch (Error e) {
 			ConsoleDebug(e.message);
 		}
-		
+	
 	}
 	public static void download()
 	{
 		ConsoleDebug("Donwload File");
-		
+	
 	}
 	public static int run_command(string cmd, string param, bool sync)
 	{
@@ -114,5 +114,5 @@ public static class Tools
 
 	return 0;
 	}
+	
 }
-

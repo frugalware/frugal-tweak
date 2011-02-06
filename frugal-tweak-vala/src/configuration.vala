@@ -17,40 +17,41 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
+namespace fwtweak {
+	public class Configuration  {
 
-public class Configuration  {
-
-	//Fixes home dir
-	public string  HOMEDIR=Environment.get_home_dir ();
-	private string  _CACHEDIR="/.cache/frugalware-tweak2";
-	public string PLUGINSDIR="/usr/share/frugalware-tweak/plugins/";
-	public string GLADEFILE="/usr/share/frugalware-tweak/UI/MainUI.ui";
-	public string Version="0.1";
-	private string _glibSechema="org.frugalware.frugaltweak";
+		//Fixes home dir
+		public string  HOMEDIR=Environment.get_home_dir ();
+		private string  _CACHEDIR="/.cache/frugalware-tweak2";
+		public string PLUGINSDIR="/usr/share/frugalware-tweak/plugins/";
+		public string GLADEFILE="/usr/share/frugalware-tweak/UI/MainUI.ui";
+		public string Version="0.1";
+		private string _glibSechema="org.frugalware.frugaltweak";
 	
-	public string GetCacheDir()
-	{
-		Posix.mkdir(HOMEDIR+_CACHEDIR,0777);
-		return HOMEDIR+_CACHEDIR;
-	}
-	public bool GetShowNotif()
-	{
-		var settings = new Settings (_glibSechema);
-		return settings.get_boolean ("shownotif");
-	}
-	public void SetShowNotif(bool enable)
-	{
-		var settings = new Settings (_glibSechema);
-		settings.set_boolean ("shownotif", enable);
-	}
-	public bool GetCheckUpd()
-	{
-		var settings = new Settings (_glibSechema);
-		return settings.get_boolean ("checkupdate");
-	}
-	public void SetCheckUpd(bool enable)
-	{
-		var settings = new Settings (_glibSechema);
-		settings.set_boolean ("checkupdate", enable);
+		public string GetCacheDir()
+		{
+			Posix.mkdir(HOMEDIR+_CACHEDIR,0777);
+			return HOMEDIR+_CACHEDIR;
+		}
+		public bool GetShowNotif()
+		{
+			var settings = new Settings (_glibSechema);
+			return settings.get_boolean ("shownotif");
+		}
+		public void SetShowNotif(bool enable)
+		{
+			var settings = new Settings (_glibSechema);
+			settings.set_boolean ("shownotif", enable);
+		}
+		public bool GetCheckUpd()
+		{
+			var settings = new Settings (_glibSechema);
+			return settings.get_boolean ("checkupdate");
+		}
+		public void SetCheckUpd(bool enable)
+		{
+			var settings = new Settings (_glibSechema);
+			settings.set_boolean ("checkupdate", enable);
+		}
 	}
 }

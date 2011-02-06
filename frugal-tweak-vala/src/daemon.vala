@@ -17,39 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 using GLib;
-using DbusServer;
 using pacman;
 
-[DBus (name = "org.frugalware.tweak")]
-interface DbusUpd : Object {
-	public abstract void update_available(bool update) throws IOError;
-}
 
 class Deamon : GLib.Object {
 	
-	public static pacman pacmang2 ;
+	public static minipacman pacmang2 ;
 
 	public static int main(string[] args) {
 	Tools.ConsoleDebug("Start Frugalware Tweak Daemon");
-	//dbus
-	DbusUpd dbusUpd = Bus.get_proxy_sync (BusType.SYSTEM, "org.frugalware.tweak", "/org/frugalware/tweak");
-	pacmang2 = new pacman();
+	pacmang2 = new minipacman();
 
 	while(true)
 	{
 		Thread.usleep(1800000000);	//1/2 hour
 		Thread.usleep(1800000000);	//1/2 hour
 		Thread.usleep(1800000000);	//1/2 hour
-		if (UpdateAllDatabase())
-		{
-			Tools.ConsoleDebug("Send dbus event");
-			try{
-				dbusUpd.update_available(true);
-			}
-			catch {
-        			Tools.ConsoleDebug("couldn't send dbus event");
-    			}
-		}
+		UpdateAllDatabase();
 	}
     }
 

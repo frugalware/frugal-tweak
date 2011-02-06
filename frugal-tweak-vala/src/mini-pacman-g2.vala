@@ -18,6 +18,8 @@
  */
 
 using Gtk;
+using pacman;
+using fwtweak;
 
 int main (string[] args) {
 	Gtk.init (ref args);
@@ -29,7 +31,7 @@ int main (string[] args) {
         var window = builder.get_object ("window_pacman") as Window;
 	window.destroy.connect (Gtk.main_quit);
 
-	static_obj.my_pacman = new pacman();
+	static_obj.my_pacman = new minipacman();
 	CellRenderer cell;
 	string [] repos = static_obj.my_pacman.repos();
 	GtkObj.combobox_repo = builder.get_object("combobox_repo") as Gtk.ComboBox;

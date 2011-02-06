@@ -18,22 +18,23 @@
  */
 
 using GLib;
-using Tools;
+using fwtweak;
 using Pacman;
 
-public class pacman
+namespace pacman {
+public class minipacman
 {
 	
 	private static const string CFG_FILE			="/etc/pacman-g2.conf";
 	private static const string FW_CURRENT			="frugalware-current";
 	private static const string FW_STABLE			="frugalware";
-	private static const string FW_LOCAL			="local";
+	public static const string FW_LOCAL			="local";
 	private static unowned Pacman.PM_DB sync_db	= null;
 	private static unowned Pacman.PM_DB local_db	= null;
 	public static Pacman.PM_LIST *packages			= null;
 	private static string[] _repos					= new string[0];
 	
-	public pacman()
+	public minipacman()
 	{
 		Pacman.pacman_release();
 		if (Pacman.pacman_initialize(Pacman.PM_ROOT) != -1)
@@ -155,4 +156,5 @@ public class pacman
 		pacman_trans_release ();
 		return pkgUpdated;
 	}
+}
 }

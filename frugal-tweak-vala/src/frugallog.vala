@@ -18,6 +18,7 @@
  */
 
 using Gtk;
+using fwtweak;
 
 static int main (string[] args) {     
     Gtk.init (ref args);

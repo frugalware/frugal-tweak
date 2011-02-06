@@ -16,37 +16,38 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
+namespace fwtweak {
+	public class ConfSystem
+	{
+		private const string hostFile="/etc/HOSTNAME";
+		private const string distriFile="/etc/frugalware-release";
 
-public class ConfSystem
-{
-	private const string hostFile="/etc/HOSTNAME";
-	private const string distriFile="/etc/frugalware-release";
-
-	public string GetShell()
-	{
-		string result = "";
-		result = Posix.getusershell();
-		return result;
-	}
-	public string GetDitribution()
-	{
-		string distri = Tools. open_file(distriFile);
-		distri = distri.replace("\n","");
-		return distri;
-	}
-	public string GetHostname()
-	{
-		string host = Tools. open_file(hostFile);
-		host = host.replace("\n","");
-		return host;
-	}
-	public void SetHostname(string host)
-	{
-		Tools.write_file(hostFile,host);
-	}
-	public string GetKernel()
-	{
-		string kernel = Tools.ReadLine("uname -a");
-		return kernel.replace("\n","");
+		public string GetShell()
+		{
+			string result = "";
+			result = Posix.getusershell();
+			return result;
+		}
+		public string GetDitribution()
+		{
+			string distri = Tools. open_file(distriFile);
+			distri = distri.replace("\n","");
+			return distri;
+		}
+		public string GetHostname()
+		{
+			string host = Tools. open_file(hostFile);
+			host = host.replace("\n","");
+			return host;
+		}
+		public void SetHostname(string host)
+		{
+			Tools.write_file(hostFile,host);
+		}
+		public string GetKernel()
+		{
+			string kernel = Tools.ReadLine("uname -a");
+			return kernel.replace("\n","");
+		}
 	}
 }

@@ -17,24 +17,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
-public static class GtkObj {
+namespace fwtweak {
+	public static class GtkObj {
 
-	//frugalware-tweak
-	public static Gtk.Window MainWindow;
-	public static Gtk.CheckButton notif;
-	public static Gtk.CheckButton update;
-	public static Gtk.Entry host;
+		//frugalware-tweak
+		public static Gtk.Window MainWindow;
+		public static Gtk.CheckButton notif;
+		public static Gtk.CheckButton update;
+		public static Gtk.Entry host;
 
-	public static Gtk.TreeView modules;
-	public static Gtk.ListStore listmodel_modules;
+		public static Gtk.TreeView modules;
+		public static Gtk.ListStore listmodel_modules;
 
-	//mini pacman-g2
-	public static  Gtk.Entry entry_search_pkg;
-	public static  Gtk.ComboBox combobox_repo;
-	public static Gtk.ListStore listmodel_repo;
-	public static Gtk.TreeView tree_pkg;
-	public static Gtk.ListStore listmodel_pkg;
-	public static Gtk.Button uninstall_pkg;
-	public static Gtk.Button install_pkg;
+		//mini pacman-g2
+		public static  Gtk.Entry entry_search_pkg;
+		public static  Gtk.ComboBox combobox_repo;
+		public static Gtk.ListStore listmodel_repo;
+		public static Gtk.TreeView tree_pkg;
+		public static Gtk.ListStore listmodel_pkg;
+		public static Gtk.Button uninstall_pkg;
+		public static Gtk.Button install_pkg;
 
+	}
 }

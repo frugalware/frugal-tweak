@@ -18,6 +18,7 @@
  */
 
 using GLib;
+using pacman;
 public static class static_obj {
-	public static pacman my_pacman;
+	public static minipacman my_pacman;
 }

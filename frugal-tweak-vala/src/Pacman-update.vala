@@ -19,7 +19,7 @@
 
 using Gtk;
 using Unique;
-using Tree;
+using fwtweak;
 
 int main (string[] args) {
 	Unique.App app;
@@ -48,7 +48,7 @@ int main (string[] args) {
 	window.position = WindowPosition.CENTER;
 	window.set_default_size (800, 200);
 	window.destroy.connect (Gtk.main_quit);
-        Tree.setup_treeviewPacmanUpdate (pacman);
+        fwtweak.Tree.setup_treeviewPacmanUpdate (pacman);
 	//window.add(view);
 
 	window.show_all ();

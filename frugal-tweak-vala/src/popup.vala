@@ -17,55 +17,56 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
-using Notify;
-using Tools;
-using Configuration;
-#if ENABLEINDICATE
-	using Indicate;
-#endif
+namespace fwtweak {
 
-public static class Popup  {
+	#if ENABLEINDICATE
+		using Indicate;
+	#endif
+	using Notify;
+	using Tools;
+	using pacman;
+	public static class Popup  {
 	
-	public static void PopupShow(string title,string text) {
-		Configuration conf= new Configuration();
-		if(!conf.GetShowNotif()) return ;
+		public static void PopupShow(string title,string text) {
+			Configuration conf= new Configuration();
+			if(!conf.GetShowNotif()) return ;
 
-		Notify.init("Frugalware-tweak");
-		var notification = new Notification (title,text, "icon_name", null);
-		notification.set_timeout(5000);
-		notification.set_urgency(Notify.Urgency.LOW);
-		try
-		{
-			notification.show();
-			ConsoleDebug(text);
-		}
-		catch
-		{
-			ConsoleDebug("Unable to show low notification");
-		}
+			Notify.init("Frugalware-tweak");
+			Notification notification = new Notification (title,text, "icon_name");
+			notification.set_timeout(5000);
+			notification.set_urgency(Notify.Urgency.LOW);
+			try
+			{
+				notification.show();
+				ConsoleDebug(text);
+			}
+			catch
+			{
+				ConsoleDebug("Unable to show low notification");
+			}
 		
-		#if ENABLEINDICATE
-			//indicator support
-			/*var server = Indicate.Server.ref_default();
+			#if ENABLEINDICATE
+				//indicator support
+				/*var server = Indicate.Server.ref_default();
 
-			server.set_type("message.frugalware-tweak2");
-			server.set_desktop_file("/usr/share/indicators/messages/applications/frugalware-tweak2.desktop");
-			server.server_display.connect(dirty_activate);
-			server.show();*/
+				server.set_type("message.frugalware-tweak2");
+				server.set_desktop_file("/usr/share/indicators/messages/applications/frugalware-tweak2.desktop");
+				server.server_display.connect(dirty_activate);
+				server.show();*/
 
-			var indicator = new Indicate.Indicator();
-			indicator.set_property("subtype", "im");
-			indicator.set_property("sender", "frugalware-tweak2");
-			indicator.set_property("body", text);
-			indicator.user_display.connect(dirty_activate);
-			indicator.show();
-		#endif
+				var indicator = new Indicate.Indicator();
+				indicator.set_property("subtype", "im");
+				indicator.set_property("sender", "frugalware-tweak2");
+				indicator.set_property("body", text);
+				indicator.user_display.connect(dirty_activate);
+				indicator.show();
+			#endif
 
-		}
+			}
 	
-		public static void dirty_activate() {
-			ConsoleDebug("libindicate activated");
-		}
-
-}	
+			public static void dirty_activate() {
+				ConsoleDebug("libindicate activated");
+			}
+	}	
+}
 
