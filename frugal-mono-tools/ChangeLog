@@ -1,3 +1,34 @@
+2011-03-20  gaetan gourdin  <bouleetbil@frogdev.info>
+
+	* WID_Pkg.cs:
+	* PacmanG2.cs:
+	* gui.stetic:
+	* generated.cs:
+	* frugal-mono-tools.csproj:
+	* frugalmonotools.splash.cs:
+	* frugalmonotools.WID_Pkg.cs:
+	* frugalmonotools.WID_Logs.cs:
+	* frugalmonotools.WID_News.cs:
+	* frugalmonotools.WID_Xorg.cs:
+	* frugalmonotools.WID_Grub.cs:
+	* frugalmonotools.Fen_Menu.cs:
+	* frugalmonotools.DiagGrub.cs:
+	* frugalmonotools.WID_About.cs:
+	* frugalmonotools.WID_Notes.cs:
+	* frugalmonotools.FEN_Debug.cs:
+	* frugalmonotools.WID_Users.cs:
+	* frugalmonotools.WID_System.cs:
+	* frugalmonotools.WID_Update.cs:
+	* frugalmonotools.MessageBox.cs:
+	* frugalmonotools.WID_Config.cs:
+	* frugalmonotools.WID_Network.cs:
+	* frugalmonotools.WID_Support.cs:
+	* frugalmonotools.WID_DateTime.cs:
+	* frugalmonotools.WID_Hardware.cs:
+	* frugalmonotools.WID_Services.cs:
+	* frugalmonotools.WID_UpdateConf.cs:
+	* frugalmonotools.WID_LoginManager.cs: 
+
 2010-09-09  gaetan gourdin  <bouleetbil@frogdev.info>
 	Added minimalist irc client (will evolve)
 	Added ndesk support

@@ -1,3 +1,7 @@
+2011-03-20  gaetan gourdin  <bouleetbil@frogdev.info>
+
+	* RSS.NET.csproj: 
+
 2004-05-20 Ben Maurer  <bmaurer@users.sourceforge.net>
 
 	* RssReader.cs, RssWriter.cs: Patches from Miguel de Icaza.
