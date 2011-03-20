@@ -91,7 +91,7 @@ namespace frugalmonotools
 		            string T =(string)model.GetValue (iter, 0);
 					T=MainClass.pacmanG2.extractNamePackage(T);
 					packageSelected=T;
-
+					IMG_PKG.Pixbuf=MainClass.pacmanG2.GetScreenshot(T);
 					if(MainClass.pacmanG2.IsInstalled(T))
 					{
 						BTN_Uninstall.Visible=true;

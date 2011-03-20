@@ -5,17 +5,11 @@ namespace frugalmonotools
 	public partial class DiagGrub
 	{
 		private global::Gtk.VBox vbox3;
-
 		private global::Gtk.Entry SAI_Entry;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
 		private global::Gtk.TextView TXT_Options;
-
 		private global::Gtk.HBox hbox1;
-
 		private global::Gtk.Button BTN_Cancel;
-
 		private global::Gtk.Button BTN_Add;
 
 		protected virtual void Build ()
@@ -39,7 +33,7 @@ namespace frugalmonotools
 			this.SAI_Entry.IsEditable = true;
 			this.SAI_Entry.InvisibleChar = '•';
 			this.vbox3.Add (this.SAI_Entry);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.SAI_Entry]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.SAI_Entry]));
 			w2.Position = 0;
 			w2.Expand = false;
 			w2.Fill = false;
@@ -53,17 +47,17 @@ namespace frugalmonotools
 			this.TXT_Options.Name = "TXT_Options";
 			this.GtkScrolledWindow.Add (this.TXT_Options);
 			this.vbox3.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.GtkScrolledWindow]));
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.GtkScrolledWindow]));
 			w4.Position = 1;
 			w1.Add (this.vbox3);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(w1[this.vbox3]));
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox3]));
 			w5.Position = 0;
 			// Container child dialog1_VBox.Gtk.Box+BoxChild
 			this.hbox1 = new global::Gtk.HBox ();
 			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
 			w1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(w1[this.hbox1]));
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(w1 [this.hbox1]));
 			w6.PackType = ((global::Gtk.PackType)(1));
 			w6.Position = 2;
 			// Internal child frugalmonotools.DiagGrub.ActionArea
@@ -76,7 +70,7 @@ namespace frugalmonotools
 			this.BTN_Cancel.UseUnderline = true;
 			this.BTN_Cancel.Label = global::Mono.Unix.Catalog.GetString ("Cancel");
 			this.AddActionWidget (this.BTN_Cancel, 0);
-			global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w7[this.BTN_Cancel]));
+			global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w7 [this.BTN_Cancel]));
 			w8.Expand = false;
 			w8.Fill = false;
 			// Container child __gtksharp_69_Stetic_TopLevelDialog_ActionArea.Gtk.ButtonBox+ButtonBoxChild
@@ -86,7 +80,7 @@ namespace frugalmonotools
 			this.BTN_Add.UseUnderline = true;
 			this.BTN_Add.Label = global::Mono.Unix.Catalog.GetString ("Add");
 			this.AddActionWidget (this.BTN_Add, 0);
-			global::Gtk.ButtonBox.ButtonBoxChild w9 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w7[this.BTN_Add]));
+			global::Gtk.ButtonBox.ButtonBoxChild w9 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w7 [this.BTN_Add]));
 			w9.Position = 1;
 			w9.Expand = false;
 			w9.Fill = false;

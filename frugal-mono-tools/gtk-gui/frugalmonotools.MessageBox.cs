@@ -5,11 +5,8 @@ namespace frugalmonotools
 	public partial class MessageBox
 	{
 		private global::Gtk.VBox vbox2;
-
 		private global::Gtk.Label LIB_Message;
-
 		private global::Gtk.Button buttonCancel;
-
 		private global::Gtk.Button buttonOk;
 
 		protected virtual void Build ()
@@ -34,12 +31,12 @@ namespace frugalmonotools
 			this.LIB_Message.Name = "LIB_Message";
 			this.LIB_Message.LabelProp = global::Mono.Unix.Catalog.GetString ("label1");
 			this.vbox2.Add (this.LIB_Message);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.LIB_Message]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.LIB_Message]));
 			w2.Position = 0;
 			w2.Expand = false;
 			w2.Fill = false;
 			w1.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(w1[this.vbox2]));
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
 			w3.Position = 0;
 			w3.Expand = false;
 			w3.Fill = false;
@@ -58,7 +55,7 @@ namespace frugalmonotools
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-cancel";
 			this.AddActionWidget (this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w4[this.buttonCancel]));
+			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w4 [this.buttonCancel]));
 			w5.Expand = false;
 			w5.Fill = false;
 			// Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild
@@ -70,7 +67,7 @@ namespace frugalmonotools
 			this.buttonOk.UseUnderline = true;
 			this.buttonOk.Label = "gtk-ok";
 			this.AddActionWidget (this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w6 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w4[this.buttonOk]));
+			global::Gtk.ButtonBox.ButtonBoxChild w6 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w4 [this.buttonOk]));
 			w6.Position = 1;
 			w6.Expand = false;
 			w6.Fill = false;

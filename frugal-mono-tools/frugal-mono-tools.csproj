@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,6 +10,7 @@
     <RootNamespace>frugalmonotools</RootNamespace>
     <AssemblyName>frugal-mono-tools</AssemblyName>
     <ReleaseVersion>0.2.4</ReleaseVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,9 +54,6 @@
     <Reference Include="dbus-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5675b0c3093115b5" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="indicate-gtk-sharp, Version=0.4.4.0, Culture=neutral, PublicKeyToken=fc29729774d50df1">
-      <Package>indicate-gtk-sharp-0.1</Package>
-    </Reference>
     <Reference Include="indicate-sharp, Version=0.4.1.0, Culture=neutral, PublicKeyToken=2e8e49ba7d172cb0">
       <Package>indicate-sharp-0.1</Package>
     </Reference>
@@ -179,7 +177,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
-      <Properties InternalTargetFrameworkVersion="3.5">
+      <Properties>
         <Deployment.LinuxDeployData scriptName="frugalware-tweak" />
       </Properties>
     </MonoDevelop>

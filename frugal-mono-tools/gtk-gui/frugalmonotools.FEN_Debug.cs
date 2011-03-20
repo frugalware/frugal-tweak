@@ -5,7 +5,6 @@ namespace frugalmonotools
 	public partial class FEN_Debug
 	{
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
 		private global::Gtk.TextView SortieAPPLI;
 
 		protected virtual void Build ()

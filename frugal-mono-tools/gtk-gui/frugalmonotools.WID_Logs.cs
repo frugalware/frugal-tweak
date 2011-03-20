@@ -5,29 +5,17 @@ namespace frugalmonotools
 	public partial class WID_Logs
 	{
 		private global::Gtk.Notebook notebook1;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
 		private global::Gtk.TextView TXT_Dmesg;
-
 		private global::Gtk.Label label1;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
-
 		private global::Gtk.TextView TXT_Xorg;
-
 		private global::Gtk.Label label2;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow3;
-
 		private global::Gtk.TextView TXT_pacmang2;
-
 		private global::Gtk.Label label3;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow2;
-
 		private global::Gtk.TextView TXT_XsessionErrors;
-
 		private global::Gtk.Label label4;
 
 		protected virtual void Build ()
@@ -67,7 +55,7 @@ namespace frugalmonotools
 			this.TXT_Xorg.Name = "TXT_Xorg";
 			this.GtkScrolledWindow1.Add (this.TXT_Xorg);
 			this.notebook1.Add (this.GtkScrolledWindow1);
-			global::Gtk.Notebook.NotebookChild w4 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow1]));
+			global::Gtk.Notebook.NotebookChild w4 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.GtkScrolledWindow1]));
 			w4.Position = 1;
 			// Notebook tab
 			this.label2 = new global::Gtk.Label ();
@@ -85,7 +73,7 @@ namespace frugalmonotools
 			this.TXT_pacmang2.Name = "TXT_pacmang2";
 			this.GtkScrolledWindow3.Add (this.TXT_pacmang2);
 			this.notebook1.Add (this.GtkScrolledWindow3);
-			global::Gtk.Notebook.NotebookChild w6 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow3]));
+			global::Gtk.Notebook.NotebookChild w6 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.GtkScrolledWindow3]));
 			w6.Position = 2;
 			// Notebook tab
 			this.label3 = new global::Gtk.Label ();
@@ -103,7 +91,7 @@ namespace frugalmonotools
 			this.TXT_XsessionErrors.Name = "TXT_XsessionErrors";
 			this.GtkScrolledWindow2.Add (this.TXT_XsessionErrors);
 			this.notebook1.Add (this.GtkScrolledWindow2);
-			global::Gtk.Notebook.NotebookChild w8 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow2]));
+			global::Gtk.Notebook.NotebookChild w8 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.GtkScrolledWindow2]));
 			w8.Position = 3;
 			// Notebook tab
 			this.label4 = new global::Gtk.Label ();

@@ -5,11 +5,8 @@ namespace frugalmonotools
 	public partial class WID_News
 	{
 		private global::Gtk.VBox vbox5;
-
 		private global::Gtk.ComboBox CBO_TitleNews;
-
 		private global::Gtk.Label LIB_Titre;
-
 		private global::Gtk.Button BTN_Link;
 
 		protected virtual void Build ()
@@ -26,7 +23,7 @@ namespace frugalmonotools
 			this.CBO_TitleNews = global::Gtk.ComboBox.NewText ();
 			this.CBO_TitleNews.Name = "CBO_TitleNews";
 			this.vbox5.Add (this.CBO_TitleNews);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.CBO_TitleNews]));
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.CBO_TitleNews]));
 			w1.Position = 0;
 			w1.Expand = false;
 			w1.Fill = false;
@@ -34,7 +31,7 @@ namespace frugalmonotools
 			this.LIB_Titre = new global::Gtk.Label ();
 			this.LIB_Titre.Name = "LIB_Titre";
 			this.vbox5.Add (this.LIB_Titre);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.LIB_Titre]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.LIB_Titre]));
 			w2.Position = 1;
 			w2.Expand = false;
 			w2.Fill = false;
@@ -45,7 +42,7 @@ namespace frugalmonotools
 			this.BTN_Link.UseUnderline = true;
 			this.BTN_Link.Label = global::Mono.Unix.Catalog.GetString ("http://www.frugalware.org");
 			this.vbox5.Add (this.BTN_Link);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.BTN_Link]));
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.BTN_Link]));
 			w3.Position = 3;
 			w3.Expand = false;
 			w3.Fill = false;

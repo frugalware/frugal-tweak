@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using Mono.Unix.Native;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Net;
 
 namespace frugalmonotools
 {
@@ -59,7 +60,7 @@ namespace frugalmonotools
 		
 			public Package(){
 			}
-		
+			
 			private void _setContent()
 			{
 				if(_contentDesc!="") return;
@@ -328,7 +329,30 @@ namespace frugalmonotools
 			packageVersion=words[nb-2]+"-"+words[nb-1];
 			return packageVersion;
 		}
-		
+		/// <summary>
+		/// Gets the screenshot.
+		/// </summary>
+		/// <returns>
+		/// The screenshot.
+		/// </returns>
+			public Gdk.Pixbuf GetScreenshot(string str_pkg)
+			{
+				 try
+			﻿  ﻿  ﻿  {
+			﻿  ﻿  ﻿  ﻿  HttpWebRequest myReq =(HttpWebRequest)WebRequest.Create("http://screenshots.debian.net/thumbnail/"+str_pkg);﻿  ﻿  ﻿  ﻿  
+			﻿  ﻿  ﻿  ﻿  HttpWebResponse response = (HttpWebResponse)myReq.GetResponse();
+			﻿  ﻿  ﻿  ﻿  
+			﻿  ﻿  ﻿  ﻿  if(response.StatusCode == HttpStatusCode.OK)
+			﻿  ﻿  ﻿  ﻿  {
+			﻿  ﻿  ﻿  ﻿  ﻿  ﻿  ﻿  return new Gdk.Pixbuf(response.GetResponseStream());﻿  
+			﻿  ﻿  ﻿  ﻿   }
+			﻿  ﻿  ﻿  ﻿  
+			﻿  ﻿  ﻿  }
+			﻿  ﻿  ﻿  catch(Exception)
+			﻿  ﻿  ﻿  {
+			﻿  ﻿  ﻿  }
+				return null;
+			}
 		public bool IsInstalled(string strSearch)
 		{
 			string dirpkg=ROOT_PATH+PACMANG2_BDD+PACMANG2_LOCAL+"/";

@@ -5,11 +5,8 @@ namespace frugalmonotools
 	public partial class WID_About
 	{
 		private global::Gtk.VBox vbox1;
-
 		private global::Gtk.Image image66;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
 		private global::Gtk.TextView textview2;
 
 		protected virtual void Build ()
@@ -27,7 +24,7 @@ namespace frugalmonotools
 			this.image66.Name = "image66";
 			this.image66.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.Mono-powered.png");
 			this.vbox1.Add (this.image66);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.image66]));
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.image66]));
 			w1.Position = 0;
 			w1.Expand = false;
 			w1.Fill = false;
@@ -42,7 +39,7 @@ namespace frugalmonotools
 			this.textview2.Name = "textview2";
 			this.GtkScrolledWindow.Add (this.textview2);
 			this.vbox1.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
 			w3.Position = 1;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {

@@ -5,17 +5,11 @@ namespace frugalmonotools
 	public partial class WID_UpdateConf
 	{
 		private global::Gtk.VBox vbox1;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
 		private global::Gtk.TreeView TREE_UpdateConf;
-
 		private global::Gtk.HBox hbox1;
-
 		private global::Gtk.Button BTN_SeeDiff;
-
 		private global::Gtk.Button BTN_Replace;
-
 		private global::Gtk.Button BTN_Delete;
 
 		protected virtual void Build ()
@@ -38,7 +32,7 @@ namespace frugalmonotools
 			this.TREE_UpdateConf.Name = "TREE_UpdateConf";
 			this.GtkScrolledWindow.Add (this.TREE_UpdateConf);
 			this.vbox1.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
 			w2.Position = 0;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.hbox1 = new global::Gtk.HBox ();
@@ -51,7 +45,7 @@ namespace frugalmonotools
 			this.BTN_SeeDiff.UseUnderline = true;
 			this.BTN_SeeDiff.Label = global::Mono.Unix.Catalog.GetString ("See diff");
 			this.hbox1.Add (this.BTN_SeeDiff);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_SeeDiff]));
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.BTN_SeeDiff]));
 			w3.Position = 0;
 			w3.Expand = false;
 			w3.Fill = false;
@@ -62,7 +56,7 @@ namespace frugalmonotools
 			this.BTN_Replace.UseUnderline = true;
 			this.BTN_Replace.Label = global::Mono.Unix.Catalog.GetString ("Replace");
 			this.hbox1.Add (this.BTN_Replace);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_Replace]));
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.BTN_Replace]));
 			w4.Position = 1;
 			w4.Expand = false;
 			w4.Fill = false;
@@ -73,12 +67,12 @@ namespace frugalmonotools
 			this.BTN_Delete.UseUnderline = true;
 			this.BTN_Delete.Label = global::Mono.Unix.Catalog.GetString ("Delete");
 			this.hbox1.Add (this.BTN_Delete);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.BTN_Delete]));
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.BTN_Delete]));
 			w5.Position = 2;
 			w5.Expand = false;
 			w5.Fill = false;
 			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
 			w6.Position = 1;
 			w6.Expand = false;
 			w6.Fill = false;

@@ -5,9 +5,7 @@ namespace frugalmonotools
 	public partial class splash
 	{
 		private global::Gtk.HBox hbox1;
-
 		private global::Gtk.VBox vbox1;
-
 		private global::Gtk.Image LOGO;
 
 		protected virtual void Build ()
@@ -35,12 +33,12 @@ namespace frugalmonotools
 			this.LOGO.Name = "LOGO";
 			this.LOGO.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.splash.png");
 			this.vbox1.Add (this.LOGO);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.LOGO]));
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.LOGO]));
 			w1.Position = 0;
 			w1.Expand = false;
 			w1.Fill = false;
 			this.hbox1.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox1]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
 			w2.Position = 1;
 			w2.Expand = false;
 			w2.Fill = false;

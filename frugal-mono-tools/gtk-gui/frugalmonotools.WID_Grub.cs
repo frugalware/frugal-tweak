@@ -5,61 +5,33 @@ namespace frugalmonotools
 	public partial class WID_Grub
 	{
 		private global::Gtk.VBox vbox2;
-
 		private global::Gtk.Notebook notebook1;
-
 		private global::Gtk.VBox vbox1;
-
 		private global::Gtk.ComboBox CBO_Entry;
-
 		private global::Gtk.Label LIB_Title;
-
 		private global::Gtk.Entry SAI_Title;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
 		private global::Gtk.TextView TXT_Options;
-
 		private global::Gtk.HBox hbox2;
-
 		private global::Gtk.Button BTN_Modify;
-
 		private global::Gtk.Button BTN_RemoveEntry;
-
 		private global::Gtk.Button BTN_AddEntry;
-
 		private global::Gtk.Label Entrys;
-
 		private global::Gtk.VBox vbox3;
-
 		private global::Gtk.HBox hbox3;
-
 		private global::Gtk.Label label3;
-
 		private global::Gtk.Entry SAI_Default;
-
 		private global::Gtk.HBox hbox4;
-
 		private global::Gtk.Label label4;
-
 		private global::Gtk.Entry SAI_TimeOut;
-
 		private global::Gtk.HBox hbox5;
-
 		private global::Gtk.Label label5;
-
 		private global::Gtk.Entry SAI_Gfx;
-
 		private global::Gtk.Label label2;
-
 		private global::Gtk.HBox hbox6;
-
 		private global::Gtk.Label LIB_Root;
-
 		private global::Gtk.Button BTN_Save;
-
 		private global::Gtk.Button BTN_Apply;
-
 		private global::Gtk.Entry SAI_Hdd;
 
 		protected virtual void Build ()
@@ -85,7 +57,7 @@ namespace frugalmonotools
 			this.CBO_Entry = global::Gtk.ComboBox.NewText ();
 			this.CBO_Entry.Name = "CBO_Entry";
 			this.vbox1.Add (this.CBO_Entry);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.CBO_Entry]));
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.CBO_Entry]));
 			w1.Position = 0;
 			w1.Expand = false;
 			w1.Fill = false;
@@ -94,7 +66,7 @@ namespace frugalmonotools
 			this.LIB_Title.Name = "LIB_Title";
 			this.LIB_Title.LabelProp = global::Mono.Unix.Catalog.GetString ("Title");
 			this.vbox1.Add (this.LIB_Title);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.LIB_Title]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.LIB_Title]));
 			w2.Position = 1;
 			w2.Expand = false;
 			w2.Fill = false;
@@ -105,7 +77,7 @@ namespace frugalmonotools
 			this.SAI_Title.IsEditable = true;
 			this.SAI_Title.InvisibleChar = '•';
 			this.vbox1.Add (this.SAI_Title);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.SAI_Title]));
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.SAI_Title]));
 			w3.Position = 2;
 			w3.Expand = false;
 			w3.Fill = false;
@@ -119,7 +91,7 @@ namespace frugalmonotools
 			this.TXT_Options.Name = "TXT_Options";
 			this.GtkScrolledWindow.Add (this.TXT_Options);
 			this.vbox1.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
 			w5.Position = 3;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.hbox2 = new global::Gtk.HBox ();
@@ -131,7 +103,7 @@ namespace frugalmonotools
 			this.BTN_Modify.Name = "BTN_Modify";
 			this.BTN_Modify.UseUnderline = true;
 			// Container child BTN_Modify.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w6 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w6 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w7 = new global::Gtk.HBox ();
 			w7.Spacing = 2;
@@ -147,7 +119,7 @@ namespace frugalmonotools
 			w6.Add (w7);
 			this.BTN_Modify.Add (w6);
 			this.hbox2.Add (this.BTN_Modify);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.BTN_Modify]));
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.BTN_Modify]));
 			w14.Position = 0;
 			w14.Expand = false;
 			w14.Fill = false;
@@ -157,7 +129,7 @@ namespace frugalmonotools
 			this.BTN_RemoveEntry.Name = "BTN_RemoveEntry";
 			this.BTN_RemoveEntry.UseUnderline = true;
 			// Container child BTN_RemoveEntry.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w15 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w15 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w16 = new global::Gtk.HBox ();
 			w16.Spacing = 2;
@@ -173,7 +145,7 @@ namespace frugalmonotools
 			w15.Add (w16);
 			this.BTN_RemoveEntry.Add (w15);
 			this.hbox2.Add (this.BTN_RemoveEntry);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.BTN_RemoveEntry]));
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.BTN_RemoveEntry]));
 			w23.Position = 1;
 			w23.Expand = false;
 			w23.Fill = false;
@@ -183,7 +155,7 @@ namespace frugalmonotools
 			this.BTN_AddEntry.Name = "BTN_AddEntry";
 			this.BTN_AddEntry.UseUnderline = true;
 			// Container child BTN_AddEntry.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w24 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w24 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w25 = new global::Gtk.HBox ();
 			w25.Spacing = 2;
@@ -199,12 +171,12 @@ namespace frugalmonotools
 			w24.Add (w25);
 			this.BTN_AddEntry.Add (w24);
 			this.hbox2.Add (this.BTN_AddEntry);
-			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.BTN_AddEntry]));
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.BTN_AddEntry]));
 			w32.Position = 2;
 			w32.Expand = false;
 			w32.Fill = false;
 			this.vbox1.Add (this.hbox2);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox2]));
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox2]));
 			w33.Position = 4;
 			w33.Expand = false;
 			w33.Fill = false;
@@ -228,7 +200,7 @@ namespace frugalmonotools
 			this.label3.Name = "label3";
 			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Default");
 			this.hbox3.Add (this.label3);
-			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.label3]));
+			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.label3]));
 			w35.Position = 0;
 			w35.Expand = false;
 			w35.Fill = false;
@@ -239,10 +211,10 @@ namespace frugalmonotools
 			this.SAI_Default.IsEditable = true;
 			this.SAI_Default.InvisibleChar = '•';
 			this.hbox3.Add (this.SAI_Default);
-			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.SAI_Default]));
+			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.SAI_Default]));
 			w36.Position = 1;
 			this.vbox3.Add (this.hbox3);
-			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox3]));
+			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox3]));
 			w37.Position = 0;
 			w37.Expand = false;
 			w37.Fill = false;
@@ -255,7 +227,7 @@ namespace frugalmonotools
 			this.label4.Name = "label4";
 			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Time out");
 			this.hbox4.Add (this.label4);
-			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.label4]));
+			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.label4]));
 			w38.Position = 0;
 			w38.Expand = false;
 			w38.Fill = false;
@@ -266,10 +238,10 @@ namespace frugalmonotools
 			this.SAI_TimeOut.IsEditable = true;
 			this.SAI_TimeOut.InvisibleChar = '•';
 			this.hbox4.Add (this.SAI_TimeOut);
-			global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.SAI_TimeOut]));
+			global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.SAI_TimeOut]));
 			w39.Position = 1;
 			this.vbox3.Add (this.hbox4);
-			global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox4]));
+			global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox4]));
 			w40.Position = 1;
 			w40.Expand = false;
 			w40.Fill = false;
@@ -282,7 +254,7 @@ namespace frugalmonotools
 			this.label5.Name = "label5";
 			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Gfx");
 			this.hbox5.Add (this.label5);
-			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.label5]));
+			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.label5]));
 			w41.Position = 0;
 			w41.Expand = false;
 			w41.Fill = false;
@@ -293,15 +265,15 @@ namespace frugalmonotools
 			this.SAI_Gfx.IsEditable = true;
 			this.SAI_Gfx.InvisibleChar = '•';
 			this.hbox5.Add (this.SAI_Gfx);
-			global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.SAI_Gfx]));
+			global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.SAI_Gfx]));
 			w42.Position = 1;
 			this.vbox3.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox5]));
+			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox5]));
 			w43.Position = 2;
 			w43.Expand = false;
 			w43.Fill = false;
 			this.notebook1.Add (this.vbox3);
-			global::Gtk.Notebook.NotebookChild w44 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.vbox3]));
+			global::Gtk.Notebook.NotebookChild w44 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.vbox3]));
 			w44.Position = 1;
 			// Notebook tab
 			this.label2 = new global::Gtk.Label ();
@@ -310,7 +282,7 @@ namespace frugalmonotools
 			this.notebook1.SetTabLabel (this.vbox3, this.label2);
 			this.label2.ShowAll ();
 			this.vbox2.Add (this.notebook1);
-			global::Gtk.Box.BoxChild w45 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.notebook1]));
+			global::Gtk.Box.BoxChild w45 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.notebook1]));
 			w45.Position = 0;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbox6 = new global::Gtk.HBox ();
@@ -321,7 +293,7 @@ namespace frugalmonotools
 			this.LIB_Root.Name = "LIB_Root";
 			this.LIB_Root.LabelProp = global::Mono.Unix.Catalog.GetString ("Can't save, should be started as root");
 			this.hbox6.Add (this.LIB_Root);
-			global::Gtk.Box.BoxChild w46 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.LIB_Root]));
+			global::Gtk.Box.BoxChild w46 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.LIB_Root]));
 			w46.Position = 0;
 			w46.Expand = false;
 			w46.Fill = false;
@@ -331,7 +303,7 @@ namespace frugalmonotools
 			this.BTN_Save.Name = "BTN_Save";
 			this.BTN_Save.UseUnderline = true;
 			// Container child BTN_Save.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w47 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w47 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w48 = new global::Gtk.HBox ();
 			w48.Spacing = 2;
@@ -347,7 +319,7 @@ namespace frugalmonotools
 			w47.Add (w48);
 			this.BTN_Save.Add (w47);
 			this.hbox6.Add (this.BTN_Save);
-			global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.BTN_Save]));
+			global::Gtk.Box.BoxChild w55 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.BTN_Save]));
 			w55.Position = 1;
 			w55.Expand = false;
 			w55.Fill = false;
@@ -357,7 +329,7 @@ namespace frugalmonotools
 			this.BTN_Apply.Name = "BTN_Apply";
 			this.BTN_Apply.UseUnderline = true;
 			// Container child BTN_Apply.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w56 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w56 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w57 = new global::Gtk.HBox ();
 			w57.Spacing = 2;
@@ -373,7 +345,7 @@ namespace frugalmonotools
 			w56.Add (w57);
 			this.BTN_Apply.Add (w56);
 			this.hbox6.Add (this.BTN_Apply);
-			global::Gtk.Box.BoxChild w64 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.BTN_Apply]));
+			global::Gtk.Box.BoxChild w64 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.BTN_Apply]));
 			w64.Position = 2;
 			w64.Expand = false;
 			w64.Fill = false;
@@ -385,11 +357,11 @@ namespace frugalmonotools
 			this.SAI_Hdd.IsEditable = true;
 			this.SAI_Hdd.InvisibleChar = '•';
 			this.hbox6.Add (this.SAI_Hdd);
-			global::Gtk.Box.BoxChild w65 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.SAI_Hdd]));
+			global::Gtk.Box.BoxChild w65 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.SAI_Hdd]));
 			w65.PackType = ((global::Gtk.PackType)(1));
 			w65.Position = 3;
 			this.vbox2.Add (this.hbox6);
-			global::Gtk.Box.BoxChild w66 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox6]));
+			global::Gtk.Box.BoxChild w66 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox6]));
 			w66.Position = 1;
 			w66.Expand = false;
 			w66.Fill = false;

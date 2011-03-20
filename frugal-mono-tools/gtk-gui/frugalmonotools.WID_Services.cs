@@ -5,19 +5,12 @@ namespace frugalmonotools
 	public partial class WID_Services
 	{
 		private global::Gtk.VBox vbox7;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
-
 		private global::Gtk.TreeView TREE_Services;
-
 		private global::Gtk.HBox hbox20;
-
 		private global::Gtk.Button BTN_ServiceStart;
-
 		private global::Gtk.Button BTN_ServiceStop;
-
 		private global::Gtk.Button BTN_ServiceDelBoot;
-
 		private global::Gtk.Button BTN_ServiceAddBoot;
 
 		protected virtual void Build ()
@@ -40,7 +33,7 @@ namespace frugalmonotools
 			this.TREE_Services.Name = "TREE_Services";
 			this.GtkScrolledWindow1.Add (this.TREE_Services);
 			this.vbox7.Add (this.GtkScrolledWindow1);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox7[this.GtkScrolledWindow1]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.GtkScrolledWindow1]));
 			w2.Position = 0;
 			// Container child vbox7.Gtk.Box+BoxChild
 			this.hbox20 = new global::Gtk.HBox ();
@@ -52,7 +45,7 @@ namespace frugalmonotools
 			this.BTN_ServiceStart.Name = "BTN_ServiceStart";
 			this.BTN_ServiceStart.UseUnderline = true;
 			// Container child BTN_ServiceStart.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w3 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w3 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w4 = new global::Gtk.HBox ();
 			w4.Spacing = 2;
@@ -68,7 +61,7 @@ namespace frugalmonotools
 			w3.Add (w4);
 			this.BTN_ServiceStart.Add (w3);
 			this.hbox20.Add (this.BTN_ServiceStart);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox20[this.BTN_ServiceStart]));
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox20 [this.BTN_ServiceStart]));
 			w11.Position = 0;
 			w11.Expand = false;
 			w11.Fill = false;
@@ -78,7 +71,7 @@ namespace frugalmonotools
 			this.BTN_ServiceStop.Name = "BTN_ServiceStop";
 			this.BTN_ServiceStop.UseUnderline = true;
 			// Container child BTN_ServiceStop.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w12 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w12 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w13 = new global::Gtk.HBox ();
 			w13.Spacing = 2;
@@ -94,7 +87,7 @@ namespace frugalmonotools
 			w12.Add (w13);
 			this.BTN_ServiceStop.Add (w12);
 			this.hbox20.Add (this.BTN_ServiceStop);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox20[this.BTN_ServiceStop]));
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox20 [this.BTN_ServiceStop]));
 			w20.Position = 1;
 			w20.Expand = false;
 			w20.Fill = false;
@@ -104,7 +97,7 @@ namespace frugalmonotools
 			this.BTN_ServiceDelBoot.Name = "BTN_ServiceDelBoot";
 			this.BTN_ServiceDelBoot.UseUnderline = true;
 			// Container child BTN_ServiceDelBoot.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w21 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w21 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w22 = new global::Gtk.HBox ();
 			w22.Spacing = 2;
@@ -120,7 +113,7 @@ namespace frugalmonotools
 			w21.Add (w22);
 			this.BTN_ServiceDelBoot.Add (w21);
 			this.hbox20.Add (this.BTN_ServiceDelBoot);
-			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox20[this.BTN_ServiceDelBoot]));
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox20 [this.BTN_ServiceDelBoot]));
 			w29.Position = 2;
 			w29.Expand = false;
 			w29.Fill = false;
@@ -130,7 +123,7 @@ namespace frugalmonotools
 			this.BTN_ServiceAddBoot.Name = "BTN_ServiceAddBoot";
 			this.BTN_ServiceAddBoot.UseUnderline = true;
 			// Container child BTN_ServiceAddBoot.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w30 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w30 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w31 = new global::Gtk.HBox ();
 			w31.Spacing = 2;
@@ -146,12 +139,12 @@ namespace frugalmonotools
 			w30.Add (w31);
 			this.BTN_ServiceAddBoot.Add (w30);
 			this.hbox20.Add (this.BTN_ServiceAddBoot);
-			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.hbox20[this.BTN_ServiceAddBoot]));
+			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.hbox20 [this.BTN_ServiceAddBoot]));
 			w38.Position = 3;
 			w38.Expand = false;
 			w38.Fill = false;
 			this.vbox7.Add (this.hbox20);
-			global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.vbox7[this.hbox20]));
+			global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hbox20]));
 			w39.Position = 1;
 			w39.Expand = false;
 			w39.Fill = false;

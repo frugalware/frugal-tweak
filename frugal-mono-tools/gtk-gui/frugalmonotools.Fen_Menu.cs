@@ -5,17 +5,11 @@ namespace frugalmonotools
 	public partial class Fen_Menu
 	{
 		private global::Gtk.VBox vbox1;
-
 		private global::Gtk.HBox HBOX_Menu;
-
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
 		private global::Gtk.TreeView TREE_Menu;
-
 		private global::Gtk.HBox HBOX_Details;
-
 		private global::Gtk.Statusbar STA_Info;
-
 		private global::Gtk.Label LAB_Info;
 
 		protected virtual void Build ()
@@ -49,17 +43,17 @@ namespace frugalmonotools
 			this.TREE_Menu.Name = "TREE_Menu";
 			this.GtkScrolledWindow.Add (this.TREE_Menu);
 			this.HBOX_Menu.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.HBOX_Menu[this.GtkScrolledWindow]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.HBOX_Menu [this.GtkScrolledWindow]));
 			w2.Position = 0;
 			// Container child HBOX_Menu.Gtk.Box+BoxChild
 			this.HBOX_Details = new global::Gtk.HBox ();
 			this.HBOX_Details.Name = "HBOX_Details";
 			this.HBOX_Details.Spacing = 6;
 			this.HBOX_Menu.Add (this.HBOX_Details);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.HBOX_Menu[this.HBOX_Details]));
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.HBOX_Menu [this.HBOX_Details]));
 			w3.Position = 1;
 			this.vbox1.Add (this.HBOX_Menu);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.HBOX_Menu]));
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.HBOX_Menu]));
 			w4.Position = 0;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.STA_Info = new global::Gtk.Statusbar ();
@@ -69,12 +63,12 @@ namespace frugalmonotools
 			this.LAB_Info = new global::Gtk.Label ();
 			this.LAB_Info.Name = "LAB_Info";
 			this.STA_Info.Add (this.LAB_Info);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.STA_Info[this.LAB_Info]));
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.STA_Info [this.LAB_Info]));
 			w5.Position = 1;
 			w5.Expand = false;
 			w5.Fill = false;
 			this.vbox1.Add (this.STA_Info);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.STA_Info]));
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.STA_Info]));
 			w6.Position = 1;
 			w6.Expand = false;
 			w6.Fill = false;

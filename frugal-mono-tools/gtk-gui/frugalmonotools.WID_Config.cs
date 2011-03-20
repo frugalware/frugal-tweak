@@ -5,17 +5,11 @@ namespace frugalmonotools
 	public partial class WID_Config
 	{
 		private global::Gtk.VBox vbox8;
-
 		private global::Gtk.CheckButton INT_CheckStartup;
-
 		private global::Gtk.CheckButton INT_StartWithXSession;
-
 		private global::Gtk.CheckButton INT_ShowNotif;
-
 		private global::Gtk.CheckButton INT_ShowSplash;
-
 		private global::Gtk.HBox hbox21;
-
 		private global::Gtk.Button BTN_SaveConf;
 
 		protected virtual void Build ()
@@ -36,7 +30,7 @@ namespace frugalmonotools
 			this.INT_CheckStartup.DrawIndicator = true;
 			this.INT_CheckStartup.UseUnderline = true;
 			this.vbox8.Add (this.INT_CheckStartup);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_CheckStartup]));
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox8 [this.INT_CheckStartup]));
 			w1.Position = 0;
 			w1.Expand = false;
 			w1.Fill = false;
@@ -48,7 +42,7 @@ namespace frugalmonotools
 			this.INT_StartWithXSession.DrawIndicator = true;
 			this.INT_StartWithXSession.UseUnderline = true;
 			this.vbox8.Add (this.INT_StartWithXSession);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_StartWithXSession]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox8 [this.INT_StartWithXSession]));
 			w2.Position = 1;
 			w2.Expand = false;
 			w2.Fill = false;
@@ -61,7 +55,7 @@ namespace frugalmonotools
 			this.INT_ShowNotif.DrawIndicator = true;
 			this.INT_ShowNotif.UseUnderline = true;
 			this.vbox8.Add (this.INT_ShowNotif);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_ShowNotif]));
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox8 [this.INT_ShowNotif]));
 			w3.Position = 2;
 			w3.Expand = false;
 			w3.Fill = false;
@@ -74,7 +68,7 @@ namespace frugalmonotools
 			this.INT_ShowSplash.DrawIndicator = true;
 			this.INT_ShowSplash.UseUnderline = true;
 			this.vbox8.Add (this.INT_ShowSplash);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.INT_ShowSplash]));
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox8 [this.INT_ShowSplash]));
 			w4.Position = 3;
 			w4.Expand = false;
 			w4.Fill = false;
@@ -88,7 +82,7 @@ namespace frugalmonotools
 			this.BTN_SaveConf.Name = "BTN_SaveConf";
 			this.BTN_SaveConf.UseUnderline = true;
 			// Container child BTN_SaveConf.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w5 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w5 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w6 = new global::Gtk.HBox ();
 			w6.Spacing = 2;
@@ -104,13 +98,13 @@ namespace frugalmonotools
 			w5.Add (w6);
 			this.BTN_SaveConf.Add (w5);
 			this.hbox21.Add (this.BTN_SaveConf);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox21[this.BTN_SaveConf]));
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox21 [this.BTN_SaveConf]));
 			w13.PackType = ((global::Gtk.PackType)(1));
 			w13.Position = 2;
 			w13.Expand = false;
 			w13.Fill = false;
 			this.vbox8.Add (this.hbox21);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox21]));
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox8 [this.hbox21]));
 			w14.Position = 5;
 			w14.Expand = false;
 			w14.Fill = false;

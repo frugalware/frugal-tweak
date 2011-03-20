@@ -5,27 +5,16 @@ namespace frugalmonotools
 	public partial class WID_Xorg
 	{
 		private global::Gtk.VBox vbox6;
-
 		private global::Gtk.HBox hbox13;
-
 		private global::Gtk.Label label2;
-
 		private global::Gtk.Entry SAI_Layout;
-
 		private global::Gtk.HBox hbox16;
-
 		private global::Gtk.Label LIB_Lspci;
-
 		private global::Gtk.ComboBoxEntry CBO_GraphicalDevice;
-
 		private global::Gtk.Button BTN_Synaptics;
-
 		private global::Gtk.CheckButton INT_Numlock;
-
 		private global::Gtk.HBox hbox14;
-
 		private global::Gtk.Label LIB_Root;
-
 		private global::Gtk.Button BTN_Xorg;
 
 		protected virtual void Build ()
@@ -47,7 +36,7 @@ namespace frugalmonotools
 			this.label2.Name = "label2";
 			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Layout");
 			this.hbox13.Add (this.label2);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox13[this.label2]));
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.label2]));
 			w1.Position = 0;
 			w1.Expand = false;
 			w1.Fill = false;
@@ -59,12 +48,12 @@ namespace frugalmonotools
 			this.SAI_Layout.MaxLength = 10;
 			this.SAI_Layout.InvisibleChar = '●';
 			this.hbox13.Add (this.SAI_Layout);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox13[this.SAI_Layout]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.SAI_Layout]));
 			w2.PackType = ((global::Gtk.PackType)(1));
 			w2.Position = 1;
 			w2.Expand = false;
 			this.vbox6.Add (this.hbox13);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.hbox13]));
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox13]));
 			w3.Position = 0;
 			w3.Expand = false;
 			w3.Fill = false;
@@ -77,7 +66,7 @@ namespace frugalmonotools
 			this.LIB_Lspci.Name = "LIB_Lspci";
 			this.LIB_Lspci.LabelProp = global::Mono.Unix.Catalog.GetString ("lspci");
 			this.hbox16.Add (this.LIB_Lspci);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox16[this.LIB_Lspci]));
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox16 [this.LIB_Lspci]));
 			w4.Position = 0;
 			w4.Expand = false;
 			w4.Fill = false;
@@ -85,13 +74,13 @@ namespace frugalmonotools
 			this.CBO_GraphicalDevice = global::Gtk.ComboBoxEntry.NewText ();
 			this.CBO_GraphicalDevice.Name = "CBO_GraphicalDevice";
 			this.hbox16.Add (this.CBO_GraphicalDevice);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox16[this.CBO_GraphicalDevice]));
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox16 [this.CBO_GraphicalDevice]));
 			w5.PackType = ((global::Gtk.PackType)(1));
 			w5.Position = 1;
 			w5.Expand = false;
 			w5.Fill = false;
 			this.vbox6.Add (this.hbox16);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.hbox16]));
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox16]));
 			w6.Position = 1;
 			w6.Expand = false;
 			w6.Fill = false;
@@ -102,7 +91,7 @@ namespace frugalmonotools
 			this.BTN_Synaptics.UseUnderline = true;
 			this.BTN_Synaptics.Label = global::Mono.Unix.Catalog.GetString ("xf86-input-synaptics is not installed. Click here to install it.");
 			this.vbox6.Add (this.BTN_Synaptics);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.BTN_Synaptics]));
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.BTN_Synaptics]));
 			w7.Position = 3;
 			w7.Expand = false;
 			w7.Fill = false;
@@ -114,7 +103,7 @@ namespace frugalmonotools
 			this.INT_Numlock.DrawIndicator = true;
 			this.INT_Numlock.UseUnderline = true;
 			this.vbox6.Add (this.INT_Numlock);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.INT_Numlock]));
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.INT_Numlock]));
 			w8.Position = 4;
 			w8.Expand = false;
 			w8.Fill = false;
@@ -127,7 +116,7 @@ namespace frugalmonotools
 			this.LIB_Root.Name = "LIB_Root";
 			this.LIB_Root.LabelProp = global::Mono.Unix.Catalog.GetString ("Can't save, should be started as root");
 			this.hbox14.Add (this.LIB_Root);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox14[this.LIB_Root]));
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox14 [this.LIB_Root]));
 			w9.Position = 0;
 			w9.Expand = false;
 			w9.Fill = false;
@@ -137,7 +126,7 @@ namespace frugalmonotools
 			this.BTN_Xorg.Name = "BTN_Xorg";
 			this.BTN_Xorg.UseUnderline = true;
 			// Container child BTN_Xorg.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w10 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w10 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w11 = new global::Gtk.HBox ();
 			w11.Spacing = 2;
@@ -153,13 +142,13 @@ namespace frugalmonotools
 			w10.Add (w11);
 			this.BTN_Xorg.Add (w10);
 			this.hbox14.Add (this.BTN_Xorg);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox14[this.BTN_Xorg]));
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox14 [this.BTN_Xorg]));
 			w18.PackType = ((global::Gtk.PackType)(1));
 			w18.Position = 2;
 			w18.Expand = false;
 			w18.Fill = false;
 			this.vbox6.Add (this.hbox14);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox6[this.hbox14]));
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.hbox14]));
 			w19.Position = 6;
 			w19.Expand = false;
 			w19.Fill = false;

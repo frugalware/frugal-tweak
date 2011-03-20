@@ -5,51 +5,28 @@ namespace frugalmonotools
 	public partial class WID_LoginManager
 	{
 		private global::Gtk.VBox vbox3;
-
 		private global::Gtk.HBox hbox5;
-
 		private global::Gtk.Image image1;
-
 		private global::Gtk.CheckButton INT_XDM;
-
 		private global::Gtk.Label LIB_XDM;
-
 		private global::Gtk.HBox hbox6;
-
 		private global::Gtk.Image image2;
-
 		private global::Gtk.CheckButton INT_LXDM;
-
 		private global::Gtk.Label LIB_LXDM;
-
 		private global::Gtk.HBox hbox7;
-
 		private global::Gtk.Image image3;
-
 		private global::Gtk.CheckButton INT_Slim;
-
 		private global::Gtk.Label LIB_SLIM;
-
 		private global::Gtk.HBox hbox9;
-
 		private global::Gtk.Image image4;
-
 		private global::Gtk.CheckButton INT_GDM;
-
 		private global::Gtk.Label LIB_GDM;
-
 		private global::Gtk.HBox hbox10;
-
 		private global::Gtk.Image image5;
-
 		private global::Gtk.CheckButton INT_KDM;
-
 		private global::Gtk.Label LIB_KDM;
-
 		private global::Gtk.HBox hbox8;
-
 		private global::Gtk.Label LIB_Root;
-
 		private global::Gtk.Button BTN_LoginManager;
 
 		protected virtual void Build ()
@@ -71,7 +48,7 @@ namespace frugalmonotools
 			this.image1.Name = "image1";
 			this.image1.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.xorglogo.png");
 			this.hbox5.Add (this.image1);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.image1]));
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.image1]));
 			w1.Position = 0;
 			w1.Expand = false;
 			w1.Fill = false;
@@ -83,19 +60,19 @@ namespace frugalmonotools
 			this.INT_XDM.DrawIndicator = true;
 			this.INT_XDM.UseUnderline = true;
 			this.hbox5.Add (this.INT_XDM);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.INT_XDM]));
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.INT_XDM]));
 			w2.Position = 1;
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.LIB_XDM = new global::Gtk.Label ();
 			this.LIB_XDM.Name = "LIB_XDM";
 			this.LIB_XDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 			this.hbox5.Add (this.LIB_XDM);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.LIB_XDM]));
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.LIB_XDM]));
 			w3.Position = 2;
 			w3.Expand = false;
 			w3.Fill = false;
 			this.vbox3.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox5]));
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox5]));
 			w4.Position = 0;
 			w4.Expand = false;
 			w4.Fill = false;
@@ -108,7 +85,7 @@ namespace frugalmonotools
 			this.image2.Name = "image2";
 			this.image2.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.lxdelogo.png");
 			this.hbox6.Add (this.image2);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.image2]));
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.image2]));
 			w5.Position = 0;
 			w5.Expand = false;
 			w5.Fill = false;
@@ -120,19 +97,19 @@ namespace frugalmonotools
 			this.INT_LXDM.DrawIndicator = true;
 			this.INT_LXDM.UseUnderline = true;
 			this.hbox6.Add (this.INT_LXDM);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.INT_LXDM]));
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.INT_LXDM]));
 			w6.Position = 1;
 			// Container child hbox6.Gtk.Box+BoxChild
 			this.LIB_LXDM = new global::Gtk.Label ();
 			this.LIB_LXDM.Name = "LIB_LXDM";
 			this.LIB_LXDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 			this.hbox6.Add (this.LIB_LXDM);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox6[this.LIB_LXDM]));
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox6 [this.LIB_LXDM]));
 			w7.Position = 2;
 			w7.Expand = false;
 			w7.Fill = false;
 			this.vbox3.Add (this.hbox6);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox6]));
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox6]));
 			w8.Position = 1;
 			w8.Expand = false;
 			w8.Fill = false;
@@ -145,7 +122,7 @@ namespace frugalmonotools
 			this.image3.Name = "image3";
 			this.image3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.xfcelogo.png");
 			this.hbox7.Add (this.image3);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.image3]));
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.image3]));
 			w9.Position = 0;
 			w9.Expand = false;
 			w9.Fill = false;
@@ -157,19 +134,19 @@ namespace frugalmonotools
 			this.INT_Slim.DrawIndicator = true;
 			this.INT_Slim.UseUnderline = true;
 			this.hbox7.Add (this.INT_Slim);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.INT_Slim]));
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.INT_Slim]));
 			w10.Position = 1;
 			// Container child hbox7.Gtk.Box+BoxChild
 			this.LIB_SLIM = new global::Gtk.Label ();
 			this.LIB_SLIM.Name = "LIB_SLIM";
 			this.LIB_SLIM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 			this.hbox7.Add (this.LIB_SLIM);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.LIB_SLIM]));
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox7 [this.LIB_SLIM]));
 			w11.Position = 2;
 			w11.Expand = false;
 			w11.Fill = false;
 			this.vbox3.Add (this.hbox7);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox7]));
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox7]));
 			w12.Position = 2;
 			w12.Expand = false;
 			w12.Fill = false;
@@ -182,7 +159,7 @@ namespace frugalmonotools
 			this.image4.Name = "image4";
 			this.image4.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.gnomelogo.png");
 			this.hbox9.Add (this.image4);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.image4]));
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.image4]));
 			w13.Position = 0;
 			w13.Expand = false;
 			w13.Fill = false;
@@ -194,19 +171,19 @@ namespace frugalmonotools
 			this.INT_GDM.DrawIndicator = true;
 			this.INT_GDM.UseUnderline = true;
 			this.hbox9.Add (this.INT_GDM);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.INT_GDM]));
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.INT_GDM]));
 			w14.Position = 1;
 			// Container child hbox9.Gtk.Box+BoxChild
 			this.LIB_GDM = new global::Gtk.Label ();
 			this.LIB_GDM.Name = "LIB_GDM";
 			this.LIB_GDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 			this.hbox9.Add (this.LIB_GDM);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.LIB_GDM]));
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.LIB_GDM]));
 			w15.Position = 2;
 			w15.Expand = false;
 			w15.Fill = false;
 			this.vbox3.Add (this.hbox9);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox9]));
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox9]));
 			w16.Position = 3;
 			w16.Expand = false;
 			w16.Fill = false;
@@ -219,7 +196,7 @@ namespace frugalmonotools
 			this.image5.Name = "image5";
 			this.image5.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalmonotools.Pictures.kdelogo.png");
 			this.hbox10.Add (this.image5);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.image5]));
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.image5]));
 			w17.Position = 0;
 			w17.Expand = false;
 			w17.Fill = false;
@@ -231,19 +208,19 @@ namespace frugalmonotools
 			this.INT_KDM.DrawIndicator = true;
 			this.INT_KDM.UseUnderline = true;
 			this.hbox10.Add (this.INT_KDM);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.INT_KDM]));
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.INT_KDM]));
 			w18.Position = 1;
 			// Container child hbox10.Gtk.Box+BoxChild
 			this.LIB_KDM = new global::Gtk.Label ();
 			this.LIB_KDM.Name = "LIB_KDM";
 			this.LIB_KDM.LabelProp = global::Mono.Unix.Catalog.GetString ("Not installed");
 			this.hbox10.Add (this.LIB_KDM);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox10[this.LIB_KDM]));
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox10 [this.LIB_KDM]));
 			w19.Position = 2;
 			w19.Expand = false;
 			w19.Fill = false;
 			this.vbox3.Add (this.hbox10);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox10]));
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox10]));
 			w20.Position = 4;
 			w20.Expand = false;
 			w20.Fill = false;
@@ -256,7 +233,7 @@ namespace frugalmonotools
 			this.LIB_Root.Name = "LIB_Root";
 			this.LIB_Root.LabelProp = global::Mono.Unix.Catalog.GetString ("Can't save, should be started as root");
 			this.hbox8.Add (this.LIB_Root);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.LIB_Root]));
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.LIB_Root]));
 			w21.Position = 0;
 			w21.Expand = false;
 			w21.Fill = false;
@@ -266,7 +243,7 @@ namespace frugalmonotools
 			this.BTN_LoginManager.Name = "BTN_LoginManager";
 			this.BTN_LoginManager.UseUnderline = true;
 			// Container child BTN_LoginManager.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w22 = new global::Gtk.Alignment (0.5f, 0.5f, 0f, 0f);
+			global::Gtk.Alignment w22 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w23 = new global::Gtk.HBox ();
 			w23.Spacing = 2;
@@ -282,13 +259,13 @@ namespace frugalmonotools
 			w22.Add (w23);
 			this.BTN_LoginManager.Add (w22);
 			this.hbox8.Add (this.BTN_LoginManager);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.BTN_LoginManager]));
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.BTN_LoginManager]));
 			w30.PackType = ((global::Gtk.PackType)(1));
 			w30.Position = 2;
 			w30.Expand = false;
 			w30.Fill = false;
 			this.vbox3.Add (this.hbox8);
-			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox8]));
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox8]));
 			w31.PackType = ((global::Gtk.PackType)(1));
 			w31.Position = 5;
 			w31.Expand = false;
