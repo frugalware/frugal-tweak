@@ -35,6 +35,21 @@ namespace frugalmonotools
 			dialog.Run();
 			return ResultAsk;
 		}
+		public static void OpenUrl(string url)
+		{
+			//by default use firefox
+			if (!Outils.Excecute("firefox",url,false))
+			{
+				if (!Outils.Excecute("midori",url,false))
+				{
+					if (!Outils.Excecute("epiphany",url,false))
+					{
+						//last chance :p
+						Outils.Excecute("konqueror",url,false);
+					}
+				}
+			}
+		}
 		public static List<string>  WalkDirectoryTree(System.IO.DirectoryInfo root,string pattern)
 	    {
 			List<string>  strFiles = new List<string>(); 
@@ -197,13 +212,11 @@ namespace frugalmonotools
 		{
 			if (enable)
 			{
-				Outils.Excecute("service "+servicename+" add","",true);
-				Outils.Excecute("service "+servicename+" start","",true);
+				Outils.Excecute("systemctl enable "+servicename+".service","",true);
 			}
 			else
 			{
-				Outils.Excecute("service "+servicename+" del","",true);
-				Outils.Excecute("service "+servicename+" stop","",true);
+				Outils.Excecute("systemctl disable "+servicename+".service","",true);
 			}
 		}
 		/// <summary>

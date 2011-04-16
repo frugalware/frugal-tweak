@@ -89,6 +89,15 @@ namespace frugalmonotools
 		}
 		public bool IsStartedOnBoot()
 		{
+			//  /etc/systemd/system/multi-user.target.wants/NetworkManager.service
+			//systemd
+			if(File.Exists("/etc/systemd/system/multi-user.target.wants/"+this.Get_Name()+".service"))
+			{
+				Debug.print(this.Get_Name()+" on boot");
+				return true;
+			}
+			return false;
+			/*
 			//check on all runlevel
 			int i =0;
 			while(i<=6)
@@ -97,6 +106,7 @@ namespace frugalmonotools
 				i++;
 			}
 			return false;
+			*/
 		}
 		public void Start()
 		{

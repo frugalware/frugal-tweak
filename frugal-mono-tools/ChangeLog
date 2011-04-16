@@ -1,3 +1,13 @@
+2011-04-16  gaetan gourdin  <bouleetbil@frogdev.info>
+
+	* Service.cs:
+	* WID_News.cs:
+	* WID_Network.cs:
+	* WID_Hardware.cs:
+	* Outils.cs:
+	* gui.stetic:
+	* frugalmonotools.WID_Hardware.cs: 
+
 2011-03-20  gaetan gourdin  <bouleetbil@frogdev.info>
 
 	* WID_Pkg.cs:

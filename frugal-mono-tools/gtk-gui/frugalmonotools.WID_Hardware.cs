@@ -17,6 +17,9 @@ namespace frugalmonotools
 		private global::Gtk.Label LIB_Bluez;
 		private global::Gtk.ScrolledWindow GtkScrolledWindow3;
 		private global::Gtk.TextView TXT_Lspci;
+		private global::Gtk.HBox hbox1;
+		private global::Gtk.Button BTN_Pastbin1;
+		private global::Gtk.Button BTN_Pastbin;
 
 		protected virtual void Build ()
 		{
@@ -153,14 +156,49 @@ namespace frugalmonotools
 			this.vbox2.Add (this.GtkScrolledWindow3);
 			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.GtkScrolledWindow3]));
 			w20.Position = 4;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1.Name = "hbox1";
+			this.hbox1.Spacing = 6;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.BTN_Pastbin1 = new global::Gtk.Button ();
+			this.BTN_Pastbin1.CanFocus = true;
+			this.BTN_Pastbin1.Name = "BTN_Pastbin1";
+			this.BTN_Pastbin1.UseUnderline = true;
+			this.BTN_Pastbin1.Label = global::Mono.Unix.Catalog.GetString ("Pastbin");
+			this.hbox1.Add (this.BTN_Pastbin1);
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.BTN_Pastbin1]));
+			w21.Position = 1;
+			w21.Expand = false;
+			w21.Fill = false;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.BTN_Pastbin = new global::Gtk.Button ();
+			this.BTN_Pastbin.CanFocus = true;
+			this.BTN_Pastbin.Name = "BTN_Pastbin";
+			this.BTN_Pastbin.UseUnderline = true;
+			this.BTN_Pastbin.Label = global::Mono.Unix.Catalog.GetString ("Send to pastbin");
+			this.hbox1.Add (this.BTN_Pastbin);
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.BTN_Pastbin]));
+			w22.Position = 2;
+			w22.Expand = false;
+			w22.Fill = false;
+			this.vbox2.Add (this.hbox1);
+			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox1]));
+			w23.PackType = ((global::Gtk.PackType)(1));
+			w23.Position = 5;
+			w23.Expand = false;
+			w23.Fill = false;
 			this.Add (this.vbox2);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.BTN_Setup.Hide ();
+			this.BTN_Pastbin.Hide ();
 			this.Hide ();
 			this.BTN_Printer.Clicked += new global::System.EventHandler (this.OnBTNPrinterClicked);
 			this.BTN_Setup.Clicked += new global::System.EventHandler (this.OnBTNSetupClicked);
+			this.BTN_Pastbin1.Clicked += new global::System.EventHandler (this.OnBTNPastbin1Clicked);
+			this.BTN_Pastbin.Clicked += new global::System.EventHandler (this.OnBTNPastbinClicked);
 		}
 	}
 }

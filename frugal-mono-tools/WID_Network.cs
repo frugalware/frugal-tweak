@@ -40,11 +40,11 @@ namespace frugalmonotools
 		//network init
 		EnableDisable(INT_WICD,"wicd",LIB_WICDNotInstalled);
 		EnableDisable(INT_NM,"networkmanager",LIB_NMNotInstalled);
-		Service nm = new Service("networkmanager");
+		Service nm = new Service("NetworkManager");
 		INT_NM.Active=nm.IsStartedOnBoot();
 		Service wicd = new Service("wicd");
 		INT_WICD.Active=wicd.IsStartedOnBoot();
-		if(!INT_FW.Active && !INT_NM.Active)
+		if(!INT_WICD.Active && !INT_NM.Active)
 				INT_FW.Active=true;
 	}
 		
@@ -65,7 +65,7 @@ namespace frugalmonotools
 		
 	protected virtual void OnBTNNetworkClicked (object sender, System.EventArgs e)
 	{
-		Outils.Service("networkmanager",this.INT_NM.Active);
+		Outils.Service("NetworkManager",this.INT_NM.Active);
 		Outils.Service("wicd",this.INT_WICD.Active);
 	}
 		
