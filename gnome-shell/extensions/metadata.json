@@ -1,0 +1,7 @@
+{
+	"shell-version": ["3.0.1"], 
+	"uuid": "tools-icons@frogdev.org", 
+	"name": "tools", 
+	"description": "enable some icons on gnome-shell systray",
+	"url": "http://vega.frugalware.org"
+}
