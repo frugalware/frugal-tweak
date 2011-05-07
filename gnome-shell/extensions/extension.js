@@ -28,6 +28,7 @@ function main()
 	StatusIconDispatcher.STANDARD_TRAY_ICON_IMPLEMENTATIONS['parcellite'] = 'parcellite';
 	StatusIconDispatcher.STANDARD_TRAY_ICON_IMPLEMENTATIONS['frugalware-tweak2'] = 'frugalware-tweak2';
 	StatusIconDispatcher.STANDARD_TRAY_ICON_IMPLEMENTATIONS['frugal-mono-tools'] = 'frugalware-tweak';
+	StatusIconDispatcher.STANDARD_TRAY_ICON_IMPLEMENTATIONS['skype'] = 'skype';
 	// Disable bulit-in icon that you don't need.
 	Panel.STANDARD_TRAY_ICON_SHELL_IMPLEMENTATION['a11y'] = '';   // Accessiability icon
 }
