@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 const StatusIconDispatcher = imports.ui.statusIconDispatcher;
+const Panel = imports.ui.panel;
 
 function main()
 {
