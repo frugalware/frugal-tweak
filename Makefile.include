@@ -84,13 +84,11 @@ endef
 # assumes that for a wrapper foo.pc its source template is foo.pc.in
 # if $3 is non-empty then wrapper is marked exec
 define emit-deploy-wrapper
-$($1): $2 $(top_srcdir)/config.make
+$($1): $2 
 	mkdir -p '$$(shell dirname '$$@')'
 	cp '$$<' '$$@'
 	$(if $3,chmod +x '$$@')
 
-$2: $2.in $(top_srcdir)/config.make
-	sed -e "s,@prefix@,$(prefix)," -e "s,@PACKAGE@,$(PACKAGE)," -e "s,@expanded_libdir@,$(libdir)," -e "s,@expanded_bindir@,$(bindir)," -e "s,@expanded_datadir@,$(datadir)," < $2.in > $2
 endef
 
 # generating satellite assemblies

@@ -1,5 +1,9 @@
 2011-05-25  gaetan gourdin  <bouleetbil@frogdev.info>
 
+	* Makefile.include: 
+
+2011-05-25  gaetan gourdin  <bouleetbil@frogdev.info>
+
 	* autogen.sh:
 	* Makefile.am:
 	* configure.ac:
