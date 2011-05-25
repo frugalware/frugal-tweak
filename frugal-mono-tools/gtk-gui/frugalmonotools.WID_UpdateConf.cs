@@ -11,7 +11,7 @@ namespace frugalmonotools
 		private global::Gtk.Button BTN_SeeDiff;
 		private global::Gtk.Button BTN_Replace;
 		private global::Gtk.Button BTN_Delete;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

@@ -12,7 +12,7 @@ namespace frugalmonotools
 		private global::Gtk.Button BTN_ServiceStop;
 		private global::Gtk.Button BTN_ServiceDelBoot;
 		private global::Gtk.Button BTN_ServiceAddBoot;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

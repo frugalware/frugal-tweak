@@ -26,7 +26,7 @@ namespace frugalmonotools
 		private global::Gtk.Button BTN_Install;
 		private global::Gtk.Button BTN_Optimize;
 		private global::Gtk.Label label2;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

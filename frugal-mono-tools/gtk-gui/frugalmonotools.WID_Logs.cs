@@ -17,7 +17,7 @@ namespace frugalmonotools
 		private global::Gtk.ScrolledWindow GtkScrolledWindow2;
 		private global::Gtk.TextView TXT_XsessionErrors;
 		private global::Gtk.Label label4;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

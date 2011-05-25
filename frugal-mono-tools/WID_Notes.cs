@@ -17,6 +17,7 @@
 //  */
 using System;
 using System.IO;
+using System.Text;
 namespace frugalmonotools
 {
 	[System.ComponentModel.ToolboxItem(true)]
@@ -53,7 +54,9 @@ namespace frugalmonotools
 		{
 			//send to server
 			FrugalNotes note = new FrugalNotes();
-			if(note.SendNote(MainClass.configuration.Get_NoteLogin(),MainClass.configuration.Get_NotePass(),TXT_Note.Buffer.Text))
+			string TheNote = TXT_Note.Buffer.Text;
+			string NoteCrypte = frugalmonotools.Crypto.EncryptStringAES(TheNote,MainClass.configuration.Get_NoteLogin()+MainClass.configuration.Get_NotePass());
+			if(note.SendNote(MainClass.configuration.Get_NoteLogin(),MainClass.configuration.Get_NotePass(),NoteCrypte))
 			{
 				LIB_Info.Text="Note sending to server";
 			}
@@ -68,7 +71,9 @@ namespace frugalmonotools
 		{
 			//get from server
 			FrugalNotes note = new FrugalNotes();
-			TXT_Note.Buffer.Text = note.GetNote(MainClass.configuration.Get_NoteLogin(),MainClass.configuration.Get_NotePass());
+			string NoteCrypte = note.GetNote(MainClass.configuration.Get_NoteLogin(),MainClass.configuration.Get_NotePass());
+			string NoteDecrypte =  frugalmonotools.Crypto.DecryptStringAES(NoteCrypte,MainClass.configuration.Get_NoteLogin()+MainClass.configuration.Get_NotePass());
+			TXT_Note.Buffer.Text = NoteDecrypte;
 		}
 		
 		

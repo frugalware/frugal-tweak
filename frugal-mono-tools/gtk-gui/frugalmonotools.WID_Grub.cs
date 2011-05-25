@@ -33,7 +33,7 @@ namespace frugalmonotools
 		private global::Gtk.Button BTN_Save;
 		private global::Gtk.Button BTN_Apply;
 		private global::Gtk.Entry SAI_Hdd;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

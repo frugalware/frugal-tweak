@@ -1,3 +1,33 @@
+2011-05-25  gaetan gourdin  <bouleetbil@frogdev.info>
+
+	* Crypto.cs:
+	* WID_Notes.cs:
+	* generated.cs:
+	* frugal-mono-tools.csproj:
+	* frugalmonotools.splash.cs:
+	* frugalmonotools.WID_Pkg.cs:
+	* frugalmonotools.WID_Logs.cs:
+	* frugalmonotools.WID_Grub.cs:
+	* frugalmonotools.WID_Xorg.cs:
+	* frugalmonotools.WID_News.cs:
+	* frugalmonotools.Fen_Menu.cs:
+	* frugalmonotools.DiagGrub.cs:
+	* frugalmonotools.WID_About.cs:
+	* frugalmonotools.WID_Notes.cs:
+	* frugalmonotools.WID_Users.cs:
+	* frugalmonotools.FEN_Debug.cs:
+	* frugalmonotools.WID_Update.cs:
+	* frugalmonotools.WID_System.cs:
+	* frugalmonotools.WID_Config.cs:
+	* frugalmonotools.MessageBox.cs:
+	* frugalmonotools.WID_Network.cs:
+	* frugalmonotools.WID_Support.cs:
+	* frugalmonotools.WID_DateTime.cs:
+	* frugalmonotools.WID_Hardware.cs:
+	* frugalmonotools.WID_Services.cs:
+	* frugalmonotools.WID_UpdateConf.cs:
+	* frugalmonotools.WID_LoginManager.cs: 
+
 2011-04-16  gaetan gourdin  <bouleetbil@frogdev.info>
 
 	* Service.cs:

@@ -8,7 +8,7 @@ namespace frugalmonotools
 		private global::Gtk.Image image66;
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		private global::Gtk.TextView textview2;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

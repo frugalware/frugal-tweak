@@ -21,7 +21,7 @@ namespace frugalmonotools
 		private global::Gtk.HBox hbox2;
 		private global::Gtk.Button BTN_SaveOptions;
 		private global::Gtk.Label label2;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

@@ -16,7 +16,7 @@ namespace frugalmonotools
 		private global::Gtk.HBox hbox12;
 		private global::Gtk.Button BTN_Uninstall;
 		private global::Gtk.Button BTN_Install;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

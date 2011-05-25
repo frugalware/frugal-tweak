@@ -6,7 +6,7 @@ namespace frugalmonotools
 	{
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		private global::Gtk.TextView SortieAPPLI;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

@@ -11,7 +11,7 @@ namespace frugalmonotools
 		private global::Gtk.CheckButton INT_ShowSplash;
 		private global::Gtk.HBox hbox21;
 		private global::Gtk.Button BTN_SaveConf;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

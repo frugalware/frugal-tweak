@@ -17,7 +17,7 @@ namespace frugalmonotools
 		private global::Gtk.Label label8;
 		private global::Gtk.Button BTN_French;
 		private global::Gtk.Button BTN_Danish;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

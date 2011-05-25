@@ -34,7 +34,7 @@ namespace frugalmonotools
 		private global::Gtk.Button BTN_AddGroup;
 		private global::Gtk.Button BTN_RemoveGroup;
 		private global::Gtk.Label label2;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

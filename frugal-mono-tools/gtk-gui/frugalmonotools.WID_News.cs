@@ -8,7 +8,7 @@ namespace frugalmonotools
 		private global::Gtk.ComboBox CBO_TitleNews;
 		private global::Gtk.Label LIB_Titre;
 		private global::Gtk.Button BTN_Link;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

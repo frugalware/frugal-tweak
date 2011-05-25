@@ -11,7 +11,7 @@ namespace frugalmonotools
 		private global::Gtk.HBox HBOX_Details;
 		private global::Gtk.Statusbar STA_Info;
 		private global::Gtk.Label LAB_Info;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

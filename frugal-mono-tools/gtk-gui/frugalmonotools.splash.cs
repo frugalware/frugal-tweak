@@ -7,7 +7,7 @@ namespace frugalmonotools
 		private global::Gtk.HBox hbox1;
 		private global::Gtk.VBox vbox1;
 		private global::Gtk.Image LOGO;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);

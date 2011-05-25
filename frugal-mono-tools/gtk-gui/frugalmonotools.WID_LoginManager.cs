@@ -28,7 +28,7 @@ namespace frugalmonotools
 		private global::Gtk.HBox hbox8;
 		private global::Gtk.Label LIB_Root;
 		private global::Gtk.Button BTN_LoginManager;
-
+        
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
