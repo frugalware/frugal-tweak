@@ -1,5 +1,12 @@
 2011-05-25  gaetan gourdin  <bouleetbil@frogdev.info>
 
+	* Makefile.am:
+	* WID_Notes.cs:
+	* gui.stetic:
+	* frugal-mono-tools.csproj: 
+
+2011-05-25  gaetan gourdin  <bouleetbil@frogdev.info>
+
 	* frugal-mono-tools.csproj: 
 
 2011-05-25  gaetan gourdin  <bouleetbil@frogdev.info>

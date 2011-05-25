@@ -1,3 +1,13 @@
+2011-05-25  gaetan gourdin  <bouleetbil@frogdev.info>
+
+	* autogen.sh:
+	* Makefile.am:
+	* configure.ac:
+	* expansions.m4:
+	* Packages.mdproj:
+	* Makefile.include:
+	* frugalware-tweak.sln: 
+
 2011-04-16  gaetan gourdin  <bouleetbil@frogdev.info>
 
 	* Packages.mdproj: 

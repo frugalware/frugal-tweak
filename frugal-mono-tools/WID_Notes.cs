@@ -75,11 +75,6 @@ namespace frugalmonotools
 			string NoteDecrypte =  frugalmonotools.Crypto.DecryptStringAES(NoteCrypte,MainClass.configuration.Get_NoteLogin()+MainClass.configuration.Get_NotePass());
 			TXT_Note.Buffer.Text = NoteDecrypte;
 		}
-		
-		
-		
-		
-		
 	}
 }
 

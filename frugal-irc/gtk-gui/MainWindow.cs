@@ -4,41 +4,24 @@
 public partial class MainWindow
 {
 	private global::Gtk.HBox hbox1;
-
 	private global::Gtk.VBox vbox2;
-
 	private global::Gtk.VBox vbox3;
-
 	private global::Gtk.Entry SAI_Serveur;
-
 	private global::Gtk.Entry SAI_Chan;
-
 	private global::Gtk.HBox hbox3;
-
 	private global::Gtk.Entry SAI_Port;
-
 	private global::Gtk.Entry SAI_User;
-
 	private global::Gtk.Button BTN_Connect;
-
 	private global::Gtk.ScrolledWindow GtkScrolledWindow1;
-
 	private global::Gtk.TextView TXT_Messages;
-
 	private global::Gtk.HBox hbox2;
-
 	private global::Gtk.Entry SAI_Envoi;
-
 	private global::Gtk.Button BTN_Send;
-
 	private global::Gtk.VBox vbox1;
-
 	private global::Gtk.Image image1;
-
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
 	private global::Gtk.TreeView TREE_Users;
-
+    
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
@@ -69,7 +52,7 @@ public partial class MainWindow
 		this.SAI_Serveur.IsEditable = false;
 		this.SAI_Serveur.InvisibleChar = '•';
 		this.vbox3.Add (this.SAI_Serveur);
-		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.SAI_Serveur]));
+		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.SAI_Serveur]));
 		w1.Position = 0;
 		w1.Expand = false;
 		w1.Fill = false;
@@ -81,7 +64,7 @@ public partial class MainWindow
 		this.SAI_Chan.IsEditable = false;
 		this.SAI_Chan.InvisibleChar = '•';
 		this.vbox3.Add (this.SAI_Chan);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.SAI_Chan]));
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.SAI_Chan]));
 		w2.Position = 1;
 		w2.Expand = false;
 		w2.Fill = false;
@@ -98,7 +81,7 @@ public partial class MainWindow
 		this.SAI_Port.MaxLength = 4;
 		this.SAI_Port.InvisibleChar = '•';
 		this.hbox3.Add (this.SAI_Port);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.SAI_Port]));
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.SAI_Port]));
 		w3.Position = 0;
 		w3.Expand = false;
 		// Container child hbox3.Gtk.Box+BoxChild
@@ -109,7 +92,7 @@ public partial class MainWindow
 		this.SAI_User.IsEditable = false;
 		this.SAI_User.InvisibleChar = '•';
 		this.hbox3.Add (this.SAI_User);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.SAI_User]));
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.SAI_User]));
 		w4.Position = 1;
 		// Container child hbox3.Gtk.Box+BoxChild
 		this.BTN_Connect = new global::Gtk.Button ();
@@ -118,17 +101,17 @@ public partial class MainWindow
 		this.BTN_Connect.UseUnderline = true;
 		this.BTN_Connect.Label = global::Mono.Unix.Catalog.GetString ("Connect");
 		this.hbox3.Add (this.BTN_Connect);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.BTN_Connect]));
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.BTN_Connect]));
 		w5.Position = 2;
 		w5.Expand = false;
 		w5.Fill = false;
 		this.vbox3.Add (this.hbox3);
-		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox3]));
+		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox3]));
 		w6.Position = 2;
 		w6.Expand = false;
 		w6.Fill = false;
 		this.vbox2.Add (this.vbox3);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.vbox3]));
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.vbox3]));
 		w7.Position = 0;
 		w7.Expand = false;
 		w7.Fill = false;
@@ -143,7 +126,7 @@ public partial class MainWindow
 		this.TXT_Messages.Editable = false;
 		this.GtkScrolledWindow1.Add (this.TXT_Messages);
 		this.vbox2.Add (this.GtkScrolledWindow1);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.GtkScrolledWindow1]));
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.GtkScrolledWindow1]));
 		w9.Position = 1;
 		// Container child vbox2.Gtk.Box+BoxChild
 		this.hbox2 = new global::Gtk.HBox ();
@@ -156,7 +139,7 @@ public partial class MainWindow
 		this.SAI_Envoi.IsEditable = true;
 		this.SAI_Envoi.InvisibleChar = '•';
 		this.hbox2.Add (this.SAI_Envoi);
-		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.SAI_Envoi]));
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.SAI_Envoi]));
 		w10.Position = 0;
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.BTN_Send = new global::Gtk.Button ();
@@ -165,17 +148,17 @@ public partial class MainWindow
 		this.BTN_Send.UseUnderline = true;
 		this.BTN_Send.Label = global::Mono.Unix.Catalog.GetString ("_Send");
 		this.hbox2.Add (this.BTN_Send);
-		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.BTN_Send]));
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.BTN_Send]));
 		w11.Position = 1;
 		w11.Expand = false;
 		w11.Fill = false;
 		this.vbox2.Add (this.hbox2);
-		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox2]));
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox2]));
 		w12.Position = 2;
 		w12.Expand = false;
 		w12.Fill = false;
 		this.hbox1.Add (this.vbox2);
-		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox2]));
+		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox2]));
 		w13.Position = 0;
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.vbox1 = new global::Gtk.VBox ();
@@ -186,7 +169,7 @@ public partial class MainWindow
 		this.image1.Name = "image1";
 		this.image1.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("frugalirc.fw.png");
 		this.vbox1.Add (this.image1);
-		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.image1]));
+		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.image1]));
 		w14.Position = 0;
 		w14.Expand = false;
 		w14.Fill = false;
@@ -200,10 +183,10 @@ public partial class MainWindow
 		this.TREE_Users.Name = "TREE_Users";
 		this.GtkScrolledWindow.Add (this.TREE_Users);
 		this.vbox1.Add (this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
 		w16.Position = 1;
 		this.hbox1.Add (this.vbox1);
-		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox1]));
+		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
 		w17.Position = 1;
 		w17.Expand = false;
 		w17.Fill = false;

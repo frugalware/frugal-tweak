@@ -21,8 +21,8 @@ Global
 		{069FB0B9-80D4-4093-88F3-116B09B0E09F}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{069FB0B9-80D4-4093-88F3-116B09B0E09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{069FB0B9-80D4-4093-88F3-116B09B0E09F}.Release|x86.ActiveCfg = Release|Any CPU
-		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Debug|x86.ActiveCfg = Debug|x86
-		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Debug|x86.Build.0 = Debug|x86
+		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Debug|x86.ActiveCfg = Release|x86
+		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Debug|x86.Build.0 = Release|x86
 		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Release|Any CPU.ActiveCfg = Release|x86
 		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Release|Any CPU.Build.0 = Release|x86
 		{4E7A55B1-C72A-480A-90CA-6EAF97259A63}.Release|x86.ActiveCfg = Release|x86
@@ -30,14 +30,14 @@ Global
 		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CC36C0E-5E0E-4B46-A124-2CE460C48FF7}.Release|x86.ActiveCfg = Release|Any CPU
-		{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}.Debug|x86.Build.0 = Debug|Any CPU
+		{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}.Debug|x86.ActiveCfg = Release|Any CPU
+		{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}.Debug|x86.Build.0 = Release|Any CPU
 		{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}.Release|x86.ActiveCfg = Release|Any CPU
 		{8E5D43C6-79EE-44A7-8AFF-B0A9FB518BC2}.Release|x86.Build.0 = Release|Any CPU
-		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Debug|x86.ActiveCfg = Debug|x86
-		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Debug|x86.Build.0 = Debug|x86
+		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Debug|x86.ActiveCfg = Release|x86
+		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Debug|x86.Build.0 = Release|x86
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E1F59443-629D-4EB7-A6AA-6ED8821FE6D6}.Release|x86.ActiveCfg = Release|x86
@@ -56,6 +56,6 @@ Global
 		$0.StandardHeader = $4
 		$4.Text = @/*\r\n *  Copyright (C) 2010 by Gaetan Gourdin <bouleetbil@frogdev.info>\r\n *\r\n *  This program is free software; you can redistribute it and/or modify\r\n *  it under the terms of the GNU General Public License as published by\r\n *  the Free Software Foundation; either version 2 of the License, or\r\n *  (at your option) any later version.\r\n *\r\n *  This program is distributed in the hope that it will be useful,\r\n *  but WITHOUT ANY WARRANTY; without even the implied warranty of\r\n *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\r\n *  GNU General Public License for more details.\r\n *\r\n *  You should have received a copy of the GNU General Public License\r\n *  along with this program; if not, write to the Free Software\r\n *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\r\n */
 		$4.IncludeInNewFiles = True
-		version = 0.2.4.2
+		version = 0.2.5
 	EndGlobalSection
 EndGlobal
