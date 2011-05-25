@@ -1,5 +1,9 @@
 2011-05-25  gaetan gourdin  <bouleetbil@frogdev.info>
 
+	* frugal-mono-tools.csproj: 
+
+2011-05-25  gaetan gourdin  <bouleetbil@frogdev.info>
+
 	* Crypto.cs:
 	* WID_Notes.cs:
 	* generated.cs:
