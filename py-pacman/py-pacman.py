@@ -181,7 +181,7 @@ debug=1
 printconsole=1
 
 def pacman_init():
-  print_debug("init database")
+  print_debug("pacman_init")
   pacman.pacman_release()
   if pacman.pacman_initialize(PM_ROOT ) == -1:
     print_console("Can't initialise pacman-g2")
@@ -192,13 +192,13 @@ pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_D
 pacman_cb_log         = CFUNCTYPE(ctypes.c_void_p, ctypes.c_ushort, ctypes.c_void_p);
 
 def pacman_init_database():
-  print_debug("pacman_parse_config")
+  print_debug("pacman_init_database")
   pacman.pacman_parse_config.argtypes = [ctypes.c_char_p,pacman_cb_db_register,ctypes.c_char_p]
   pacman.pacman_parse_config.restype = ctypes.c_int
   pacman.pacman_parse_config(CFG_FILE,pacman_cb_db_register(_db_cb),'')
 
 def pacman_register_all_database():
-  print_debug("pacman_register")
+  print_debug("pacman_register_all_database")
   pacman.pacman_db_register(FW_LOCAL)
   print_debug("pacman register local")
   for repo in repo_list:
@@ -221,8 +221,8 @@ def pacman_update_db():
   return 1
     
 def pacman_check_update():
-  tab_PKG =[]
   print_debug("pacman_check_update")
+  tab_PKG =[]
   if pacman.pacman_trans_init(PM_TRANS_TYPE_SYNC, 0, None , None , None ) == -1 :
     print_console("Failed pacman_trans_init" )
     return -1
@@ -239,25 +239,58 @@ def pacman_check_update():
       spkg = pacman.pacman_list_getdata(i)
       pkg = pacman.pacman_sync_getinfo(spkg, PM_SYNC_PKG)
       tab_PKG.append(pkg)
-      #pointeur = pacman.pacman_pkg_getinfo(pkg,PM_PKG_NAME)
-      #print_console(pointer_to_string(pointeur))
       i=pacman.pacman_list_next(i)
   pacman.pacman_trans_release()
   return tab_PKG
 
 def pacman_pkg_get_info(pkg,type):
+  print_debug("pacman_pkg_get_info")
   pointeur = pacman.pacman_pkg_getinfo(pkg,type)
   return pointer_to_string(pointeur)
 
 def pacman_print_pkg(pkgs):
- for pkg in pkgs:
-  print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
-    
+  print_debug("pacman_print_pkg")
+  for pkg in pkgs:
+    print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
+ 
+def pacman_search_pkg(search_str):
+  print_debug("pacman_search_pkg")
+  tab_PKG =[]
+  pacman.pacman_set_option(PM_OPT_NEEDLES, string_to_long(search_str))
+  for repo in repo_list :
+    search_db = pacman.pacman_db_register (repo)
+    packages=pacman.pacman_db_search(search_db)
+    if packages!=None :
+      i=pacman.pacman_list_first(packages)
+      while i != 0:
+        pkg = pacman.pacman_db_readpkg(search_db, pacman.pacman_list_getdata(i))
+        tab_PKG.append(pkg)
+        i=pacman.pacman_list_next(i)
+  return tab_PKG
+
+def check_user():
+  print_debug("check_user")
+  if not os.geteuid()==0:
+    sys.exit("\nOnly root can run this script\n")
+
+def int_convert(arg):
+  print_debug("int_convert")
+  try: return int(arg)
+  except: pass
+  return long(arg)
+        
 def pointer_to_string(pointeur):
+  print_debug("pointer_to_string")
   fp = cast(pointeur, c_char_p) 
+  return fp.value
+
+def string_to_long(arg):
+  print_debug("string_to_long")
+  fp = cast(arg,c_char_p) 
   return fp.value
   
 def main():
+  print_debug("main")
   if len(sys.argv)== 1:
     help()
   pacman_init()
@@ -266,6 +299,8 @@ def main():
   if sys.argv[1] == "--checkupdate":
     if pacman_update_db() ==1 :
       pacman_print_pkg(pacman_check_update())
+  if sys.argv[1] == "--search":
+    pacman_print_pkg(pacman_search_pkg(sys.argv[2]))
     
   pacman_finally()
      
