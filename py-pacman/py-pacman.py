@@ -177,7 +177,7 @@ def pacman_finally():
     
 #for print debug messages
 debug=1
-#for print meesage to console
+#for print message to console
 printconsole=1
 
 def pacman_init():
@@ -273,7 +273,7 @@ def help():
   print "py-pacman "+str(version)
   print "authors :"
   print "- gaetan gourdin <bouleetbil@frogdev.org>"
-  print "Licence BSD"
+  print "Licence GPL2"
   print "help :"
   print "--checkupdate : see packages can be updated"
   sys.exit(0)
