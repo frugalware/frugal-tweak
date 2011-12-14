@@ -255,12 +255,6 @@ PM_DB._fields_ = [
         ("servers", ctypes.c_char),
         ("lastupdate", ctypes.c_char * 16)]
 
-
-FW_LOCAL="local"
-#list repo
-repo_list=[]
-#list database
-db_list=[]
 def _db_cb (section,db):
   repo_list.append(section)
   print_debug("repo : "+section)
@@ -270,9 +264,62 @@ def _log_cb (level,msg):
 	print_console(msg)
 	return
 
+#callback
+pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_DB))
+pacman_cb_log         = CFUNCTYPE(ctypes.c_void_p, ctypes.c_ushort, ctypes.c_void_p);
+
+#pacman-g2 wrapper functions
+def pacman_initialize(root):
+  print_debug("pacman_initialize")
+  return pacman.pacman_initialize(root)
+
 def pacman_finally():
-  pacman.pacman_release()
-    
+  print_debug("pacman_finally")
+  return pacman.pacman_release()
+
+def pacman_set_option(parm,data):
+  print_debug("pacman_set_option")
+  return pacman.pacman_set_option(parm,data)
+
+def pacman_pkg_get_info(pkg,typeinfo):
+  print_debug("pacman_pkg_get_info")
+  pointeur = pacman.pacman_pkg_getinfo(pkg,typeinfo)
+  return pointer_to_string(pointeur)
+
+def pacman_parse_config():
+  print_debug("pacman_parse_config")
+  pacman.pacman_parse_config.argtypes = [ctypes.c_char_p,pacman_cb_db_register,ctypes.c_char_p]
+  pacman.pacman_parse_config.restype = ctypes.c_int
+  return pacman.pacman_parse_config(CFG_FILE,pacman_cb_db_register(_db_cb),'')
+
+def pacman_db_register(db):
+  print_debug("pacman_db_register")
+  return pacman.pacman_db_register(db)
+
+def pacman_db_update(level,db):
+  print_debug("pacman_db_update")
+  return pacman.pacman_db_update(level,db)
+
+def pacman_trans_init(type,flags, cb_event, conv, cb_progress):
+  print_debug("pacman_trans_init")
+  return pacman.pacman_trans_init(type,flags,cb_event, conv,cb_progress)
+
+def pacman_trans_sysupgrade():
+  print_debug("pacman_trans_sysupgrade")
+  return pacman.pacman_trans_sysupgrade()
+
+def pacman_trans_getinfo(parm):
+  print_debug("pacman_trans_getinfo")
+  return pacman.pacman_trans_getinfo(parm)
+
+#end pacman-g2 wrapper
+  
+#GLOBAL
+FW_LOCAL="local"
+#list repo
+repo_list=[]
+#list database
+db_list=[]
 #for print debug messages
 debug=1
 #for print message to console
@@ -280,30 +327,10 @@ printconsole=1
 
 def pacman_init():
   print_debug("pacman_init")
-  pacman.pacman_release()
-  if pacman.pacman_initialize(PM_ROOT ) == -1:
+  pacman_finally()
+  if pacman_initialize(PM_ROOT) == -1:
     print_console("Can't initialise pacman-g2")
-    sys.exit(0) 
-
-#callback
-pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_DB))
-pacman_cb_log         = CFUNCTYPE(ctypes.c_void_p, ctypes.c_ushort, ctypes.c_void_p);
-
-def pacman_init_database():
-  print_debug("pacman_init_database")
-  pacman.pacman_parse_config.argtypes = [ctypes.c_char_p,pacman_cb_db_register,ctypes.c_char_p]
-  pacman.pacman_parse_config.restype = ctypes.c_int
-  pacman.pacman_parse_config(CFG_FILE,pacman_cb_db_register(_db_cb),'')
-
-def pacman_register_all_database():
-  print_debug("pacman_register_all_database")
-  pacman.pacman_db_register(FW_LOCAL)
-  print_debug("pacman register local")
-  for repo in repo_list:
-    db=pacman.pacman_db_register(repo)
-    db_list.append(db)
-    print_debug("pacman register "+repo)
-    
+    sys.exit(0)
   #set some important pacman-g2 options
   if debug==1 :
     if pacman_set_option(PM_OPT_LOGMASK, PM_LOG_ERROR)== -1:
@@ -311,34 +338,45 @@ def pacman_register_all_database():
   else :
     if pacman_set_option (PM_OPT_LOGMASK, -1) == -1:
       print_console("Can't set option PM_OPT_LOGMASK")
+  if pacman_set_option(PM_OPT_DBPATH,PM_DBPATH)==-1:
+    print_console("Can't set option PM_OPT_DBPATH") 
+    
+def pacman_init_database():
+  print_debug("pacman_init_database")
+  pacman_parse_config()
+
+def pacman_register_all_database():
+  print_debug("pacman_register_all_database")
   #FIXME
   #if pacman_set_option(PM_OPT_LOGCB,cast("_log_cb",POINTER(c_long)))==-1:
   #  print_console("Can't set option PM_OPT_LOGCB")
-    
-def pacman_set_option(parm,data):
-  print_debug("pacman_set_option")
-  return pacman.pacman_set_option(parm,data)
+  pacman_db_register(FW_LOCAL)
+  print_debug("pacman register local")
+  for repo in repo_list:
+    db=pacman_db_register(repo)
+    db_list.append(db)
+    print_debug("pacman register "+repo)
 
 def pacman_update_db():
   # update the pacman database
   print_debug("pacman_update_db")
   for db in db_list:
-	 retval = pacman.pacman_db_update (0, db);
+	 retval = pacman_db_update (1, db)
 	 if retval== -1:
 	   print_console("Can't update pacman-g2 pacman_db_update")
 	   return  -1
   return 1
-    
+
 def pacman_check_update():
   print_debug("pacman_check_update")
   tab_PKG =[]
-  if pacman.pacman_trans_init(PM_TRANS_TYPE_SYNC, 0, None , None , None ) == -1 :
+  if pacman_trans_init(PM_TRANS_TYPE_SYNC, 0, None , None , None ) == -1 :
     print_console("Failed pacman_trans_init" )
     return -1
-  if pacman.pacman_trans_sysupgrade() == -1 :
+  if pacman_trans_sysupgrade() == -1 :
     print_console("Failed pacman_trans_sysupgrade")
     return -1
-  packages = pacman.pacman_trans_getinfo(PM_TRANS_PACKAGES);
+  packages = pacman_trans_getinfo(PM_TRANS_PACKAGES);
   if packages == None :
     print_console("No new updates are available" )
   else:
@@ -351,11 +389,6 @@ def pacman_check_update():
       i=pacman.pacman_list_next(i)
   pacman.pacman_trans_release()
   return tab_PKG
-
-def pacman_pkg_get_info(pkg,typeinfo):
-  print_debug("pacman_pkg_get_info")
-  pointeur = pacman.pacman_pkg_getinfo(pkg,typeinfo)
-  return pointer_to_string(pointeur)
 
 def pacman_print_pkg(pkgs):
   print_debug("pacman_print_pkg")
@@ -385,7 +418,7 @@ def pacman_package_find(packagename):
   
 def pacman_install_pkg(packagename):
   print_debug("pacman_install_pkg")
-  pacman.pacman_trans_release()
+  pacman_update_db()
   #for now install only one package
   if pacman_package_find(packagename) == -1:
     print_console("Can't find "+packagename)
@@ -415,7 +448,7 @@ def pacman_install_pkg(packagename):
       pkg = pacman.pacman_sync_getinfo(spkg, PM_SYNC_PKG)
       print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
       i=pacman.pacman_list_next(i)
-  
+  pacman.pacman_trans_release()
   print_debug("pacman_trans_commit")
   pacman.pacman_trans_commit.argtypes = [POINTER(PM_LIST)]
   pacman.pacman_trans_commit.restype = ctypes.c_int
@@ -424,22 +457,20 @@ def pacman_install_pkg(packagename):
     pacman_print_error()
     return -1
   print "test"
-  print_debug("pacman_trans_release")
-  pacman.pacman_trans_release()
-  pacman.pacman_release()
   print_console(packagename+" installed")
   return 1
-  
+
 def pacman_print_error():
   #FIXME pm_errno return  some -1225212475 Oo
   #print pacman.pacman_strerror(pacman.pm_errno)
   return
-  
+
 def pacman_started():
   print_debug("pacman_started")
   if os.path.exists(PM_LOCK):
     sys.exit("\nPy-pacman has detected that another instance of a package manager is already running.\n")
-  
+
+#Tools functions 
 def check_user():
   print_debug("check_user")
   if not os.geteuid()==0:
@@ -450,12 +481,12 @@ def int_convert(arg):
   try: return int(arg)
   except: pass
   return long(arg)
-        
+
 def pointer_to_string(pointeur):
   print_debug("pointer_to_string")
   fp = cast(pointeur, c_char_p) 
   return fp.value
-  
+
 def pointer_to_int(pointeur):
   print_debug("pointer_to_int")
   fp = cast(pointeur, POINTER(c_int))
@@ -483,9 +514,8 @@ def main():
     pacman_print_pkg(pacman_search_pkg(sys.argv[2]))
   if sys.argv[1] == "--install":
     pacman_install_pkg(sys.argv[2])
-    
   pacman_finally()
-     
+
 def help():
   print "py-pacman "+str(version)
   print "authors :"
