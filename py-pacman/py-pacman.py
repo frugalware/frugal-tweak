@@ -448,7 +448,6 @@ def pacman_install_pkg(packagename):
       pkg = pacman.pacman_sync_getinfo(spkg, PM_SYNC_PKG)
       print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
       i=pacman.pacman_list_next(i)
-  pacman.pacman_trans_release()
   print_debug("pacman_trans_commit")
   pacman.pacman_trans_commit.argtypes = [POINTER(PM_LIST)]
   pacman.pacman_trans_commit.restype = ctypes.c_int
@@ -456,7 +455,6 @@ def pacman_install_pkg(packagename):
     print_console("pacman_trans_commit failed")
     pacman_print_error()
     return -1
-  print "test"
   print_console(packagename+" installed")
   return 1
 
