@@ -15,6 +15,9 @@
 #along with this program; if not, write to the Free Software
 #Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+#TODO :
+#create one function for all pacman-g2 function !!!
+
 import os, tempfile, shutil, sys
 from ctypes import *
 import ctypes
@@ -127,6 +130,25 @@ PM_PKG_REASON_DEPEND   = 1  # installed as a dependency for another
 	PM_TRANS_TYPE_UPGRADE,
 	PM_TRANS_TYPE_SYNC)= map(ctypes.c_int, xrange(1,5))
 	
+# Flags
+PM_TRANS_FLAG_NONE = 0
+PM_TRANS_FLAG_NODEPS = 0x01
+PM_TRANS_FLAG_FORCE  = 0x02
+PM_TRANS_FLAG_NOSAVE = 0x04
+PM_TRANS_FLAG_FRESHEN = 0x08
+PM_TRANS_FLAG_CASCADE = 0x10
+PM_TRANS_FLAG_RECURSE = 0x20
+PM_TRANS_FLAG_DBONLY  = 0x40
+PM_TRANS_FLAG_DEPENDSONLY = 0x80
+PM_TRANS_FLAG_ALLDEPS = 0x100
+PM_TRANS_FLAG_DOWNLOADONLY = 0x200
+PM_TRANS_FLAG_NOSCRIPTLET = 0x400
+PM_TRANS_FLAG_NOCONFLICTS = 0x800
+PM_TRANS_FLAG_PRINTURIS = 0x1000
+PM_TRANS_FLAG_NOINTEGRITY = 0x2000
+PM_TRANS_FLAG_NOARCH = 0x4000
+PM_TRANS_FLAG_PRINTURIS_CACHED = 0x8000 # print uris for pkgs that are already cached
+
 # Info parameters
 (PM_TRANS_TYPE ,
 	PM_TRANS_FLAGS,
@@ -136,6 +158,82 @@ PM_PKG_REASON_DEPEND   = 1  # installed as a dependency for another
 (PM_SYNC_TYPE ,
 	PM_SYNC_PKG,
 	PM_SYNC_DATA)= map(ctypes.c_int, xrange(1,4))
+
+#errors
+(	PM_ERR_MEMORY ,
+	PM_ERR_SYSTEM,
+	PM_ERR_BADPERMS,
+	PM_ERR_NOT_A_FILE,
+	PM_ERR_WRONG_ARGS,
+	# Interface 
+	PM_ERR_HANDLE_NULL,
+	PM_ERR_HANDLE_NOT_NULL,
+	PM_ERR_HANDLE_LOCK,
+	#Databases
+	PM_ERR_DB_OPEN,
+	PM_ERR_DB_CREATE,
+	PM_ERR_DB_NULL,
+	PM_ERR_DB_NOT_NULL,
+	PM_ERR_DB_NOT_FOUND,
+	PM_ERR_DB_WRITE,
+	PM_ERR_DB_REMOVE,
+	# Servers 
+	PM_ERR_SERVER_BAD_LOCATION,
+	PM_ERR_SERVER_PROTOCOL_UNSUPPORTED,
+	#Configuration 
+	PM_ERR_OPT_LOGFILE,
+	PM_ERR_OPT_DBPATH,
+	PM_ERR_OPT_LOCALDB,
+	PM_ERR_OPT_SYNCDB,
+	PM_ERR_OPT_USESYSLOG,
+	# Transactions
+	PM_ERR_TRANS_NOT_NULL,
+	PM_ERR_TRANS_NULL,
+	PM_ERR_TRANS_DUP_TARGET,
+	PM_ERR_TRANS_NOT_INITIALIZED,
+	PM_ERR_TRANS_NOT_PREPARED,
+	PM_ERR_TRANS_ABORT,
+	PM_ERR_TRANS_TYPE,
+	PM_ERR_TRANS_COMMITING,
+	#Packages 
+	PM_ERR_PKG_NOT_FOUND,
+	PM_ERR_PKG_INVALID,
+	PM_ERR_PKG_OPEN,
+	PM_ERR_PKG_LOAD,
+	PM_ERR_PKG_INSTALLED,
+	PM_ERR_PKG_CANT_FRESH,
+	PM_ERR_PKG_INVALID_NAME,
+	PM_ERR_PKG_CORRUPTED,
+	 # Groups 
+	PM_ERR_GRP_NOT_FOUND,
+	# Dependencies
+	PM_ERR_UNSATISFIED_DEPS,
+	PM_ERR_CONFLICTING_DEPS,
+	PM_ERR_FILE_CONFLICTS,
+	#Misc
+	PM_ERR_USER_ABORT,
+	PM_ERR_INTERNAL_ERROR,
+	PM_ERR_LIBARCHIVE_ERROR,
+	PM_ERR_DISK_FULL,
+	PM_ERR_DB_SYNC,
+	PM_ERR_RETRIEVE,
+	PM_ERR_PKG_HOLD,
+	# Configuration file
+	PM_ERR_CONF_BAD_SECTION,
+	PM_ERR_CONF_LOCAL,
+	PM_ERR_CONF_BAD_SYNTAX,
+	PM_ERR_CONF_DIRECTIVE_OUTSIDE_SECTION,
+	PM_ERR_INVALID_REGEX,
+	PM_ERR_TRANS_DOWNLOADING,
+  # Downloading
+	PM_ERR_CONNECT_FAILED,
+  PM_ERR_FORK_FAILED,
+	PM_ERR_NO_OWNER,
+	# Cache 
+	PM_ERR_NO_CACHE_ACCESS,
+	PM_ERR_CANT_REMOVE_CACHE,
+	PM_ERR_CANT_CREATE_CACHE,
+	PM_ERR_WRONG_ARCH  )=map(ctypes.c_int, xrange(1,63))
 
 #some class for pacman-g2
 class PM_LIST(Structure):
@@ -207,9 +305,20 @@ def pacman_register_all_database():
     print_debug("pacman register "+repo)
     
   #set some important pacman-g2 options
-  pacman.pacman_set_option (PM_OPT_LOGMASK, -1);
-  #pacman.pacman_set_option (PM_OPT_LOGCB,_log_cb);
+  if debug==1 :
+    if pacman_set_option(PM_OPT_LOGMASK, PM_LOG_ERROR)== -1:
+      print_console("Can't set option PM_OPT_LOGMASK")
+  else :
+    if pacman_set_option (PM_OPT_LOGMASK, -1) == -1:
+      print_console("Can't set option PM_OPT_LOGMASK")
+  #FIXME
+  #if pacman_set_option(PM_OPT_LOGCB,cast("_log_cb",POINTER(c_long)))==-1:
+  #  print_console("Can't set option PM_OPT_LOGCB")
     
+def pacman_set_option(parm,data):
+  print_debug("pacman_set_option")
+  return pacman.pacman_set_option(parm,data)
+
 def pacman_update_db():
   # update the pacman database
   print_debug("pacman_update_db")
@@ -243,9 +352,9 @@ def pacman_check_update():
   pacman.pacman_trans_release()
   return tab_PKG
 
-def pacman_pkg_get_info(pkg,type):
+def pacman_pkg_get_info(pkg,typeinfo):
   print_debug("pacman_pkg_get_info")
-  pointeur = pacman.pacman_pkg_getinfo(pkg,type)
+  pointeur = pacman.pacman_pkg_getinfo(pkg,typeinfo)
   return pointer_to_string(pointeur)
 
 def pacman_print_pkg(pkgs):
@@ -257,17 +366,80 @@ def pacman_search_pkg(search_str):
   print_debug("pacman_search_pkg")
   tab_PKG =[]
   pacman.pacman_set_option(PM_OPT_NEEDLES, string_to_long(search_str))
-  for repo in repo_list :
-    search_db = pacman.pacman_db_register (repo)
-    packages=pacman.pacman_db_search(search_db)
+  for repo in db_list :
+    packages=pacman.pacman_db_search(repo)
     if packages!=None :
       i=pacman.pacman_list_first(packages)
       while i != 0:
-        pkg = pacman.pacman_db_readpkg(search_db, pacman.pacman_list_getdata(i))
+        pkg = pacman.pacman_db_readpkg(repo, pacman.pacman_list_getdata(i))
         tab_PKG.append(pkg)
         i=pacman.pacman_list_next(i)
   return tab_PKG
 
+def pacman_package_find(packagename):
+  pkgs=pacman_search_pkg(packagename)
+  for pkg in pkgs:
+    if pacman_pkg_get_info(pkg,PM_PKG_NAME)==packagename :
+      return 1
+  return -1
+  
+def pacman_install_pkg(packagename):
+  print_debug("pacman_install_pkg")
+  pacman.pacman_trans_release()
+  #for now install only one package
+  if pacman_package_find(packagename) == -1:
+    print_console("Can't find "+packagename)
+    return -1
+  print_console("Install "+packagename)
+  #TODO :
+  #added parameter for play with PM_TRANS_SYNC_XXX and PM_TRANS_FLAG_XXX
+  #added callback
+  if pacman.pacman_trans_init(PM_TRANS_TYPE_SYNC, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
+    print_console("pacman_trans_init failed")
+    pacman_print_error()
+    return -1
+  data=PM_LIST()
+  pacman.pacman_trans_addtarget(packagename)
+  pacman.pacman_trans_prepare.argtypes = [POINTER(PM_LIST)]
+  pacman.pacman_trans_prepare.restype = ctypes.c_int
+  print_debug("pacman_trans_prepare")
+  if pacman.pacman_trans_prepare(data)==-1:
+    print_console("pacman_trans_prepare failed")
+    pacman_print_error()
+    return -1
+  packages = pacman.pacman_trans_getinfo(PM_TRANS_PACKAGES)
+  print_console("Packages that will be installed :")
+  i=pacman.pacman_list_first(packages)
+  while i != 0:
+      spkg = pacman.pacman_list_getdata(i)
+      pkg = pacman.pacman_sync_getinfo(spkg, PM_SYNC_PKG)
+      print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
+      i=pacman.pacman_list_next(i)
+  
+  print_debug("pacman_trans_commit")
+  pacman.pacman_trans_commit.argtypes = [POINTER(PM_LIST)]
+  pacman.pacman_trans_commit.restype = ctypes.c_int
+  if pacman.pacman_trans_commit(data)==-1:
+    print_console("pacman_trans_commit failed")
+    pacman_print_error()
+    return -1
+  print "test"
+  print_debug("pacman_trans_release")
+  pacman.pacman_trans_release()
+  pacman.pacman_release()
+  print_console(packagename+" installed")
+  return 1
+  
+def pacman_print_error():
+  #FIXME pm_errno return  some -1225212475 Oo
+  #print pacman.pacman_strerror(pacman.pm_errno)
+  return
+  
+def pacman_started():
+  print_debug("pacman_started")
+  if os.path.exists(PM_LOCK):
+    sys.exit("\nPy-pacman has detected that another instance of a package manager is already running.\n")
+  
 def check_user():
   print_debug("check_user")
   if not os.geteuid()==0:
@@ -283,6 +455,11 @@ def pointer_to_string(pointeur):
   print_debug("pointer_to_string")
   fp = cast(pointeur, c_char_p) 
   return fp.value
+  
+def pointer_to_int(pointeur):
+  print_debug("pointer_to_int")
+  fp = cast(pointeur, POINTER(c_int))
+  return fp
 
 def string_to_long(arg):
   print_debug("string_to_long")
@@ -293,6 +470,9 @@ def main():
   print_debug("main")
   if len(sys.argv)== 1:
     help()
+  if sys.argv[1] == "--install": 
+    check_user()
+
   pacman_init()
   pacman_init_database()
   pacman_register_all_database()
@@ -301,6 +481,8 @@ def main():
       pacman_print_pkg(pacman_check_update())
   if sys.argv[1] == "--search":
     pacman_print_pkg(pacman_search_pkg(sys.argv[2]))
+  if sys.argv[1] == "--install":
+    pacman_install_pkg(sys.argv[2])
     
   pacman_finally()
      
@@ -311,6 +493,8 @@ def help():
   print "Licence GPL2"
   print "help :"
   print "--checkupdate : see packages can be updated"
+  print "--search PackageName: search PackageName"
+  print "--install PackageName : install PackageName"  
   sys.exit(0)
 
 def print_debug(textConsole):
