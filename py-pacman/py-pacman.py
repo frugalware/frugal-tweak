@@ -270,6 +270,7 @@ pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_D
 pacman_cb_log         = CFUNCTYPE(ctypes.c_void_p, ctypes.c_ushort, ctypes.c_void_p);
 
 #pacman-g2 wrapper functions
+  
 def pacman_initialize(root):
   print_debug("pacman_initialize")
   return pacman.pacman_initialize(root)
@@ -356,6 +357,19 @@ def pacman_trans_commit(data):
   pacman.pacman_trans_commit.argtypes = [POINTER(PM_LIST)]
   pacman.pacman_trans_commit.restype = ctypes.c_int
   return pacman.pacman_trans_commit(data)
+
+def pacman_fetch_pkgurl(url):
+  print_debug("pacman_fetch_pkgurl")
+  return pacman.pacman_fetch_pkgurl(url)
+
+def pacman_db_unregister(db):
+  print_debug("pacman_db_unregister")
+  return pacman.pacman_db_unregister(db)
+  
+def pacman_fetch_url(pkg):
+  print_debug("pacman_fetch_url")
+  print_console("Donwload "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
+  print_not_yet()
   
 #end pacman-g2 wrapper
   
@@ -372,7 +386,6 @@ printconsole=1
 
 def pacman_init():
   print_debug("pacman_init")
-  pacman_finally()
   if pacman_initialize(PM_ROOT) == -1:
     print_console("Can't initialise pacman-g2")
     sys.exit(0)
@@ -415,7 +428,7 @@ def pacman_update_db():
 def pacman_check_update():
   print_debug("pacman_check_update")
   tab_PKG =[]
-  if pacman_trans_init(PM_TRANS_TYPE_SYNC, 0, None , None , None ) == -1 :
+  if pacman_trans_init(PM_TRANS_TYPE_SYNC, PM_TRANS_FLAG_NONE , None , None , None ) == -1 :
     print_console("Failed pacman_trans_init" )
     return -1
   if pacman_trans_sysupgrade() == -1 :
@@ -458,17 +471,47 @@ def pacman_package_find(packagename):
   pkgs=pacman_search_pkg(packagename)
   for pkg in pkgs:
     if pacman_pkg_get_info(pkg,PM_PKG_NAME)==packagename :
-      return 1
+      return pkg
+  return None
+
+def pacman_remove_pkg(packagename):
+  #TODO : can remove group pacman_db_readgrp  pacman_grp_getinfo
+  #TODO : check if package is installed
+  print_debug("pacman_remove_pkg")
+  print_not_yet()
   return -1
-  
+  print_console("uninstall "+packagename)
+  if pacman_trans_init(PM_TRANS_TYPE_REMOVE, PM_TRANS_FLAG_NONE, None, None, None) == -1 :
+    print_console("pacman_trans_init failed") 
+    return -1
+  data=PM_LIST()
+  pacman_trans_addtarget(packagename)
+  if pacman_trans_prepare(data)==-1:
+    print_console("pacman_trans_prepare failed")
+    pacman_print_error()
+    return -1
+  packages = pacman_trans_getinfo(PM_TRANS_PACKAGES)
+  if packages==None :
+    print_console("Oops Packages list to uninstall is empty")
+    return -1
+  if pacman_trans_commit(Data)==-1:
+    print_console("pacman_trans_commit failed")
+    pacman_print_error()
+    return -1
+  print_console(packagename+" uninstall")
+  return 1
+    
 def pacman_install_pkg(packagename):
+  #TODO can install group pacman_db_readgrp  pacman_grp_getinfo
   print_debug("pacman_install_pkg")
   pacman_update_db()
   #for now install only one package
-  if pacman_package_find(packagename) == -1:
+  pkg = pacman_package_find(packagename)
+  if pkg == None:
     print_console("Can't find "+packagename)
     return -1
-  print_console("Install "+packagename)
+  pacman_fetch_url(pkg)
+  print_console("Install "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
   #TODO :
   #added parameter for play with PM_TRANS_SYNC_XXX and PM_TRANS_FLAG_XXX
   #added callback
@@ -477,7 +520,8 @@ def pacman_install_pkg(packagename):
     pacman_print_error()
     return -1
   data=PM_LIST()
-  pacman_trans_addtarget(packagename)
+  if pacman_trans_addtarget(pacman_pkg_get_info(pkg,PM_PKG_NAME))==-1 :
+    print_console("Can't add " +pacman_pkg_get_info(pkg,PM_PKG_NAME))
   print_debug("pacman_trans_prepare")
   if pacman_trans_prepare(data)==-1:
     print_console("pacman_trans_prepare failed")
@@ -499,9 +543,9 @@ def pacman_install_pkg(packagename):
   return 1
 
 def pacman_print_error():
+  print_debug("pacman_print_error")
+  print pacman.pm_errno
   #FIXME pm_errno return  some -1225212475 Oo
-  #print pacman.pacman_strerror(pacman.pm_errno)
-  return
 
 def pacman_started():
   print_debug("pacman_started")
@@ -541,6 +585,8 @@ def main():
     help()
   if sys.argv[1] == "--install": 
     check_user()
+  if sys.argv[1] == "--remove": 
+    check_user()
 
   pacman_init()
   pacman_init_database()
@@ -552,6 +598,8 @@ def main():
     pacman_print_pkg(pacman_search_pkg(sys.argv[2]))
   if sys.argv[1] == "--install":
     pacman_install_pkg(sys.argv[2])
+  if sys.argv[1] == "--remove":
+    pacman_remove_pkg(sys.argv[2])
   pacman_finally()
 
 def help():
@@ -563,6 +611,7 @@ def help():
   print "--checkupdate : see packages can be updated"
   print "--search PackageName: search PackageName"
   print "--install PackageName : install PackageName"  
+  print "--remove PackageName : uninstall PackageName" 
   sys.exit(0)
 
 def print_debug(textConsole):
@@ -574,6 +623,9 @@ def print_console(textConsole):
   if printconsole <> 1:
     return
   print textConsole
+
+def print_not_yet():
+  print_console("not yet implemented")
 
 #start main program
 main()
