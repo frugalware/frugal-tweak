@@ -17,6 +17,7 @@
 
 #TODO :
 #create one function for all pacman-g2 function !!!
+#create a class for pacman-g2
 
 import os, tempfile, shutil, sys
 from ctypes import *
@@ -312,6 +313,50 @@ def pacman_trans_getinfo(parm):
   print_debug("pacman_trans_getinfo")
   return pacman.pacman_trans_getinfo(parm)
 
+def pacman_list_first(packages):
+  print_debug("pacman_list_first")
+  return pacman.pacman_list_first(packages)
+
+def pacman_list_getdata(i):
+  print_debug("pacman_list_getdata")
+  return pacman.pacman_list_getdata(i)
+  
+def pacman_sync_getinfo(sync, parm):
+  print_debug("pacman_sync_getinfo")
+  return pacman.pacman_sync_getinfo(sync, parm)
+
+def pacman_list_next(i):
+  print_debug("pacman_list_next")
+  return pacman.pacman_list_next(i)
+
+def pacman_trans_release():
+  print_debug("pacman_trans_release")
+  return pacman.pacman_trans_release()
+
+def pacman_db_readpkg(db,name):
+  print_debug("pacman_db_readpkg")
+  return pacman.pacman_db_readpkg(db, name)
+
+def pacman_db_search(db):
+  print_debug("pacman_db_search")
+  return pacman.pacman_db_search(db)
+
+def pacman_trans_addtarget(packagename):
+  print_debug("pacman_trans_addtarget")
+  return pacman.pacman_trans_addtarget(packagename)
+  
+def pacman_trans_prepare(data):
+  print_debug("pacman_trans_prepare")
+  pacman.pacman_trans_prepare.argtypes = [POINTER(PM_LIST)]
+  pacman.pacman_trans_prepare.restype = ctypes.c_int
+  return pacman.pacman_trans_prepare(data)
+
+def pacman_trans_commit(data):  
+  print_debug("pacman_trans_commit")
+  pacman.pacman_trans_commit.argtypes = [POINTER(PM_LIST)]
+  pacman.pacman_trans_commit.restype = ctypes.c_int
+  return pacman.pacman_trans_commit(data)
+  
 #end pacman-g2 wrapper
   
 #GLOBAL
@@ -381,13 +426,13 @@ def pacman_check_update():
     print_console("No new updates are available" )
   else:
     print_console("Packages that should be updated :")
-    i=pacman.pacman_list_first(packages)
+    i=pacman_list_first(packages)
     while i != 0:
-      spkg = pacman.pacman_list_getdata(i)
-      pkg = pacman.pacman_sync_getinfo(spkg, PM_SYNC_PKG)
+      spkg = pacman_list_getdata(i)
+      pkg = pacman_sync_getinfo(spkg, PM_SYNC_PKG)
       tab_PKG.append(pkg)
-      i=pacman.pacman_list_next(i)
-  pacman.pacman_trans_release()
+      i=pacman_list_next(i)
+  pacman_trans_release()
   return tab_PKG
 
 def pacman_print_pkg(pkgs):
@@ -398,15 +443,15 @@ def pacman_print_pkg(pkgs):
 def pacman_search_pkg(search_str):
   print_debug("pacman_search_pkg")
   tab_PKG =[]
-  pacman.pacman_set_option(PM_OPT_NEEDLES, string_to_long(search_str))
+  pacman_set_option(PM_OPT_NEEDLES, string_to_long(search_str))
   for repo in db_list :
-    packages=pacman.pacman_db_search(repo)
+    packages=pacman_db_search(repo)
     if packages!=None :
-      i=pacman.pacman_list_first(packages)
+      i=pacman_list_first(packages)
       while i != 0:
-        pkg = pacman.pacman_db_readpkg(repo, pacman.pacman_list_getdata(i))
+        pkg = pacman_db_readpkg(repo,pacman_list_getdata(i))
         tab_PKG.append(pkg)
-        i=pacman.pacman_list_next(i)
+        i=pacman_list_next(i)
   return tab_PKG
 
 def pacman_package_find(packagename):
@@ -427,31 +472,26 @@ def pacman_install_pkg(packagename):
   #TODO :
   #added parameter for play with PM_TRANS_SYNC_XXX and PM_TRANS_FLAG_XXX
   #added callback
-  if pacman.pacman_trans_init(PM_TRANS_TYPE_SYNC, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
+  if pacman_trans_init(PM_TRANS_TYPE_SYNC, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
   data=PM_LIST()
-  pacman.pacman_trans_addtarget(packagename)
-  pacman.pacman_trans_prepare.argtypes = [POINTER(PM_LIST)]
-  pacman.pacman_trans_prepare.restype = ctypes.c_int
+  pacman_trans_addtarget(packagename)
   print_debug("pacman_trans_prepare")
-  if pacman.pacman_trans_prepare(data)==-1:
+  if pacman_trans_prepare(data)==-1:
     print_console("pacman_trans_prepare failed")
     pacman_print_error()
     return -1
-  packages = pacman.pacman_trans_getinfo(PM_TRANS_PACKAGES)
+  packages = pacman_trans_getinfo(PM_TRANS_PACKAGES)
   print_console("Packages that will be installed :")
-  i=pacman.pacman_list_first(packages)
+  i=pacman_list_first(packages)
   while i != 0:
-      spkg = pacman.pacman_list_getdata(i)
-      pkg = pacman.pacman_sync_getinfo(spkg, PM_SYNC_PKG)
+      spkg = pacman_list_getdata(i)
+      pkg = pacman_sync_getinfo(spkg, PM_SYNC_PKG)
       print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
-      i=pacman.pacman_list_next(i)
-  print_debug("pacman_trans_commit")
-  pacman.pacman_trans_commit.argtypes = [POINTER(PM_LIST)]
-  pacman.pacman_trans_commit.restype = ctypes.c_int
-  if pacman.pacman_trans_commit(data)==-1:
+      i=pacman_list_next(i)
+  if pacman_trans_commit(data)==-1:
     print_console("pacman_trans_commit failed")
     pacman_print_error()
     return -1
