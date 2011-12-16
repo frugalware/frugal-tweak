@@ -595,7 +595,7 @@ def main():
     check_user()
   if sys.argv[1] == "--remove": 
     check_user()
-
+  
   pacman_init()
   pacman_init_database()
   pacman_register_all_database()
@@ -615,11 +615,14 @@ def help():
   print "authors :"
   print "- gaetan gourdin <bouleetbil@frogdev.org>"
   print "Licence GPL2"
+  print "----------------------------------------------"
   print "help :"
   print "--checkupdate : see packages can be updated"
   print "--search PackageName: search PackageName"
   print "--install PackageName : install PackageName"  
-  print "--remove PackageName : uninstall PackageName" 
+  print "--remove PackageName : uninstall PackageName"
+  print "----------------------------------------------"
+  print "--debug for enable debug mode"
   sys.exit(0)
 
 def print_debug(textConsole):
@@ -637,10 +640,9 @@ def print_not_yet():
 
 #start main program
 for arg in sys.argv:
-    print arg
     if arg=="--debug":
       debug=1
-      print "enable debug mode"
+      print_console("enable debug mode")
       break
 main()
 
