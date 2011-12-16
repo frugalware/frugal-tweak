@@ -384,7 +384,7 @@ repo_list=[]
 #list database
 db_list=[]
 #for print debug messages
-debug=1
+debug=0
 #for print message to console
 printconsole=1
 
@@ -392,16 +392,20 @@ def pacman_init():
   print_debug("pacman_init")
   if pacman_initialize(PM_ROOT) == -1:
     print_console("Can't initialise pacman-g2")
+    pacman_print_error()
     sys.exit(0)
   #set some important pacman-g2 options
   if debug==1 :
     if pacman_set_option(PM_OPT_LOGMASK, PM_LOG_ERROR)== -1:
       print_console("Can't set option PM_OPT_LOGMASK")
+      pacman_print_error()
   else :
     if pacman_set_option (PM_OPT_LOGMASK, -1) == -1:
       print_console("Can't set option PM_OPT_LOGMASK")
+      pacman_print_error()
   if pacman_set_option(PM_OPT_DBPATH,PM_DBPATH)==-1:
-    print_console("Can't set option PM_OPT_DBPATH") 
+    print_console("Can't set option PM_OPT_DBPATH")
+    pacman_print_error() 
     
 def pacman_init_database():
   print_debug("pacman_init_database")
@@ -426,6 +430,7 @@ def pacman_update_db():
 	 retval = pacman_db_update (1, db)
 	 if retval== -1:
 	   print_console("Can't update pacman-g2 pacman_db_update")
+	   pacman_print_error()
 	   return  -1
   return 1
 
@@ -434,9 +439,11 @@ def pacman_check_update():
   tab_PKG =[]
   if pacman_trans_init(PM_TRANS_TYPE_SYNC, PM_TRANS_FLAG_NONE , None , None , None ) == -1 :
     print_console("Failed pacman_trans_init" )
+    pacman_print_error()
     return -1
   if pacman_trans_sysupgrade() == -1 :
     print_console("Failed pacman_trans_sysupgrade")
+    pacman_print_error()
     return -1
   packages = pacman_trans_getinfo(PM_TRANS_PACKAGES);
   if packages == None :
@@ -629,4 +636,11 @@ def print_not_yet():
   print_console("not yet implemented")
 
 #start main program
+for arg in sys.argv:
+    print arg
+    if arg=="--debug":
+      debug=1
+      print "enable debug mode"
+      break
 main()
+
