@@ -370,7 +370,11 @@ def pacman_fetch_url(pkg):
   print_debug("pacman_fetch_url")
   print_console("Donwload "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
   print_not_yet()
-  
+ 
+def pacman_print_error():
+  print_debug("pacman_print_error")
+  print_console(pointer_to_string(pacman.pacman_strerror(pacman.pacman_geterror())))
+ 
 #end pacman-g2 wrapper
   
 #GLOBAL
@@ -515,13 +519,15 @@ def pacman_install_pkg(packagename):
   #TODO :
   #added parameter for play with PM_TRANS_SYNC_XXX and PM_TRANS_FLAG_XXX
   #added callback
-  if pacman_trans_init(PM_TRANS_TYPE_SYNC, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
+  if pacman_trans_init(PM_TRANS_TYPE_ADD, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
   data=PM_LIST()
   if pacman_trans_addtarget(pacman_pkg_get_info(pkg,PM_PKG_NAME))==-1 :
     print_console("Can't add " +pacman_pkg_get_info(pkg,PM_PKG_NAME))
+    pacman_print_error()
+    return -1
   print_debug("pacman_trans_prepare")
   if pacman_trans_prepare(data)==-1:
     print_console("pacman_trans_prepare failed")
@@ -541,11 +547,6 @@ def pacman_install_pkg(packagename):
     return -1
   print_console(packagename+" installed")
   return 1
-
-def pacman_print_error():
-  print_debug("pacman_print_error")
-  print pacman.pm_errno
-  #FIXME pm_errno return  some -1225212475 Oo
 
 def pacman_started():
   print_debug("pacman_started")
