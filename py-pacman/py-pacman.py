@@ -373,7 +373,7 @@ def pacman_fetch_url(pkg):
  
 def pacman_print_error():
   print_debug("pacman_print_error")
-  print_console(pointer_to_string(pacman.pacman_strerror(pacman.pacman_geterror())))
+  print_console("pacman-g2 : "+pointer_to_string(pacman.pacman_strerror(pacman.pacman_geterror())))
  
 #end pacman-g2 wrapper
   
