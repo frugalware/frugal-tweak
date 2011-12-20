@@ -509,31 +509,34 @@ def pacman_package_find(packagename):
 
 def pacman_remove_pkg(packagename):
   #TODO : can remove group pacman_db_readgrp  pacman_grp_getinfo
-  #TODO : check if package is installed
   print_debug("pacman_remove_pkg")
-  print_not_yet()
-  return -1
-  print_console("uninstall "+packagename)
-  if pacman_trans_init(PM_TRANS_TYPE_REMOVE, PM_TRANS_FLAG_NONE, None, None, None) == -1 :
-    print_console("pacman_trans_init failed") 
+  if pacman_package_is_installed(packagename)==0 :
+    print_console("Package "+packagename+" is not installed")
+    #it's not an error
+    return 1
+  if pacman_trans_init(PM_TRANS_TYPE_REMOVE, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
+    print_console("pacman_trans_init failed")
+    pacman_print_error()
     return -1
   data=PM_LIST()
-  pacman_trans_addtarget(packagename)
+  if pacman_trans_addtarget(packagename)==-1 :
+    print_console("Can't remove " +packagename)
+    pacman_print_error()
+    return -1
+  print_debug("pacman_trans_prepare")
   if pacman_trans_prepare(data)==-1:
     print_console("pacman_trans_prepare failed")
     pacman_print_error()
     return -1
   packages = pacman_trans_getinfo(PM_TRANS_PACKAGES)
-  if packages==None :
-    print_console("Oops Packages list to uninstall is empty")
-    return -1
-  if pacman_trans_commit(Data)==-1:
+  #TODO check packages for can remove packages with some depends
+  if pacman_trans_commit(data)==-1:
     print_console("pacman_trans_commit failed")
     pacman_print_error()
     return -1
-  print_console(packagename+" uninstall")
+  print_console(packagename+" uninstalled")
   return 1
-    
+
 def pacman_install_pkg(packagename,updatedb=0):
   #TODO can install group pacman_db_readgrp  pacman_grp_getinfo
   print_debug("pacman_install_pkg")
