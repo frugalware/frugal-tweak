@@ -460,15 +460,18 @@ def pacman_register_all_database():
     db_list.append(db)
     print_debug("pacman register repo "+repo)
 
-def pacman_update_db():
+def pacman_update_db(force=1):
   # update the pacman database
   print_debug("pacman_update_db")
+  i=0
   for db in db_list:
-    retval = pacman_db_update (1, db)
-    if retval== -1:
-      print_console("Can't update pacman-g2 pacman_db_update")
-      pacman_print_error()
-      return  -1
+    if i<>0 :  #don't update local database :) 0 == local
+      retval = pacman_db_update (force, db)
+      if retval== -1:
+        print_console("Can't update pacman-g2 pacman_db_update")
+        pacman_print_error()
+        return  -1
+    i=i+1
   return 1
 
 def pacman_check_update():
@@ -661,6 +664,13 @@ def pacman_package_is_installed(packagename):
         print_console("Error to read pkg")
   return findpackage
   
+def pacman_update_sys():
+  pacman_update_db()
+  pacman_print_pkg(pacman_check_update())
+  if print_console_ask("update this package ?")==-1: 
+        return -1
+  
+  
 def pacman_started():
   print_debug("pacman_started")
   if os.path.exists(PM_LOCK):
@@ -702,6 +712,8 @@ def main():
     check_user()
   if sys.argv[1] == "--updatedatabase": 
     check_user()
+  if sys.argv[1] == "--update": 
+    check_user()
   
   pacman_init()
   pacman_init_database()
@@ -716,6 +728,8 @@ def main():
     pacman_install_pkg(sys.argv[2])
   if sys.argv[1] == "--remove":
     pacman_remove_pkg(sys.argv[2])
+  if sys.argv[1] == "--update":
+    pacman_update_sys()
   pacman_finally()
 
 def help():
@@ -727,6 +741,7 @@ def help():
   print "help :"
   print "--updatedatabase : update pacman-g2 database"
   print "--checkupdate : see packages can be updated"
+  print "--update : update system"
   print "--search PackageName: search PackageName"
   print "--install PackageName : install PackageName"  
   print "--remove PackageName : uninstall PackageName"
