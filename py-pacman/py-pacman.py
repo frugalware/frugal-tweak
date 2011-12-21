@@ -414,6 +414,7 @@ def pacman_dep_getinfo(miss,parm):
   return pacman.pacman_dep_getinfo(miss,parm)
 
 def pacman_sync_cleancache():
+  print_debug("pacman_sync_cleancache")
   return pacman.pacman_sync_cleancache(1)
 #end pacman-g2 wrapper
   
