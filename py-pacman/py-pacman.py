@@ -666,10 +666,15 @@ def pacman_package_is_installed(packagename):
   
 def pacman_update_sys():
   pacman_update_db()
-  pacman_print_pkg(pacman_check_update())
+  pkgs=pacman_check_update()
+  pacman_print_pkg(pkgs)
   if print_console_ask("update this package ?")==-1: 
         return -1
-  
+  #now add this packages
+  pacman_trans_release()
+  for pkg in pkgs:
+    pacman_install_pkg(pacman_pkg_get_info(pkg,PM_PKG_NAME))
+  return 1
   
 def pacman_started():
   print_debug("pacman_started")
