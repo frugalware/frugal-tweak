@@ -24,6 +24,13 @@ from ctypes import *
 from _ctypes import PyObj_FromPtr
 import ctypes
 
+## ctypes does not clearly expose these types ##
+PyCFuncPtrType = type(ctypes.CFUNCTYPE(ctypes.c_void_p))
+PyCArrayType = type( ctypes.c_int * 2 )
+PyCPointerType = type( ctypes.POINTER(ctypes.c_int) )
+PyCStructType = type( ctypes.Structure )
+CArgObject = type( ctypes.byref(ctypes.c_int()) )
+
 #GLOBAL
 version=0.1
 pacman=cdll.LoadLibrary("libpacman.so")
@@ -117,6 +124,13 @@ PM_LOG_FUNCTION = 0x20
 # Info parameters
 (PM_DB_TREENAME ,
 	PM_DB_FIRSTSERVER) =map(ctypes.c_int, xrange(1,3))
+
+#Info parameters
+(PM_DEP_TARGET ,
+	PM_DEP_TYPE,
+	PM_DEP_MOD,
+	PM_DEP_NAME,
+	PM_DEP_VERSION)=map(ctypes.c_int, xrange(1,6))
   	
 # reasons -- ie, why the package was installed
 PM_PKG_REASON_EXPLICIT = 0  #explicitly requested by the user
@@ -385,7 +399,20 @@ def pacman_print_error():
     print_console("pacman-g2 : "+pointer_to_string(pacman.pacman_strerror(pacman.pacman_geterror())))
   except:
     print_console("pacman-g2 failed")
- 
+
+def pacman_get_pm_error():
+  print_debug("pacman_get_pm_error")
+  pacman.pacman_geterror.restype = ctypes.c_int
+  return pacman.pacman_geterror()
+
+def pacman_c_long_to_int(l_number):
+  print_debug("pacman_c_long_to_int")
+  return l_number.value
+
+def pacman_dep_getinfo(miss,parm):
+  print_debug("pacman_dep_getinfo")
+  return pacman.pacman_dep_getinfo(miss,parm)
+
 #end pacman-g2 wrapper
   
 #GLOBAL
@@ -474,6 +501,11 @@ def pacman_print_pkg(pkgs):
   for pkg in pkgs:
     print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
  
+def pacman_print_pkg_dep(pkgs):
+  print_debug("pacman_print_pkg_dep")
+  for pkg in pkgs:
+    print_console(pkg)
+
 def pacman_search_pkg(search_str):
   print_debug("pacman_search_pkg")
   tab_PKG =[]
@@ -518,22 +550,36 @@ def pacman_remove_pkg(packagename):
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
-  data=PM_LIST()
   if pacman_trans_addtarget(packagename)==-1 :
     print_console("Can't remove " +packagename)
     pacman_print_error()
     return -1
+  
+  data=PM_LIST()
   print_debug("pacman_trans_prepare")
   if pacman_trans_prepare(data)==-1:
-    print_console("pacman_trans_prepare failed")
-    pacman_print_error()
-    return -1
-  packages = pacman_trans_getinfo(PM_TRANS_PACKAGES)
-  #TODO check packages for can remove packages with some depends
+    if pacman_get_pm_error() == pacman_c_long_to_int(PM_ERR_UNSATISFIED_DEPS) :
+      print_console(packagename+" is required by :")
+      pkgs=[]
+      i=pacman_list_first(data)
+      while i != 0:
+        spkg = pacman_list_getdata(i)
+        pkg = pointer_to_string(pacman_dep_getinfo(spkg, PM_DEP_NAME))
+        pkgs.append(pkg)
+        i=pacman_list_next(i)
+      pacman_print_pkg_dep(pkgs)  
+      return -1
+    
+    else: 
+      print_console("pacman_trans_prepare failed")
+      pacman_print_error()
+      return -1
+
   if pacman_trans_commit(data)==-1:
     print_console("pacman_trans_commit failed")
     pacman_print_error()
     return -1
+  pacman_trans_release()
   print_console(packagename+" uninstalled")
   return 1
 
