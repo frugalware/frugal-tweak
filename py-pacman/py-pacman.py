@@ -729,18 +729,20 @@ def main():
   pacman_register_all_database()
   if sys.argv[1] == "--updatedatabase":
     pacman_update_db()
-  if sys.argv[1] == "--checkupdate":
+  elif  sys.argv[1] == "--checkupdate":
     pacman_print_pkg(pacman_check_update())
-  if sys.argv[1] == "--search":
+  elif  sys.argv[1] == "--search":
     pacman_print_pkg(pacman_search_pkg(sys.argv[2]))
-  if sys.argv[1] == "--install":
+  elif  sys.argv[1] == "--install":
     pacman_install_pkg(sys.argv[2])
-  if sys.argv[1] == "--remove":
+  elif  sys.argv[1] == "--remove":
     pacman_remove_pkg(sys.argv[2])
-  if sys.argv[1] == "--update":
+  elif  sys.argv[1] == "--update":
     pacman_update_sys()
-  if sys.argv[1] == "--cleancache":
+  elif  sys.argv[1] == "--cleancache":
     pacman_sync_cleancache()
+  else :
+    help()
   pacman_finally()
 
 def help():
