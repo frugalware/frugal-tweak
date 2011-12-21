@@ -567,8 +567,9 @@ def pacman_remove_pkg(packagename):
         pkg = pointer_to_string(pacman_dep_getinfo(spkg, PM_DEP_NAME))
         pkgs.append(pkg)
         i=pacman_list_next(i)
-      pacman_print_pkg_dep(pkgs)  
-      return -1
+      pacman_print_pkg_dep(pkgs)
+      if print_console_ask("Uninstall this packages ?")==-1: 
+        return -1
     
     else: 
       print_console("pacman_trans_prepare failed")
@@ -627,10 +628,12 @@ def pacman_install_pkg(packagename,updatedb=0):
       print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
       i=pacman_list_next(i)
   if pacman_trans_commit(data)==-1:
+    #TODO test PM_ERR_FILE_CONFLICTS PM_ERR_PKG_CORRUPTED PM_ERR_RETRIEVE 
     print_console("pacman_trans_commit failed")
     pacman_print_error()
     return -1
   print_console(packagename+" installed")
+  pacman_trans_release ()
   return 1
 
 def pacman_package_is_installed(packagename):
@@ -733,6 +736,13 @@ def print_console(textConsole):
   if printconsole <> 1:
     return
   print textConsole
+
+def print_console_ask(question):
+  print_console(question)
+  answer = raw_input()
+  if answer=="y" :
+    return 1
+  return -1
 
 def print_not_yet():
   print_console("not yet implemented")
