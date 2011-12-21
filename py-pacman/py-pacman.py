@@ -539,14 +539,18 @@ def pacman_package_find(packagename):
       return pkg
   return None
 
-def pacman_remove_pkg(packagename):
+def pacman_remove_pkg(packagename,removedep=0):
   #TODO : can remove group pacman_db_readgrp  pacman_grp_getinfo
   print_debug("pacman_remove_pkg")
   if pacman_package_is_installed(packagename)==0 :
     print_console("Package "+packagename+" is not installed")
     #it's not an error
     return 1
-  if pacman_trans_init(PM_TRANS_TYPE_REMOVE, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
+  pm_trans_flag = PM_TRANS_FLAG_NOCONFLICTS
+  if removedep == 1 :
+    print_console("Remove recurse")
+    pm_trans_flag=PM_TRANS_FLAG_CASCADE
+  if pacman_trans_init(PM_TRANS_TYPE_REMOVE, pm_trans_flag, None, None, None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
@@ -570,7 +574,10 @@ def pacman_remove_pkg(packagename):
       pacman_print_pkg_dep(pkgs)
       if print_console_ask("Uninstall this packages ?")==-1: 
         return -1
-    
+      pacman_trans_release()
+      #restart transaction
+      return pacman_remove_pkg(packagename,1)
+      
     else: 
       print_console("pacman_trans_prepare failed")
       pacman_print_error()
