@@ -756,6 +756,7 @@ def help():
   print "--search PackageName: search PackageName"
   print "--install PackageName : install PackageName"  
   print "--remove PackageName : uninstall PackageName"
+  print "--cleancache : remove all fpm from pacman-g2 cache"
   print "----------------------------------------------"
   print "--debug for enable debug mode"
   sys.exit(0)
