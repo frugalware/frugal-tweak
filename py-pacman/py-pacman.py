@@ -365,8 +365,7 @@ def pacman_db_search(db):
 def pacman_trans_addtarget(packagename):
   print_debug("pacman_trans_addtarget")
   return pacman.pacman_trans_addtarget(packagename)
-  
-#def pacman_trans_prepare(data):
+
 def pacman_trans_prepare(*args):
   print_debug("pacman_trans_prepare")
   pacman.pacman_trans_prepare.argtypes = [POINTER(PM_LIST)]
@@ -386,12 +385,12 @@ def pacman_fetch_pkgurl(url):
 def pacman_db_unregister(db):
   print_debug("pacman_db_unregister")
   return pacman.pacman_db_unregister(db)
-  
+
 def pacman_fetch_url(pkg):
   print_debug("pacman_fetch_url")
+  pacman.pacman_fetch_pkgurl(pkg)
   print_console("Donwload "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
-  print_not_yet()
- 
+
 def pacman_print_error():
   print_debug("pacman_print_error")
   try :
@@ -506,7 +505,7 @@ def pacman_print_pkg(pkgs):
   print_debug("pacman_print_pkg")
   for pkg in pkgs:
     print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
- 
+
 def pacman_print_pkg_dep(pkgs):
   print_debug("pacman_print_pkg_dep")
   for pkg in pkgs:
@@ -583,12 +582,10 @@ def pacman_remove_pkg(packagename,removedep=0):
       pacman_trans_release()
       #restart transaction
       return pacman_remove_pkg(packagename,1)
-      
     else: 
       print_console("pacman_trans_prepare failed")
       pacman_print_error()
       return -1
-
   if pacman_trans_commit(data)==-1:
     print_console("pacman_trans_commit failed")
     pacman_print_error()
