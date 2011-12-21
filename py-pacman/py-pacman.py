@@ -413,6 +413,8 @@ def pacman_dep_getinfo(miss,parm):
   print_debug("pacman_dep_getinfo")
   return pacman.pacman_dep_getinfo(miss,parm)
 
+def pacman_sync_cleancache():
+  return pacman.pacman_sync_cleancache(1)
 #end pacman-g2 wrapper
   
 #GLOBAL
@@ -719,6 +721,8 @@ def main():
     check_user()
   if sys.argv[1] == "--update": 
     check_user()
+  if sys.argv[1] == "--cleancache": 
+    check_user()
   
   pacman_init()
   pacman_init_database()
@@ -735,6 +739,8 @@ def main():
     pacman_remove_pkg(sys.argv[2])
   if sys.argv[1] == "--update":
     pacman_update_sys()
+  if sys.argv[1] == "--cleancache":
+    pacman_sync_cleancache()
   pacman_finally()
 
 def help():
