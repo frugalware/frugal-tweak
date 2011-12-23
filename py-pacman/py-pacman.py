@@ -688,6 +688,7 @@ def pacman_install_pkg(packagename,updatedb=0):
   pacman_set_option(PM_OPT_DLFNM, reponame[0])
   if pacman_package_is_installed(packagename)==1:
     pm_trans=PM_TRANS_TYPE_UPGRADE
+  #pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)
   if pacman_trans_init(pm_trans, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
@@ -837,6 +838,15 @@ def help():
   print "--cleancache : remove all fpm from pacman-g2 cache"
   print "----------------------------------------------"
   print "--debug for enable debug mode"
+  print "             _    _                             "
+  print "            (o)--(o)                            "
+  print "           /.______.\                           "
+  print "           \_______/                            "
+  print "          ./        \.                          "
+  print "         ( .        , )                         "
+  print "          \ \_\\//_/ /                          "
+  print "           ~~  ~~  ~~                           "
+  print "-----------------------------------------------"
   sys.exit(0)
 
 def print_debug(textConsole):
