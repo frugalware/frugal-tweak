@@ -640,7 +640,6 @@ def pacman_install_pkg(packagename,updatedb=0):
     return -1
   print_console("Install "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
   pm_trans=PM_TRANS_TYPE_SYNC
-  #FIXME find the repo for this pkg
   pacman_set_option(PM_OPT_DLFNM, reponame[0])
   if pacman_package_is_installed(packagename)==1:
     pm_trans=PM_TRANS_TYPE_SYNC
