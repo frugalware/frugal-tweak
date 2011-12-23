@@ -657,15 +657,15 @@ def pacman_remove_pkg(packagename,removedep=0):
   return 1
 
 def fpm_progress_install(*args):
-    print_debug("pacman_remove_pkg")
+    print_debug("fpm_progress_install")
     print_not_yet
 
 def fpm_trans_conv(*args):
-    print_debug("pacman_remove_pkg")
+    print_debug("fpm_progress_install")
     print_not_yet
 
 def fpm_progress_event(*args):
-    print_debug("pacman_remove_pkg")
+    print_debug("fpm_progress_install")
     print_not_yet
   
 
