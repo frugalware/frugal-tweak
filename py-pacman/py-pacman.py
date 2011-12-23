@@ -18,6 +18,20 @@
 #TODO :
 #create one function for all pacman-g2 function !!!
 #create a class for pacman-g2
+#check ignore pkg : pacman_set_option(PM_OPT_IGNOREPKG,pkg) for each package
+#Add this options
+#	pacman_set_option (PM_OPT_DLCB, (long)progress_update);
+#	pacman_set_option (PM_OPT_DLOFFSET, (long)&offset);
+#	pacman_set_option (PM_OPT_DLRATE, (long)&rate);
+#	pacman_set_option (PM_OPT_DLHOWMANY, (long)&howmany);
+#	pacman_set_option (PM_OPT_DLREMAIN, (long)&remain);
+#	pacman_set_option (PM_OPT_DLT0, (long)&t0);
+#	pacman_set_option (PM_OPT_DLT0, (long)&t);
+#	pacman_set_option (PM_OPT_DLXFERED1, (long)&xferred1);
+# ETA stuff
+#	pacman_set_option (PM_OPT_DLETA_H, (long)&eta_h);
+#	pacman_set_option (PM_OPT_DLETA_M, (long)&eta_m);
+#	pacman_set_option (PM_OPT_DLETA_S, (long)&eta_s);
 
 import os, tempfile, shutil, sys
 from ctypes import *
@@ -40,6 +54,19 @@ PM_DBPATH   = "var/lib/pacman-g2"
 PM_CACHEDIR = "var/cache/pacman-g2/pkg"
 PM_LOCK     = "/tmp/pacman-g2.lck"
 PM_HOOKSDIR = "etc/pacman-g2/hooks"
+
+offset=0
+rate=0
+howmany=0
+remain=0
+t=0
+t0=0
+xferred1=0
+
+eta_s=0
+eta_m=0
+eta_s=0
+eta_h=0
 
 #Logging facilities
 
@@ -388,7 +415,7 @@ def pacman_db_unregister(db):
 
 def pacman_fetch_url(pkg):
   print_debug("pacman_fetch_url")
-  pacman.pacman_fetch_pkgurl(pkg)
+  package = pacman.pacman_fetch_pkgurl(pkg)
   print_console("Donwload "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
 
 def pacman_print_error():
@@ -418,7 +445,9 @@ def pacman_sync_cleancache():
 #end pacman-g2 wrapper
   
 #GLOBAL
-FW_LOCAL="local"
+FW_LOCAL="local" 
+#list repo packages to search
+repo_searchlist=[]
 #list repo
 repo_list=[]
 #list database
@@ -444,6 +473,19 @@ def pacman_init():
   #if pacman_set_option(PM_OPT_LOGCB,str(pac_log))==-1:
   #  print_console("Can't set option PM_OPT_LOGCB")
   #  sys.exists()
+  
+  #pacman_set_option (PM_OPT_DLCB,progress_update)
+  pacman_set_option (PM_OPT_DLOFFSET,str(offset))
+  pacman_set_option (PM_OPT_DLRATE,str(rate))
+  pacman_set_option (PM_OPT_DLHOWMANY,str(howmany))
+  pacman_set_option (PM_OPT_DLREMAIN,str(remain))
+  pacman_set_option (PM_OPT_DLT0,str(t0))
+  pacman_set_option (PM_OPT_DLT0,str(t))
+  pacman_set_option (PM_OPT_DLXFERED1,str(xferred1))
+  # ETA stuff
+  pacman_set_option (PM_OPT_DLETA_H,str(eta_h))
+  pacman_set_option (PM_OPT_DLETA_M,str(eta_m))
+  pacman_set_option (PM_OPT_DLETA_S,str(eta_s))
 
 def pacman_init_database():
   print_debug("pacman_init_database")
@@ -451,16 +493,17 @@ def pacman_init_database():
 
 def pacman_register_all_database():
   print_debug("pacman_register_all_database")
-  db = PM_DB()
-  db=pacman_db_register(FW_LOCAL)
-  db_list.append(db)
   print_debug("pacman register local")
+  repo_list.append(FW_LOCAL)
   nbrepo=len(repo_list)
   print_debug("Find "+str(nbrepo) +" repos")
   for repo in repo_list:
     db=pacman_db_register(repo)
     db_list.append(db)
     print_debug("pacman register repo "+repo)
+  #for have local to 0
+  db_list.reverse()
+  repo_list.reverse()
 
 def pacman_update_db(force=1):
   # update the pacman database
@@ -514,9 +557,8 @@ def pacman_print_pkg_dep(pkgs):
 def pacman_search_pkg(search_str):
   print_debug("pacman_search_pkg")
   tab_PKG =[]
-  #pyobj = PyObj_FromPtr(id(search_str))
-  #str_long = long(float(id(search_str)))
-  
+  #clean up repo list
+  del(repo_searchlist[:]) 
   #don't use local repo
   int_nb=0
   for repo in db_list :
@@ -524,24 +566,26 @@ def pacman_search_pkg(search_str):
       pacman_set_option(PM_OPT_NEEDLES,search_str)
       packages=pacman_db_search(repo)
       if packages!=None :
-        try :
           i=pacman_list_first(packages)
           while i != 0:
             pkg = pacman_db_readpkg(repo,pacman_list_getdata(i))
+            repo_searchlist.append(repo_list[int_nb])
             tab_PKG.append(pkg)
             i=pacman_list_next(i)
-        except :
-          print_console("Error to read pkg")
     int_nb=int_nb+1
   return tab_PKG
 
-def pacman_package_find(packagename):
+def pacman_package_find(packagename,reponame=[]):
   print_debug("pacman_package_find")
-  pkgs=pacman_search_pkg(packagename)
+  pkgs=pacman_search_pkg(packagename)  
+  int_nb=0
   for pkg in pkgs:
     print_debug("Find :"+pacman_pkg_get_info(pkg,PM_PKG_NAME))
     if pacman_pkg_get_info(pkg,PM_PKG_NAME)==packagename :
+      #String - an immutable type
+      reponame.append(repo_searchlist[int_nb])
       return pkg
+    int_nb=int_nb+1
   return None
 
 def pacman_remove_pkg(packagename,removedep=0):
@@ -563,7 +607,6 @@ def pacman_remove_pkg(packagename,removedep=0):
     print_console("Can't remove " +packagename)
     pacman_print_error()
     return -1
-  
   data=PM_LIST()
   print_debug("pacman_trans_prepare")
   if pacman_trans_prepare(data)==-1:
@@ -599,22 +642,19 @@ def pacman_install_pkg(packagename,updatedb=0):
   print_debug("pacman_install_pkg")
   #for now install only one package
   if updatedb==1:
-    pacman_update_db()
-  pkg = pacman_package_find(packagename)
+    pacman_update_db()                  
+  reponame=[]
+  pkg = pacman_package_find(packagename,reponame)
+  print_console("Install package from repo "+reponame[0])
   if pkg == None:
     print_console("Can't find "+packagename)
     return -1
-  pacman_fetch_url(pkg)
   print_console("Install "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
-  #TODO :
-  #added parameter for play with PM_TRANS_SYNC_XXX and PM_TRANS_FLAG_XXX
-  #added callback
-
-  #we should adapt PM_TRANS_TYPE if package is already installed
   pm_trans=PM_TRANS_TYPE_SYNC
-  if pacman_package_is_installed(packagename)==1 :
-    print_console(packagename+" will be updated")
-    pm_trans=PM_TRANS_TYPE_ADD
+  #FIXME find the repo for this pkg
+  pacman_set_option(PM_OPT_DLFNM, reponame[0])
+  if pacman_package_is_installed(packagename)==1:
+    pm_trans=PM_TRANS_TYPE_SYNC
   if pacman_trans_init(pm_trans, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
@@ -662,6 +702,7 @@ def pacman_package_is_installed(packagename):
           i=pacman_list_next(i)
       except :
         print_console("Error to read pkg")
+  pacman_trans_release()
   return findpackage
   
 def pacman_update_sys():
@@ -672,6 +713,7 @@ def pacman_update_sys():
         return -1
   #now add this packages
   pacman_trans_release()
+  #TODO test if pacman-g2 should be updated and ask to update it in first
   for pkg in pkgs:
     pacman_install_pkg(pacman_pkg_get_info(pkg,PM_PKG_NAME))
   return 1
