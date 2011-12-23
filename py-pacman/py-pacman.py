@@ -361,7 +361,11 @@ def pacman_list_getdata(i):
 def pacman_sync_getinfo(sync, parm):
   print_debug("pacman_sync_getinfo")
   return pacman.pacman_sync_getinfo(sync, parm)
-
+  
+def pacman_pkg_getinfo(*args):
+  print_debug("pacman_pkg_getinfo")
+  return pacman.pacman_pkg_getinfo(*args)
+  
 def pacman_list_next(i):
   print_debug("pacman_list_next")
   return pacman.pacman_list_next(i)
@@ -478,21 +482,42 @@ def pacman_init():
 
 def pacman_init_database():
   print_debug("pacman_init_database")
+  repo_list.append(FW_LOCAL)
   pacman_parse_config()
 
 def pacman_register_all_database():
   print_debug("pacman_register_all_database")
-  print_debug("pacman register local")
-  repo_list.append(FW_LOCAL)
   nbrepo=len(repo_list)
   print_debug("Find "+str(nbrepo) +" repos")
   for repo in repo_list:
     db=pacman_db_register(repo)
     db_list.append(db)
     print_debug("pacman register repo "+repo)
-  #for have local to 0
-  db_list.reverse()
-  repo_list.reverse()
+  
+def pacman_check_if_package_updatable(packagename) :
+  print_debug("pacman_check_if_package_updatable")
+  if pacman_package_is_installed(packagename)==0 :
+    print_console("Package "+packagename+" is not installed")
+    return 0
+  localversion=""
+  serverversion=""
+  lpkg = pacman_db_readpkg (db_list[0], packagename)
+  lversion=pointer_to_string(pacman_pkg_getinfo (lpkg, PM_PKG_VERSION))
+  print_console("Local version :"+ str(lversion))
+  vpkg=""
+  vversion=""
+  i=0
+  for db in db_list:
+    if i>0 :
+      vpkg = pacman_db_readpkg (db, packagename)
+      vversion=pointer_to_string(pacman_pkg_getinfo (vpkg, PM_PKG_VERSION))
+      if vversion!=None :
+        print_console("Server version :"+ str(vversion))
+        if vversion>lversion :
+          print_console(packagename+" can be updated")
+          return 1
+    i=i+1
+  return 0
 
 def pacman_update_db(force=1):
   # update the pacman database
@@ -761,6 +786,8 @@ def main():
     pacman_print_pkg(pacman_check_update())
   elif  sys.argv[1] == "--search":
     pacman_print_pkg(pacman_search_pkg(sys.argv[2]))
+  elif  sys.argv[1] == "--canupdate":
+    pacman_check_if_package_updatable(sys.argv[2])
   elif  sys.argv[1] == "--install":
     pacman_install_pkg(sys.argv[2])
   elif  sys.argv[1] == "--remove":
@@ -786,6 +813,7 @@ def help():
   print "--search PackageName: search PackageName"
   print "--install PackageName : install PackageName"  
   print "--remove PackageName : uninstall PackageName"
+  print "--canupdate PackageName : see if package can be updated"
   print "--cleancache : remove all fpm from pacman-g2 cache"
   print "----------------------------------------------"
   print "--debug for enable debug mode"
