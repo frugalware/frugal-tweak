@@ -302,7 +302,7 @@ pac_log = globals()["_log_cb"]
 pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_DB))
 pacman_cb_log         = CFUNCTYPE(ctypes.c_void_p, ctypes.c_ushort, ctypes.c_void_p)
 #installation event
-pacman_trans_cb_event = CFUNCTYPE(ctypes.c_char,ctypes.c_void_p,ctypes.c_void_p)
+pacman_trans_cb_event = CFUNCTYPE(ctypes.c_char_p,ctypes.c_void_p,ctypes.c_void_p)
 pacman_trans_cb_conv = CFUNCTYPE(ctypes.c_char,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_int)
 pacman_trans_cb_progress = CFUNCTYPE(ctypes.c_char,ctypes.c_char_p,ctypes.c_int,ctypes.c_int,ctypes.c_int)
 
@@ -666,7 +666,7 @@ def fpm_trans_conv(*args):
     print_debug("fpm_progress_install")
     print_not_yet
 
-def fpm_progress_event(event,data1,data2):
+def fpm_progress_event(*args):
     print_debug("fpm_progress_install")
     print_not_yet
   
@@ -685,11 +685,13 @@ def pacman_install_pkg(packagename,updatedb=0):
     return -1
   print_console("Install "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
   pm_trans=PM_TRANS_TYPE_SYNC
+  flags=PM_TRANS_FLAG_NOCONFLICTS
   pacman_set_option(PM_OPT_DLFNM, reponame[0])
   if pacman_package_is_installed(packagename)==1:
     pm_trans=PM_TRANS_TYPE_UPGRADE
+    flags=0
   #pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)
-  if pacman_trans_init(pm_trans, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
+  if pacman_trans_init(pm_trans,flags, pacman_trans_cb_event(fpm_progress_event), None, None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
