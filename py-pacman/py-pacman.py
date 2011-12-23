@@ -300,7 +300,11 @@ pac_log = globals()["_log_cb"]
 
 #callback
 pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_DB))
-pacman_cb_log         = CFUNCTYPE(ctypes.c_void_p, ctypes.c_ushort, ctypes.c_void_p);
+pacman_cb_log         = CFUNCTYPE(ctypes.c_void_p, ctypes.c_ushort, ctypes.c_void_p)
+#installation event
+pacman_trans_cb_event = CFUNCTYPE(ctypes.c_char,ctypes.c_void_p,ctypes.c_void_p)
+pacman_trans_cb_conv = CFUNCTYPE(ctypes.c_char,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_int)
+pacman_trans_cb_progress = CFUNCTYPE(ctypes.c_char,ctypes.c_char_p,ctypes.c_int,ctypes.c_int,ctypes.c_int)
 
 #pacman-g2 wrapper functions
   
@@ -416,6 +420,7 @@ def pacman_print_error():
   try :
     #old pacman-g2 don't provide pacman_geterror
     print_console("pacman-g2 : "+pointer_to_string(pacman.pacman_strerror(pacman.pacman_geterror())))
+    print_debug("Error code : " +str(pacman.pacman_geterror()))
   except:
     print_console("pacman-g2 failed")
 
@@ -613,7 +618,7 @@ def pacman_remove_pkg(packagename,removedep=0):
   if removedep == 1 :
     print_console("Remove recurse")
     pm_trans_flag=PM_TRANS_FLAG_CASCADE
-  if pacman_trans_init(PM_TRANS_TYPE_REMOVE, pm_trans_flag, None, None, None) == -1 :
+  if pacman_trans_init(PM_TRANS_TYPE_REMOVE,pacman_trans_cb_event(pm_trans_flag), None, None, None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
@@ -651,6 +656,19 @@ def pacman_remove_pkg(packagename,removedep=0):
   print_console(packagename+" uninstalled")
   return 1
 
+def fpm_progress_install(*args):
+    print_debug("pacman_remove_pkg")
+    print_not_yet
+
+def fpm_trans_conv(*args):
+    print_debug("pacman_remove_pkg")
+    print_not_yet
+
+def fpm_progress_event(*args):
+    print_debug("pacman_remove_pkg")
+    print_not_yet
+  
+
 def pacman_install_pkg(packagename,updatedb=0):
   #TODO can install group pacman_db_readgrp  pacman_grp_getinfo
   print_debug("pacman_install_pkg")
@@ -667,8 +685,8 @@ def pacman_install_pkg(packagename,updatedb=0):
   pm_trans=PM_TRANS_TYPE_SYNC
   pacman_set_option(PM_OPT_DLFNM, reponame[0])
   if pacman_package_is_installed(packagename)==1:
-    pm_trans=PM_TRANS_TYPE_SYNC
-  if pacman_trans_init(pm_trans, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
+    pm_trans=PM_TRANS_TYPE_UPGRADE
+  if pacman_trans_init(pm_trans, PM_TRANS_FLAG_NOCONFLICTS, pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
