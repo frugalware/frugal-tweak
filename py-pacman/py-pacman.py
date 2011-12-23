@@ -344,6 +344,8 @@ def pacman_db_update(level,db):
 
 def pacman_trans_init(type,flags, cb_event, conv, cb_progress):
   print_debug("pacman_trans_init")
+  pacman.pacman_parse_config.argtypes = [ctypes.c_char_p,ctypes.c_int,pacman_trans_cb_event,pacman_trans_cb_conv,pacman_trans_cb_progress]
+  pacman.pacman_parse_config.restype = ctypes.c_int
   return pacman.pacman_trans_init(type,flags,cb_event, conv,cb_progress)
 
 def pacman_trans_sysupgrade():
@@ -618,7 +620,7 @@ def pacman_remove_pkg(packagename,removedep=0):
   if removedep == 1 :
     print_console("Remove recurse")
     pm_trans_flag=PM_TRANS_FLAG_CASCADE
-  if pacman_trans_init(PM_TRANS_TYPE_REMOVE,pacman_trans_cb_event(pm_trans_flag), None, None, None) == -1 :
+  if pacman_trans_init(PM_TRANS_TYPE_REMOVE,pm_trans_flag, None, None, None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
@@ -664,7 +666,7 @@ def fpm_trans_conv(*args):
     print_debug("fpm_progress_install")
     print_not_yet
 
-def fpm_progress_event(*args):
+def fpm_progress_event(event,data1,data2):
     print_debug("fpm_progress_install")
     print_not_yet
   
@@ -686,7 +688,7 @@ def pacman_install_pkg(packagename,updatedb=0):
   pacman_set_option(PM_OPT_DLFNM, reponame[0])
   if pacman_package_is_installed(packagename)==1:
     pm_trans=PM_TRANS_TYPE_UPGRADE
-  if pacman_trans_init(pm_trans, PM_TRANS_FLAG_NOCONFLICTS, pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)) == -1 :
+  if pacman_trans_init(pm_trans, PM_TRANS_FLAG_NOCONFLICTS, None, None, None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
