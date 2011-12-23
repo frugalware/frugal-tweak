@@ -21,17 +21,6 @@
 #check ignore pkg : pacman_set_option(PM_OPT_IGNOREPKG,pkg) for each package
 #Add this options
 #	pacman_set_option (PM_OPT_DLCB, (long)progress_update);
-#	pacman_set_option (PM_OPT_DLOFFSET, (long)&offset);
-#	pacman_set_option (PM_OPT_DLRATE, (long)&rate);
-#	pacman_set_option (PM_OPT_DLHOWMANY, (long)&howmany);
-#	pacman_set_option (PM_OPT_DLREMAIN, (long)&remain);
-#	pacman_set_option (PM_OPT_DLT0, (long)&t0);
-#	pacman_set_option (PM_OPT_DLT0, (long)&t);
-#	pacman_set_option (PM_OPT_DLXFERED1, (long)&xferred1);
-# ETA stuff
-#	pacman_set_option (PM_OPT_DLETA_H, (long)&eta_h);
-#	pacman_set_option (PM_OPT_DLETA_M, (long)&eta_m);
-#	pacman_set_option (PM_OPT_DLETA_S, (long)&eta_s);
 
 import os, tempfile, shutil, sys
 from ctypes import *
