@@ -267,6 +267,15 @@ PM_TRANS_FLAG_PRINTURIS_CACHED = 0x8000 # print uris for pkgs that are already c
 	PM_ERR_CANT_CREATE_CACHE,
 	PM_ERR_WRONG_ARCH  )=map(ctypes.c_int, xrange(1,63))
 
+
+PM_TRANS_CONV_INSTALL_IGNOREPKG = 0x01,
+PM_TRANS_CONV_REPLACE_PKG = 0x02,
+PM_TRANS_CONV_CONFLICT_PKG = 0x04,
+PM_TRANS_CONV_CORRUPTED_PKG = 0x08,
+PM_TRANS_CONV_LOCAL_NEWER = 0x10,
+PM_TRANS_CONV_LOCAL_UPTODATE = 0x20,
+PM_TRANS_CONV_REMOVE_HOLDPKG = 0x40
+
 #some class for pacman-g2
 class PM_LIST(Structure):
   pass
@@ -295,15 +304,15 @@ def _db_cb (section,db):
 def _log_cb (level,msg):
   print_console(msg)
   return
-pac_log = globals()["_log_cb"]
-#pac_log=eval("_log_cb")
+#pac_log = globals()["_log_cb"]
+pac_log=eval("_log_cb")
 
 #callback
 pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_DB))
-pacman_cb_log         = CFUNCTYPE(ctypes.c_void_p, ctypes.c_ushort, ctypes.c_void_p)
+pacman_cb_log         = CFUNCTYPE(ctypes.c_ushort, ctypes.c_char_p)
 #installation event
 pacman_trans_cb_event = CFUNCTYPE(ctypes.c_char_p,ctypes.c_void_p,ctypes.c_void_p)
-pacman_trans_cb_conv = CFUNCTYPE(ctypes.c_char_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_int)
+pacman_trans_cb_conv = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_int)
 pacman_trans_cb_progress = CFUNCTYPE(ctypes.c_char_p,ctypes.c_char_p,ctypes.c_int,ctypes.c_int,ctypes.c_int)
 
 #pacman-g2 wrapper functions
@@ -468,7 +477,8 @@ def pacman_init():
     print_console("Can't set option PM_OPT_LOGMASK")
     pacman_print_error()
     sys.exit()
-  
+ 
+  #log=pacman_cb_log(_log_cb)
   #FIXME
   #if pacman_set_option(PM_OPT_LOGCB,str(pac_log))==-1:
   #  print_console("Can't set option PM_OPT_LOGCB")
@@ -662,9 +672,18 @@ def fpm_progress_install(*args):
     print_debug("fpm_progress_install")
     print_not_yet
 
-def fpm_trans_conv(*args):
-    print_debug("fpm_trans_conv")
-    print_not_yet
+def fpm_trans_conv(*args):#(data1, data2, data3, response):
+	print_debug("fpm_trans_conv")
+	count = 1
+	for thing in args:
+        	print "%d. %s" % (count,thing)
+		if count==1 :
+			event=thing
+        	count += 1
+
+	if event==PM_TRANS_CONV_LOCAL_UPTODATE :
+		print "already installed"
+	print_not_yet
 
 def fpm_progress_event(*args):
     print_debug("fpm_progress_event")
@@ -676,7 +695,8 @@ def pacman_install_pkg(packagename,updatedb=0):
   print_debug("pacman_install_pkg")
   #for now install only one package
   if updatedb==1:
-    pacman_update_db()                  
+    pacman_update_db()
+  pacman_fetch_pkgurl(packagename)                
   reponame=[]
   pkg = pacman_package_find(packagename,reponame)
   print_console("Install package from repo "+reponame[0])
@@ -687,9 +707,9 @@ def pacman_install_pkg(packagename,updatedb=0):
   pm_trans=PM_TRANS_TYPE_SYNC
   flags=PM_TRANS_FLAG_NOCONFLICTS
   pacman_set_option(PM_OPT_DLFNM, reponame[0])
-  if pacman_package_is_installed(packagename)==1:
-    pm_trans=PM_TRANS_TYPE_UPGRADE
-    flags=0
+  #if pacman_package_is_installed(packagename)==1:
+    #pm_trans=PM_TRANS_TYPE_UPGRADE
+    #flags=0
   #pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)
   if pacman_trans_init(pm_trans,flags, pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), None) == -1 :
     print_console("pacman_trans_init failed")
@@ -863,8 +883,8 @@ def print_console(textConsole):
 
 def print_console_ask(question):
   print_console(question)
-  answer = raw_input()
-  if answer=="y" :
+  response = raw_input()
+  if response=="y" :
     return 1
   return -1
 
