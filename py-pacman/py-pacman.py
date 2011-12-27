@@ -268,13 +268,14 @@ PM_TRANS_FLAG_PRINTURIS_CACHED = 0x8000 # print uris for pkgs that are already c
 	PM_ERR_WRONG_ARCH  )=map(ctypes.c_int, xrange(1,63))
 
 
-PM_TRANS_CONV_INSTALL_IGNOREPKG = 0x01,
-PM_TRANS_CONV_REPLACE_PKG = 0x02,
-PM_TRANS_CONV_CONFLICT_PKG = 0x04,
-PM_TRANS_CONV_CORRUPTED_PKG = 0x08,
-PM_TRANS_CONV_LOCAL_NEWER = 0x10,
-PM_TRANS_CONV_LOCAL_UPTODATE = 0x20,
-PM_TRANS_CONV_REMOVE_HOLDPKG = 0x40
+PM_TRANS_CONV_INSTALL_IGNOREPKG = 1
+PM_TRANS_CONV_REPLACE_PKG = 2
+PM_TRANS_CONV_CONFLICT_PKG = 4
+PM_TRANS_CONV_CORRUPTED_PKG = 8
+PM_TRANS_CONV_LOCAL_NEWER = 16
+PM_TRANS_CONV_LOCAL_UPTODATE = 32
+PM_TRANS_CONV_REMOVE_HOLDPKG = 64
+
 
 #some class for pacman-g2
 class PM_LIST(Structure):
@@ -672,17 +673,10 @@ def fpm_progress_install(*args):
     print_debug("fpm_progress_install")
     print_not_yet
 
-def fpm_trans_conv(*args):#(data1, data2, data3, response):
+def fpm_trans_conv(event,pkg,response):
 	print_debug("fpm_trans_conv")
-	count = 1
-	for thing in args:
-        	print "%d. %s" % (count,thing)
-		if count==1 :
-			event=thing
-        	count += 1
-
-	if event==PM_TRANS_CONV_LOCAL_UPTODATE :
-		print "already installed"
+	if event==int(PM_TRANS_CONV_LOCAL_UPTODATE) :
+		print "Package already installed"
 	print_not_yet
 
 def fpm_progress_event(*args):
