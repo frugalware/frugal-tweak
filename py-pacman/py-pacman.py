@@ -674,10 +674,10 @@ def fpm_progress_install(*args):
     print_not_yet
 
 def fpm_trans_conv(event,pkg,response):
-	print_debug("fpm_trans_conv")
-	if event==PM_TRANS_CONV_LOCAL_UPTODATE:
-		print "Package already installed"
-	print_not_yet
+   print_debug("fpm_trans_conv")
+   if event==PM_TRANS_CONV_LOCAL_UPTODATE:
+     if print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is newer. Upgrade anyway? [Y/n]" )==1 :
+       print_console("Reinstall")
 
 def fpm_progress_event(*args):
     print_debug("fpm_progress_event")
