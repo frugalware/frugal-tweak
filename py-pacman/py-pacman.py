@@ -675,7 +675,7 @@ def fpm_progress_install(*args):
 
 def fpm_trans_conv(event,pkg,response):
 	print_debug("fpm_trans_conv")
-	if event==int(PM_TRANS_CONV_LOCAL_UPTODATE) :
+	if event==PM_TRANS_CONV_LOCAL_UPTODATE:
 		print "Package already installed"
 	print_not_yet
 
