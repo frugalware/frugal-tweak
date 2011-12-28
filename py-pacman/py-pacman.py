@@ -312,9 +312,9 @@ pac_log=eval("_log_cb")
 pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_DB))
 pacman_cb_log         = CFUNCTYPE(ctypes.c_ushort, ctypes.c_char_p)
 #installation event
-pacman_trans_cb_event = CFUNCTYPE(ctypes.c_char_p,ctypes.c_void_p,POINTER(ctypes.c_int))
+pacman_trans_cb_event = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p)
 pacman_trans_cb_conv = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p)
-pacman_trans_cb_progress = CFUNCTYPE(ctypes.c_char_p,ctypes.c_char_p,ctypes.c_int,ctypes.c_int,ctypes.c_int)
+pacman_trans_cb_progress = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p)
 
 #pacman-g2 wrapper functions
   
@@ -543,6 +543,7 @@ def pacman_update_db(force=1):
   i=0
   for db in db_list:
     if i<>0 :  #don't update local database :) 0 == local
+      print_console("update database: "+repo_list[i])
       retval = pacman_db_update (force, db)
       if retval== -1:
         print_console("Can't update pacman-g2 pacman_db_update")
@@ -674,18 +675,18 @@ def fpm_progress_install(*args):
     print_not_yet
 
 def fpm_trans_conv(*args):
+    print_debug("fpm_trans_conv")
     i=1
     for arg in args:
         if i==1:
 	    event=arg
+            print_debug("event : "+ str(event))
         elif i == 2:
             pkg=arg
         elif i == 5:
             INTP = ctypes.POINTER(ctypes.c_int)
             response=ctypes.cast(arg, INTP)
-            #print 'pointer:', ptr
-            #print 'value:', ptr[0]
-            #ptr[0]=1
+            
         else:
 	    print_debug("not yet implemented")
 
@@ -693,68 +694,47 @@ def fpm_trans_conv(*args):
 
     if event==PM_TRANS_CONV_LOCAL_UPTODATE:
         if print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is up to date. Upgrade anyway? [Y/n]" )==1 :
-            print_console("Reinstall")
             response[0]=1
     if event==PM_TRANS_CONV_LOCAL_NEWER:
         if print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is newer. Upgrade anyway? [Y/n]" )==1 :
-            print_console("Reinstall")
+            response[0]=1
+    if event==PM_TRANS_CONV_CORRUPTED_PKG:
+	if print_console_ask("Archive is corrupted. Do you want to delete it?")==1 :
             response[0]=1
 
 def fpm_progress_event(*args):
     print_debug("fpm_progress_event")
     print_not_yet
   
+def pacman_install_pkgs(pkgs):
+  for repo in repo_list :
+    pacman_set_option(PM_OPT_DLFNM, repo)
 
-def pacman_install_pkg(packagename,updatedb=0):
-  #TODO can install group pacman_db_readgrp  pacman_grp_getinfo
-  print_debug("pacman_install_pkg")
-  #for now install only one package
-  if updatedb==1:
-    pacman_update_db()
-  pacman_fetch_pkgurl(packagename)                
-  reponame=[]
-  pkg = pacman_package_find(packagename,reponame)
-  print_console("Install package from repo "+reponame[0])
-  if pkg == None:
-    print_console("Can't find "+packagename)
-    return -1
-  print_console("Install "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
   pm_trans=PM_TRANS_TYPE_SYNC
   flags=PM_TRANS_FLAG_NOCONFLICTS
-  pacman_set_option(PM_OPT_DLFNM, reponame[0])
-  #if pacman_package_is_installed(packagename)==1:
-    #pm_trans=PM_TRANS_TYPE_UPGRADE
-    #flags=0
-  #pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)
-  if pacman_trans_init(pm_trans,flags, pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), None) == -1 :
+  if pacman_trans_init(pm_trans,flags, None, pacman_trans_cb_conv(fpm_trans_conv), None) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
+
+  for pkg in pkgs:
+    if pacman_trans_addtarget(pkg)==-1 :
+      print_console("Can't add " +packagename)
+      pacman_print_error()
+      return -1
+
   data=PM_LIST()
-  if pacman_trans_addtarget(packagename)==-1 :
-    print_console("Can't add " +packagename)
-    pacman_print_error()
-    return -1
-  print_debug("pacman_trans_prepare")
   if pacman_trans_prepare(data)==-1:
     print_console("pacman_trans_prepare failed")
     pacman_print_error()
     return -1
-  packages = pacman_trans_getinfo(PM_TRANS_PACKAGES)
-  print_console("Packages that will be installed :")
-  i=pacman_list_first(packages)
-  while i != 0:
-      spkg = pacman_list_getdata(i)
-      pkg = pacman_sync_getinfo(spkg, PM_SYNC_PKG)
-      print_console(pacman_pkg_get_info(pkg,PM_PKG_NAME)+"-"+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+" : "+pacman_pkg_get_info(pkg,PM_PKG_DESC) )
-      i=pacman_list_next(i)
+
   if pacman_trans_commit(data)==-1:
     #TODO test PM_ERR_FILE_CONFLICTS PM_ERR_PKG_CORRUPTED PM_ERR_RETRIEVE 
     print_console("pacman_trans_commit failed")
     pacman_print_error()
     return -1
-  print_console(packagename+" installed")
-  pacman_trans_release ()
+  pacman_trans_release()
   return 1
 
 def pacman_package_is_installed(packagename):
@@ -777,17 +757,16 @@ def pacman_package_is_installed(packagename):
   return findpackage
   
 def pacman_update_sys():
-  pacman_update_db()
+  if pacman_update_db()==-1:
+     print_console("can't update database")
+     return -1
   pkgs=pacman_check_update()
   pacman_print_pkg(pkgs)
   if print_console_ask("update this package ?")==-1: 
         return -1
-  #now add this packages
-  pacman_trans_release()
   #TODO test if pacman-g2 should be updated and ask to update it in first
-  for pkg in pkgs:
-    pacman_install_pkg(pacman_pkg_get_info(pkg,PM_PKG_NAME))
-  return 1
+  pacman_install_pkgs(pkgs)
+
   
 def pacman_started():
   print_debug("pacman_started")
@@ -834,7 +813,7 @@ def main():
     check_user()
   if sys.argv[1] == "--cleancache": 
     check_user()
-  
+  pacman_finally()
   pacman_init()
   pacman_init_database()
   pacman_register_all_database()
@@ -847,7 +826,9 @@ def main():
   elif  sys.argv[1] == "--canupdate":
     pacman_check_if_package_updatable(sys.argv[2])
   elif  sys.argv[1] == "--install":
-    pacman_install_pkg(sys.argv[2])
+    pkgs=[]
+    pkgs.append(sys.argv[2])
+    pacman_install_pkgs(pkgs)
   elif  sys.argv[1] == "--remove":
     pacman_remove_pkg(sys.argv[2])
   elif  sys.argv[1] == "--update":
