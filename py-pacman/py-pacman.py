@@ -312,8 +312,8 @@ pac_log=eval("_log_cb")
 pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_DB))
 pacman_cb_log         = CFUNCTYPE(ctypes.c_ushort, ctypes.c_char_p)
 #installation event
-pacman_trans_cb_event = CFUNCTYPE(ctypes.c_char_p,ctypes.c_void_p,ctypes.c_void_p)
-pacman_trans_cb_conv = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_int)
+pacman_trans_cb_event = CFUNCTYPE(ctypes.c_char_p,ctypes.c_void_p,POINTER(ctypes.c_int))
+pacman_trans_cb_conv = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p)
 pacman_trans_cb_progress = CFUNCTYPE(ctypes.c_char_p,ctypes.c_char_p,ctypes.c_int,ctypes.c_int,ctypes.c_int)
 
 #pacman-g2 wrapper functions
@@ -481,7 +481,7 @@ def pacman_init():
  
   #log=pacman_cb_log(_log_cb)
   #FIXME
-  #if pacman_set_option(PM_OPT_LOGCB,str(pac_log))==-1:
+  #if pacman_set_option(PM_OPT_LOGCB,CMPFUNC(_db_cb))==-1:
   #  print_console("Can't set option PM_OPT_LOGCB")
   #  sys.exists()
   
@@ -673,11 +673,32 @@ def fpm_progress_install(*args):
     print_debug("fpm_progress_install")
     print_not_yet
 
-def fpm_trans_conv(event,pkg,response):
-   print_debug("fpm_trans_conv")
-   if event==PM_TRANS_CONV_LOCAL_UPTODATE:
-     if print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is newer. Upgrade anyway? [Y/n]" )==1 :
-       print_console("Reinstall")
+def fpm_trans_conv(*args):
+    i=1
+    for arg in args:
+        if i==1:
+	    event=arg
+        elif i == 2:
+            pkg=arg
+        elif i == 5:
+            INTP = ctypes.POINTER(ctypes.c_int)
+            response=ctypes.cast(arg, INTP)
+            #print 'pointer:', ptr
+            #print 'value:', ptr[0]
+            #ptr[0]=1
+        else:
+	    print_debug("not yet implemented")
+
+        i=i+1
+
+    if event==PM_TRANS_CONV_LOCAL_UPTODATE:
+        if print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is up to date. Upgrade anyway? [Y/n]" )==1 :
+            print_console("Reinstall")
+            response[0]=1
+    if event==PM_TRANS_CONV_LOCAL_NEWER:
+        if print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is newer. Upgrade anyway? [Y/n]" )==1 :
+            print_console("Reinstall")
+            response[0]=1
 
 def fpm_progress_event(*args):
     print_debug("fpm_progress_event")
