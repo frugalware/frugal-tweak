@@ -111,12 +111,12 @@ def pacman_install_pkgs(pkgs):
 
   pm_trans=PM_TRANS_TYPE_SYNC
   flags=PM_TRANS_FLAG_NOCONFLICTS
-  print "passe"
+
   if pacman_trans_init(pm_trans,flags,pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
-  print "passe2"
+
   for pkg in pkgs:
     if pacman_trans_addtarget(pkg)==-1 :
       print_console("Can't add " +packagename)
@@ -128,7 +128,7 @@ def pacman_install_pkgs(pkgs):
     print_console("pacman_trans_prepare failed")
     pacman_print_error()
     return -1
-  print "passe3"
+
   if pacman_trans_commit(data)==-1:
     print_console("pacman_trans_commit failed")
     pacman_print_error()
