@@ -20,9 +20,12 @@ import time
 from pacmang2.libpacman import *
 
 def UpdateDatabase():
+	pacman_init()
+	pacman_init_database()
+	pacman_register_all_database()
 	pacman_update_db()
-	
-#print("Start frugalware-tweak update database")
+	pacman_finally()
+
 UpdateDatabase()
 while True:
     time.sleep(3600 ) # 60 min.
