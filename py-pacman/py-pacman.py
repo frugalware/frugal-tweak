@@ -312,9 +312,9 @@ pac_log=eval("_log_cb")
 pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_DB))
 pacman_cb_log         = CFUNCTYPE(ctypes.c_ushort, ctypes.c_char_p)
 #installation event
-pacman_trans_cb_event = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p)
+pacman_trans_cb_event = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p)
 pacman_trans_cb_conv = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p)
-pacman_trans_cb_progress = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p)
+pacman_trans_cb_progress = CFUNCTYPE(ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p)
 
 #pacman-g2 wrapper functions
   
@@ -632,7 +632,7 @@ def pacman_remove_pkg(packagename,removedep=0):
   if removedep == 1 :
     print_console("Remove recurse")
     pm_trans_flag=PM_TRANS_FLAG_CASCADE
-  if pacman_trans_init(PM_TRANS_TYPE_REMOVE,pm_trans_flag, None, None, None) == -1 :
+  if pacman_trans_init(PM_TRANS_TYPE_REMOVE,pm_trans_flag, pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
@@ -712,7 +712,7 @@ def pacman_install_pkgs(pkgs):
 
   pm_trans=PM_TRANS_TYPE_SYNC
   flags=PM_TRANS_FLAG_NOCONFLICTS
-  if pacman_trans_init(pm_trans,flags, None, pacman_trans_cb_conv(fpm_trans_conv), None) == -1 :
+  if pacman_trans_init(pm_trans,flags,pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)) == -1 :
     print_console("pacman_trans_init failed")
     pacman_print_error()
     return -1
@@ -730,7 +730,6 @@ def pacman_install_pkgs(pkgs):
     return -1
 
   if pacman_trans_commit(data)==-1:
-    #TODO test PM_ERR_FILE_CONFLICTS PM_ERR_PKG_CORRUPTED PM_ERR_RETRIEVE 
     print_console("pacman_trans_commit failed")
     pacman_print_error()
     return -1
