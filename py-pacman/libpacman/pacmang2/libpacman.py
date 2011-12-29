@@ -676,13 +676,6 @@ def print_console(textConsole):
     return
   print textConsole
 
-def print_console_ask(question):
-  print_console(question)
-  response = raw_input()
-  if response=="y" :
-    return 1
-  return -1
-
 def print_not_yet():
   print_console("not yet implemented")
 
