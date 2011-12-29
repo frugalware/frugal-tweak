@@ -1,0 +1,12 @@
+[Unit]
+Description=pacman-g2 daemon update database
+After=syslog.target
+
+[Service]
+Type=forking
+
+ExecStart=python /usr/bin/pacmandaemon.py
+
+[Install]
+WantedBy=multi-user.target
+
