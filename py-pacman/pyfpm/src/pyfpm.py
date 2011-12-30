@@ -84,12 +84,14 @@ class GUI:
 	def on_BTN_search_clicked(self,widget):
 		self.liststorePkg.clear()
 		search = self.SAI_search.get_text()
+		self.SAI_search.set_text("")
 		pkgs =[]
 		pkgs = pacman_search_pkg(search)
+		pacman_trans_release()
 		for pkg in pkgs:
 			print pacman_pkg_get_info(pkg,PM_PKG_NAME)
 			self.liststorePkg.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),"",pacman_pkg_get_info(pkg,PM_PKG_VERSION)])
-		pacman_trans_release()
+		
 
 def main():
 	app = GUI()
