@@ -457,9 +457,13 @@ def pacman_sync_cleancache():
 (PM_GRP_NAME,
 PM_GRP_PKGNAMES)=map(ctypes.c_int, xrange(1,3))
 
+#FIXME define PM_GRP
+def pacman_db_readgrp(db, name):
+  print_debug("pacman_db_readgrp")
+  return pacman.pacman_db_readgrp(db,name)
 
 def pacman_grp_getinfo(grp,parm):
-  print_debug("pacman_sync_cleancache")
+  print_debug("pacman_grp_getinfo")
   return pacman.pacman_grp_getinfo(grp,parm)
 
 #end pacman-g2 wrapper
