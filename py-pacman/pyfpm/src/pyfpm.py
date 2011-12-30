@@ -74,6 +74,10 @@ class GUI:
 		self.columnPkgname.set_sort_column_id(0)
 
 		self.SAI_search=self.builder.get_object("SAI_search") 
+
+		#find pacman-g2 group
+		#draft		
+		self.PacmanGetGrp()
 		
 		self.window.show_all()
 
@@ -89,10 +93,20 @@ class GUI:
 		pkgs = pacman_search_pkg(search)
 		pacman_trans_release()
 		for pkg in pkgs:
-			print pacman_pkg_get_info(pkg,PM_PKG_NAME)
+			#TODO find local version
 			self.liststorePkg.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),"",pacman_pkg_get_info(pkg,PM_PKG_VERSION)])
-		
 
+	def PacmanGetGrp(db):
+		db=db_list[0]
+		tab_GRP=[]
+		i=pacman_db_getgrpcache(db)
+		while i != 0:
+			grp = pacman_list_getdata(i)
+			print pointer_to_string(grp)
+			tab_GRP.append(grp)
+			i=pacman_list_next(i)
+		return tab_GRP
+		
 def main():
 	app = GUI()
 	Gtk.main()
