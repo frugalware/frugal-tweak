@@ -473,6 +473,10 @@ def pacman_grp_getinfo(grp,parm):
   print_debug("pacman_grp_getinfo")
   return pacman.pacman_grp_getinfo(grp,parm)
 
+def pacman_db_getgrpcache(db):
+  print_debug("pacman_db_getgrpcache")
+  return pacman.pacman_db_getgrpcache(db)
+
 #end pacman-g2 wrapper
   
 #GLOBAL
