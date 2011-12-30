@@ -301,8 +301,8 @@ PM_DB._fields_ = [
 class PM_GRP(Structure):
   pass
 PM_GRP._fields_ = [
-        ("name",ctypes.c_char * 255),
-	("packages", POINTER(PM_LIST))]
+        ("name", ctypes.c_char * 256),
+        ("packages", POINTER(PM_LIST))]
 
 
 def _db_cb (section,db):
