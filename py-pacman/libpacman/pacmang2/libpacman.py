@@ -452,6 +452,16 @@ def pacman_dep_getinfo(miss,parm):
 def pacman_sync_cleancache():
   print_debug("pacman_sync_cleancache")
   return pacman.pacman_sync_cleancache(1)
+
+# Info parameters
+(PM_GRP_NAME,
+PM_GRP_PKGNAMES)=map(ctypes.c_int, xrange(1,3))
+
+
+def pacman_grp_getinfo(grp,parm):
+  print_debug("pacman_sync_cleancache")
+  return pacman.pacman_grp_getinfo(grp,parm)
+
 #end pacman-g2 wrapper
   
 #GLOBAL
