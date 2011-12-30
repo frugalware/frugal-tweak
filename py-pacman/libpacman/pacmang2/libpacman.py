@@ -297,6 +297,14 @@ PM_DB._fields_ = [
         ("servers", ctypes.c_char),
         ("lastupdate", ctypes.c_char * 16)]
 
+
+class PM_GRP(Structure):
+  pass
+PM_GRP._fields_ = [
+        ("name",ctypes.c_char * 255),
+	("packages", POINTER(PM_LIST))]
+
+
 def _db_cb (section,db):
   repo_list.append(section)
   print_debug("repo : "+section)
@@ -457,7 +465,6 @@ def pacman_sync_cleancache():
 (PM_GRP_NAME,
 PM_GRP_PKGNAMES)=map(ctypes.c_int, xrange(1,3))
 
-#FIXME define PM_GRP
 def pacman_db_readgrp(db, name):
   print_debug("pacman_db_readgrp")
   return pacman.pacman_db_readgrp(db,name)
