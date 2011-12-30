@@ -72,6 +72,8 @@ class GUI:
 		self.treepkg.set_search_column(0)
 		# on autorise la classement de la colonne
 		self.columnPkgname.set_sort_column_id(0)
+
+		self.SAI_search=self.builder.get_object("SAI_search") 
 		
 		self.window.show_all()
 
@@ -80,13 +82,13 @@ class GUI:
 		Gtk.main_quit()
 
 	def on_BTN_search_clicked(self,widget):
-		search="mono"#self.builder.get_object("SAI_search") 
-		
+		self.liststorePkg.clear()
+		search = self.SAI_search.get_text()
 		pkgs =[]
 		pkgs = pacman_search_pkg(search)
 		for pkg in pkgs:
 			print pacman_pkg_get_info(pkg,PM_PKG_NAME)
-			self.liststorePkg.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),"",pacman_pkg_get_info(pkg,PM_PKG_DESC)])
+			self.liststorePkg.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),"",pacman_pkg_get_info(pkg,PM_PKG_VERSION)])
 		pacman_trans_release()
 
 def main():
