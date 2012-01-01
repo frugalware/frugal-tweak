@@ -35,7 +35,8 @@ class GUI:
 		pacman_init()
 		pacman_init_database()
 		pacman_register_all_database()
-		
+		self.pypacman = pypacmang2()
+
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(UI_FILE)
 		self.builder.connect_signals(self)
@@ -58,7 +59,6 @@ class GUI:
 		self.cellLver = Gtk.CellRendererText()
 		self.cellVers = Gtk.CellRendererText()
 
-
 		self.columnPkgname.pack_start(self.cellName, True)
 		self.columnLver.pack_start(self.cellLver, True)
 		self.columnVers.pack_start(self.cellVers, True)
@@ -76,8 +76,23 @@ class GUI:
 		self.SAI_search=self.builder.get_object("SAI_search") 
 
 		#find pacman-g2 group
-		#draft		
-		self.PacmanGetGrp()
+		self.treegrp = self.builder.get_object("treegrp")
+		tab_grp=self.pypacman.PacmanGetGrp()
+		self.liststoreGrp = Gtk.ListStore(str)
+		self.treegrp.set_model(self.liststoreGrp)
+		self.columnGrpname = Gtk.TreeViewColumn('Name')
+		self.treegrp.append_column(self.columnGrpname)
+		self.cellGrpName = Gtk.CellRendererText()
+		self.columnGrpname.pack_start(self.cellGrpName, True)
+
+		self.columnGrpname.add_attribute(self.cellGrpName, 'text', 0)
+		# on autorise la recherche
+		self.treegrp.set_search_column(0)
+		# on autorise la classement de la colonne
+		self.columnGrpname.set_sort_column_id(0)
+
+		for grp in tab_grp :
+			self.liststoreGrp.append([grp])
 		
 		self.window.show_all()
 
@@ -95,18 +110,29 @@ class GUI:
 		for pkg in pkgs:
 			#TODO find local version
 			self.liststorePkg.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),"",pacman_pkg_get_info(pkg,PM_PKG_VERSION)])
-
-	def PacmanGetGrp(db):
+				
+class pypacmang2:
+	def listFindElement(self,array,element):
+		bo_find=0
+		for el in array :
+			if element==el :
+				bo_find=1
+				break
+		return bo_find
+		
+	def PacmanGetGrp(self):
 		db=db_list[0]
 		tab_GRP=[]
-		i=pacman_db_getgrpcache(db)
-		while i != 0:
-			grp = pacman_list_getdata(i)
-			print pointer_to_string(grp)
-			tab_GRP.append(grp)
-			i=pacman_list_next(i)
+		for db in db_list :
+			i=pacman_db_getgrpcache(db)
+			while i != 0:
+				grp = pacman_list_getdata(i)
+				if self.listFindElement(tab_GRP,pointer_to_string(grp))==0:
+					tab_GRP.append(pointer_to_string(grp))
+				i=pacman_list_next(i)
+		tab_GRP.sort();
 		return tab_GRP
-		
+
 def main():
 	app = GUI()
 	Gtk.main()
