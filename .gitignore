@@ -5,3 +5,12 @@
 *.userprefs
 *.pid
 *.pidb
+.anjuta_sym_db.db
+.anjuta
+.ropeproject
+default.profile
+anjuta.session
+dock-layout.xml
+history
+objectdb
+config.py
