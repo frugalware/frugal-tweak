@@ -74,7 +74,8 @@ class GUI:
 		self.treepkg.set_search_column(0)
 		# on autorise la classement de la colonne
 		self.columnPkgname.set_sort_column_id(0)
-
+		self.treepkg.connect("row-activated", self.treepkg_doubleclicked, None)
+		
 		self.SAI_search=self.builder.get_object("SAI_search") 
 
 		#find pacman-g2 group
@@ -104,9 +105,17 @@ class GUI:
 		model=self.treegrp.get_model()
 		iter = model.get_iter(iter)
 		grp = model.get_value(iter, 0)
-		self.pypacman.GetPkgFromGrp(grp)
-		print grp
-		return True		
+		pkgs=self.pypacman.GetPkgFromGrp(grp)
+		self.pkgtoListsore(pkgs)
+		return True	
+
+	def treepkg_doubleclicked(self, treeview, iter, tree, data):
+		model=self.treepkg.get_model()
+		iter = model.get_iter(iter)
+		pkgname = model.get_value(iter, 1)
+		pkgver = model.get_value(iter, 2)
+		print pkgname
+		return True	
 
 	def destroy(window, self):
 		pacman_finally()
@@ -119,9 +128,14 @@ class GUI:
 		pkgs =[]
 		pkgs = pacman_search_pkg(search)
 		pacman_trans_release()
+		self.pkgtoListsore(pkgs)
+		
+	def pkgtoListsore(self,pkgs):
 		bo_inst=0
+		self.liststorePkg.clear()
 		for pkg in pkgs:
-			bo_inst=pacman_package_is_installed(pacman_pkg_get_info(pkg,PM_PKG_NAME))
+			#FIXME
+			#bo_inst=pacman_package_is_installed(pacman_pkg_get_info(pkg,PM_PKG_NAME))
 			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])			
 	
 class pypacmang2:
@@ -147,13 +161,18 @@ class pypacmang2:
 		return tab_GRP
 		
 	def GetPkgFromGrp(self,groupname):
+		tab_pkgs=[]
 		for db in db_list:
 			pm_group = pacman_db_readgrp (db, groupname)
 			i = pacman_grp_getinfo (pm_group, PM_GRP_PKGNAMES)
 			while i != 0:
 				pkg = pacman_db_readpkg (db, pacman_list_getdata(i))
+				if self.listFindElement(tab_pkgs,pkg)==0:
+					tab_pkgs.append(pkg)
 				print pacman_pkg_get_info(pkg,PM_PKG_NAME)
 				i=pacman_list_next(i)
+		return tab_pkgs
+
 def main():
 	app = GUI()
 	Gtk.main()
