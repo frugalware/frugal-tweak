@@ -77,6 +77,7 @@ class GUI:
 		self.treepkg.connect("row-activated", self.treepkg_doubleclicked, None)
 		
 		self.SAI_search=self.builder.get_object("SAI_search") 
+		self.textdetails=self.builder.get_object("textdetails")
 
 		#find pacman-g2 group
 		self.treegrp = self.builder.get_object("treegrp")
@@ -114,7 +115,15 @@ class GUI:
 		iter = model.get_iter(iter)
 		pkgname = model.get_value(iter, 1)
 		pkgver = model.get_value(iter, 2)
-		print pkgname
+		pkgs = pacman_search_pkg(pkgname)
+		for pkg in pkgs:
+			if pacman_pkg_get_info(pkg,PM_PKG_NAME)==pkgname and pacman_pkg_get_info(pkg,PM_PKG_VERSION)==pkgver :
+				textbuffer = self.textdetails.get_buffer()
+				text="Name        : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
+					 "Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
+					 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" \
+					 "URL         : "+pacman_pkg_get_info(pkg,PM_PKG_URL)
+				textbuffer.set_text(text)
 		return True	
 
 	def destroy(window, self):
@@ -169,7 +178,6 @@ class pypacmang2:
 				pkg = pacman_db_readpkg (db, pacman_list_getdata(i))
 				if self.listFindElement(tab_pkgs,pkg)==0:
 					tab_pkgs.append(pkg)
-				print pacman_pkg_get_info(pkg,PM_PKG_NAME)
 				i=pacman_list_next(i)
 		return tab_pkgs
 
