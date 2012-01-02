@@ -56,7 +56,8 @@ class GUI:
 		self.treepkg.append_column(self.columnVers)
 		
 		self.cellInst = Gtk.CellRendererToggle()
-		self.cellInst.set_property('active', 0)
+		self.cellInst.set_property('active', 1)
+		self.cellInst.set_property('activatable',1)
 		self.cellInst.connect('toggled', self.toggled, self.treepkg)						  
 		self.cellName = Gtk.CellRendererText()
 		self.cellVers = Gtk.CellRendererText()
@@ -85,13 +86,12 @@ class GUI:
 		self.treegrp.append_column(self.columnGrpname)
 		self.cellGrpName = Gtk.CellRendererText()
 		self.columnGrpname.pack_start(self.cellGrpName, True)
-
 		self.columnGrpname.add_attribute(self.cellGrpName, 'text', 0)
 		# on autorise la recherche
 		self.treegrp.set_search_column(0)
 		# on autorise la classement de la colonne
 		self.columnGrpname.set_sort_column_id(0)
-
+		self.treegrp.connect("row-activated", self.treegrp_doubleclicked, None)
 		for grp in tab_grp :
 			self.liststoreGrp.append([grp])
 		
@@ -99,7 +99,14 @@ class GUI:
 
 	def toggled(self, cell_renderer, col, treeview):
 		print "passe"
-		
+
+	def treegrp_doubleclicked(self, treeview, iter, tree, data):
+		model=self.treegrp.get_model()
+		iter = model.get_iter(iter)
+		grp = model.get_value(iter, 0) # column id 1 contains the city
+		print grp
+		return True		
+
 	def destroy(window, self):
 		pacman_finally()
 		Gtk.main_quit()
@@ -114,8 +121,8 @@ class GUI:
 		bo_inst=0
 		for pkg in pkgs:
 			bo_inst=pacman_package_is_installed(pacman_pkg_get_info(pkg,PM_PKG_NAME))
-			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])
-				
+			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])			
+	
 class pypacmang2:
 	def listFindElement(self,array,element):
 		bo_find=0
@@ -124,7 +131,7 @@ class pypacmang2:
 				bo_find=1
 				break
 		return bo_find
-		
+
 	def PacmanGetGrp(self):
 		db=db_list[0]
 		tab_GRP=[]
@@ -137,7 +144,6 @@ class pypacmang2:
 				i=pacman_list_next(i)
 		tab_GRP.sort();
 		return tab_GRP
-
 
 def main():
 	app = GUI()
