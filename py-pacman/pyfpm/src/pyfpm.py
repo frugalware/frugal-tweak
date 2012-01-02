@@ -103,7 +103,8 @@ class GUI:
 	def treegrp_doubleclicked(self, treeview, iter, tree, data):
 		model=self.treegrp.get_model()
 		iter = model.get_iter(iter)
-		grp = model.get_value(iter, 0) # column id 1 contains the city
+		grp = model.get_value(iter, 0)
+		self.pypacman.GetPkgFromGrp(grp)
 		print grp
 		return True		
 
@@ -144,7 +145,15 @@ class pypacmang2:
 				i=pacman_list_next(i)
 		tab_GRP.sort();
 		return tab_GRP
-
+		
+	def GetPkgFromGrp(self,groupname):
+		for db in db_list:
+			pm_group = pacman_db_readgrp (db, groupname)
+			i = pacman_grp_getinfo (pm_group, PM_GRP_PKGNAMES)
+			while i != 0:
+				pkg = pacman_db_readpkg (db, pacman_list_getdata(i))
+				print pacman_pkg_get_info(pkg,PM_PKG_NAME)
+				i=pacman_list_next(i)
 def main():
 	app = GUI()
 	Gtk.main()
