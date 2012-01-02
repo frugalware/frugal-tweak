@@ -1,19 +1,15 @@
 
 [Anjuta]
 Maximized=1
-Geometry=1024x544+0+27
-
-[Project Manager]
-Expand=pyfpm%%%pyfpm//pyfpm%%%pyfpm//pyfpm//src
+Geometry=1024x553+0+0
 
 [File Loader]
-Files=file:///home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpm.py#99%%%file:///home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpm.ui
+Files=file:///home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpm.py#112%%%file:///home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpm.ui
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
 
 [Execution]
-Program arguments=
 Program uri=file:///home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpm.py
 Run in terminal=2
 Working directories=file:///home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm

@@ -45,27 +45,28 @@ class GUI:
 			self.window.connect("destroy",Gtk.main_quit)
 
 		self.treepkg = self.builder.get_object("treepkg")
-		self.liststorePkg = Gtk.ListStore(str,str,str)
+		self.liststorePkg = Gtk.ListStore(int,str,str)
 		self.treepkg.set_model(self.liststorePkg)
+		self.columnPkginstall = Gtk.TreeViewColumn(' ')
 		self.columnPkgname = Gtk.TreeViewColumn('Name')
-		self.columnLver = Gtk.TreeViewColumn('Install Version')
 		self.columnVers = Gtk.TreeViewColumn('Version')
 
+		self.treepkg.append_column(self.columnPkginstall)
 		self.treepkg.append_column(self.columnPkgname)
-		self.treepkg.append_column(self.columnLver)
 		self.treepkg.append_column(self.columnVers)
-
+		
+		self.cellInst = Gtk.CellRendererToggle()
+		self.cellInst.set_property('active', 0)
+		self.cellInst.connect('toggled', self.toggled, self.treepkg)						  
 		self.cellName = Gtk.CellRendererText()
-		self.cellLver = Gtk.CellRendererText()
 		self.cellVers = Gtk.CellRendererText()
 
+		self.columnPkginstall.pack_start(self.cellInst, True)
 		self.columnPkgname.pack_start(self.cellName, True)
-		self.columnLver.pack_start(self.cellLver, True)
 		self.columnVers.pack_start(self.cellVers, True)
 
-
-		self.columnPkgname.add_attribute(self.cellName, 'text', 0)
-		self.columnLver.add_attribute(self.cellLver, 'text', 1)
+		self.columnPkginstall.add_attribute(self.cellInst, 'active', 0)
+		self.columnPkgname.add_attribute(self.cellName, 'text', 1)
 		self.columnVers.add_attribute(self.cellVers, 'text', 2)
 
 		# on autorise la recherche
@@ -96,6 +97,9 @@ class GUI:
 		
 		self.window.show_all()
 
+	def toggled(self, cell_renderer, col, treeview):
+		print "passe"
+		
 	def destroy(window, self):
 		pacman_finally()
 		Gtk.main_quit()
@@ -107,9 +111,10 @@ class GUI:
 		pkgs =[]
 		pkgs = pacman_search_pkg(search)
 		pacman_trans_release()
+		bo_inst=0
 		for pkg in pkgs:
-			#TODO find local version
-			self.liststorePkg.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),"",pacman_pkg_get_info(pkg,PM_PKG_VERSION)])
+			bo_inst=pacman_package_is_installed(pacman_pkg_get_info(pkg,PM_PKG_NAME))
+			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])
 				
 class pypacmang2:
 	def listFindElement(self,array,element):
@@ -132,6 +137,7 @@ class pypacmang2:
 				i=pacman_list_next(i)
 		tab_GRP.sort();
 		return tab_GRP
+
 
 def main():
 	app = GUI()
