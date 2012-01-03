@@ -439,6 +439,10 @@ def pacman_fetch_url(pkg):
   package = pacman.pacman_fetch_pkgurl(pkg)
   print_console("Donwload "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
 
+def pacman_get_error():
+  print_debug("pacman_get_error")
+  return pointer_to_string(pacman.pacman_strerror(pacman.pacman_geterror()))
+
 def pacman_print_error():
   print_debug("pacman_print_error")
   try :
