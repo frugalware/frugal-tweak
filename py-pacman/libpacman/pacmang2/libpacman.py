@@ -26,6 +26,7 @@ import os, tempfile, shutil, sys
 from ctypes import *
 from _ctypes import PyObj_FromPtr
 import ctypes
+import dircache
 
 ## ctypes does not clearly expose these types ##
 PyCFuncPtrType = type(ctypes.CFUNCTYPE(ctypes.c_void_p))
@@ -304,7 +305,6 @@ PM_GRP._fields_ = [
         ("name", ctypes.c_char * 256),
         ("packages", POINTER(PM_LIST))]
 
-
 def _db_cb (section,db):
   repo_list.append(section)
   print_debug("repo : "+section)
@@ -401,6 +401,10 @@ def pacman_trans_release():
 def pacman_db_readpkg(db,name):
   print_debug("pacman_db_readpkg")
   return pacman.pacman_db_readpkg(db, name)
+
+def pacman_db_getpkgcache(db):
+  print_debug("pacman_db_getpkgcache")
+  return pacman.pacman_db_getpkgcache(db)
 
 def pacman_db_search(db):
   print_debug("pacman_db_search")
@@ -646,6 +650,15 @@ def pacman_package_find(packagename,reponame=[]):
     int_nb=int_nb+1
   return None
 
+def pacman_package_installed():
+  print_debug("pacman_package_is_installed")
+  tab_pkgs=[]
+  lst = dircache.listdir(PM_ROOT+PM_DBPATH+"/"+FW_LOCAL)
+  for pkg in lst:
+    lstpkg=pkg.split("-")
+    lpkg=lstpkg[0]
+    tab_pkgs.append(lpkg)
+  return tab_pkgs
 
 def pacman_package_is_installed(packagename):
   print_debug("pacman_package_is_installed")
