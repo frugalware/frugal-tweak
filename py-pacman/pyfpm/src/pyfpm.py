@@ -36,7 +36,9 @@ class GUI:
 		pacman_init_database()
 		pacman_register_all_database()
 		self.pypacman = pypacmang2()
-
+		self.tab_pkgsInstalled = []
+		self.tab_pkgsInstalled = pacman_package_installed()
+		#print str(len(self.tab_pkgsInstalled))
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(UI_FILE)
 		self.builder.connect_signals(self)
@@ -143,8 +145,10 @@ class GUI:
 		bo_inst=0
 		self.liststorePkg.clear()
 		for pkg in pkgs:
-			#FIXME
-			#bo_inst=pacman_package_is_installed(pacman_pkg_get_info(pkg,PM_PKG_NAME))
+			for lpkg in self.tab_pkgsInstalled:
+				if lpkg==pacman_pkg_get_info(pkg,PM_PKG_NAME) :
+					bo_inst=1
+					break
 			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])			
 	
 class pypacmang2:
