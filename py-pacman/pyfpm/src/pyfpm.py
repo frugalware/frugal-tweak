@@ -101,25 +101,31 @@ class GUI:
 		self.treegrp.connect("row-activated", self.treegrp_doubleclicked, None)
 		for grp in tab_grp :
 			self.liststoreGrp.append([grp])
-		
 		self.window.show_all()
-
+		try :
+			self.show_group(tab_grp[0])
+			self.treegrpselection = self.treegrp.get_selection()
+			self.treegrpselection.select_path(0)
+			self.treepkgselection = self.treepkg.get_selection()
+			self.treepkgselection.select_path(0)
+		except :
+			self.print_info("Can't select treeview")
+			
 	def toggled(self, cell_renderer, col, treeview):
 		print "passe"
 
+	def show_group(self,grp):
+		pkgs=self.pypacman.GetPkgFromGrp(grp)
+		self.pkgtoListsore(pkgs)
+		
 	def treegrp_doubleclicked(self, treeview, iter, tree, data):
 		model=self.treegrp.get_model()
 		iter = model.get_iter(iter)
 		grp = model.get_value(iter, 0)
-		pkgs=self.pypacman.GetPkgFromGrp(grp)
-		self.pkgtoListsore(pkgs)
+		self.show_group(grp)
 		return True	
 
-	def treepkg_doubleclicked(self, treeview, iter, tree, data):
-		model=self.treepkg.get_model()
-		iter = model.get_iter(iter)
-		pkgname = model.get_value(iter, 1)
-		pkgver = model.get_value(iter, 2)
+	def show_package(self,pkgname,pkgver):
 		pkgs = pacman_search_pkg(pkgname)
 		self.packageSelected=pkgname
 		for pkg in pkgs:
@@ -130,6 +136,13 @@ class GUI:
 					 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" \
 					 "URL         : "+pacman_pkg_get_info(pkg,PM_PKG_URL)
 				textbuffer.set_text(text)
+				
+	def treepkg_doubleclicked(self, treeview, iter, tree, data):
+		model=self.treepkg.get_model()
+		iter = model.get_iter(iter)
+		pkgname = model.get_value(iter, 1)
+		pkgver = model.get_value(iter, 2)
+		self.show_package(pkgname,pkgver)
 		return True	
 
 	def destroy(window, self):
@@ -221,6 +234,7 @@ class GUI:
 			else:
 				bo_inst=0
 			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])			
+		self.show_package (pacman_pkg_get_info(pkgs[0],PM_PKG_NAME),pacman_pkg_get_info(pkgs[0],PM_PKG_VERSION))
 		
 	def print_info(self,text):
 		dialog=Gtk.MessageDialog(None, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.CLOSE, text)
