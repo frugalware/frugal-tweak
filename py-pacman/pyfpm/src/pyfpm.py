@@ -35,10 +35,13 @@ class GUI:
 		pacman_init()
 		pacman_init_database()
 		pacman_register_all_database()
+		#for enable some trace
+		pacmang2.libpacman.printconsole=1
+		pacmang2.libpacman.debug=1
+		#Global
+		self.packageSelected=""
+		
 		self.pypacman = pypacmang2()
-		self.tab_pkgsInstalled = []
-		self.tab_pkgsInstalled = pacman_package_installed()
-		#print str(len(self.tab_pkgsInstalled))
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(UI_FILE)
 		self.builder.connect_signals(self)
@@ -118,6 +121,7 @@ class GUI:
 		pkgname = model.get_value(iter, 1)
 		pkgver = model.get_value(iter, 2)
 		pkgs = pacman_search_pkg(pkgname)
+		self.packageSelected=pkgname
 		for pkg in pkgs:
 			if pacman_pkg_get_info(pkg,PM_PKG_NAME)==pkgname and pacman_pkg_get_info(pkg,PM_PKG_VERSION)==pkgver :
 				textbuffer = self.textdetails.get_buffer()
@@ -132,6 +136,73 @@ class GUI:
 		pacman_finally()
 		Gtk.main_quit()
 
+	def fpm_progress_install(*args):
+		print "fpm_progress_install"
+
+	def fpm_trans_conv(*args):
+		print "fpm_trans_conv"
+		'''i=1
+		for arg in args:
+			if i==1:
+				event=arg
+				print_debug("event : "+ str(event))
+			elif i == 2:
+				pkg=arg
+			elif i == 5:
+				INTP = ctypes.POINTER(ctypes.c_int)
+				response=ctypes.cast(arg, INTP)
+
+			else:
+				print_debug("not yet implemented")
+
+			i=i+1
+
+		if event==PM_TRANS_CONV_LOCAL_UPTODATE:
+			if self.print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is up to date. Upgrade anyway? [Y/n]" )==1 :
+				response[0]=1
+		if event==PM_TRANS_CONV_LOCAL_NEWER:
+			if print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is newer. Upgrade anyway? [Y/n]" )==1 :
+				response[0]=1
+		if event==PM_TRANS_CONV_CORRUPTED_PKG:
+			if print_console_ask("Archive is corrupted. Do you want to delete it?")==1 :
+				response[0]=1
+'''
+	def fpm_progress_event(*args):
+		print "fpm_progress_event"
+
+	def pacman_install_pkgs(self,pkgs):
+		for repo in repo_list :
+			pacman_set_option(PM_OPT_DLFNM, repo)
+		pm_trans=PM_TRANS_TYPE_SYNC
+		flags=PM_TRANS_FLAG_NOCONFLICTS
+
+		if pacman_trans_init(pm_trans,flags,None, None, None) == -1 :
+			self.print_info("pacman_trans_init failed\n"+pacman_get_error())
+			return -1
+
+		for pkg in pkgs:
+			if pacman_trans_addtarget(pkg)==-1 :
+				self.print_info("Can't add " +packagename+"\n"+pacman_get_error())
+				return -1
+
+		data=PM_LIST()	
+		if pacman_trans_prepare(data)==-1:
+			self.print_info("pacman_trans_prepare failed\n"+pacman_get_error())
+			return -1
+
+		if pacman_trans_commit(data)==-1:
+			self.print_info("pacman_trans_commit failed\n"+pacman_get_error())
+			return -1
+		pacman_trans_release()
+		return 1
+  
+	def BTN_install_click(self,widget):
+		if self.packageSelected=="":
+			return
+		pkgs=[]
+		pkgs.append(self.packageSelected)
+		self.pacman_install_pkgs(pkgs)
+		
 	def on_BTN_search_clicked(self,widget):
 		self.liststorePkg.clear()
 		search = self.SAI_search.get_text()
@@ -145,12 +216,17 @@ class GUI:
 		bo_inst=0
 		self.liststorePkg.clear()
 		for pkg in pkgs:
-			for lpkg in self.tab_pkgsInstalled:
-				if lpkg==pacman_pkg_get_info(pkg,PM_PKG_NAME) :
-					bo_inst=1
-					break
+			if pacman_package_intalled(pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION))==1:
+				bo_inst=1
+			else:
+				bo_inst=0
 			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])			
-	
+		
+	def print_info(self,text):
+		dialog=Gtk.MessageDialog(None, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.CLOSE, text)
+		dialog.run()
+		dialog.destroy()
+
 class pypacmang2:
 	def listFindElement(self,array,element):
 		bo_find=0
@@ -170,7 +246,7 @@ class pypacmang2:
 				if self.listFindElement(tab_GRP,pointer_to_string(grp))==0:
 					tab_GRP.append(pointer_to_string(grp))
 				i=pacman_list_next(i)
-		tab_GRP.sort();
+		tab_GRP.sort()
 		return tab_GRP
 		
 	def GetPkgFromGrp(self,groupname):
@@ -183,6 +259,7 @@ class pypacmang2:
 				if self.listFindElement(tab_pkgs,pkg)==0:
 					tab_pkgs.append(pkg)
 				i=pacman_list_next(i)
+		tab_pkgs.sort()
 		return tab_pkgs
 
 def main():
