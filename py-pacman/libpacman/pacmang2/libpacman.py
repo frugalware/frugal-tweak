@@ -682,7 +682,14 @@ def pacman_package_is_installed(packagename):
         print_console("Error to read pkg")
   pacman_trans_release()
   return findpackage
-  
+
+def pacman_package_intalled(pkgname,version):
+  print_debug("pacman_started")
+  import os
+  if os.path.isdir(PM_ROOT+PM_DBPATH+"/"+FW_LOCAL+"/"+pkgname+"-"+version):
+    return 1
+  return 0
+
 def pacman_started():
   print_debug("pacman_started")
   if os.path.exists(PM_LOCK):
