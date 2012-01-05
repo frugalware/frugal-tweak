@@ -81,7 +81,8 @@ class GUI:
 		
 		self.SAI_search=self.builder.get_object("SAI_search") 
 		self.textdetails=self.builder.get_object("textdetails")
-
+		self.statusbarInfo=self.builder.get_object("statusbarInfo")
+		
 		#find pacman-g2 group
 		self.treegrp = self.builder.get_object("treegrp")
 		tab_grp=self.pypacman.PacmanGetGrp()
@@ -110,8 +111,14 @@ class GUI:
 			self.print_info("Can't select treeview")
 			
 	def toggled(self, cell_renderer, col, treeview):
-		print "passe"
+		print "checkbox checked/unchecked"
 
+	def print_info_statusbar(self,text):
+		context_id = self.statusbarInfo.get_context_id("StatusbarInfo")
+		message_id = self.statusbarInfo.push(context_id, text)
+		self.statusbarInfo.pop(context_id)
+		#statusbarInfo.remove(context_id, message_id)
+		
 	def show_group(self,grp):
 		pkgs=self.pypacman.GetPkgFromGrp(grp)
 		self.pkgtoListsore(pkgs)
