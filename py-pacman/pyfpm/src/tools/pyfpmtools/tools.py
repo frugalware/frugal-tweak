@@ -25,6 +25,15 @@ def print_info(text):
 	dialog.run()
 	dialog.destroy()
 
+def print_question(text):
+	bo_ok=0
+	dialog=Gtk.MessageDialog(None, 0, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, text)
+	result=dialog.run()
+	if result==Gtk.ResponseType.YES:
+		bo_ok=1
+	dialog.destroy()
+	return bo_ok
+
 def sysexec(cmd):
 	os.system(cmd)
 
