@@ -1,6 +1,5 @@
 #!/usr/bin/python
 #
-# main.py
 # Copyright (C) gaetan gourdin 2011 <bouleetbil@frogdev.info>
 # 
 # pyfpm is free software: you can redistribute it and/or modify it
@@ -21,6 +20,7 @@ from gi.repository import Gtk, GdkPixbuf, Gdk
 import os, sys
 import pacmang2.libpacman
 from pacmang2.libpacman import *
+from pyfpmtools.tools import *
 
 
 #Comment the first line and uncomment the second before installing
@@ -108,7 +108,7 @@ class GUI:
 			self.treepkgselection = self.treepkg.get_selection()
 			self.treepkgselection.select_path(0)
 		except :
-			self.print_info("Can't select treeview")
+			print_info("Can't select treeview")
 			
 	def toggled(self, cell_renderer, col, treeview):
 		print "checkbox checked/unchecked"
@@ -195,21 +195,21 @@ class GUI:
 		flags=PM_TRANS_FLAG_NOCONFLICTS
 
 		if pacman_trans_init(pm_trans,flags,None, None, None) == -1 :
-			self.print_info("pacman_trans_init failed\n"+pacman_get_error())
+			print_info("pacman_trans_init failed\n"+pacman_get_error())
 			return -1
 
 		for pkg in pkgs:
 			if pacman_trans_addtarget(pkg)==-1 :
-				self.print_info("Can't add " +packagename+"\n"+pacman_get_error())
+				print_info("Can't add " +packagename+"\n"+pacman_get_error())
 				return -1
 
 		data=PM_LIST()	
 		if pacman_trans_prepare(data)==-1:
-			self.print_info("pacman_trans_prepare failed\n"+pacman_get_error())
+			print_info("pacman_trans_prepare failed\n"+pacman_get_error())
 			return -1
 
 		if pacman_trans_commit(data)==-1:
-			self.print_info("pacman_trans_commit failed\n"+pacman_get_error())
+			print_info("pacman_trans_commit failed\n"+pacman_get_error())
 			return -1
 		pacman_trans_release()
 		return 1
@@ -240,55 +240,7 @@ class GUI:
 				bo_inst=0
 			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])			
 		self.show_package (pacman_pkg_get_info(pkgs[0],PM_PKG_NAME),pacman_pkg_get_info(pkgs[0],PM_PKG_VERSION))
-		
-	def print_info(self,text):
-		dialog=Gtk.MessageDialog(None, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.CLOSE, text)
-		dialog.run()
-		dialog.destroy()
 
-class pypacmang2:
-	def initPacman(self):
-		#init pacman
-		pacman_init()
-		pacman_init_database()
-		pacman_register_all_database()
-
-	def pacman_finally(self):
-		pacman_finally()
-		
-	def listFindElement(self,array,element):
-		bo_find=0
-		for el in array :
-			if element==el :
-				bo_find=1
-				break
-		return bo_find
-
-	def PacmanGetGrp(self):
-		db=db_list[0]
-		tab_GRP=[]
-		for db in db_list :
-			i=pacman_db_getgrpcache(db)
-			while i != 0:
-				grp = pacman_list_getdata(i)
-				if self.listFindElement(tab_GRP,pointer_to_string(grp))==0:
-					tab_GRP.append(pointer_to_string(grp))
-				i=pacman_list_next(i)
-		tab_GRP.sort()
-		return tab_GRP
-		
-	def GetPkgFromGrp(self,groupname):
-		tab_pkgs=[]
-		for db in db_list:
-			pm_group = pacman_db_readgrp (db, groupname)
-			i = pacman_grp_getinfo (pm_group, PM_GRP_PKGNAMES)
-			while i != 0:
-				pkg = pacman_db_readpkg (db, pacman_list_getdata(i))
-				if self.listFindElement(tab_pkgs,pkg)==0:
-					tab_pkgs.append(pkg)
-				i=pacman_list_next(i)
-		tab_pkgs.sort()
-		return tab_pkgs
 
 def main():
 	app = GUI()
