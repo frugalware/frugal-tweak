@@ -24,7 +24,22 @@ from pacmang2.libpacman import *
 
 #Comment the first line and uncomment the second before installing
 #or making the tarball (alternatively, use project variables)
-UI_FILE = "src/pyfpm.ui"
-#UI_FILE = "/usr/local/share/pyfpm/ui/pyfpm.ui"
+UI_FILE = "/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.ui"
+#UI_FILE = "/usr/local/share/pyfpm/ui/pyfpminstall.ui"
 
-class GUI:
+class GUIINST:
+	def __init__(self):
+		self.builder = Gtk.Builder()
+		self.builder.add_from_file(UI_FILE)
+		self.builder.connect_signals(self)
+		self.window = self.builder.get_object('window')
+		if(self.window):
+			self.window.connect("destroy",Gtk.main_quit)
+		self.window.show_all()
+
+def main():
+	app = GUIINST()
+	Gtk.main()
+		
+if __name__ == "__main__":
+    sys.exit(main())

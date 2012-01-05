@@ -26,13 +26,14 @@ from pyfpmtools.tools import *
 #Comment the first line and uncomment the second before installing
 #or making the tarball (alternatively, use project variables)
 UI_FILE = "src/pyfpm.ui"
-#UI_FILE = "/usr/local/share/pyfpm/ui/pyfpm.ui"
+#UI_FILE = "/usr/share/pyfpm/ui/pyfpm.ui"
+PYFPM_INST="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.py"
 
-
+pypacman = pypacmang2()
+pypacman.initPacman()
+		
 class GUI:
 	def __init__(self):
-		self.pypacman = pypacmang2()
-		self.pypacman.initPacman()
 		
 		#for enable some trace
 		pacmang2.libpacman.printconsole=1
@@ -85,7 +86,7 @@ class GUI:
 		
 		#find pacman-g2 group
 		self.treegrp = self.builder.get_object("treegrp")
-		tab_grp=self.pypacman.PacmanGetGrp()
+		tab_grp=pypacman.PacmanGetGrp()
 		self.liststoreGrp = Gtk.ListStore(str)
 		self.treegrp.set_model(self.liststoreGrp)
 		self.columnGrpname = Gtk.TreeViewColumn('Name')
@@ -120,7 +121,7 @@ class GUI:
 		#statusbarInfo.remove(context_id, message_id)
 		
 	def show_group(self,grp):
-		pkgs=self.pypacman.GetPkgFromGrp(grp)
+		pkgs=pypacman.GetPkgFromGrp(grp)
 		self.pkgtoListsore(pkgs)
 		
 	def treegrp_doubleclicked(self, treeview, iter, tree, data):
@@ -151,7 +152,7 @@ class GUI:
 		return True	
 
 	def destroy(window, self):
-		self.pypacman.pacman_finally()
+		pypacman.pacman_finally()
 		Gtk.main_quit()
 
 	def fpm_progress_install(*args):
@@ -218,6 +219,7 @@ class GUI:
 		if self.packageSelected=="":
 			return
 		pkgs=[]
+		sysexec("gksu python "+PYFPM_INST)
 		pkgs.append(self.packageSelected)
 		self.pacman_install_pkgs(pkgs)
 		

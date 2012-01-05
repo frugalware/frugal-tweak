@@ -25,6 +25,9 @@ def print_info(text):
 	dialog.run()
 	dialog.destroy()
 
+def sysexec(cmd):
+	os.system(cmd)
+
 class pypacmang2:
 	def initPacman(self):
 		#init pacman
