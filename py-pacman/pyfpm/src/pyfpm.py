@@ -31,17 +31,15 @@ UI_FILE = "src/pyfpm.ui"
 
 class GUI:
 	def __init__(self):
-		#init pacman
-		pacman_init()
-		pacman_init_database()
-		pacman_register_all_database()
+		self.pypacman = pypacmang2()
+		self.pypacman.initPacman()
+		
 		#for enable some trace
 		pacmang2.libpacman.printconsole=1
 		pacmang2.libpacman.debug=1
 		#Global
 		self.packageSelected=""
 		
-		self.pypacman = pypacmang2()
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(UI_FILE)
 		self.builder.connect_signals(self)
@@ -146,7 +144,7 @@ class GUI:
 		return True	
 
 	def destroy(window, self):
-		pacman_finally()
+		self.pypacman.pacman_finally()
 		Gtk.main_quit()
 
 	def fpm_progress_install(*args):
@@ -242,6 +240,15 @@ class GUI:
 		dialog.destroy()
 
 class pypacmang2:
+	def initPacman(self):
+		#init pacman
+		pacman_init()
+		pacman_init_database()
+		pacman_register_all_database()
+
+	def pacman_finally(self):
+		pacman_finally()
+		
 	def listFindElement(self,array,element):
 		bo_find=0
 		for el in array :
