@@ -25,6 +25,11 @@ import ConfigParser
 homedir = os.path.expanduser('~')
 fileconfig=homedir+"/.pyfpm"
 
+def check_user():
+	if not os.geteuid()==0:
+		return 0
+	return 1
+
 def print_info(text):
 	dialog=Gtk.MessageDialog(None, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.CLOSE, text)
 	dialog.run()
