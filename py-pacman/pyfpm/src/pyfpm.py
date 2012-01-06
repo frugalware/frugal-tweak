@@ -157,67 +157,7 @@ class GUI:
 	def destroy(window, self):
 		pypacman.pacman_finally()
 		Gtk.main_quit()
-
-	def fpm_progress_install(*args):
-		print "fpm_progress_install"
-
-	def fpm_trans_conv(*args):
-		print "fpm_trans_conv"
-		'''i=1
-		for arg in args:
-			if i==1:
-				event=arg
-				print_debug("event : "+ str(event))
-			elif i == 2:
-				pkg=arg
-			elif i == 5:
-				INTP = ctypes.POINTER(ctypes.c_int)
-				response=ctypes.cast(arg, INTP)
-
-			else:
-				print_debug("not yet implemented")
-
-			i=i+1
-
-		if event==PM_TRANS_CONV_LOCAL_UPTODATE:
-			if self.print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is up to date. Upgrade anyway? [Y/n]" )==1 :
-				response[0]=1
-		if event==PM_TRANS_CONV_LOCAL_NEWER:
-			if print_console_ask(pointer_to_string(pacman_pkg_getinfo(pkg, PM_PKG_NAME))+" local version is newer. Upgrade anyway? [Y/n]" )==1 :
-				response[0]=1
-		if event==PM_TRANS_CONV_CORRUPTED_PKG:
-			if print_console_ask("Archive is corrupted. Do you want to delete it?")==1 :
-				response[0]=1
-'''
-	def fpm_progress_event(*args):
-		print "fpm_progress_event"
-
-	def pacman_install_pkgs(self,pkgs):
-		for repo in repo_list :
-			pacman_set_option(PM_OPT_DLFNM, repo)
-		pm_trans=PM_TRANS_TYPE_SYNC
-		flags=PM_TRANS_FLAG_NOCONFLICTS
-
-		if pacman_trans_init(pm_trans,flags,None, None, None) == -1 :
-			print_info("pacman_trans_init failed\n"+pacman_get_error())
-			return -1
-
-		for pkg in pkgs:
-			if pacman_trans_addtarget(pkg)==-1 :
-				print_info("Can't add " +packagename+"\n"+pacman_get_error())
-				return -1
-
-		data=PM_LIST()	
-		if pacman_trans_prepare(data)==-1:
-			print_info("pacman_trans_prepare failed\n"+pacman_get_error())
-			return -1
-
-		if pacman_trans_commit(data)==-1:
-			print_info("pacman_trans_commit failed\n"+pacman_get_error())
-			return -1
-		pacman_trans_release()
-		return 1
-  
+	
 	def BTN_install_click(self,widget):
 		if self.packageSelected=="":
 			return
