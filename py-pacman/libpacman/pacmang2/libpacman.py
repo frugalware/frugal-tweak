@@ -36,7 +36,6 @@ PyCStructType = type( ctypes.Structure )
 CArgObject = type( ctypes.byref(ctypes.c_int()) )
 
 #GLOBAL
-version=0.1
 pacman=cdll.LoadLibrary("libpacman.so")
 CFG_FILE    = "/etc/pacman-g2.conf"
 PM_ROOT     = "/"
