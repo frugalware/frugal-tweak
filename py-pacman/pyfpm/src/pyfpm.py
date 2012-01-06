@@ -31,13 +31,16 @@ PYFPM_INST="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.py
 
 pypacman = pypacmang2()
 pypacman.initPacman()
-		
+#for enable some trace
+pacmang2.libpacman.printconsole=1
+pacmang2.libpacman.debug=1
+pyconfig=configuration()
+suxcommande=pyconfig.Read('configuration','sux')
+if suxcommande=="":
+	suxcommande="gksu"
+
 class GUI:
 	def __init__(self):
-		
-		#for enable some trace
-		pacmang2.libpacman.printconsole=1
-		pacmang2.libpacman.debug=1
 		#Global
 		self.packageSelected=""
 		
@@ -219,9 +222,11 @@ class GUI:
 		if self.packageSelected=="":
 			return
 		pkgs=[]
-		sysexec("gksu python "+PYFPM_INST)
 		pkgs.append(self.packageSelected)
 		self.pacman_install_pkgs(pkgs)
+		result=print_question("ok")
+		print result
+		sysexec("gksu python "+PYFPM_INST)
 		
 	def on_BTN_search_clicked(self,widget):
 		self.liststorePkg.clear()
