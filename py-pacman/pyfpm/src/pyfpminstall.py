@@ -20,12 +20,15 @@ from gi.repository import Gtk, GdkPixbuf, Gdk
 import os, sys
 import pacmang2.libpacman
 from pacmang2.libpacman import *
-
+from pyfpmtools.tools import *
 
 #Comment the first line and uncomment the second before installing
 #or making the tarball (alternatively, use project variables)
 UI_FILE = "/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.ui"
 #UI_FILE = "/usr/local/share/pyfpm/ui/pyfpminstall.ui"
+bo_install = 0
+bo_remove = 0
+tab_pkgs=[]
 
 class GUIINST:
 	def __init__(self):
@@ -37,7 +40,21 @@ class GUIINST:
 			self.window.connect("destroy",Gtk.main_quit)
 		self.window.show_all()
 
-def main():
+def main(*args):
+	if check_user()==0:
+		print_info("only root can use it.")
+		sys.exit()	
+	for arg in sys.argv:
+		if arg=="install":
+			global bo_install
+			bo_install=1
+		elif arg=="remove":
+			global bo_remove
+			bo_remove=1
+		else:
+			global tab_pkgs
+			tab_pkgs.append(arg)
+			
 	app = GUIINST()
 	Gtk.main()
 		
