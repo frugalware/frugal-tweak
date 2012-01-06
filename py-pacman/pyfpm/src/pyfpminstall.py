@@ -79,7 +79,12 @@ class GUIINST:
 			pypacman.initPacman()
 			self.pacman_install_pkgs()	
 			pypacman.pacman_finally()
-	
+		if bo_remove==1:
+			pypacman.initPacman()
+			for pkg in tab_pkgs:
+				self.pacman_remove_pkg (pkg)
+			pypacman.pacman_finally()
+			
 	def destroy(window, self):
 		Gtk.main_quit()
 		
@@ -108,6 +113,47 @@ class GUIINST:
 			return -1
 		pacman_trans_release()
 		return 1
+
+	def pacman_remove_pkg(self,packagename,removedep=0):
+		#TODO : can remove group pacman_db_readgrp  pacman_grp_getinfo
+		if pacman_package_is_installed(packagename)==0 :
+			print_info("Package "+packagename+" is not installed")
+			#it's not an error
+			return 1
+		pm_trans_flag = PM_TRANS_FLAG_NOCONFLICTS
+		if removedep == 1 :
+			pm_trans_flag=PM_TRANS_FLAG_CASCADE
+		if pacman_trans_init(PM_TRANS_TYPE_REMOVE,pm_trans_flag, pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)) == -1 :
+			print_info("pacman_trans_init failed\n"+pacman_get_error())
+			return -1
+		if pacman_trans_addtarget(packagename)==-1 :
+			print_info("Can't remove " +packagename+"\n"+pacman_get_error())
+			return -1
+		data=PM_LIST()
+		if pacman_trans_prepare(data)==-1:
+			if pacman_get_pm_error() == pacman_c_long_to_int(PM_ERR_UNSATISFIED_DEPS) :
+				str_text=packagename+" is required by :\n"
+				str_text=str_text+"Uninstall this packages ?\n"
+				i=pacman_list_first(data)
+				while i != 0:
+					spkg = pacman_list_getdata(i)
+					pkg = pointer_to_string(pacman_dep_getinfo(spkg, PM_DEP_NAME))
+					str_text=str_text+pkg+"\n"
+					i=pacman_list_next(i)
+				if print_question(str_text)==-1: 
+					return -1
+					pacman_trans_release()
+				#restart transaction
+				return self.pacman_remove_pkg(packagename,1)
+			else: 
+				print_info("pacman_trans_prepare failed\n"+pacman_get_error())
+				return -1
+		if pacman_trans_commit(data)==-1:
+			print_info("pacman_trans_commit failed\n"+pacman_get_error())
+			return -1
+		pacman_trans_release()
+		return 1
+
 
 def main(*args):
 	if check_user()==0:
