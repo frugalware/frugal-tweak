@@ -19,6 +19,11 @@ from gi.repository import Gtk, GdkPixbuf, Gdk
 import os, sys
 import pacmang2.libpacman
 from pacmang2.libpacman import *
+import ConfigParser
+
+#global 
+homedir = os.path.expanduser('~')
+fileconfig=homedir+"/.pyfpm"
 
 def print_info(text):
 	dialog=Gtk.MessageDialog(None, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.CLOSE, text)
@@ -36,6 +41,21 @@ def print_question(text):
 
 def sysexec(cmd):
 	os.system(cmd)
+
+class configuration:
+	def Read(self,section,option):
+		config = ConfigParser.ConfigParser()
+		config.read(fileconfig)
+		try :
+			return config.get(section, option)
+		except :
+			return ""
+	def Write(self,section,option,value):
+		config = ConfigParser.ConfigParser()
+		config.add_section(section)
+		config.set(section, options, value)
+		# write to screen
+		config.write(sys.stdout)
 
 class pypacmang2:
 	def initPacman(self):
