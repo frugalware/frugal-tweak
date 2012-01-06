@@ -14,3 +14,6 @@ dock-layout.xml
 history
 objectdb
 config.py
+*.egg-info
+dist
+build
