@@ -123,7 +123,7 @@ def main(*args):
 			bo_remove=1
 		else:
 			global tab_pkgs
-			print str(i)+arg
+			#0 is the name of the script
 			if i!=0 :
 				tab_pkgs.append(arg)
 			i=i+1
