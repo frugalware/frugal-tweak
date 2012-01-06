@@ -75,15 +75,6 @@ class GUIINST:
 		if(self.window):
 			self.window.connect("destroy",Gtk.main_quit)
 		self.window.show_all()
-		if bo_install==1:
-			pypacman.initPacman()
-			self.pacman_install_pkgs()	
-			pypacman.pacman_finally()
-		if bo_remove==1:
-			pypacman.initPacman()
-			for pkg in tab_pkgs:
-				self.pacman_remove_pkg (pkg)
-			pypacman.pacman_finally()
 			
 	def destroy(window, self):
 		Gtk.main_quit()
@@ -154,6 +145,17 @@ class GUIINST:
 		pacman_trans_release()
 		return 1
 
+	def ON_ShowWindow(self,widget):
+		if bo_install==1:
+			pypacman.initPacman()
+			self.pacman_install_pkgs()	
+			pypacman.pacman_finally()
+		if bo_remove==1:
+			pypacman.initPacman()
+			for pkg in tab_pkgs:
+				self.pacman_remove_pkg (pkg)
+			pypacman.pacman_finally()
+		
 
 def main(*args):
 	if check_user()==0:
