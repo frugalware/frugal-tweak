@@ -8,7 +8,7 @@
     <property name="skip_taskbar_hint">True</property>
     <property name="skip_pager_hint">True</property>
     <property name="decorated">False</property>
-    <property name="opacity">0.69999999999999996</property>
+    <property name="opacity">0.80000000000000004</property>
     <property name="has_resize_grip">False</property>
     <child>
       <object class="GtkBox" id="box1">
