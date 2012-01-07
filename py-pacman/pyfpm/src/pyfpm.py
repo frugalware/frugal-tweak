@@ -166,10 +166,10 @@ class GUI:
 			return
 		pkgs=[]
 		pkgs.append(self.packageSelected)
-		self.pacman_install_pkgs(pkgs)
-		result=print_question("ok")
-		print result
-		sysexec("gksu python "+PYFPM_INST)
+		strpkg=""
+		for pkg in pkgs:
+			strpkg=strpkg+" "+pkg
+		sysexec(suxcommande+" python "+PYFPM_INST+" install "+strpkg)
 		
 	def on_BTN_search_clicked(self,widget):
 		self.liststorePkg.clear()
