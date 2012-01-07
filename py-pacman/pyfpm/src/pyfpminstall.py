@@ -64,18 +64,34 @@ def fpm_trans_conv(*args):
 			response[0]=1
 	if event==PM_TRANS_CONV_CORRUPTED_PKG:
 		if print_question("Archive is corrupted. Do you want to delete it?")==1 :
-			response[0]=1
+			response[0]=1			
 
+main_window = Gtk.Window()
 class GUIINST:
 	def __init__(self):
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(UI_FILE)
 		self.builder.connect_signals(self)
-		self.window = self.builder.get_object('window')
-		if(self.window):
-			self.window.connect("destroy",Gtk.main_quit)
-		self.window.show_all()
-			
+		main_window = self.builder.get_object('window')
+		if(main_window):
+			main_window.connect("destroy",Gtk.main_quit)
+		main_window.show_all()
+		# ensure it is rendered immediately
+		while Gtk.events_pending():
+			Gtk.main_iteration()
+		self.init()
+
+	def init(self):
+		if bo_install==1:
+			pypacman.initPacman()
+			self.pacman_install_pkgs()	
+			pypacman.pacman_finally()
+		if bo_remove==1:
+			pypacman.initPacman()
+			for pkg in tab_pkgs:
+				self.pacman_remove_pkg (pkg)
+			pypacman.pacman_finally()
+		
 	def destroy(window, self):
 		Gtk.main_quit()
 		
@@ -145,18 +161,6 @@ class GUIINST:
 		pacman_trans_release()
 		return 1
 
-	def ON_ShowWindow(self,widget):
-		if bo_install==1:
-			pypacman.initPacman()
-			self.pacman_install_pkgs()	
-			pypacman.pacman_finally()
-		if bo_remove==1:
-			pypacman.initPacman()
-			for pkg in tab_pkgs:
-				self.pacman_remove_pkg (pkg)
-			pypacman.pacman_finally()
-		
-
 def main(*args):
 	if check_user()==0:
 		print_info("only root can use it.")
@@ -175,7 +179,6 @@ def main(*args):
 			if i!=0 :
 				tab_pkgs.append(arg)
 			i=i+1
-			
 	app = GUIINST()
 	Gtk.main()
 	
