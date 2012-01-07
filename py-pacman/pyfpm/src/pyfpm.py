@@ -190,7 +190,14 @@ class GUI:
 
 
 def main():
+	splash = Gtk.Window() 
+	# [...] set splash up
+	splash.show()
+	# ensure it is rendered immediately
+	while Gtk.events_pending():
+		Gtk.main_iteration()
 	app = GUI()
+	splash.destroy()
 	Gtk.main()
 		
 if __name__ == "__main__":
