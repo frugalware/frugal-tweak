@@ -31,6 +31,8 @@ bo_remove = 0
 tab_pkgs=[]
 pypacman = pypacmang2()
 
+main_window = Gtk.Window()
+builder = Gtk.Builder()
 
 def fpm_progress_install(*args):
 	print "fpm_progress_install"
@@ -45,14 +47,11 @@ def fpm_trans_conv(*args):
 		if i==1:
 			event=arg
 			print_debug("event : "+ str(event))
-		elif i == 2:
+		if i == 2:
 			pkg=arg
-		elif i == 5:
+		if i == 5:
 			INTP = ctypes.POINTER(ctypes.c_int)
 			response=ctypes.cast(arg, INTP)
-
-		else:
-			print "not yet implemented"
 
 		i=i+1
 
@@ -68,19 +67,19 @@ def fpm_trans_conv(*args):
 	while Gtk.events_pending():
 		Gtk.main_iteration()
 
-main_window = Gtk.Window()
+def draw():
+	while Gtk.events_pending():
+			Gtk.main_iteration()
 class GUIINST:
 	def __init__(self):
-		self.builder = Gtk.Builder()
-		self.builder.add_from_file(UI_FILE)
-		self.builder.connect_signals(self)
-		main_window = self.builder.get_object('window')
+		builder.add_from_file(UI_FILE)
+		builder.connect_signals(self)
+		main_window = builder.get_object('window')
+		self.label_what=builder.get_object("label_what")
 		if(main_window):
 			main_window.connect("destroy",Gtk.main_quit)
 		main_window.show_all()
-		# ensure it is rendered immediately
-		while Gtk.events_pending():
-			Gtk.main_iteration()
+		draw()
 		self.init()
 
 	def init(self):
@@ -98,8 +97,8 @@ class GUIINST:
 		Gtk.main_quit()
 		
 	def pacman_install_pkgs(self):
-		while Gtk.events_pending():
-			Gtk.main_iteration()
+		self.label_what.set_text("installation")
+		draw()
 		for repo in repo_list :
 			pacman_set_option(PM_OPT_DLFNM, repo)
 		pm_trans=PM_TRANS_TYPE_SYNC
@@ -126,8 +125,8 @@ class GUIINST:
 		sys.exit()
 
 	def pacman_remove_pkg(self,packagename,removedep=0):
-		while Gtk.events_pending():
-			Gtk.main_iteration()
+		self.label_what.set_text("uninstall "+packagename)
+		draw()
 		#TODO : can remove group pacman_db_readgrp  pacman_grp_getinfo
 		if pacman_package_is_installed(packagename)==0 :
 			print_info("Package "+packagename+" is not installed")
