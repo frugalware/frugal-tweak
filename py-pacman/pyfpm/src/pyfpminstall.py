@@ -98,6 +98,8 @@ class GUIINST:
 		Gtk.main_quit()
 		
 	def pacman_install_pkgs(self):
+		while Gtk.events_pending():
+			Gtk.main_iteration()
 		for repo in repo_list :
 			pacman_set_option(PM_OPT_DLFNM, repo)
 		pm_trans=PM_TRANS_TYPE_SYNC
@@ -121,9 +123,11 @@ class GUIINST:
 			print_info("pacman_trans_commit failed\n"+pacman_get_error())
 			return -1
 		pacman_trans_release()
-		return 1
+		sys.exit()
 
 	def pacman_remove_pkg(self,packagename,removedep=0):
+		while Gtk.events_pending():
+			Gtk.main_iteration()
 		#TODO : can remove group pacman_db_readgrp  pacman_grp_getinfo
 		if pacman_package_is_installed(packagename)==0 :
 			print_info("Package "+packagename+" is not installed")
@@ -161,7 +165,7 @@ class GUIINST:
 			print_info("pacman_trans_commit failed\n"+pacman_get_error())
 			return -1
 		pacman_trans_release()
-		return 1
+		sys.exit()
 
 def main(*args):
 	if check_user()==0:
