@@ -260,7 +260,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
-                          <object class="GtkButton" id="button2">
+                          <object class="GtkButton" id="BTN_remove">
                             <property name="label" translatable="yes">Remove</property>
                             <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
@@ -268,6 +268,7 @@
                             <property name="receives_default">True</property>
                             <property name="use_action_appearance">False</property>
                             <property name="focus_on_click">False</property>
+                            <signal name="clicked" handler="BTN_remove_click" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>

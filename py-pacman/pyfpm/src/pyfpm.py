@@ -170,7 +170,21 @@ class GUI:
 		for pkg in pkgs:
 			strpkg=strpkg+" "+pkg
 		sysexec(suxcommande+" python "+PYFPM_INST+" install "+strpkg)
-		
+
+	def BTN_remove_click(self,widget):
+		if self.packageSelected=="":
+			return
+		pkgs=[]
+		pkgs.append(self.packageSelected)
+		strpkg=""
+		for pkg in pkgs:
+			strpkg=strpkg+" "+pkg
+		if print_question ("Uninstall :"+strpkg)<>1:
+			return
+		while Gtk.events_pending():
+			Gtk.main_iteration()
+		sysexec(suxcommande+" python "+PYFPM_INST+" remove "+strpkg)
+
 	def on_BTN_search_clicked(self,widget):
 		self.liststorePkg.clear()
 		search = self.SAI_search.get_text()

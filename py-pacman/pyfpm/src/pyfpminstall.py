@@ -65,6 +65,8 @@ def fpm_trans_conv(*args):
 	if event==PM_TRANS_CONV_CORRUPTED_PKG:
 		if print_question("Archive is corrupted. Do you want to delete it?")==1 :
 			response[0]=1			
+	while Gtk.events_pending():
+		Gtk.main_iteration()
 
 main_window = Gtk.Window()
 class GUIINST:
