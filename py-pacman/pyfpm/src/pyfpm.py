@@ -216,9 +216,13 @@ class GUI:
 			return
 
 		treeiter = sel[1]
-		pkgname = model.get_value(treeiter, 1)
-		pkgver = model.get_value(treeiter, 2)
-		self.show_package(pkgname,pkgver) 
+		try :
+			pkgname = model.get_value(treeiter, 1)
+			pkgver = model.get_value(treeiter, 2)
+			self.show_package(pkgname,pkgver) 
+		except :
+			#not a problem
+			return True
 		return True	
 
 	def cleanup_info_pkg(self):
