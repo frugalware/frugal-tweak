@@ -156,10 +156,20 @@ class GUI:
 				text="Name        : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
 					 "Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
 					 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" \
-					 "URL         : "+pacman_pkg_get_info(pkg,PM_PKG_URL)
+					 "URL         : "+pointer_to_string(pacman_pkg_get_info(pkg,PM_PKG_URL))
 				textbuffer.set_text(text)
+
+				text=""
+				textbufferChangeLog = self.textchangelog.get_buffer()
+				fileChangeLog=PM_ROOT+PM_DBPATH+"/"+repo_list[0]+"/"+pkgname+"-"+pkgver+"/changelog"
+				if os.path.exists(fileChangeLog)==1:
+					file = open(fileChangeLog)
+					for line in file:
+						text=text+line+"\n"
+				else:
+					text="No changelog available for this package"
+				textbufferChangeLog.set_text(text)
 				
-		
 	def destroy(window, self):
 		pypacman.pacman_finally()
 		Gtk.main_quit()
