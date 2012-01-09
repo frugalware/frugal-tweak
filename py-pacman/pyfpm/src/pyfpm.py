@@ -107,17 +107,14 @@ class GUI:
 		for grp in tab_grp :
 			self.liststoreGrp.append([grp])
 		self.window.show_all()
-		try :
-			#group
-			self.show_group(tab_grp[0])
-			self.treegrpselection = self.treegrp.get_selection()
-			self.treegrpselection.select_path(0)
-			self.treegrpselection.connect('changed', self.selection_grp, self.liststoreGrp)
-			#packages
-			self.treepkgselection = self.treepkg.get_selection()
-			self.treepkgselection.connect('changed', self.selection_pkg, self.liststorePkg)
-		except :
-			print_info("Can't select treeview")
+		#group
+		self.treegrpselection = self.treegrp.get_selection()
+		self.treegrpselection.connect('changed', self.selection_grp, self.liststoreGrp)
+		self.treegrpselection.select_path(0)
+		#packages
+		self.treepkgselection = self.treepkg.get_selection()
+		self.treepkgselection.connect('changed', self.selection_pkg, self.liststorePkg)
+		self.treepkgselection.select_path(0)
 			
 	def toggled(self, cell_renderer, col, treeview):
 		print "checkbox checked/unchecked"
@@ -198,8 +195,9 @@ class GUI:
 			else:
 				bo_inst=0
 			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])			
-		self.show_package (pacman_pkg_get_info(pkgs[0],PM_PKG_NAME),pacman_pkg_get_info(pkgs[0],PM_PKG_VERSION))
-
+		treepkgselection = self.treepkg.get_selection()
+		treepkgselection.select_path(0)
+		
 	def selection_grp(self, selection, model):
 		sel = selection.get_selected()
 		if sel == ():
