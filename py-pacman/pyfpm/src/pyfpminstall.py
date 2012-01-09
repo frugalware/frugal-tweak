@@ -88,7 +88,6 @@ def fpm_progress_install(*args):
 		print "window closed"
 
 def fpm_progress_event(*args):
-	print "fpm_progress_event"
 	label_what=builder.get_object("label_what")
 	progressbar_install=builder.get_object("progressbar_install")
 	i=1
@@ -159,7 +158,6 @@ def fpm_progress_event(*args):
 
 		
 def fpm_trans_conv(*args):
-	print "fpm_trans_conv"
 	i=1
 	for arg in args:
 		if i==1:

@@ -88,6 +88,7 @@ class GUI:
 		self.SAI_search=self.builder.get_object("SAI_search") 
 		self.textdetails=self.builder.get_object("textdetails")
 		self.statusbarInfo=self.builder.get_object("statusbarInfo")
+		self.BTN_remove=self.builder.get_object("BTN_remove")
 		
 		#find pacman-g2 group
 		self.treegrp = self.builder.get_object("treegrp")
@@ -210,6 +211,11 @@ class GUI:
 		pkgname = model.get_value(treeiter, 1)
 		pkgver = model.get_value(treeiter, 2)
 		self.show_package(pkgname,pkgver)
+		if pacman_package_is_installed(pkgname)==1 :
+			#show remove button
+			self.BTN_remove.set_property('visible', True) 
+		else:
+			self.BTN_remove.set_property('visible', False) 
 		return True	
 		
 		
