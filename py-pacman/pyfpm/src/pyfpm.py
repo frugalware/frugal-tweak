@@ -104,7 +104,6 @@ class GUI:
 		self.treegrp.set_search_column(0)
 		# on autorise la classement de la colonne
 		self.columnGrpname.set_sort_column_id(0)
-		self.treegrp.connect("row-activated", self.treegrp_doubleclicked, None)
 		for grp in tab_grp :
 			self.liststoreGrp.append([grp])
 		self.window.show_all()
@@ -114,6 +113,7 @@ class GUI:
 			self.treegrpselection.select_path(0)
 			self.treepkgselection = self.treepkg.get_selection()
 			self.treepkgselection.select_path(0)
+			self.treegrpselection.connect('changed', self.selection_grp, self.liststoreGrp)
 		except :
 			print_info("Can't select treeview")
 			
@@ -130,12 +130,12 @@ class GUI:
 		pkgs=pypacman.GetPkgFromGrp(grp)
 		self.pkgtoListsore(pkgs)
 		
-	def treegrp_doubleclicked(self, treeview, iter, tree, data):
+	'''def treegrp_doubleclicked(self, treeview, iter, tree, data):
 		model=self.treegrp.get_model()
 		iter = model.get_iter(iter)
 		grp = model.get_value(iter, 0)
 		self.show_group(grp)
-		return True	
+		return True	'''
 
 	def show_package(self,pkgname,pkgver):
 		pkgs = pacman_search_pkg(pkgname)
@@ -205,7 +205,17 @@ class GUI:
 			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])			
 		self.show_package (pacman_pkg_get_info(pkgs[0],PM_PKG_NAME),pacman_pkg_get_info(pkgs[0],PM_PKG_VERSION))
 
+	def selection_grp(self, selection, model):
+		sel = selection.get_selected()
+		if sel == ():
+			return
 
+		treeiter = sel[1]
+		grpselected = model.get_value(treeiter, 0)
+		self.show_group(grpselected)
+		return True	
+		
+		
 def main():
 	builder = Gtk.Builder()
 	builder.add_from_file(UI_SPLASH)
