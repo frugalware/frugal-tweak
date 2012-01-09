@@ -29,6 +29,7 @@ UI_FILE = "/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.ui"
 bo_install = 0
 bo_remove = 0
 bo_cleancache=0
+bo_updatedb=0
 tab_pkgs=[]
 pypacman = pypacmang2()
 
@@ -220,6 +221,12 @@ class GUIINST:
 			pypacman.initPacman()
 			pacman_sync_cleancache()
 			quit(0)
+		if bo_updatedb==1:
+			self.label_what.set_text("update database")
+			draw()
+			pypacman.initPacman()
+			pacman_update_db(1)
+			quit(0)
 						
 	def destroy(window, self):
 		Gtk.main_quit()
@@ -310,6 +317,9 @@ def main(*args):
 		elif arg=="cleancache":
 			global bo_cleancache
 			bo_cleancache=1
+		elif arg=="updatedb":
+			global bo_updatedb
+			bo_updatedb=1
 		else:
 			global tab_pkgs
 			#0 is the name of the script

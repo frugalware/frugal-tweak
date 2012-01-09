@@ -153,6 +153,9 @@ class GUI:
 
 	def On_clean_cache(*args):
 		sysexec(suxcommande+" python "+PYFPM_INST+" cleancache")
+
+	def On_update_database(*args):
+		sysexec(suxcommande+" python "+PYFPM_INST+" updatedb")
 	
 	def BTN_install_click(self,widget):
 		if self.packageSelected=="":
