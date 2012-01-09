@@ -84,7 +84,6 @@ class GUI:
 		self.treepkg.set_search_column(0)
 		# on autorise la classement de la colonne
 		self.columnPkgname.set_sort_column_id(0)
-		self.treepkg.connect("row-activated", self.treepkg_doubleclicked, None)
 		
 		self.SAI_search=self.builder.get_object("SAI_search") 
 		self.textdetails=self.builder.get_object("textdetails")
@@ -108,12 +107,14 @@ class GUI:
 			self.liststoreGrp.append([grp])
 		self.window.show_all()
 		try :
+			#group
 			self.show_group(tab_grp[0])
 			self.treegrpselection = self.treegrp.get_selection()
 			self.treegrpselection.select_path(0)
-			self.treepkgselection = self.treepkg.get_selection()
-			self.treepkgselection.select_path(0)
 			self.treegrpselection.connect('changed', self.selection_grp, self.liststoreGrp)
+			#packages
+			self.treepkgselection = self.treepkg.get_selection()
+			self.treepkgselection.connect('changed', self.selection_pkg, self.liststorePkg)
 		except :
 			print_info("Can't select treeview")
 			
@@ -141,14 +142,6 @@ class GUI:
 					 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" \
 					 "URL         : "+pacman_pkg_get_info(pkg,PM_PKG_URL)
 				textbuffer.set_text(text)
-				
-	def treepkg_doubleclicked(self, treeview, iter, tree, data):
-		model=self.treepkg.get_model()
-		iter = model.get_iter(iter)
-		pkgname = model.get_value(iter, 1)
-		pkgver = model.get_value(iter, 2)
-		self.show_package(pkgname,pkgver)
-		return True	
 
 	def destroy(window, self):
 		pypacman.pacman_finally()
@@ -206,6 +199,17 @@ class GUI:
 		treeiter = sel[1]
 		grpselected = model.get_value(treeiter, 0)
 		self.show_group(grpselected)
+		return True	
+
+	def selection_pkg(self, selection, model):
+		sel = selection.get_selected()
+		if sel == ():
+			return
+
+		treeiter = sel[1]
+		pkgname = model.get_value(treeiter, 1)
+		pkgver = model.get_value(treeiter, 2)
+		self.show_package(pkgname,pkgver)
 		return True	
 		
 		
