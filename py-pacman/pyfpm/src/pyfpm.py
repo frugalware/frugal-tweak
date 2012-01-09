@@ -144,7 +144,7 @@ class GUI:
 					 "URL         : "+pacman_pkg_get_info(pkg,PM_PKG_URL)
 				textbuffer.set_text(text)
 
-		if pacman_package_is_installed(pkgname)==1 :
+		if pacman_package_intalled(pkgname,pkgver)==1 :
 			#show remove button
 			self.BTN_remove.set_property('visible', True) 
 		else:
