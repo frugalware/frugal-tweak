@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="2.24"/>
-  <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkWindow" id="window">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -30,9 +29,9 @@
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkMenuItem" id="menuitem1">
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="label" translatable="yes">File</property>
                         <child type="submenu">
                           <object class="GtkMenu" id="menu1">
@@ -40,9 +39,9 @@
                             <property name="can_focus">False</property>
                             <child>
                               <object class="GtkMenuItem" id="menuitem2">
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="label" translatable="yes">Clean cache</property>
                                 <property name="use_underline">True</property>
                                 <signal name="activate" handler="On_clean_cache" swapped="no"/>
@@ -50,9 +49,9 @@
                             </child>
                             <child>
                               <object class="GtkMenuItem" id="menuitem3">
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="label" translatable="yes">Update database</property>
                                 <signal name="activate" handler="On_update_database" swapped="no"/>
                               </object>
@@ -60,9 +59,9 @@
                             <child>
                               <object class="GtkImageMenuItem" id="imagemenuitem5">
                                 <property name="label">gtk-quit</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="use_stock">True</property>
                                 <signal name="activate" handler="destroy" swapped="no"/>
@@ -74,9 +73,9 @@
                     </child>
                     <child>
                       <object class="GtkMenuItem" id="menuitem4">
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="label" translatable="yes">Help</property>
                         <child type="submenu">
                           <object class="GtkMenu" id="menu3">
@@ -85,9 +84,9 @@
                             <child>
                               <object class="GtkImageMenuItem" id="imagemenuitem10">
                                 <property name="label">gtk-about</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="use_underline">True</property>
                                 <property name="use_stock">True</property>
                                 <signal name="activate" handler="On_about" swapped="no"/>
@@ -112,6 +111,9 @@
                       <object class="GtkTreeView" id="treegrp">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection" id="treeview-selection1"/>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -133,8 +135,6 @@
                         <property name="invisible_char_set">True</property>
                         <property name="primary_icon_activatable">False</property>
                         <property name="secondary_icon_activatable">False</property>
-                        <property name="primary_icon_sensitive">True</property>
-                        <property name="secondary_icon_sensitive">True</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -145,6 +145,7 @@
                     <child>
                       <object class="GtkButton" id="BTN_search">
                         <property name="label" translatable="yes">Search</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -184,6 +185,9 @@
                       <object class="GtkTreeView" id="treepkg">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection" id="treeview-selection2"/>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -225,9 +229,16 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkTextView" id="textview2">
+                          <object class="GtkScrolledWindow" id="scrolledwindow4">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="shadow_type">in</property>
+                            <child>
+                              <object class="GtkTextView" id="textfiles">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                              </object>
+                            </child>
                           </object>
                           <packing>
                             <property name="position">1</property>
@@ -245,9 +256,16 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkTextView" id="textview3">
+                          <object class="GtkScrolledWindow" id="scrolledwindow5">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="shadow_type">in</property>
+                            <child>
+                              <object class="GtkTextView" id="textchangelog">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                              </object>
+                            </child>
                           </object>
                           <packing>
                             <property name="position">2</property>
@@ -278,6 +296,7 @@
                         <child>
                           <object class="GtkButton" id="BTN_remove">
                             <property name="label" translatable="yes">Remove</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="use_action_appearance">False</property>
@@ -293,6 +312,7 @@
                         <child>
                           <object class="GtkButton" id="BTN_install">
                             <property name="label" translatable="yes">Install</property>
+                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>

@@ -89,6 +89,8 @@ class GUI:
 		self.textdetails=self.builder.get_object("textdetails")
 		self.statusbarInfo=self.builder.get_object("statusbarInfo")
 		self.BTN_remove=self.builder.get_object("BTN_remove")
+		self.textfiles=self.builder.get_object("textfiles")
+		self.textchangelog=self.builder.get_object("textchangelog")
 		
 		#find pacman-g2 group
 		self.treegrp = self.builder.get_object("treegrp")
@@ -134,19 +136,30 @@ class GUI:
 		self.packageSelected=pkgname
 		for pkg in pkgs:
 			if pacman_pkg_get_info(pkg,PM_PKG_NAME)==pkgname and pacman_pkg_get_info(pkg,PM_PKG_VERSION)==pkgver :
+				#files
+				text=""
+				textbufferfiles = self.textfiles.get_buffer()
+				if pacman_package_intalled(pkgname,pkgver)==1 :
+					#show remove button
+					self.BTN_remove.set_property('visible', True)
+					pkgl = pacman_db_readpkg (db_list[0], pkgname)
+					i=pacman_pkg_getinfo(pkgl, PM_PKG_FILES)
+					while i != 0:
+						text=text+ "/"+pointer_to_string(pacman_list_getdata(i))+"\n"
+			  			i=pacman_list_next(i)	
+				else:
+					self.BTN_remove.set_property('visible', False)
+					text="Package is not installed"
+				textbufferfiles.set_text(text)				
+				text=""
 				textbuffer = self.textdetails.get_buffer()
 				text="Name        : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
 					 "Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
 					 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" \
 					 "URL         : "+pacman_pkg_get_info(pkg,PM_PKG_URL)
 				textbuffer.set_text(text)
-
-		if pacman_package_intalled(pkgname,pkgver)==1 :
-			#show remove button
-			self.BTN_remove.set_property('visible', True) 
-		else:
-			self.BTN_remove.set_property('visible', False)
-
+				
+		
 	def destroy(window, self):
 		pypacman.pacman_finally()
 		Gtk.main_quit()
