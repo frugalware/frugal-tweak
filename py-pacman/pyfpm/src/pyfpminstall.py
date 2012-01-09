@@ -125,7 +125,6 @@ def fpm_progress_event(*args):
 			progress = 1
 	if event==PM_TRANS_EVT_ADD_DONE:
 			str_label="Package installation finished : "+str_data1
-
 	if event==PM_TRANS_EVT_UPGRADE_START:
 			str_label="Upgrading "+str_data1
 			progress = 1
