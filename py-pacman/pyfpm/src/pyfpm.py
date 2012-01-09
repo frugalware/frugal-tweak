@@ -35,8 +35,8 @@ PYFPM_INST="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.py
 pypacman = pypacmang2()
 pypacman.initPacman()
 #for enable some trace
-pacmang2.libpacman.printconsole=1
-pacmang2.libpacman.debug=1
+#pacmang2.libpacman.printconsole=1
+#pacmang2.libpacman.debug=1
 pyconfig=configuration()
 suxcommande=pyconfig.Read('configuration','sux')
 if suxcommande=="":
