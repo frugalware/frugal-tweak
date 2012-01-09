@@ -74,18 +74,90 @@ def fpm_progress_install(*args):
 			str_label="Checking packages for file conflicts..."
 		else:
 			str_label="Checking package for file conflicts..."
-	label_what.set_text(str_label)
-	#don't use /100 truncate to int
-	progress= "0."+str(percent)
-	if percent==100:
-		progress=1
-	if progress >=0 and progress<=1:
-		progressbar_install.set_fraction(long(progress))
-	draw()
+	try:
+		if str_label<>"":
+			label_what.set_text(str_label)
+		#don't use /100 truncate to int
+		progress= "0."+str(percent)
+		if percent==100:
+			progress=1
+		if progress >=0 and progress<=1:
+			progressbar_install.set_fraction(long(progress))
+		draw()
+	except :
+		print "window closed"
 
 def fpm_progress_event(*args):
 	print "fpm_progress_event"
+	label_what=builder.get_object("label_what")
+	progressbar_install=builder.get_object("progressbar_install")
+	i=1
+	data1=None
+	data2=None
+	for arg in args:
+		if i==1:
+			event=arg
+		if i==2:
+			data1=arg
+		if i==3:
+			data2=arg
+		i=i+1
 
+	str_data1=""
+	if data1<>None:
+		str_data1=pointer_to_string(pacman_pkg_getinfo(data1, PM_PKG_NAME))
+	str_label=""
+	progress=0
+	if event==PM_TRANS_EVT_CHECKDEPS_START:
+			str_label="Checking dependencies"
+			progress = 1
+	if event==PM_TRANS_EVT_FILECONFLICTS_START:
+			str_label="Checking for file conflicts"
+			progress = 1
+	if event==PM_TRANS_EVT_RESOLVEDEPS_START:
+			str_label="Resolving dependencies"
+	if event==PM_TRANS_EVT_INTERCONFLICTS_START:
+			str_label="Looking for inter-conflicts"
+			progress = 1
+	if event==PM_TRANS_EVT_INTERCONFLICTS_DONE:
+			str_label="Done"
+	if event==PM_TRANS_EVT_ADD_START:
+			str_label="Installing "+str_data1
+			progress = 1
+	if event==PM_TRANS_EVT_ADD_DONE:
+			str_label="Package installation finished : "+str_data1
+
+	if event==PM_TRANS_EVT_UPGRADE_START:
+			str_label="Upgrading "+str_data1
+			progress = 1
+	if event==PM_TRANS_EVT_UPGRADE_DONE:
+			str_label="Package upgrade finished"
+	if event==PM_TRANS_EVT_REMOVE_START:
+			str_label="removing "+str_data1
+	if event==PM_TRANS_EVT_REMOVE_DONE:
+			str_label="Package removal finished : "+str_data1
+	if event==PM_TRANS_EVT_INTEGRITY_START:
+			str_label="Checking package integrity"
+	if event==PM_TRANS_EVT_INTEGRITY_DONE:
+			str_label="Done"
+	if event==PM_TRANS_EVT_SCRIPTLET_INFO:
+			str_label=str_data1
+	if event==PM_TRANS_EVT_SCRIPTLET_START:
+			str_label=str_data1
+	if event==PM_TRANS_EVT_SCRIPTLET_DONE:
+			str_label="Done"
+	if event==PM_TRANS_EVT_RETRIEVE_START:
+			str_label="Retrieving packages..."
+			progress = 1
+	try:
+		if str_label<>"":
+			label_what.set_text(str_label)
+		progressbar_install.set_fraction(progress)
+		#draw()
+	except :
+		print "window closed"
+
+		
 def fpm_trans_conv(*args):
 	print "fpm_trans_conv"
 	i=1
@@ -113,8 +185,17 @@ def fpm_trans_conv(*args):
 	draw()
 
 def draw():
-	while Gtk.events_pending():
+	try :
+		while Gtk.events_pending():
 			Gtk.main_iteration()
+	except:
+		print "window closed"
+
+def quit(i):
+	print "bye bye"
+	pypacman.pacman_finally()
+	sys.exit(i)
+
 class GUIINST:
 	def __init__(self):
 		builder.add_from_file(UI_FILE)
@@ -131,12 +212,10 @@ class GUIINST:
 		if bo_install==1:
 			pypacman.initPacman()
 			self.pacman_install_pkgs()	
-			pypacman.pacman_finally()
 		if bo_remove==1:
 			pypacman.initPacman()
 			for pkg in tab_pkgs:
 				self.pacman_remove_pkg (pkg)
-			pypacman.pacman_finally()
 		
 	def destroy(window, self):
 		Gtk.main_quit()
@@ -151,23 +230,23 @@ class GUIINST:
 
 		if pacman_trans_init(pm_trans,flags,pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install))== -1 :
 			print_info("pacman_trans_init failed\n"+pacman_get_error())
-			return -1
+			quit(-1)
 
 		for pkg in tab_pkgs:
 			if pacman_trans_addtarget(pkg)==-1 :
 				print_info("Can't add " +pkg+"\n"+pacman_get_error())
-				return -1
+				quit(-1)
 
 		data=PM_LIST()	
 		if pacman_trans_prepare(data)==-1:
 			print_info("pacman_trans_prepare failed\n"+pacman_get_error())
-			return -1
+			quit(-1)
 
 		if pacman_trans_commit(data)==-1:
 			print_info("pacman_trans_commit failed\n"+pacman_get_error())
-			return -1
+			quit(-1)
 		pacman_trans_release()
-		sys.exit()
+		quit(0)
 
 	def pacman_remove_pkg(self,packagename,removedep=0):
 		self.label_what.set_text("uninstall "+packagename)
@@ -176,16 +255,16 @@ class GUIINST:
 		if pacman_package_is_installed(packagename)==0 :
 			print_info("Package "+packagename+" is not installed")
 			#it's not an error
-			return 1
+			quit(0)
 		pm_trans_flag = PM_TRANS_FLAG_NOCONFLICTS
 		if removedep == 1 :
 			pm_trans_flag=PM_TRANS_FLAG_CASCADE
 		if pacman_trans_init(PM_TRANS_TYPE_REMOVE,pm_trans_flag, pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)) == -1 :
 			print_info("pacman_trans_init failed\n"+pacman_get_error())
-			return -1
+			quit(-1)
 		if pacman_trans_addtarget(packagename)==-1 :
 			print_info("Can't remove " +packagename+"\n"+pacman_get_error())
-			return -1
+			quit(-1)
 		data=PM_LIST()
 		if pacman_trans_prepare(data)==-1:
 			if pacman_get_pm_error() == pacman_c_long_to_int(PM_ERR_UNSATISFIED_DEPS) :
@@ -198,18 +277,18 @@ class GUIINST:
 					str_text=str_text+pkg+"\n"
 					i=pacman_list_next(i)
 				if print_question(str_text)==-1: 
-					return -1
 					pacman_trans_release()
+					quit(-1)
 				#restart transaction
 				return self.pacman_remove_pkg(packagename,1)
 			else: 
 				print_info("pacman_trans_prepare failed\n"+pacman_get_error())
-				return -1
+				quit(-1)
 		if pacman_trans_commit(data)==-1:
 			print_info("pacman_trans_commit failed\n"+pacman_get_error())
-			return -1
+			quit(-1)
 		pacman_trans_release()
-		sys.exit()
+		quit(0)
 
 
 def main(*args):
