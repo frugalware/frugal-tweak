@@ -129,13 +129,6 @@ class GUI:
 	def show_group(self,grp):
 		pkgs=pypacman.GetPkgFromGrp(grp)
 		self.pkgtoListsore(pkgs)
-		
-	'''def treegrp_doubleclicked(self, treeview, iter, tree, data):
-		model=self.treegrp.get_model()
-		iter = model.get_iter(iter)
-		grp = model.get_value(iter, 0)
-		self.show_group(grp)
-		return True	'''
 
 	def show_package(self,pkgname,pkgver):
 		pkgs = pacman_search_pkg(pkgname)
