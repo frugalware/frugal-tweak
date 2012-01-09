@@ -150,6 +150,9 @@ class GUI:
 	def destroy(window, self):
 		pypacman.pacman_finally()
 		Gtk.main_quit()
+
+	def On_clean_cache(*args):
+		sysexec(suxcommande+" python "+PYFPM_INST+" cleancache")
 	
 	def BTN_install_click(self,widget):
 		if self.packageSelected=="":

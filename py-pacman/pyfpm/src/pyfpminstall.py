@@ -28,6 +28,7 @@ UI_FILE = "/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.ui"
 #UI_FILE = "/usr/local/share/pyfpm/ui/pyfpminstall.ui"
 bo_install = 0
 bo_remove = 0
+bo_cleancache=0
 tab_pkgs=[]
 pypacman = pypacmang2()
 
@@ -213,7 +214,13 @@ class GUIINST:
 			pypacman.initPacman()
 			for pkg in tab_pkgs:
 				self.pacman_remove_pkg (pkg)
-		
+		if bo_cleancache==1:
+			self.label_what.set_text("clean cache")
+			draw()
+			pypacman.initPacman()
+			pacman_sync_cleancache()
+			quit(0)
+						
 	def destroy(window, self):
 		Gtk.main_quit()
 		
@@ -300,6 +307,9 @@ def main(*args):
 		elif arg=="remove":
 			global bo_remove
 			bo_remove=1
+		elif arg=="cleancache":
+			global bo_cleancache
+			bo_cleancache=1
 		else:
 			global tab_pkgs
 			#0 is the name of the script
