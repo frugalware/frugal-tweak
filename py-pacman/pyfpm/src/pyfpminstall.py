@@ -35,7 +35,53 @@ main_window = Gtk.Window()
 builder = Gtk.Builder()
 
 def fpm_progress_install(*args):
-	print "fpm_progress_install"
+	label_what=builder.get_object("label_what")
+	progressbar_install=builder.get_object("progressbar_install")
+	i=1
+	packagename=""
+	percent=0
+	event=0
+	count=0
+	for arg in args:
+		if i==1:
+			event=arg
+		if i==2:
+			packagename = pointer_to_string(arg)
+		if i==3:
+			percent=arg
+		if i==4:
+			count = arg
+		i=i+1
+	str_label=""
+
+	if event==PM_TRANS_PROGRESS_ADD_START:
+		if count>1:
+			str_label="Installing packages..."
+		else:
+			str_label="Installing package..."		
+	if event==PM_TRANS_PROGRESS_UPGRADE_START:
+		if count>1:
+			str_label="Upgrading packages..."
+		else:
+			str_label="Upgrading package..."
+	if event==PM_TRANS_PROGRESS_REMOVE_START:
+		if count>1:
+			str_label="Removing packages..."
+		else:
+			str_label="Removing package..."
+	if event==PM_TRANS_PROGRESS_CONFLICTS_START:
+		if count>1:
+			str_label="Checking packages for file conflicts..."
+		else:
+			str_label="Checking package for file conflicts..."
+	label_what.set_text(str_label)
+	#don't use /100 truncate to int
+	progress= "0."+str(percent)
+	if percent==100:
+		progress=1
+	if progress >=0 and progress<=1:
+		progressbar_install.set_fraction(long(progress))
+	draw()
 
 def fpm_progress_event(*args):
 	print "fpm_progress_event"
@@ -64,8 +110,7 @@ def fpm_trans_conv(*args):
 	if event==PM_TRANS_CONV_CORRUPTED_PKG:
 		if print_question("Archive is corrupted. Do you want to delete it?")==1 :
 			response[0]=1			
-	while Gtk.events_pending():
-		Gtk.main_iteration()
+	draw()
 
 def draw():
 	while Gtk.events_pending():
@@ -165,6 +210,7 @@ class GUIINST:
 			return -1
 		pacman_trans_release()
 		sys.exit()
+
 
 def main(*args):
 	if check_user()==0:
