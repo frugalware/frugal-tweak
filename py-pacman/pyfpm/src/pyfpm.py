@@ -156,7 +156,14 @@ class GUI:
 
 	def On_update_database(*args):
 		sysexec(suxcommande+" python "+PYFPM_INST+" updatedb")
-	
+
+	def On_about(*args):
+		str_text="Pyfpm\n"
+		str_text+="Frontend pacman-g2 in python/gtk3\n"
+		str_text+="Licence : GPLv3\n"
+		str_text+="authors: gaetan gourdin <bouleetbil@frogdev.info>"
+		print_info(str_text)
+		
 	def BTN_install_click(self,widget):
 		if self.packageSelected=="":
 			return
