@@ -474,7 +474,10 @@ def pacman_fetch_url(pkg):
 
 def pacman_get_error():
   print_debug("pacman_get_error")
-  return pointer_to_string(pacman.pacman_strerror(pacman.pacman_geterror()))
+  try :
+    return pointer_to_string(pacman.pacman_strerror(pacman.pacman_geterror()))
+  except:
+    return ""
 
 def pacman_print_error():
   print_debug("pacman_print_error")
@@ -487,8 +490,11 @@ def pacman_print_error():
 
 def pacman_get_pm_error():
   print_debug("pacman_get_pm_error")
-  pacman.pacman_geterror.restype = ctypes.c_int
-  return pacman.pacman_geterror()
+  try :
+    pacman.pacman_geterror.restype = ctypes.c_int
+    return pacman.pacman_geterror()
+  except:
+    return ""
 
 def pacman_c_long_to_int(l_number):
   print_debug("pacman_c_long_to_int")
