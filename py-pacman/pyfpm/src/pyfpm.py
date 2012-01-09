@@ -144,6 +144,12 @@ class GUI:
 					 "URL         : "+pacman_pkg_get_info(pkg,PM_PKG_URL)
 				textbuffer.set_text(text)
 
+		if pacman_package_is_installed(pkgname)==1 :
+			#show remove button
+			self.BTN_remove.set_property('visible', True) 
+		else:
+			self.BTN_remove.set_property('visible', False)
+
 	def destroy(window, self):
 		pypacman.pacman_finally()
 		Gtk.main_quit()
@@ -157,6 +163,7 @@ class GUI:
 		for pkg in pkgs:
 			strpkg=strpkg+" "+pkg
 		sysexec(suxcommande+" python "+PYFPM_INST+" install "+strpkg)
+		self.cleanup_info_pkg()
 
 	def BTN_remove_click(self,widget):
 		if self.packageSelected=="":
@@ -171,6 +178,7 @@ class GUI:
 		while Gtk.events_pending():
 			Gtk.main_iteration()
 		sysexec(suxcommande+" python "+PYFPM_INST+" remove "+strpkg)
+		self.cleanup_info_pkg()
 
 	def on_BTN_search_clicked(self,widget):
 		self.liststorePkg.clear()
@@ -210,14 +218,13 @@ class GUI:
 		treeiter = sel[1]
 		pkgname = model.get_value(treeiter, 1)
 		pkgver = model.get_value(treeiter, 2)
-		self.show_package(pkgname,pkgver)
-		if pacman_package_is_installed(pkgname)==1 :
-			#show remove button
-			self.BTN_remove.set_property('visible', True) 
-		else:
-			self.BTN_remove.set_property('visible', False) 
+		self.show_package(pkgname,pkgver) 
 		return True	
-		
+
+	def cleanup_info_pkg(self):
+		textbuffer = self.textdetails.get_buffer()
+		textbuffer.set_text("")
+		self.liststorePkg.clear()
 		
 def main():
 	builder = Gtk.Builder()
