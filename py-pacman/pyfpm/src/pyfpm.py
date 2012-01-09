@@ -232,7 +232,8 @@ class GUI:
 				bo_inst=0
 			self.liststorePkg.append([bo_inst,pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION)])			
 		treepkgselection = self.treepkg.get_selection()
-		treepkgselection.select_path(0)
+		treepkgselection.select_path(0)			
+		self.show_package(pacman_pkg_get_info(pkgs[0],PM_PKG_NAME),pacman_pkg_get_info(pkgs[0],PM_PKG_VERSION))
 		
 	def selection_grp(self, selection, model):
 		sel = selection.get_selected()
