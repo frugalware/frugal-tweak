@@ -230,6 +230,7 @@ class GUIINST:
 				quit(0)
 			draw()
 			pypacman.initPacman()
+			pacman_update_db(1)
 			tab_pkgs=pacman_check_update()
 			#TODO test if pacman-g2 should be updated and ask to update it in first
 			self.pacman_install_pkgs()
