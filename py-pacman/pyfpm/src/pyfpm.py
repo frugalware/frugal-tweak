@@ -114,12 +114,13 @@ class GUI:
 		tab_grp=pypacman.PacmanGetGrp()
 		for grp in tab_grp :
 			self.liststoreGrp.append([grp])
-			
+		self.SAI_search.grab_focus()
+
 	def SAI_search_key_press(self, widget, event, *args):
 		keyname = Gdk.keyval_name(event.keyval)
 		if keyname == "Return" or keyname == "KP_Enter":
 			self.search()
-			  
+
 	def toggled(self, cell_renderer, col, treeview):
 		print "checkbox checked/unchecked"
 
@@ -210,22 +211,25 @@ class GUI:
 		pypacman.pacman_finally()
 		Gtk.main_quit()
 
-	def On_checkupdate_activate(*args):
+	def On_checkupdate_activate(self,*args):
 		sysexec("python "+PYFPM_FUN)
-	
-	def On_clean_cache(*args):
-		sysexec(suxcommande+" python "+PYFPM_INST+" cleancache")
+		self.SAI_search.grab_focus()
 
-	def On_update_database(*args):
+	def On_clean_cache(self,*args):
+		sysexec(suxcommande+" python "+PYFPM_INST+" cleancache")
+		self.SAI_search.grab_focus()
+
+	def On_update_database(self,*args):
 		sysexec(suxcommande+" python "+PYFPM_INST+" updatedb")
 
-	def On_about(*args):
+	def On_about(self,*args):
 		str_text="Pyfpm\n"
 		str_text+="Frontend pacman-g2 in python/gtk3\n"
 		str_text+="Licence : GPLv3\n"
 		str_text+="authors: gaetan gourdin <bouleetbil@frogdev.info>"
 		print_info(str_text)
-		
+		self.SAI_search.grab_focus()
+
 	def BTN_install_click(self,widget):
 		if self.packageSelected=="":
 			return
@@ -236,6 +240,7 @@ class GUI:
 			strpkg=strpkg+" "+pkg
 		sysexec(suxcommande+" python "+PYFPM_INST+" install "+strpkg)
 		self.cleanup_info_pkg()
+		self.SAI_search.grab_focus()
 
 	def BTN_remove_click(self,widget):
 		if self.packageSelected=="":
@@ -251,6 +256,7 @@ class GUI:
 			Gtk.main_iteration()
 		sysexec(suxcommande+" python "+PYFPM_INST+" remove "+strpkg)
 		self.cleanup_info_pkg()
+		self.SAI_search.grab_focus()
 
 	def search(self):
 		self.liststorePkg.clear()
@@ -265,7 +271,8 @@ class GUI:
 		
 	def on_BTN_search_clicked(self,widget):
 		self.search()
-		
+		self.SAI_search.grab_focus()
+
 	def pkgtoListsore(self,pkgs):
 		bo_inst=0
 		self.liststorePkg.clear()
