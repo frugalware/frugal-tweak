@@ -175,10 +175,20 @@ class GUI:
 				textbufferChangeLog.set_text(text)
 				#download screenshot
 				filename="/tmp/"+pkgname
+				self.download("http://screenshots.debian.net/package/"+pkgname,"/tmp/pyfpm")
+				str_not="There are no (approved) screenshots for this package yet."
+				file = open("/tmp/pyfpm", "r")
+				text = 	file.read() 
+				file.close() 
+				bo_ok=1
+				if text.find(str_not)>0:
+					bo_ok=0
 				self.download("http://screenshots.debian.net/thumbnail/"+pkgname,filename)
-				if os.path.exists(filename)==1 :
-					imgscreenshot=self.builder.get_object("imgscreenshot")
+				imgscreenshot=self.builder.get_object("imgscreenshot")
+				if os.path.exists(filename)==1 and bo_ok==1 :
 					imgscreenshot.set_from_file(filename)
+				else:
+					imgscreenshot.set_from_file("")
 				
 
 	def download(self,url,where):
