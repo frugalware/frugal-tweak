@@ -26,8 +26,10 @@ from pyfpmtools.tools import *
 #or making the tarball (alternatively, use project variables)
 UI_FILE = "/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfun.ui"
 PYFPM_INST="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.py"
+UI_SPLASH = "src/splash.ui"
 #UI_FILE = "/usr/local/share/pyfpm/ui/pyfun.ui"
 #PYFPM_INST= "/usr/share/pyfpm/pyfpminstall.py"
+#PYFPM_FUN= "/usr/share/pyfpm/pyfun.py"
 
 pyconfig=configuration()
 suxcommande=pyconfig.Read('configuration','sux')
@@ -96,7 +98,18 @@ class GUI:
 		sysexec(suxcommande+" python "+PYFPM_INST+" updatesys")
 		
 def main():
+	builder = Gtk.Builder()
+	builder.add_from_file(UI_SPLASH)
+	splash = builder.get_object('splash')
+	label_what=builder.get_object("label_what")
+	label_what.set_text("Check update packages")
+	# [...] set splash up
+	splash.show()
+	# ensure it is rendered immediately
+	while Gtk.events_pending():
+		Gtk.main_iteration()
 	app = GUI()
+	splash.destroy()
 	Gtk.main()
 		
 if __name__ == "__main__":

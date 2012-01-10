@@ -28,10 +28,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label2">
+          <object class="GtkLabel" id="label_what">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Loading group...</property>
+            <property name="label" translatable="yes">Loading ...</property>
           </object>
           <packing>
             <property name="expand">False</property>
