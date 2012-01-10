@@ -58,6 +58,15 @@
                               </object>
                             </child>
                             <child>
+                              <object class="GtkMenuItem" id="menuitem6">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="use_action_appearance">False</property>
+                                <property name="label" translatable="yes">Check update</property>
+                                <signal name="activate" handler="On_checkupdate_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
                               <object class="GtkImageMenuItem" id="imagemenuitem5">
                                 <property name="label">gtk-quit</property>
                                 <property name="visible">True</property>

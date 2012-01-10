@@ -28,9 +28,11 @@ from pyfpmtools.tools import *
 UI_FILE = "src/pyfpm.ui"
 UI_SPLASH = "src/splash.ui"
 PYFPM_INST="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.py"
+PYFPM_FUN="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfun.py"
 #UI_FILE = "/usr/share/pyfpm/ui/pyfpm.ui"
 #UI_SPLASH = "/usr/share/pyfpm/ui/splash.ui"
 #PYFPM_INST= "/usr/share/pyfpm/pyfpminstall.py"
+#PYFPM_FUN= "/usr/share/pyfpm/pyfun.py"
 
 pypacman = pypacmang2()
 pypacman.initPacman()
@@ -207,6 +209,9 @@ class GUI:
 		pypacman.pacman_finally()
 		Gtk.main_quit()
 
+	def On_checkupdate_activate(*args):
+		sysexec("python "+PYFPM_FUN)
+	
 	def On_clean_cache(*args):
 		sysexec(suxcommande+" python "+PYFPM_INST+" cleancache")
 
