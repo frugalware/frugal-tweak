@@ -25,6 +25,21 @@ import ConfigParser
 homedir = os.path.expanduser('~')
 fileconfig=homedir+"/.pyfpm"
 
+#Comment the first line and uncomment the second before installing
+#or making the tarball (alternatively, use project variables)
+UI_PYFPM = "src/pyfpm.ui"
+UI_SPLASH = "src/splash.ui"
+UI_PYFUN ="src/pyfun.ui"
+UI_PYINST="src/pyfpminstall.ui"
+PYFPM_INST="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.py"
+PYFPM_FUN="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfun.py"
+#UI_PYFPM = "/usr/share/pyfpm/ui/pyfpm.ui"
+#UI_SPLASH = "/usr/share/pyfpm/ui/splash.ui"
+#UI_PYFUN ="/usr/local/share/pyfpm/ui/pyfun.ui"
+#UI_PYINST= "/usr/share/pyfpm/pyfpminstall.py"
+#PYFPM_FUN= "/usr/share/pyfpm/pyfun.py"
+#PYFPM_INST="/usr/share/pyfpm/pyfpminstall.py"
+
 def check_user():
 	if not os.geteuid()==0:
 		return 0
