@@ -168,7 +168,8 @@ class GUI:
 					import codecs
 					file = codecs.open(fileChangeLog,"r","utf-8")
 					for line in file:
-						text=text+line+"\n"
+						if line<>"":
+							text=text+line
 				else:
 					text="No changelog available for this package"
 				textbufferChangeLog.set_text(text)
