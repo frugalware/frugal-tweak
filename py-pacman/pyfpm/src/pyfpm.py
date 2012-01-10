@@ -120,7 +120,13 @@ class GUI:
 		self.treepkgselection = self.treepkg.get_selection()
 		self.treepkgselection.connect('changed', self.selection_pkg, self.liststorePkg)
 		self.treepkgselection.select_path(0)
-			
+		
+	def SAI_search_key_press(self, widget, event, *args):
+		keyname = Gdk.keyval_name(event.keyval)
+		print keyname
+		if keyname == "Return" or keyname == "KP_Enter":
+			self.search()
+			  
 	def toggled(self, cell_renderer, col, treeview):
 		print "checkbox checked/unchecked"
 
@@ -216,14 +222,19 @@ class GUI:
 		sysexec(suxcommande+" python "+PYFPM_INST+" remove "+strpkg)
 		self.cleanup_info_pkg()
 
-	def on_BTN_search_clicked(self,widget):
+	def search(self):
 		self.liststorePkg.clear()
 		search = self.SAI_search.get_text()
 		self.SAI_search.set_text("")
 		pkgs =[]
 		pkgs = pacman_search_pkg(search)
+		if len(pkgs)==0 :
+			return
 		pacman_trans_release()
 		self.pkgtoListsore(pkgs)
+		
+	def on_BTN_search_clicked(self,widget):
+		self.search()
 		
 	def pkgtoListsore(self,pkgs):
 		bo_inst=0
