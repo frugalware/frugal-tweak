@@ -26,12 +26,9 @@ pyconfig=configuration()
 suxcommande=pyconfig.Read('configuration','sux')
 if suxcommande=="":
 	suxcommande="gksu"
-liststore = Gtk.ListStore(str,str,str)
 
 class GUI:
 	def __init__(self):
-		#Global
-		self.packageSelected=""
 		
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(UI_PYFUN)
@@ -42,8 +39,8 @@ class GUI:
 
 			self.window.set_title("PyFun : update packages")
 			self.window.set_size_request(400, 300)
-
-			init()
+			self.liststore = Gtk.ListStore(str,str,str)
+			self.init()
 			self.treeview =self.builder.get_object("treeview_pkg")
 			self.columnPkgname = Gtk.TreeViewColumn('Name')
 			self.columnDesc = Gtk.TreeViewColumn('Description')
@@ -69,7 +66,7 @@ class GUI:
 			self.treeview.set_search_column(0)
 			# on autorise la classement de la colonne
 			self.columnPkgname.set_sort_column_id(0)
-			self.treeview.set_model(liststore)
+			self.treeview.set_model(self.liststore)
 		
 		self.window.show_all()
 
@@ -77,19 +74,23 @@ class GUI:
 		pypacman.pacman_finally()
 		Gtk.main_quit()
 		
-	def on_BTN_update_clicked(*args):
+	def on_BTN_update_clicked(self,*args):
 		sysexec(suxcommande+" python "+PYFPM_INST+" updatesys")
-		init()
+		self.init()
 		
-def init():
-		pacman_init()
-		pacman_init_database()
-		pacman_register_all_database()
-		pkgs =[]
-		pkgs = pacman_check_update()
-		for pkg in pkgs:
-			liststore.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION),pacman_pkg_get_info(pkg,PM_PKG_DESC)])
-		pacman_finally()
+	def init(self):
+			pacman_init()
+			pacman_init_database()
+			pacman_register_all_database()
+			pkgs =[]
+			pkgs = pacman_check_update()
+			if len(pkgs)==0:
+				pacman_finally()
+				self.liststore.clear()
+				return
+			for pkg in pkgs:
+				self.liststore.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION),pacman_pkg_get_info(pkg,PM_PKG_DESC)])
+			pacman_finally()
 
 def main():
 	builder = Gtk.Builder()
