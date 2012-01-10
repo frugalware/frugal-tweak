@@ -165,7 +165,8 @@ class GUI:
 				textbufferChangeLog = self.textchangelog.get_buffer()
 				fileChangeLog=PM_ROOT+PM_DBPATH+"/"+repo_list[0]+"/"+pkgname+"-"+pkgver+"/changelog"
 				if os.path.exists(fileChangeLog)==1:
-					file = open(fileChangeLog)
+					import codecs
+					file = codecs.open(fileChangeLog,"r","utf-8")
 					for line in file:
 						text=text+line+"\n"
 				else:
