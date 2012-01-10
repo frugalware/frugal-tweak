@@ -188,7 +188,7 @@ class GUI:
 				if os.path.exists(filename)==1 and bo_ok==1 :
 					imgscreenshot.set_from_file(filename)
 				else:
-					imgscreenshot.set_from_file("")
+					imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
 				
 
 	def download(self,url,where):

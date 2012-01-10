@@ -33,12 +33,14 @@ UI_PYFUN ="src/pyfun.ui"
 UI_PYINST="src/pyfpminstall.ui"
 PYFPM_INST="src/pyfpminstall.py"
 PYFPM_FUN="src/pyfun.py"
+PICTURE_NOT_AVAILABLE="src/screenshot_not_available.png"
 #UI_PYFPM = "/usr/share/pyfpm/ui/pyfpm.ui"
 #UI_SPLASH = "/usr/share/pyfpm/ui/splash.ui"
 #UI_PYFUN ="/usr/local/share/pyfpm/ui/pyfun.ui"
 #UI_PYINST= "/usr/share/pyfpm/pyfpminstall.py"
 #PYFPM_FUN= "/usr/share/pyfpm/pyfun.py"
 #PYFPM_INST="/usr/share/pyfpm/pyfpminstall.py"
+#PICTURE_NOT_AVAILABLE="/usr/share/pyfpm/screenshot_not_available.png"
 
 def check_user():
 	if not os.geteuid()==0:
