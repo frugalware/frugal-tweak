@@ -314,6 +314,13 @@ class GUI:
 	def cleanup_info_pkg(self):
 		textbuffer = self.textdetails.get_buffer()
 		textbuffer.set_text("")
+		textbuffer = self.textfiles.get_buffer()
+		textbuffer.set_text("")
+		textbuffer = self.textchangelog.get_buffer()
+		textbuffer.set_text("")
+		imgscreenshot=self.builder.get_object("imgscreenshot")
+		imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
+		
 		self.liststorePkg.clear()
 		
 def main():
