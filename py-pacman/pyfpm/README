@@ -1,1 +1,5 @@
 Pyfpm a GUI for pacman-g2
+
+depends:
+*pacman-g2
+*pyobject3-cairo
