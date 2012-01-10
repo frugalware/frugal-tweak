@@ -91,6 +91,9 @@ class GUI:
 		self.BTN_remove=self.builder.get_object("BTN_remove")
 		self.textfiles=self.builder.get_object("textfiles")
 		self.textchangelog=self.builder.get_object("textchangelog")
+
+		#set focus to entry search
+		self.SAI_search.grab_focus()
 		
 		#find pacman-g2 group
 		self.treegrp = self.builder.get_object("treegrp")
