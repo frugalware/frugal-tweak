@@ -22,10 +22,6 @@ import pacmang2.libpacman
 from pacmang2.libpacman import *
 from pyfpmtools.tools import *
 
-#Comment the first line and uncomment the second before installing
-#or making the tarball (alternatively, use project variables)
-UI_FILE = "/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.ui"
-#UI_FILE = "/usr/local/share/pyfpm/ui/pyfpminstall.ui"
 bo_install = 0
 bo_remove = 0
 bo_cleancache=0
@@ -198,7 +194,7 @@ def quit(i):
 
 class GUIINST:
 	def __init__(self):
-		builder.add_from_file(UI_FILE)
+		builder.add_from_file(UI_PYINST)
 		builder.connect_signals(self)
 		main_window = builder.get_object('window')
 		self.label_what=builder.get_object("label_what")
@@ -209,6 +205,7 @@ class GUIINST:
 		self.init()
 
 	def init(self):
+		global tab_pkgs
 		if bo_install==1:
 			pypacman.initPacman()
 			self.pacman_install_pkgs()	

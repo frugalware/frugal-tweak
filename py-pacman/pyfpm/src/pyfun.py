@@ -22,15 +22,6 @@ import pacmang2.libpacman
 from pacmang2.libpacman import *
 from pyfpmtools.tools import *
 
-#Comment the first line and uncomment the second before installing
-#or making the tarball (alternatively, use project variables)
-UI_FILE = "/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfun.ui"
-PYFPM_INST="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.py"
-UI_SPLASH = "src/splash.ui"
-#UI_FILE = "/usr/local/share/pyfpm/ui/pyfun.ui"
-#PYFPM_INST= "/usr/share/pyfpm/pyfpminstall.py"
-#PYFPM_FUN= "/usr/share/pyfpm/pyfun.py"
-
 pyconfig=configuration()
 suxcommande=pyconfig.Read('configuration','sux')
 if suxcommande=="":
@@ -42,7 +33,7 @@ class GUI:
 		self.packageSelected=""
 		
 		self.builder = Gtk.Builder()
-		self.builder.add_from_file(UI_FILE)
+		self.builder.add_from_file(UI_PYFUN)
 		self.builder.connect_signals(self)
 		self.window = self.builder.get_object('window')
 		if(self.window):
