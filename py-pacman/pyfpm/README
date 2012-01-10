@@ -3,17 +3,17 @@ Pyfpm a GUI for pacman-g2
 Depends:
 *pacman-g2
 *pyobject3-cairo
+*gksu
 
 Installation:
 1.install libpacman :
 $ cd py-pacman/libpacman 
 # python setup.py install
 2.install fpmtools
-edit py-pacman/pyfpmtools/pyfpmtools/tools.py
-adapt 
-PYFPM_INST="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.py"
-PYFPM_FUN="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfun.py"
 $ cd py-pacman/fpmtools 
 # python setup.py install
 
 Now you can start pyfpm
+$ cd py-pacman/pyfpm
+$ python src/pyfpm.py
+
