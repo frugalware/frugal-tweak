@@ -17,7 +17,7 @@
           <object class="GtkLabel" id="label_what">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">label</property>
+            <property name="label" translatable="yes">Pyfpm</property>
           </object>
           <packing>
             <property name="expand">False</property>
