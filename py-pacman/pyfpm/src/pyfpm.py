@@ -123,7 +123,6 @@ class GUI:
 		
 	def SAI_search_key_press(self, widget, event, *args):
 		keyname = Gdk.keyval_name(event.keyval)
-		print keyname
 		if keyname == "Return" or keyname == "KP_Enter":
 			self.search()
 			  
@@ -178,7 +177,28 @@ class GUI:
 				else:
 					text="No changelog available for this package"
 				textbufferChangeLog.set_text(text)
+				#download screenshot
+				filename="/tmp/"+pkgname
+				self.download("http://screenshots.debian.net/thumbnail/"+pkgname,filename)
+				if os.path.exists(filename)==1 :
+					imgscreenshot=self.builder.get_object("imgscreenshot")
+					imgscreenshot.set_from_file(filename)
 				
+
+	def download(self,url,where):
+		"""Copy the contents of a file from a given URL
+		to a local file.
+		"""
+		try :
+			import urllib
+			webFile = urllib.urlopen(url)
+			localFile = open(where, 'w')
+			localFile.write(webFile.read())
+			webFile.close()
+			localFile.close()
+		except :
+			pass
+			
 	def destroy(window, self):
 		pypacman.pacman_finally()
 		Gtk.main_quit()
