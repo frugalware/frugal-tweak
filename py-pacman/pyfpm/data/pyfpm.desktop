@@ -1,0 +1,11 @@
+[Desktop Entry]
+Comment=Pacman-g2 frontend
+Comment[fr]=Interface graphique pour pacman-g2
+Exec=pyfpm
+Icon=frugalware-logo
+Name=Pyfpm
+Name[fr]=Pyfpm
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Frugalware;
