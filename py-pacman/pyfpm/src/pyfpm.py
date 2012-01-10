@@ -177,11 +177,12 @@ class GUI:
 				filename="/tmp/"+pkgname
 				self.download("http://screenshots.debian.net/package/"+pkgname,"/tmp/pyfpm")
 				str_not="There are no (approved) screenshots for this package yet."
+				str_404="Error 404"
 				file = open("/tmp/pyfpm", "r")
 				text = 	file.read() 
 				file.close() 
 				bo_ok=1
-				if text.find(str_not)>0:
+				if text.find(str_not)>0 or text.find(str_404)>0:
 					bo_ok=0
 				self.download("http://screenshots.debian.net/thumbnail/"+pkgname,filename)
 				imgscreenshot=self.builder.get_object("imgscreenshot")
