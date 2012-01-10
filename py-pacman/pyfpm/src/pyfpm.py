@@ -97,7 +97,6 @@ class GUI:
 		
 		#find pacman-g2 group
 		self.treegrp = self.builder.get_object("treegrp")
-		tab_grp=pypacman.PacmanGetGrp()
 		self.liststoreGrp = Gtk.ListStore(str)
 		self.treegrp.set_model(self.liststoreGrp)
 		self.columnGrpname = Gtk.TreeViewColumn('Name')
@@ -109,8 +108,7 @@ class GUI:
 		self.treegrp.set_search_column(0)
 		# on autorise la classement de la colonne
 		self.columnGrpname.set_sort_column_id(0)
-		for grp in tab_grp :
-			self.liststoreGrp.append([grp])
+		self.init_Grp()
 		self.window.show_all()
 		#group
 		self.treegrpselection = self.treegrp.get_selection()
@@ -120,7 +118,13 @@ class GUI:
 		self.treepkgselection = self.treepkg.get_selection()
 		self.treepkgselection.connect('changed', self.selection_pkg, self.liststorePkg)
 		self.treepkgselection.select_path(0)
-		
+
+	def init_Grp(self):
+		self.liststoreGrp.clear()
+		tab_grp=pypacman.PacmanGetGrp()
+		for grp in tab_grp :
+			self.liststoreGrp.append([grp])
+			
 	def SAI_search_key_press(self, widget, event, *args):
 		keyname = Gdk.keyval_name(event.keyval)
 		if keyname == "Return" or keyname == "KP_Enter":
