@@ -25,7 +25,9 @@ from pyfpmtools.tools import *
 #Comment the first line and uncomment the second before installing
 #or making the tarball (alternatively, use project variables)
 UI_FILE = "/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfun.ui"
+PYFPM_INST="/home/gaetan/tmpgit/frugal-tweak/py-pacman/pyfpm/src/pyfpminstall.py"
 #UI_FILE = "/usr/local/share/pyfpm/ui/pyfun.ui"
+#PYFPM_INST= "/usr/share/pyfpm/pyfpminstall.py"
 
 pyconfig=configuration()
 suxcommande=pyconfig.Read('configuration','sux')
