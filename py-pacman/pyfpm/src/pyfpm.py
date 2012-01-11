@@ -141,6 +141,7 @@ class GUI:
 			if pacman_pkg_get_info(pkg,PM_PKG_NAME)==pkgname and pacman_pkg_get_info(pkg,PM_PKG_VERSION)==pkgver :
 				#files
 				text=""
+				pkgl=None
 				textbufferfiles = self.textfiles.get_buffer()
 				if pacman_package_intalled(pkgname,pkgver)==1 :
 					#show remove button
@@ -158,8 +159,9 @@ class GUI:
 				textbuffer = self.textdetails.get_buffer()
 				text="Name        : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
 					 "Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
-					 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" \
-					 "URL         : "+pointer_to_string(pacman_pkg_get_info(pkg,PM_PKG_URL))
+					 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" 
+				if pkgl<>None:
+					 text=text+"URL         : "+pointer_to_string(pacman_pkg_get_info(pkgl,PM_PKG_URL))
 				textbuffer.set_text(text)
 
 				text=""
