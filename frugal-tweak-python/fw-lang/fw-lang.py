@@ -24,12 +24,39 @@
 
 import sys
 import os
+import curses
 
 ConfigKeymap = "/etc/sysconfig/keymap"
 ConfigLanguage = "/etc/sysconfig/language"
-ConfigLanguage = "/etc/profile.d/lang.sh"
+ConfigLang = "/etc/profile.d/lang.sh"
+win=None
+
+def curses_init():
+	#init ncurses
+	curses.initscr()
+	curses.noecho()
+	curses.cbreak()
+	stdscr.keypad(1)
+
+def curses_finally():
+	curses.nocbreak()
+	stdscr.keypad(0)
+	curses.echo()
+	curses.endwin()
+
+def create_window():
+	begin_x = 20 ; begin_y = 7
+	height = 5 ; width = 40
+	global win
+	win = curses.newwin(height, width, begin_y, begin_x)
+
+def refresh_window():
+	win.refresh()
+
 def main():
-    return 0        
+	curses_init()
+	curses_finally()
+	return 0        
 
 if __name__ == "__main__":
     main()
