@@ -22,44 +22,97 @@
 # * THE SOFTWARE.
 # */
 
-import sys
-import os
-import curses
+import sys,os
 
 ConfigKeymap = "/etc/sysconfig/keymap"
-ConfigLanguage = "/etc/sysconfig/language"
 ConfigLang = "/etc/profile.d/lang.sh"
-win=None
+#ConfigLang = "lang.sh"
+#ConfigKeymap = "keymap"
 
-def curses_init():
-	#init ncurses
-	curses.initscr()
-	curses.noecho()
-	curses.cbreak()
-	stdscr.keypad(1)
-
-def curses_finally():
-	curses.nocbreak()
-	stdscr.keypad(0)
-	curses.echo()
-	curses.endwin()
-
-def create_window():
-	begin_x = 20 ; begin_y = 7
-	height = 5 ; width = 40
-	global win
-	win = curses.newwin(height, width, begin_y, begin_x)
-
-def refresh_window():
-	win.refresh()
-
-def main():
-	curses_init()
-	curses_finally()
-	return 0        
-
-if __name__ == "__main__":
-    main()
+def replace(section,value,configfile):
+	if os.path.exists(configfile)==1:
+		import codecs
+		file = codecs.open(configfile,"r","utf-8")
+		text=""
+		for line in file:
+			if line.find(section)==0:
+				line=value+"\n"
+			text=text+line
+		FILE = open(configfile,"w")
+		FILE.writelines(text)
 
 
+def print_menu():
+	print ("language...")
+	print ("1. pt_BR - Brazilian Portuguese")
+	print ("2. cz_CZ - Czech")
+	print ("3. da_NK - Danish")
+	print ("4. nl_NL - Dutch")
+	print ("5. en_US - English")
+	print ("6. fr_FR - French")
+	print ("7. de_DE - German")
+	print ("8. hu_HU - Hungarian")
+	print ("9. id_ID - Indonesian")
+	print ("10. it_IT - Italian")
+	print ("11. ro_RO - Romanian")
+	print ("12. sk_SK - Slovak")
+	print ("13. sv_SE - Swedish")
+	x = input("Select your language: ")
+	if x == 1:
+		replace("export LANG","export LANG=pt_BR",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 2:
+		replace("export LANG","export LANG=cz_CZ",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 3:
+		replace("export LANG","export LANG=da_NK",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 4:
+		replace("export LANG","export LANG=nl_NL",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 5:
+		replace("export LANG","export LANG=en_US",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 6:
+		replace("export LANG","export LANG=fr_FR",ConfigLang)
+		replace("keymap=","keymap=fr-latin9",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 7:
+		replace("export LANG","export LANG=de_DE",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 8:
+		replace("export LANG","export LANG=hu_HU",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 9:
+		replace("export LANG","export LANG=id_ID",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 10:
+		replace("export LANG","export LANG=it_IT",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 11:
+		replace("export LANG","export LANG=ro_RO",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 12:
+		replace("export LANG","export LANG=sk_SK",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	elif x == 13:
+		replace("export LANG","export LANG=sv_SE",ConfigLang)
+		replace("keymap=","keymap=",ConfigKeymap)
+		os.system("updatexorg.sh")
+	else:
+		print x
+		print_menu()
+print_menu()
 
+sys.exit()
