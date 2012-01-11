@@ -42,6 +42,13 @@ PICTURE_NOT_AVAILABLE="src/screenshot_not_available.png"
 #PYFPM_INST="/usr/share/pyfpm/pyfpminstall.py"
 #PICTURE_NOT_AVAILABLE="/usr/share/pyfpm/screenshot_not_available.png"
 
+def draw():
+	try :
+		while Gtk.events_pending():
+			Gtk.main_iteration()
+	except:
+		print "window closed"
+
 def check_user():
 	if not os.geteuid()==0:
 		return 0
