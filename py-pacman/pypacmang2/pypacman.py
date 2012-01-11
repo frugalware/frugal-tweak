@@ -208,7 +208,7 @@ def main():
   pacman_finally()
 
 def help():
-  print "py-pacman "+str(version)
+  print "py-pacman "
   print "authors :"
   print "- gaetan gourdin <bouleetbil@frogdev.org>"
   print "Licence GPL2"
