@@ -329,9 +329,7 @@ def main():
 	splash = builder.get_object('splash')
 	# [...] set splash up
 	splash.show()
-	# ensure it is rendered immediately
-	while Gtk.events_pending():
-		Gtk.main_iteration()
+	draw()
 	app = GUI()
 	splash.destroy()
 	Gtk.main()

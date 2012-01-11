@@ -100,9 +100,7 @@ def main():
 	label_what.set_text("Check update packages")
 	# [...] set splash up
 	splash.show()
-	# ensure it is rendered immediately
-	while Gtk.events_pending():
-		Gtk.main_iteration()
+	draw()
 	app = GUI()
 	splash.destroy()
 	Gtk.main()

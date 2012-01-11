@@ -180,12 +180,6 @@ def fpm_trans_conv(*args):
 			response[0]=1			
 	draw()
 
-def draw():
-	try :
-		while Gtk.events_pending():
-			Gtk.main_iteration()
-	except:
-		print "window closed"
 
 def quit(i):
 	print "bye bye"
