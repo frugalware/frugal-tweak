@@ -343,11 +343,10 @@ def _db_cb (section,db):
   print_debug("repo : "+section)
   return
 
-def _log_cb (level,msg):
-  print_console(msg)
+def _log_cb (*args):
+  for arg in args:
+  	print_console(arg)
   return
-#pac_log = globals()["_log_cb"]
-pac_log=eval("_log_cb")
 
 #callback
 pacman_cb_db_register = CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p, POINTER(PM_DB))
@@ -550,12 +549,10 @@ def pacman_init():
     print_console("Can't set option PM_OPT_LOGMASK")
     pacman_print_error()
     sys.exit()
- 
-  #log=pacman_cb_log(_log_cb)
-  #FIXME
-  #if pacman_set_option(PM_OPT_LOGCB,CMPFUNC(_db_cb))==-1:
-  #  print_console("Can't set option PM_OPT_LOGCB")
-  #  sys.exists()
+  if pacman_set_option (PM_OPT_LOGCB,globals()["_log_cb"]()) == -1:
+    print_console("Can't set option PM_OPT_LOGCB")
+    pacman_print_error()
+    sys.exit()
   
   #pacman_set_option (PM_OPT_DLCB,progress_update)
   pacman_set_option (PM_OPT_DLOFFSET,str(offset))
