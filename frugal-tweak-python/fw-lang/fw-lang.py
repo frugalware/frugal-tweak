@@ -111,7 +111,6 @@ def print_menu():
 		replace("keymap=","keymap=",ConfigKeymap)
 		os.system("updatexorg.sh")
 	else:
-		print x
 		print_menu()
 print_menu()
 
