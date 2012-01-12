@@ -56,7 +56,6 @@ def fpm_progress_install(*args):
 			count = arg
 		i=i+1
 	str_label=""
-	print event
 	if event==PM_TRANS_PROGRESS_ADD_START:
 		if count>1:
 			str_label="Installing packages..."

@@ -147,64 +147,67 @@ class GUI:
 	def show_package(self,pkgname,pkgver):
 		self.show_cursor_wait()
 		self.print_info_statusbar("Read package "+pkgname)
-		pkgs = pacman_search_pkg(pkgname)
-		self.packageSelected=pkgname
-		for pkg in pkgs:
-			if pacman_pkg_get_info(pkg,PM_PKG_NAME)==pkgname and pacman_pkg_get_info(pkg,PM_PKG_VERSION)==pkgver :
-				#files
-				text=""
-				pkgl=None
-				textbufferfiles = self.textfiles.get_buffer()
-				if pacman_package_intalled(pkgname,pkgver)==1 :
-					#show remove button
-					self.BTN_remove.set_property('visible', True)
-					pkgl = pacman_db_readpkg (db_list[0], pkgname)
-					i=pacman_pkg_getinfo(pkgl, PM_PKG_FILES)
-					while i != 0:
-						text=text+ "/"+pointer_to_string(pacman_list_getdata(i))+"\n"
-			  			i=pacman_list_next(i)	
-				else:
-					self.BTN_remove.set_property('visible', False)
-					text="Package is not installed"
-				textbufferfiles.set_text(text)				
-				text=""
-				textbuffer = self.textdetails.get_buffer()
-				text="Name        : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
-					 "Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
-					 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" 
-				if pkgl<>None:
-					 text=text+"URL         : "+pointer_to_string(pacman_pkg_get_info(pkgl,PM_PKG_URL))
-				textbuffer.set_text(text)
+		try:
+			pkgs = pacman_search_pkg(pkgname)
+			self.packageSelected=pkgname
+			for pkg in pkgs:
+				if pacman_pkg_get_info(pkg,PM_PKG_NAME)==pkgname and pacman_pkg_get_info(pkg,PM_PKG_VERSION)==pkgver :
+					#files
+					text=""
+					pkgl=None
+					textbufferfiles = self.textfiles.get_buffer()
+					if pacman_package_intalled(pkgname,pkgver)==1 :
+						#show remove button
+						self.BTN_remove.set_property('visible', True)
+						pkgl = pacman_db_readpkg (db_list[0], pkgname)
+						i=pacman_pkg_getinfo(pkgl, PM_PKG_FILES)
+						while i != 0:
+							text=text+ "/"+pointer_to_string(pacman_list_getdata(i))+"\n"
+				  			i=pacman_list_next(i)	
+					else:
+						self.BTN_remove.set_property('visible', False)
+						text="Package is not installed"
+					textbufferfiles.set_text(text)				
+					text=""
+					textbuffer = self.textdetails.get_buffer()
+					text="Name        : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
+						 "Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
+						 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" 
+					if pkgl<>None:
+						 text=text+"URL         : "+pointer_to_string(pacman_pkg_get_info(pkgl,PM_PKG_URL))
+					textbuffer.set_text(text)
 
-				text=""
-				textbufferChangeLog = self.textchangelog.get_buffer()
-				fileChangeLog=PM_ROOT+PM_DBPATH+"/"+repo_list[0]+"/"+pkgname+"-"+pkgver+"/changelog"
-				if os.path.exists(fileChangeLog)==1:
-					import codecs
-					file = codecs.open(fileChangeLog,"r","utf-8")
-					for line in file:
-						if line<>"":
-							text=text+line
-				else:
-					text="No changelog available for this package"
-				textbufferChangeLog.set_text(text)
-				#download screenshot
-				filename="/tmp/"+pkgname
-				self.download("http://screenshots.debian.net/package/"+pkgname,"/tmp/pyfpm")
-				str_not="There are no (approved) screenshots for this package yet."
-				str_404="Error 404"
-				file = open("/tmp/pyfpm", "r")
-				text = 	file.read() 
-				file.close() 
-				bo_ok=1
-				if text.find(str_not)>0 or text.find(str_404)>0:
-					bo_ok=0
-				self.download("http://screenshots.debian.net/thumbnail/"+pkgname,filename)
-				imgscreenshot=self.builder.get_object("imgscreenshot")
-				if os.path.exists(filename)==1 and bo_ok==1 :
-					imgscreenshot.set_from_file(filename)
-				else:
-					imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
+					text=""
+					textbufferChangeLog = self.textchangelog.get_buffer()
+					fileChangeLog=PM_ROOT+PM_DBPATH+"/"+repo_list[0]+"/"+pkgname+"-"+pkgver+"/changelog"
+					if os.path.exists(fileChangeLog)==1:
+						import codecs
+						file = codecs.open(fileChangeLog,"r","utf-8")
+						for line in file:
+							if line<>"":
+								text=text+line
+					else:
+						text="No changelog available for this package"
+					textbufferChangeLog.set_text(text)
+					#download screenshot
+					filename="/tmp/"+pkgname
+					self.download("http://screenshots.debian.net/package/"+pkgname,"/tmp/pyfpm")
+					str_not="There are no (approved) screenshots for this package yet."
+					str_404="Error 404"
+					file = open("/tmp/pyfpm", "r")
+					text = 	file.read() 
+					file.close() 
+					bo_ok=1
+					if text.find(str_not)>0 or text.find(str_404)>0:
+						bo_ok=0
+					self.download("http://screenshots.debian.net/thumbnail/"+pkgname,filename)
+					imgscreenshot=self.builder.get_object("imgscreenshot")
+					if os.path.exists(filename)==1 and bo_ok==1 :
+						imgscreenshot.set_from_file(filename)
+					else:
+						imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
+		except:
+			pass
 		self.print_info_statusbar("")
 		self.show_cursor_wait(0)
 				
@@ -257,6 +260,7 @@ class GUI:
 		sysexec(suxcommande+" python "+PYFPM_INST+" install "+strpkg)
 		self.cleanup_info_pkg()
 		self.SAI_search.grab_focus()
+		self.show_cursor_wait(0)
 
 	def BTN_remove_click(self,widget):
 		if self.packageSelected=="":
@@ -273,6 +277,7 @@ class GUI:
 		sysexec(suxcommande+" python "+PYFPM_INST+" remove "+strpkg)
 		self.cleanup_info_pkg()
 		self.SAI_search.grab_focus()
+		self.show_cursor_wait(0)
 
 	def search(self):
 		self.liststorePkg.clear()
@@ -340,7 +345,8 @@ class GUI:
 		textbuffer.set_text("")
 		imgscreenshot=self.builder.get_object("imgscreenshot")
 		imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
-		
+		self.show_cursor_wait(0)
+		self.print_info_statusbar("")
 		self.liststorePkg.clear()
 		
 def main():
