@@ -22,6 +22,7 @@ import pacmang2.libpacman
 from pacmang2.libpacman import *
 from pyfpmtools.tools import *
 
+version="0.0.1"
 pypacman = pypacmang2()
 pypacman.initPacman()
 #for enable some trace
@@ -253,7 +254,7 @@ class GUI:
 		sysexec(suxcommande+" python "+PYFPM_INST+" updatedb")
 
 	def On_about(self,*args):
-		str_text="Pyfpm\n"
+		str_text="Pyfpm version : "+version+"\n"
 		str_text+="Frontend pacman-g2 in python/gtk3\n"
 		str_text+="Licence : GPLv3\n"
 		str_text+="authors: gaetan gourdin <bouleetbil@frogdev.info>"
