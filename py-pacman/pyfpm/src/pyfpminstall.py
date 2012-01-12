@@ -279,7 +279,19 @@ class GUIINST:
 			quit(-1)
 
 		if pacman_trans_commit(data)==-1:
-			print_info("pacman_trans_commit failed\n"+pacman_get_error())
+			if pacman_get_pm_error()==pacman_c_long_to_int(PM_ERR_FILE_CONFLICTS):
+				text="Conflicting Files\n"
+				i=pacman_list_first(data)
+				while i != 0:
+					cnf=pacman_list_getdata(i)
+					reason=pacman_conflict_getinfo(cnf,PM_CONFLICT_TYPE)
+					if reason==PM_CONFLICT_TYPE_FILE:
+						text = text+"Package : "+ pointer_to_string(pacman_conflict_getinfo(cnf,PM_CONFLICT_TARGET))+" already provide :\n"
+						text = text+ pointer_to_string(pacman_conflict_getinfo(cnf,PM_CONFLICT_FILE))+"\n"
+					i=pacman_list_next(i)
+				print_info(text)
+			else:
+				print_info("pacman_trans_commit failed\n"+pacman_get_error())
 			quit(-1)
 		pacman_trans_release()
 		quit(0)
