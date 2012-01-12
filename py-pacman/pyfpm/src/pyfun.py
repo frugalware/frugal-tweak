@@ -83,14 +83,17 @@ class GUI:
 			pacman_init_database()
 			pacman_register_all_database()
 			pkgs =[]
-			pkgs = pacman_check_update()
-			if len(pkgs)==0:
-				pacman_finally()
+			try :
+				pkgs = pacman_check_update()
+				if len(pkgs)==0:
+					self.liststore.clear()
+					return
+				for pkg in pkgs:
+					self.liststore.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION),pacman_pkg_get_info(pkg,PM_PKG_DESC)])
+			except :
 				self.liststore.clear()
-				return
-			for pkg in pkgs:
-				self.liststore.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION),pacman_pkg_get_info(pkg,PM_PKG_DESC)])
-			pacman_finally()
+			finally:
+				pacman_finally()
 
 def main():
 	builder = Gtk.Builder()
