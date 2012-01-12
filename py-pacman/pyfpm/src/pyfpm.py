@@ -124,17 +124,28 @@ class GUI:
 	def toggled(self, cell_renderer, col, treeview):
 		print "checkbox checked/unchecked"
 
+	def show_cursor_wait(self,bo_wait=1):
+		if bo_wait :
+			watch=Gdk.Cursor(Gdk.CursorType.WATCH)
+			self.window.get_window ().set_cursor (watch)
+		else:
+			self.window.get_window ().set_cursor (None)
+		draw()
+
 	def print_info_statusbar(self,text):
 		self.statusbarInfo.push(0,text)
 		draw()
 		
 	def show_group(self,grp):
 		self.print_info_statusbar("Read packages from "+grp)
+		self.show_cursor_wait()
 		pkgs=pypacman.GetPkgFromGrp(grp)
 		self.pkgtoListsore(pkgs)
 		self.print_info_statusbar("")
+		self.show_cursor_wait(0)
 
 	def show_package(self,pkgname,pkgver):
+		self.show_cursor_wait()
 		self.print_info_statusbar("Read package "+pkgname)
 		pkgs = pacman_search_pkg(pkgname)
 		self.packageSelected=pkgname
@@ -195,6 +206,7 @@ class GUI:
 				else:
 					imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
 		self.print_info_statusbar("")
+		self.show_cursor_wait(0)
 				
 
 	def download(self,url,where):
@@ -266,6 +278,7 @@ class GUI:
 		self.liststorePkg.clear()
 		search = self.SAI_search.get_text()
 		self.print_info_statusbar("Search package "+search)
+		self.show_cursor_wait()
 		self.SAI_search.set_text("")
 		pkgs =[]
 		pkgs = pacman_search_pkg(search)
@@ -274,6 +287,7 @@ class GUI:
 		pacman_trans_release()
 		self.pkgtoListsore(pkgs)
 		self.print_info_statusbar("")
+		self.show_cursor_wait(0)
 		
 	def on_BTN_search_clicked(self,widget):
 		self.search()
