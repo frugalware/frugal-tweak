@@ -29,9 +29,13 @@ pypacman.initPacman()
 pacmang2.libpacman.printconsole=1
 pacmang2.libpacman.debug=1
 pyconfig=configuration()
-suxcommande=pyconfig.Read('configuration','sux')
-if suxcommande=="":
-	suxcommande="gksu"
+suxcommande=""
+
+def read_suxcommande() :
+	global suxcommande
+	suxcommande=pyconfig.Read('configuration','sux')
+	if suxcommande=="":
+		suxcommande="gksu"
 
 class GUI:
 	def __init__(self):
@@ -246,6 +250,11 @@ class GUI:
 		sysexec("python "+PYFPM_FUN)
 		self.SAI_search.grab_focus()
 
+	def on_MENU_CONF_activate(self,*args):
+		sysexec("python "+PYFPMCONF)
+		read_suxcommande()
+		self.SAI_search.grab_focus()
+
 	def On_clean_cache(self,*args):
 		sysexec(suxcommande+" python "+PYFPM_INST+" cleancache")
 		self.SAI_search.grab_focus()
@@ -369,6 +378,7 @@ def main():
 	# [...] set splash up
 	splash.show()
 	draw()
+	read_suxcommande()
 	app = GUI()
 	splash.destroy()
 	Gtk.main()
