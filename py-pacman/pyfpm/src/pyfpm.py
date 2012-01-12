@@ -125,16 +125,17 @@ class GUI:
 		print "checkbox checked/unchecked"
 
 	def print_info_statusbar(self,text):
-		context_id = self.statusbarInfo.get_context_id("StatusbarInfo")
-		message_id = self.statusbarInfo.push(context_id, text)
-		self.statusbarInfo.pop(context_id)
-		#statusbarInfo.remove(context_id, message_id)
+		self.statusbarInfo.push(0,text)
+		draw()
 		
 	def show_group(self,grp):
+		self.print_info_statusbar("Read packages from "+grp)
 		pkgs=pypacman.GetPkgFromGrp(grp)
 		self.pkgtoListsore(pkgs)
+		self.print_info_statusbar("")
 
 	def show_package(self,pkgname,pkgver):
+		self.print_info_statusbar("Read package "+pkgname)
 		pkgs = pacman_search_pkg(pkgname)
 		self.packageSelected=pkgname
 		for pkg in pkgs:
@@ -193,6 +194,7 @@ class GUI:
 					imgscreenshot.set_from_file(filename)
 				else:
 					imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
+		self.print_info_statusbar("")
 				
 
 	def download(self,url,where):
@@ -263,6 +265,7 @@ class GUI:
 	def search(self):
 		self.liststorePkg.clear()
 		search = self.SAI_search.get_text()
+		self.print_info_statusbar("Search package "+search)
 		self.SAI_search.set_text("")
 		pkgs =[]
 		pkgs = pacman_search_pkg(search)
@@ -270,6 +273,7 @@ class GUI:
 			return
 		pacman_trans_release()
 		self.pkgtoListsore(pkgs)
+		self.print_info_statusbar("")
 		
 	def on_BTN_search_clicked(self,widget):
 		self.search()
