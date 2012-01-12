@@ -554,7 +554,6 @@ def pacman_init():
     pacman_print_error()
     sys.exit()
   
-  #pacman_set_option (PM_OPT_DLCB,progress_update)
   pacman_set_option (PM_OPT_DLOFFSET,str(offset))
   pacman_set_option (PM_OPT_DLRATE,str(rate))
   pacman_set_option (PM_OPT_DLHOWMANY,str(howmany))
