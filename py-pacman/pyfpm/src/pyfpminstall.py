@@ -290,6 +290,15 @@ class GUIINST:
 						text = text+ pointer_to_string(pacman_conflict_getinfo(cnf,PM_CONFLICT_FILE))+"\n"
 					i=pacman_list_next(i)
 				print_info(text)
+			elif pacman_get_pm_error()==pacman_c_long_to_int(PM_ERR_PKG_CORRUPTED):
+				#TODO : find package corrupted
+				'''i=pacman_list_first(data)
+				while i != 0:
+					packages=pacman_list_getdata(i)
+					i=pacman_list_next(i)'''
+				print_info("Corrupted package(s)")
+			elif pacman_get_pm_error()==pacman_c_long_to_int(PM_ERR_RETRIEVE):
+				print_info("Couldn't download package")
 			else:
 				print_info("pacman_trans_commit failed\n"+pacman_get_error())
 			quit(-1)
