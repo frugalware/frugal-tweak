@@ -92,8 +92,7 @@ class GUI:
 					self.liststore.append([pacman_pkg_get_info(pkg,PM_PKG_NAME),pacman_pkg_get_info(pkg,PM_PKG_VERSION),pacman_pkg_get_info(pkg,PM_PKG_DESC)])
 			except :
 				self.liststore.clear()
-			finally:
-				pacman_finally()
+				
 
 def main():
 	builder = Gtk.Builder()
