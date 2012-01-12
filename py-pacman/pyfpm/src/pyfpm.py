@@ -26,8 +26,9 @@ version="0.0.1"
 pypacman = pypacmang2()
 pypacman.initPacman()
 #for enable some trace
+'''
 pacmang2.libpacman.printconsole=1
-pacmang2.libpacman.debug=1
+pacmang2.libpacman.debug=1'''
 pyconfig=configuration()
 suxcommande=""
 
@@ -152,82 +153,87 @@ class GUI:
 	def show_package(self,pkgname,pkgver):
 		self.show_cursor_wait()
 		self.print_info_statusbar("Read package "+pkgname)
+		bo_find=0
 		try:
 			pkgs = pacman_search_pkg(pkgname)
 			self.packageSelected=pkgname
 			for pkg in pkgs:
 				if pacman_pkg_get_info(pkg,PM_PKG_NAME)==pkgname and pacman_pkg_get_info(pkg,PM_PKG_VERSION)==pkgver :
-					#files
-					text=""
-					pkgl=None
-					textbufferfiles = self.textfiles.get_buffer()
-					if pacman_package_intalled(pkgname,pkgver)==1 :
-						#show remove button
-						self.BTN_remove.set_property('visible', True)
-						pkgl = pacman_db_readpkg (db_list[0], pkgname)
-						i=pacman_pkg_getinfo(pkgl, PM_PKG_FILES)
-						while i != 0:
-							text=text+ "/"+pointer_to_string(pacman_list_getdata(i))+"\n"
-				  			i=pacman_list_next(i)	
-					else:
-						self.BTN_remove.set_property('visible', False)
-						text="Package is not installed"
-					textbufferfiles.set_text(text)				
-					text=""
-					textbuffer = self.textdetails.get_buffer()
-					text="Name        : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
-						 "Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
-						 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" 
-					if pkgl<>None:
-						 text=text+"URL         : "+pointer_to_string(pacman_pkg_get_info(pkgl,PM_PKG_URL))+"\n"
-					
-					i = pacman_pkg_getinfo(pkg, PM_PKG_DEPENDS)
-					text=text+"Depends    :\n"
-					while i !=0 :
-						text=text+pointer_to_string(pacman_list_getdata(i))+"\n"
-						i=pacman_list_next(i)
-
-					textbuffer.set_text(text)
-
-					text=""
-					textbufferChangeLog = self.textchangelog.get_buffer()
-					fileChangeLog=PM_ROOT+PM_DBPATH+"/"+repo_list[0]+"/"+pkgname+"-"+pkgver+"/changelog"
-					if os.path.exists(fileChangeLog)==1:
-						import codecs
-						file = codecs.open(fileChangeLog,"r","utf-8")
-						for line in file:
-							if line<>"":
-								text=text+line
-					else:
-						text="No changelog available for this package"
-					textbufferChangeLog.set_text(text)
-					#download screenshot
-					filename="/tmp/"+pkgname
-					self.download("http://screenshots.debian.net/package/"+pkgname,"/tmp/pyfpm")
-					str_not="There are no (approved) screenshots for this package yet."
-					str_404="Error 404"
-					file = open("/tmp/pyfpm", "r")
-					text = 	file.read() 
-					file.close() 
-					bo_ok=1
-					if text.find(str_not)>0 or text.find(str_404)>0:
-						bo_ok=0
-					self.download("http://screenshots.debian.net/thumbnail/"+pkgname,filename)
-					imgscreenshot=self.builder.get_object("imgscreenshot")
-					if os.path.exists(filename)==1 and bo_ok==1 :
-						imgscreenshot.set_from_file(filename)
-					else:
-						imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
-				else:
-					#nobuild package or not in fdb
-					self.cleanup_info_pkg(0)
-				
+					bo_find=1
+					self.show_packagedetails(pkgname,pkgver,pkg)
+					break
 		except:
 			pass
+		if bo_find==0:
+			#nobuild package or not in fdb read local information
+			pkg = pacman_db_readpkg (db_list[0], pkgname)
+			self.show_packagedetails(pkgname,pkgver,pkg)
 		self.print_info_statusbar("")
 		self.show_cursor_wait(0)
 				
+	def show_packagedetails(self,pkgname,pkgver,pkg):
+		#files
+		text=""
+		pkgl=None
+		textbufferfiles = self.textfiles.get_buffer()
+		if pacman_package_intalled(pkgname,pkgver)==1 :
+			#show remove button
+			self.BTN_remove.set_property('visible', True)
+			pkgl = pacman_db_readpkg (db_list[0], pkgname)
+			i=pacman_pkg_getinfo(pkgl, PM_PKG_FILES)
+			while i != 0:
+				text=text+ "/"+pointer_to_string(pacman_list_getdata(i))+"\n"
+	  			i=pacman_list_next(i)	
+		else:
+			self.BTN_remove.set_property('visible', False)
+			text="Package is not installed"
+		textbufferfiles.set_text(text)				
+		text=""
+		textbuffer = self.textdetails.get_buffer()
+		text="Name        : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
+			 "Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
+			 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" 
+		if pkgl<>None:
+			 text=text+"URL         : "+pointer_to_string(pacman_pkg_get_info(pkgl,PM_PKG_URL))+"\n"
+		
+		i = pacman_pkg_getinfo(pkg, PM_PKG_DEPENDS)
+		text=text+"Depends    :\n"
+		while i !=0 :
+			text=text+pointer_to_string(pacman_list_getdata(i))+"\n"
+			i=pacman_list_next(i)
 
+		textbuffer.set_text(text)
+
+		text=""
+		textbufferChangeLog = self.textchangelog.get_buffer()
+		fileChangeLog=PM_ROOT+PM_DBPATH+"/"+repo_list[0]+"/"+pkgname+"-"+pkgver+"/changelog"
+		if os.path.exists(fileChangeLog)==1:
+			import codecs
+			file = codecs.open(fileChangeLog,"r","utf-8")
+			for line in file:
+				if line<>"":
+					text=text+line
+		else:
+			text="No changelog available for this package"
+		textbufferChangeLog.set_text(text)
+		#download screenshot
+		filename="/tmp/"+pkgname
+		self.download("http://screenshots.debian.net/package/"+pkgname,"/tmp/pyfpm")
+		str_not="There are no (approved) screenshots for this package yet."
+		str_404="Error 404"
+		file = open("/tmp/pyfpm", "r")
+		text = 	file.read() 
+		file.close() 
+		bo_ok=1
+		if text.find(str_not)>0 or text.find(str_404)>0:
+			bo_ok=0
+		self.download("http://screenshots.debian.net/thumbnail/"+pkgname,filename)
+		imgscreenshot=self.builder.get_object("imgscreenshot")
+		if os.path.exists(filename)==1 and bo_ok==1 :
+			imgscreenshot.set_from_file(filename)
+		else:
+			imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
+		
 	def download(self,url,where):
 		"""Copy the contents of a file from a given URL
 		to a local file.
