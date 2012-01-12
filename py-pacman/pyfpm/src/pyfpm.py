@@ -175,6 +175,7 @@ class GUI:
 						 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" 
 					if pkgl<>None:
 						 text=text+"URL         : "+pointer_to_string(pacman_pkg_get_info(pkgl,PM_PKG_URL))+"\n"
+					
 					i = pacman_pkg_getinfo(pkg, PM_PKG_DEPENDS)
 					text=text+"Depends    :\n"
 					while i !=0 :
@@ -212,6 +213,10 @@ class GUI:
 						imgscreenshot.set_from_file(filename)
 					else:
 						imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
+				else:
+					#nobuild package or not in fdb
+					self.cleanup_info_pkg(0)
+				
 		except:
 			pass
 		self.print_info_statusbar("")
@@ -342,7 +347,7 @@ class GUI:
 			return True
 		return True	
 
-	def cleanup_info_pkg(self):
+	def cleanup_info_pkg(self,cleanliste=1):
 		textbuffer = self.textdetails.get_buffer()
 		textbuffer.set_text("")
 		textbuffer = self.textfiles.get_buffer()
@@ -353,7 +358,8 @@ class GUI:
 		imgscreenshot.set_from_file(PICTURE_NOT_AVAILABLE)
 		self.show_cursor_wait(0)
 		self.print_info_statusbar("")
-		self.liststorePkg.clear()
+		if cleanliste==1:
+			self.liststorePkg.clear()
 		
 def main():
 	builder = Gtk.Builder()
