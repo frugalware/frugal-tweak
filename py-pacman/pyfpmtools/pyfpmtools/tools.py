@@ -22,25 +22,32 @@ from pacmang2.libpacman import *
 import ConfigParser
 
 #global 
+#change it for 0 before release a new tarball
+devel_mode=1
 homedir = os.path.expanduser('~')
 fileconfig=homedir+"/.pyfpm"
 
-#Comment the first line and uncomment the second before installing
-#or making the tarball (alternatively, use project variables)
 UI_PYFPM = "src/pyfpm.ui"
+UI_PYFPMCONF = "src/pyfpm-configuration.ui"
 UI_SPLASH = "src/splash.ui"
 UI_PYFUN ="src/pyfun.ui"
 UI_PYINST="src/pyfpminstall.ui"
 PYFPM_INST="src/pyfpminstall.py"
 PYFPM_FUN="src/pyfun.py"
+PYFPMCONF="src/pyfpm-configuration.py"
 PICTURE_NOT_AVAILABLE="src/screenshot_not_available.png"
-#UI_PYFPM = "/usr/share/pyfpm/ui/pyfpm.ui"
-#UI_SPLASH = "/usr/share/pyfpm/ui/splash.ui"
-#UI_PYFUN ="/usr/local/share/pyfpm/ui/pyfun.ui"
-#UI_PYINST= "/usr/share/pyfpm/pyfpminstall.py"
-#PYFPM_FUN= "/usr/share/pyfpm/pyfun.py"
-#PYFPM_INST="/usr/share/pyfpm/pyfpminstall.py"
-#PICTURE_NOT_AVAILABLE="/usr/share/pyfpm/screenshot_not_available.png"
+
+if devel_mode==0:
+	UI_PYFPM = "/usr/share/pyfpm/ui/pyfpm.ui"
+	UI_SPLASH = "/usr/share/pyfpm/ui/splash.ui"
+	UI_PYFUN ="/usr/local/share/pyfpm/ui/pyfun.ui"
+	UI_PYINST= "/usr/share/pyfpm/pyfpminstall.py"
+	PYFPM_FUN= "/usr/share/pyfpm/pyfun.py"
+	PYFPM_INST="/usr/share/pyfpm/pyfpminstall.py"
+	PYFPMCONF="/usr/share/pyfpm/pyfpm-configuration.py"
+	UI_PYFPMCONF = "/usr/share/pyfpm/ui/pyfpm-configuration.ui"
+	PICTURE_NOT_AVAILABLE="/usr/share/pyfpm/screenshot_not_available.png"
+
 
 def draw():
 	try :
@@ -81,10 +88,14 @@ class configuration:
 			return ""
 	def Write(self,section,option,value):
 		config = ConfigParser.ConfigParser()
-		config.add_section(section)
-		config.set(section, options, value)
-		# write to screen
-		config.write(sys.stdout)
+		config.read(fileconfig)
+		try :
+			config.add_section(section)
+		except:
+			pass
+		config.set(section, option, value)
+		with open(fileconfig, 'w') as configfile:
+			config.write(configfile)
 
 class pypacmang2:
 	def initPacman(self):
