@@ -29,11 +29,15 @@ bo_updatedb=0
 bo_updatesys=0
 tab_pkgs=[]
 pypacman = pypacmang2()
+#for enable some trace
+pacmang2.libpacman.printconsole=1
+pacmang2.libpacman.debug=1
 
 main_window = Gtk.Window()
 builder = Gtk.Builder()
 
 def fpm_progress_install(*args):
+	print_debug("fpm_progress_install")
 	label_what=builder.get_object("label_what")
 	progressbar_install=builder.get_object("progressbar_install")
 	i=1
@@ -87,6 +91,7 @@ def fpm_progress_install(*args):
 		print "window closed"
 
 def fpm_progress_event(*args):
+	print_debug("fpm_progress_event")
 	label_what=builder.get_object("label_what")
 	progressbar_install=builder.get_object("progressbar_install")
 	i=1
@@ -156,6 +161,7 @@ def fpm_progress_event(*args):
 
 		
 def fpm_trans_conv(*args):
+	print_debug("fpm_trans_conv")
 	i=1
 	for arg in args:
 		if i==1:
@@ -180,6 +186,22 @@ def fpm_trans_conv(*args):
 			response[0]=1			
 	draw()
 
+def fpm_progress_update(*args):
+	print_debug("fpm_progress_update")
+	label_what=builder.get_object("label_what")
+	progressbar_install=builder.get_object("progressbar_install")
+	label_what.set_text("Download fpm...")
+	#FIXME I don't have any args 
+	#globals()["fpm_progress_update"]() don't send arguments
+	#just change progress bar for user see that download
+	percent =progressbar_install.get_fraction()
+	if percent == 1:
+		percent=0
+	percent=percent+0.25
+	progressbar_install.set_fraction(percent)
+	for arg in args:
+		print arg
+	draw()
 
 def quit(i):
 	print "bye bye"
@@ -236,6 +258,7 @@ class GUIINST:
 		
 	def pacman_install_pkgs(self):
 		self.label_what.set_text("installation")
+		pacman_set_option (PM_OPT_DLCB, globals()["fpm_progress_update"]())
 		draw()
 		for repo in repo_list :
 			pacman_set_option(PM_OPT_DLFNM, repo)
