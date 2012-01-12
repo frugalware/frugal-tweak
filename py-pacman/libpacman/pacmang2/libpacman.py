@@ -310,6 +310,8 @@ PM_TRANS_CONV_LOCAL_NEWER = 16
 PM_TRANS_CONV_LOCAL_UPTODATE = 32
 PM_TRANS_CONV_REMOVE_HOLDPKG = 64
 
+PM_CONFLICT_TYPE_TARGET = 1
+PM_CONFLICT_TYPE_FILE = 2
 
 #some class for pacman-g2
 class PM_LIST(Structure):
@@ -470,6 +472,15 @@ def pacman_fetch_url(pkg):
   print_debug("pacman_fetch_url")
   package = pacman.pacman_fetch_pkgurl(pkg)
   print_console("Donwload "+pacman_pkg_get_info(pkg,PM_PKG_NAME))
+
+PM_CONFLICT_TARGET = 1
+PM_CONFLICT_TYPE = 2
+PM_CONFLICT_FILE = 3
+PM_CONFLICT_CTARGET = 4
+
+def pacman_conflict_getinfo(conflict,parm):
+  print_debug("pacman_conflict_getinfo")
+  return pacman.pacman_conflict_getinfo(conflict,parm)	
 
 def pacman_get_error():
   print_debug("pacman_get_error")
