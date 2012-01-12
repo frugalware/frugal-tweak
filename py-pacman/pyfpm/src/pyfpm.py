@@ -26,9 +26,8 @@ version="0.0.1"
 pypacman = pypacmang2()
 pypacman.initPacman()
 #for enable some trace
-'''
 pacmang2.libpacman.printconsole=1
-pacmang2.libpacman.debug=1'''
+pacmang2.libpacman.debug=1
 pyconfig=configuration()
 suxcommande=""
 

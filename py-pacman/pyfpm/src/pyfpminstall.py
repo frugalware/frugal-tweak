@@ -233,13 +233,13 @@ class GUIINST:
 			draw()
 			pypacman.initPacman()
 			pacman_sync_cleancache()
-			quit(0)
+			
 		if bo_updatedb==1:
 			self.label_what.set_text("update database")
 			draw()
 			pypacman.initPacman()
 			pacman_update_db(1)
-			quit(0)
+			
 		if bo_updatesys==1:
 			if print_question ("Update your system ?")<>1:
 				quit(0)
@@ -249,7 +249,8 @@ class GUIINST:
 			tab_pkgs=pacman_check_update()
 			#TODO test if pacman-g2 should be updated and ask to update it in first
 			self.pacman_install_pkgs()
-			quit(0)
+		
+		quit(0)
   
 						
 	def destroy(window, self):
