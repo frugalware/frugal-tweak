@@ -186,14 +186,14 @@ class GUI:
 		textbufferfiles.set_text(text)				
 		text=""
 		textbuffer = self.textdetails.get_buffer()
-		text="Name        : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
-			 "Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
-			 "Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" 
+		text="Name         : "+pacman_pkg_get_info(pkg,PM_PKG_NAME) +"\n" \
+			"Version     : "+pacman_pkg_get_info(pkg,PM_PKG_VERSION)+"\n" \
+			"Description : "+pacman_pkg_get_info(pkg,PM_PKG_DESC)+"\n" 
 		if pkgl<>None:
-			 text=text+"URL         : "+pointer_to_string(pacman_pkg_get_info(pkgl,PM_PKG_URL))+"\n"
+			text=text+"URL         : "+pointer_to_string(pacman_pkg_get_info(pkgl,PM_PKG_URL))+"\n"
 		
 		i = pacman_pkg_getinfo(pkg, PM_PKG_DEPENDS)
-		text=text+"Depends    :\n"
+		text=text+"Depends     :\n"
 		while i !=0 :
 			text=text+pointer_to_string(pacman_list_getdata(i))+"\n"
 			i=pacman_list_next(i)
