@@ -31,17 +31,20 @@ devel_mode=1
 homedir = os.path.expanduser('~')
 fileconfig=homedir+"/.pyfpm"
 
-UI_PYFPM = "src/pyfpm.ui"
-UI_PYFPMCONF = "src/pyfpm-configuration.ui"
-UI_SPLASH = "src/splash.ui"
-UI_PYFUN ="src/pyfun.ui"
-UI_PYINST="src/pyfpminstall.ui"
-PYFPM_INST="src/pyfpminstall.py"
-PYFPM_FUN="src/pyfun.py"
-PYFPMCONF="src/pyfpm-configuration.py"
-PICTURE_NOT_AVAILABLE="src/screenshot_not_available.png"
-
-if devel_mode==0:
+if devel_mode==1:
+	UI_PYFPM = "src/pyfpm.ui"
+	UI_PYFPMCONF = "src/pyfpm-configuration.ui"
+	UI_SPLASH = "src/splash.ui"
+	UI_PYFUN ="src/pyfun.ui"
+	UI_PYINST="src/pyfpminstall.ui"
+	PYFPM_INST="src/pyfpminstall.py"
+	PYFPM_FUN="src/pyfun.py"
+	PYFPMCONF="src/pyfpm-configuration.py"
+	PICTURE_NOT_AVAILABLE="src/screenshot_not_available.png"
+	#for enable some trace
+	pacmang2.libpacman.printconsole=1
+	pacmang2.libpacman.debug=1
+else:
 	UI_PYFPM = "/usr/share/pyfpm/ui/pyfpm.ui"
 	UI_SPLASH = "/usr/share/pyfpm/ui/splash.ui"
 	UI_PYFUN ="/usr/local/share/pyfpm/ui/pyfun.ui"
