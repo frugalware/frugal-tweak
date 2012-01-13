@@ -21,6 +21,10 @@ import pacmang2.libpacman
 from pacmang2.libpacman import *
 import ConfigParser
 
+#can quit program with ctrl-C
+import signal
+signal.signal(signal.SIGINT,signal.SIG_DFL)
+
 #global 
 #change it for 0 before release a new tarball
 devel_mode=1
