@@ -18,6 +18,7 @@
 
 from gi.repository import Gtk, GdkPixbuf, Gdk
 import os, sys
+import time
 import pacmang2.libpacman
 from pacmang2.libpacman import *
 from pyfpmtools.tools import *
@@ -28,16 +29,17 @@ bo_cleancache=0
 bo_updatedb=0
 bo_updatesys=0
 tab_pkgs=[]
+
+bo_download=0
 pypacman = pypacmang2()
-#for enable some trace
-pacmang2.libpacman.printconsole=1
-pacmang2.libpacman.debug=1
 
 main_window = Gtk.Window()
 builder = Gtk.Builder()
 
 def fpm_progress_install(*args):
 	print_debug("fpm_progress_install")
+	global bo_download
+	bo_download=1
 	label_what=builder.get_object("label_what")
 	progressbar_install=builder.get_object("progressbar_install")
 	i=1
@@ -78,19 +80,22 @@ def fpm_progress_install(*args):
 			str_label="Checking package for file conflicts..."
 	try:
 		if str_label<>"":
-			label_what.set_text(str_label)
-		#don't use /100 truncate to int
-		progress= "0."+str(percent)
-		if percent==100:
-			progress=1
-		if progress >=0 and progress<=1:
-			progressbar_install.set_fraction(long(progress))
+			label_what.set_text(unicode(str_label))
+		progress=0
+		try :
+			progress=float(float(percent)/100)
+		except :
+			pass
+		progressbar_install.set_fraction(progress)
 		draw()
+
 	except :
-		print "window closed"
+		e = sys.exc_info()[1]
+		print e
 
 def fpm_progress_event(*args):
 	print_debug("fpm_progress_event")
+	global bo_download
 	label_what=builder.get_object("label_what")
 	progressbar_install=builder.get_object("progressbar_install")
 	i=1
@@ -105,6 +110,8 @@ def fpm_progress_event(*args):
 			data2=arg
 		i=i+1
 
+	if event!=PM_TRANS_EVT_RETRIEVE_START and event !=PM_TRANS_EVT_RESOLVEDEPS_START and event !=PM_TRANS_EVT_RESOLVEDEPS_DONE:
+		bo_download=0
 	str_data1=""
 	if data1<>None:
 		str_data1=pointer_to_string(pacman_pkg_getinfo(data1, PM_PKG_NAME))
@@ -149,6 +156,9 @@ def fpm_progress_event(*args):
 			str_label="Done"
 	if event==PM_TRANS_EVT_RETRIEVE_START:
 			str_label="Retrieving packages..."
+			import threading
+			a = threading.Thread(None, fpm_show_download, None)
+			a.start()
 			progress = 1
 	try:
 		if str_label<>"":
@@ -185,27 +195,44 @@ def fpm_trans_conv(*args):
 			response[0]=1			
 	draw()
 
-def fpm_progress_update(*args):
-	print_debug("fpm_progress_update")
+
+def fpm_show_download():
 	label_what=builder.get_object("label_what")
-	progressbar_install=builder.get_object("progressbar_install")
 	label_what.set_text("Download fpm...")
+	progressbar_install=builder.get_object("progressbar_install")
 	#FIXME I don't have any args 
 	#globals()["fpm_progress_update"]() don't send arguments
 	#just change progress bar for user see that download
-	percent =progressbar_install.get_fraction()
-	if percent == 1:
-		percent=0
-	percent=percent+0.25
-	progressbar_install.set_fraction(percent)
+	percent=0
+	progress=float(float(percent)/100)
+	global bo_download
+	while bo_download==0:
+		import time
+		time.sleep(0.5)
+		percent=percent+10
+		progress=float(float(percent)/100)
+		if percent==100:
+			percent=0
+		progressbar_install.set_fraction(progress)
+		draw()
+
+def fpm_progress_update(*args):
+	print_debug("fpm_progress_update")
+	'''import threading
+	a = threading.Thread(None, fpm_show_download, None)
+	a.start()'''
+	'''
 	for arg in args:
-		print arg
-	draw()
+		print arg'''
+
 
 def quit(i):
 	print "bye bye"
+	global  bo_download	
+	bo_download=1
 	pypacman.pacman_finally()
 	sys.exit(i)
+
 
 class GUIINST:
 	def __init__(self):
@@ -221,25 +248,23 @@ class GUIINST:
 
 	def init(self):
 		global tab_pkgs
-		if bo_install==1:
-			pypacman.initPacman()
-			self.pacman_install_pkgs()	
 		if bo_remove==1:
 			pypacman.initPacman()
 			for pkg in tab_pkgs:
 				self.pacman_remove_pkg (pkg)
+		if bo_install==1:
+			pypacman.initPacman()
+			self.pacman_install_pkgs()	
 		if bo_cleancache==1:
 			self.label_what.set_text("clean cache")
 			draw()
 			pypacman.initPacman()
-			pacman_sync_cleancache()
-			
+			pacman_sync_cleancache()	
 		if bo_updatedb==1:
 			self.label_what.set_text("update database")
 			draw()
 			pypacman.initPacman()
 			pacman_update_db(1)
-			
 		if bo_updatesys==1:
 			if print_question ("Update your system ?")<>1:
 				quit(0)
@@ -304,7 +329,6 @@ class GUIINST:
 				print_info("pacman_trans_commit failed\n"+pacman_get_error())
 			quit(-1)
 		pacman_trans_release()
-		quit(0)
 
 	def pacman_remove_pkg(self,packagename,removedep=0):
 		self.label_what.set_text("uninstall "+packagename)
@@ -317,7 +341,7 @@ class GUIINST:
 		pm_trans_flag = PM_TRANS_FLAG_NOCONFLICTS
 		if removedep == 1 :
 			pm_trans_flag=PM_TRANS_FLAG_CASCADE
-		if pacman_trans_init(PM_TRANS_TYPE_REMOVE,pm_trans_flag, pacman_trans_cb_event(fpm_progress_event), pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)) == -1 :
+		if pacman_trans_init(PM_TRANS_TYPE_REMOVE,pm_trans_flag, pacman_trans_cb_event(fpm_progress_event),pacman_trans_cb_conv(fpm_trans_conv), pacman_trans_cb_progress(fpm_progress_install)) == -1 :
 			print_info("pacman_trans_init failed\n"+pacman_get_error())
 			quit(-1)
 		if pacman_trans_addtarget(packagename)==-1 :
@@ -346,8 +370,6 @@ class GUIINST:
 			print_info("pacman_trans_commit failed\n"+pacman_get_error())
 			quit(-1)
 		pacman_trans_release()
-		quit(0)
-
 
 def main(*args):
 	if check_user()==0:
