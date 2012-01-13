@@ -29,7 +29,7 @@ bo_cleancache=0
 bo_updatedb=0
 bo_updatesys=0
 tab_pkgs=[]
-
+text_action="Download fpm..."
 bo_download=0
 pypacman = pypacmang2()
 
@@ -198,7 +198,8 @@ def fpm_trans_conv(*args):
 
 def fpm_show_download():
 	label_what=builder.get_object("label_what")
-	label_what.set_text("Download fpm...")
+	global text_action
+	label_what.set_text(text_action)
 	progressbar_install=builder.get_object("progressbar_install")
 	#FIXME I don't have any args 
 	#globals()["fpm_progress_update"]() don't send arguments
@@ -225,6 +226,12 @@ def fpm_progress_update(*args):
 	for arg in args:
 		print arg'''
 
+def show_action(text):
+	import threading
+	global text_action
+	text_action=text
+	a = threading.Thread(None, fpm_show_download, None)
+	a.start()
 
 def quit(i):
 	print "bye bye"
@@ -257,11 +264,13 @@ class GUIINST:
 			self.pacman_install_pkgs()	
 		if bo_cleancache==1:
 			self.label_what.set_text("clean cache")
+			show_action("clean cache")
 			draw()
 			pypacman.initPacman()
 			pacman_sync_cleancache()	
 		if bo_updatedb==1:
 			self.label_what.set_text("update database")
+			show_action("update database")
 			draw()
 			pypacman.initPacman()
 			pacman_update_db(1)
@@ -270,6 +279,7 @@ class GUIINST:
 				quit(0)
 			draw()
 			pypacman.initPacman()
+			show_action("update database")
 			pacman_update_db(1)
 			tab_pkgs=pacman_check_update()
 			#TODO test if pacman-g2 should be updated and ask to update it in first

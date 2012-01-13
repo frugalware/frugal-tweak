@@ -263,6 +263,9 @@ class GUI:
 	def On_clean_cache(self,*args):
 		sysexec(suxcommande+" python "+PYFPM_INST+" cleancache")
 		self.SAI_search.grab_focus()
+		draw()
+		self.init_Grp()		
+		self.treegrpselection.select_path(0)
 
 	def On_update_database(self,*args):
 		sysexec(suxcommande+" python "+PYFPM_INST+" updatedb")
