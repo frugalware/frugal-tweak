@@ -251,6 +251,9 @@ class GUI:
 	def On_checkupdate_activate(self,*args):
 		sysexec("python "+PYFPM_FUN)
 		self.SAI_search.grab_focus()
+		draw()
+		self.init_Grp()		
+		self.treegrpselection.select_path(0)
 
 	def on_MENU_CONF_activate(self,*args):
 		sysexec("python "+PYFPMCONF)
@@ -263,7 +266,10 @@ class GUI:
 
 	def On_update_database(self,*args):
 		sysexec(suxcommande+" python "+PYFPM_INST+" updatedb")
-
+		draw()
+		self.init_Grp()		
+		self.treegrpselection.select_path(0)
+		
 	def On_about(self,*args):
 		str_text="Pyfpm version : "+version+"\n"
 		str_text+="Frontend pacman-g2 in python/gtk3\n"
