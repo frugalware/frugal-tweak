@@ -61,7 +61,9 @@ def draw():
 		while Gtk.events_pending():
 			Gtk.main_iteration()
 	except:
+		e = sys.exc_info()[1]
 		print "window closed"
+		print e
 
 def check_user():
 	if not os.geteuid()==0:
