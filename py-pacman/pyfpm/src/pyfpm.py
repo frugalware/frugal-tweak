@@ -389,6 +389,8 @@ def main():
 	# [...] set splash up
 	splash.show()
 	draw()
+	import time
+	time.sleep(1)
 	read_suxcommande()
 	app = GUI()
 	splash.destroy()
