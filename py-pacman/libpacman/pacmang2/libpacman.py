@@ -28,13 +28,6 @@ from _ctypes import PyObj_FromPtr
 import ctypes
 import dircache
 
-## ctypes does not clearly expose these types ##
-PyCFuncPtrType = type(ctypes.CFUNCTYPE(ctypes.c_void_p))
-PyCArrayType = type( ctypes.c_int * 2 )
-PyCPointerType = type( ctypes.POINTER(ctypes.c_int) )
-PyCStructType = type( ctypes.Structure )
-CArgObject = type( ctypes.byref(ctypes.c_int()) )
-
 #GLOBAL
 pacman=cdll.LoadLibrary("libpacman.so")
 CFG_FILE    = "/etc/pacman-g2.conf"
@@ -43,7 +36,7 @@ PM_DBPATH   = "var/lib/pacman-g2"
 PM_CACHEDIR = "var/cache/pacman-g2/pkg"
 PM_LOCK     = "/tmp/pacman-g2.lck"
 PM_HOOKSDIR = "etc/pacman-g2/hooks"
-
+'''
 offset=0
 rate=0
 howmany=0
@@ -56,7 +49,7 @@ eta_s=0
 eta_m=0
 eta_s=0
 eta_h=0
-
+'''
 #Logging facilities
 
 # Levels
@@ -560,11 +553,11 @@ def pacman_init():
     print_console("Can't set option PM_OPT_LOGMASK")
     pacman_print_error()
     sys.exit()
-  if pacman_set_option (PM_OPT_LOGCB,globals()["_log_cb"]()) == -1:
+  '''if pacman_set_option (PM_OPT_LOGCB,globals()["_log_cb"]()) == -1:
     print_console("Can't set option PM_OPT_LOGCB")
     pacman_print_error()
-    sys.exit()
-  
+    sys.exit()'''
+  '''
   pacman_set_option (PM_OPT_DLOFFSET,str(offset))
   pacman_set_option (PM_OPT_DLRATE,str(rate))
   pacman_set_option (PM_OPT_DLHOWMANY,str(howmany))
@@ -575,7 +568,7 @@ def pacman_init():
   # ETA stuff
   pacman_set_option (PM_OPT_DLETA_H,str(eta_h))
   pacman_set_option (PM_OPT_DLETA_M,str(eta_m))
-  pacman_set_option (PM_OPT_DLETA_S,str(eta_s))
+  pacman_set_option (PM_OPT_DLETA_S,str(eta_s))'''
 
 def pacman_init_database():
   print_debug("pacman_init_database")
@@ -764,7 +757,8 @@ def string_to_long(arg):
 def print_debug(textConsole):
   if debug <> 1:
     return
-  print "DEBUG : "+textConsole
+  print "DEBUG : "
+  print textConsole
 
 def print_console(textConsole):
   if printconsole <> 1:
