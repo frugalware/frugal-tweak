@@ -59,7 +59,11 @@ else:
 def draw():
 	try :
 		while Gtk.events_pending():
-			Gtk.main_iteration()
+			Gtk.main_iteration_do(False)
+			print_debug("draw gdk")
+		#Delaying 100ms until the next iteration
+		import time            	
+		time.sleep(0.1)
 	except:
 		e = sys.exc_info()[1]
 		print "window closed"
